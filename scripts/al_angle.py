@@ -9,9 +9,12 @@ def print_deets(a,b,t,L):
     I = IAngle(a, b, t)
     ro = Density("al")
     E = YoungModulus("al")
+    A = t * (a + (b-t))
     print("Euler Buckling Force: {0:.2f}N".format(EulerBucklingForce(I,E,5)))
     print("Max column without load: {0:.2f}m".format(MaxColumn(I, E,
                                                         0.0127*sqrt(2), ro)))
+    print("Self-weight deflection as horizontal cantilever: {0:.2f}m".format(
+    BeamDeflection(I, E, L, A*ro*9.81)))
     print("Weight each and for 50: {0:.2f}kg {1:.2f}kg".format(
                                                      WeightAngle(a,b,t,L,ro),
                                                      WeightAngle(a,b,t,L,ro)*50))

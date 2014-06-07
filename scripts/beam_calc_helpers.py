@@ -52,10 +52,10 @@ def YoungModulus(material):
         "al" - Aluminium
     """
     if material == "mild":
-        return 200*10e9
+        return 200e9
     else:
         if material == "al":
-            return 69*10e9
+            return 69e9
         else:
             raise ValueError("Invalid material `"+material+"'")
 
@@ -101,9 +101,11 @@ def MaxColumn(I, E, d, ro):
     return h
 
 
-def BeamDeflection(I, E, L, F):
+def BeamDeflection(I, E, L, q):
     """
     Returns the deflection of a horizontal cantilever of length L
-    made from the material described by I and E, under a load force F.
+    made from the material described by I and E, under a distributed uniform
+    load q.
     """
-
+    w = q * L**4 / (8*E*I)
+    return w
