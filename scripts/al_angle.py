@@ -15,6 +15,9 @@ def print_deets(a,b,t,L):
                                                         0.0127*sqrt(2), ro)))
     print("Self-weight deflection as horizontal cantilever: {0:.2f}m".format(
     BeamDeflection(I, E, L, A*ro*9.81)))
+# http://www.knmi.nl/samenw/hydra/faq/press.html
+    print("Deflection under ~30mph wind load: {0:.2f}m".format(
+    BeamDeflection(I, E, L, a*119)))
     print("Weight each and for 50: {0:.2f}kg {1:.2f}kg".format(
                                                      WeightAngle(a,b,t,L,ro),
                                                      WeightAngle(a,b,t,L,ro)*50))
