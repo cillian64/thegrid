@@ -15,23 +15,24 @@
 \usepackage{appendix}
 
 \title {\textsc{emission}\\\large{\textsc{The Grid}}}
-\author{David Turner (david@dwt27.co.uk)\\Adam Greig (adam@adamgreig.com)}
-%\date{} %Suppress date
+\author{David Turner (dwt27@cl.cam.ac.uk)\\Adam Greig (ag611@eng.cam.ac.uk)}
+\date{} %Suppress date
 
 % Begin the document
 \begin{document}
     \maketitle
 
 \begin{abstract}
-An art/engineering installation consisting a grid of poles illuminated by white LED strips.  Interactivity is provided through a Computer Vision system utilising a night vision camera.  Applications include display patterns and a virtual ``maze''.
+An art/engineering installation consisting a grid of poles illuminated by white LED strips.  Interactivity is provided through a Computer Vision system utilising a night vision camera.  Applications include display patterns and a virtual ``maze''.  Primary requirements are a $14m \times 18m$ area of unlit ground and access to mains power (approx $1.5kW$ peak).
 \end{abstract}
 
-\section{Summary of Requirements}
-\begin{itemize}
-    \item $18m \times 14m$ of unlit ground which can have cables dug in
-    \item Mains power, $1.5kW$ peak usage.
-\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{pics/render1.png}
+    \caption{A computer graphics simulation of \textsc{The Grid}.}
+\end{figure}
 
+\clearpage
 \section{Design}
 \subsection{Layout}
 \textsc{The Grid} would occupy a space of approximately $18m \times 14m$.  Of this, $12m \times 12m$ is the grid itself, consisting of a $7 \times 7$ grid of poles with $2m$ spacing.  A backstage area holds the power and control tent as well as the camera mast.
