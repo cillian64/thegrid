@@ -13,8 +13,10 @@
 \usepackage{caption}		% This package allows subfigures:
 \usepackage{subcaption}	% And proper subfigure captioning
 \usepackage{appendix}
+\usepackage[amssymb]{SIunits}
 
-\title {\textsc{emission}\\\large{\textsc{The Grid}}}
+\title{\textsc{The Grid}\\\large{\textsc{Interactive Field Emission Display}}}
+%\title {\textsc{emission}\\\large{\textsc{The Grid}}}
 \author{David Turner (dwt27@cl.cam.ac.uk)\\Adam Greig (ag611@eng.cam.ac.uk)}
 \date{} %Suppress date
 
@@ -22,8 +24,9 @@
 \begin{document}
     \maketitle
 
+\renewcommand{\abstractname}{Summary}
 \begin{abstract}
-An art/engineering installation consisting a grid of poles illuminated by white LED strips.  Interactivity is provided through a Computer Vision system utilising a night vision camera.  Applications include display patterns and a virtual ``maze''.  Primary requirements are a $14m \times 18m$ area of unlit ground and access to mains power (approx $1.5kW$ peak).
+An art/engineering installation consisting a grid of poles illuminated by white LED strips.  Interactivity is provided through a computer vision system utilising a night vision camera.  Applications include a virtual maze and interactive display patterns.  Primary requirements are a $14\metre \times 18\metre$ area of unlit ground and access to mains power (approx $1.5\kilo\watt$ peak).
 \end{abstract}
 
 \begin{figure}[h]
@@ -35,7 +38,7 @@ An art/engineering installation consisting a grid of poles illuminated by white 
 \clearpage
 \section{Design}
 \subsection{Layout}
-\textsc{The Grid} would occupy a space of approximately $18m \times 14m$.  Of this, $12m \times 12m$ is the grid itself, consisting of a $7 \times 7$ grid of poles with $2m$ spacing.  A backstage area holds the power and control tent as well as the camera mast.
+\textsc{The Grid} would occupy a space of approximately $18\metre \times 14\metre$.  Of this, $12\metre \times 12\metre$ is the grid itself, consisting of a $7 \times 7$ grid of poles with $2\metre$ spacing.  A backstage area holds the power and control tent as well as the camera mast.
 
 \begin{figure}[h]
     \centering
@@ -45,13 +48,13 @@ An art/engineering installation consisting a grid of poles illuminated by white 
 \end{figure}
 
 \subsection{Structural}
-Each pole will protrude $2.5m$ from the ground.  The total length is $3m$, with $50cm$ being inserted into the ground.  The poles are constructed from $\frac{3}{4}" \times \frac{3}{4}" \times \frac{1}{16}"$ aluminium angle section.  See Appendix \ref{app:engdrawings} for detailed drawings.
+Each pole will protrude $2.5\metre$ from the ground.  The total length is $3\metre$, with $50\centi\metre$ being inserted into the ground.  The poles are constructed from $\frac{3}{4}" \times \frac{3}{4}" \times \frac{1}{16}"$ aluminium angle section.  See Appendix \ref{app:engdrawings} for detailed drawings.
 
-The interactivity camera will be mounted $8m$ above the ground on a $10m$ fishing pole, guyed for rigidity.
+The interactivity camera will be mounted $8\metre$ above the ground on a $10\metre$ fishing pole, guyed for rigidity.
 
 \subsection{Electrical and Electronics}
 \subsubsection{Cabling}
-Each LED strip will consume around $2A$ when active.  The wiring for one strip will consist of twin core cable carrying power and return between the strip and the control tent.  Additionally, a coaxial connection will run from the interactivity camera to the control tent.
+Each LED strip will consume around $2\ampere$ when active.  The wiring for one strip will consist of twin core cable carrying power and return between the strip and the control tent.  Additionally, a coaxial connection will run from the interactivity camera to the control tent.
 
 All cabling inside \textsc{The Grid} will be buried slightly below ground to avoid a trip hazard.
 
@@ -59,7 +62,7 @@ All cabling inside \textsc{The Grid} will be buried slightly below ground to avo
 Each LED strip will be controlled using a BD679 Darlington pair as a driver.  The drivers will be switched by six 8-output shift registers, themselves controlled by the CPU.
 
 \subsubsection{Power}
-The maximum power consumption of \textsc{The Grid} will be $100A$.  This will be provided by four $550W$ ATX power supplies, each rated for $32A$ on the $+12V$ rail.
+The maximum power consumption of \textsc{The Grid} will be $100\ampere$.  This will be provided by four $550\watt$ ATX power supplies, each rated for $32\ampere$ on the $+12\volt$ rail.
 
 \subsection{Software and Control}
 A laptop in the control tent will generate display patterns and handle interactivity.  It will transmit lighting data via a serial link to an Arduino.  Upon receiving each frame, the Arduino will clock the data into the shift registers, then activate the output latch.
