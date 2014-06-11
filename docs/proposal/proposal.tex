@@ -11,11 +11,14 @@
 \usepackage{amsmath}		% This package allows the use of $ \text{} $
 \usepackage{placeins}		% This package allows the use of \FloatBarrier
 \usepackage{caption}		% This package allows subfigures:
-\usepackage{subcaption}	% And proper subfigure captioning
+\usepackage{subcaption}	    % And proper subfigure captioning
 \usepackage{appendix}
 \usepackage[amssymb]{SIunits}
 \usepackage{xspace}
 \usepackage{bold-extra}
+\usepackage{tikz}
+
+\usetikzlibrary{decorations.pathreplacing}
 
 %\newcommand{\thegrid}{\textsc{The\textperiodcentered Grid}\texttrademark\xspace}
 \newcommand{\thegrid}{\textsc{the\textperiodcentered grid}\xspace}
@@ -50,7 +53,36 @@
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=7cm]{diags/plan.png}
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \foreach \x in {0.0cm, 0.5cm, 1.0cm, 1.5cm, 2.0cm, 2.5cm, 3.0cm}
+        \foreach \y in {-1.5cm, -1.0cm, -0.5cm, 0.0cm, 0.5cm, 1.0cm, 1.5cm}
+            \draw (\x, \y) circle (0.5mm) coordinate (\x\y);
+
+    \draw (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,mirror,angle=45},decorate] (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
+    \draw (3.4cm, 1.0cm) node[right] {Backstage};
+
+    \draw (3.4cm, -0.3cm) rectangle (3.7cm, 0.3cm) coordinate (control);
+    \draw[thin] (3.55cm, -0.35cm) -- (3.55cm, -2.5cm) node[below] {Control};
+
+    \draw (4.5cm, 0.0cm) circle (1mm) coordinate (camera);
+    \draw[thin] (4.5cm, -0.35cm) -- (4.5cm, -3.2cm) node[below] {Camera Pole};
+
+    \draw[->] (-5.0cm, 0.0cm) -- (-1.5cm, 0.0cm);
+    \draw (-3.5cm, 0.0cm) node[above] {Public Approach};
+
+    \draw[<->] (-0.1cm, -2.0cm) -- (3.1cm, -2.0cm);
+    \draw (1.5cm, -2.0cm) node[below] {12m};
+
+    \draw[<->] (-0.5cm, -1.6cm) -- (-0.5cm, 1.6cm);
+    \draw (-0.5cm, -0.5cm) node[left] {12m};
+
+    \draw[<->] (-0.1cm, 2.0cm) -- (4.6cm, 2.0cm);
+    \draw (2.3cm, 2.0cm) node[above] {18m};
+
+    \end{tikzpicture}
     \caption{Plan schematic}
     \label{fig:planschematic}
 \end{figure}
