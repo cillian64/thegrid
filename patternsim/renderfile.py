@@ -44,11 +44,14 @@ print("Title: "+title)
 print("Description: "+description)
 print("")
 
-for block in blocks:
-    for line in block[0:7]:
-        print(line)
-    time.sleep(float(block[7])/1000)
-    print("\033[7A\r", end='')
-
-print("\033[7B\r")
+try:
+    while True:
+        for block in blocks:
+            for line in block[0:7]:
+                print(line)
+            time.sleep(float(block[7])/1000)
+            print("\033[7A\r", end='')
+except KeyboardInterrupt:
+    print("\033[7B\r")  # make sure our cursor isn't left in an odd place
+    pass
 
