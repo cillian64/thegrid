@@ -315,6 +315,37 @@ of $X~\metre$ and $Y~\metre$ respectively.
 
 \section{Cable layout}
 
+\section{Electrical Design Verification}
+\subsection{Power and Current Consumption}
+Power consumption of LED strip varies, but is generally quoted as around
+$5-7~\watt/\metre$.  For 49 poles, this gives a total peak power consumption of
+about $600~\watt$ to $900~\watt$.  Using Ohm's Law and the definition of
+electrical power:
+
+$$ V = IR $$
+$$ P = VI $$
+
+and using $900~\watt$ as a worst case, the total current flow in \thegrid is
+about $75~\ampere$ at $12~\volt$ DC, although no single conductor carries the
+entire current.
+
+\subsection{Cabling Resistance and Voltage Drop}
+Cabling between the control tent and poles will be 2-core cable with an area of
+$0.5\milli\metre^2$, or $5 \times 10^{-7}~\metre^2$ per conductor.  The
+resistivity of copper is $1.68 \times 10^{-8}~\ohm\metre$ at room temperature.
+With a maximum cable length of around $20~\metre$ the total conductor length is
+$40~\metre$, giving a resistance of $1.34~\ohm$.  With a current of
+$1.46~\ampere$ per pole, this gives a voltage drop of $1.96~\volt$.
+
+\subsection{Cabling Self-heating}
+With a resistance of $0.0336~\ohm/\metre$ and a current of $1.46~\ampere$, the
+power dissipated in a conductor will be:
+
+\begin{align*}
+P &= I^2 R \\
+  &= 71.6~\milli\watt/\metre
+\end{align*}
+
 \section{Prototype Pole}
 
 \end{appendices}
