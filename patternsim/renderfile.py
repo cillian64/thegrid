@@ -59,12 +59,15 @@ print("")
 
 try:
     while True:
-        for block in blocks:
+        for i,block in enumerate(blocks):
             for line in block[0:7]:
                 print(line)
+            framecount = str(len(blocks))
+            frameno = str(i+1).zfill(len(framecount))
+            print("Frame "+frameno+"/"+framecount)
             time.sleep(float(block[7])/1000)
-            print("\033[7A\r", end='')
+            print("\033[8A\r", end='')
 except KeyboardInterrupt:
-    print("\033[7B\r")  # make sure our cursor isn't left in an odd place
+    print("\033[8B\r")  # make sure our cursor isn't left in an odd place
     pass
 
