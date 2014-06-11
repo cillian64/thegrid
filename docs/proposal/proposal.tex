@@ -20,6 +20,7 @@
 
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{patterns}
+\usetikzlibrary{calc}
 
 \newcommand{\thegrid}{\textsc{the\textperiodcentered grid}\xspace}
 \newcommand{\amaze}{\textsc{aMAZE}\xspace}
@@ -271,6 +272,29 @@ problematic patterns such as flashing.
 \section{Electronics Schematic}
 
 \section{Cable layout}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+
+    \foreach \x in {0cm, 1cm, 2cm, 3cm, 4cm, 5cm, 6cm}
+        \foreach \y in {-3cm, -2cm, -1cm, 0cm, 1cm, 2cm, 3cm}
+            \draw (\x, \y) circle (0.5mm);
+
+    \foreach \x in {0cm, 1cm, 2cm, 3cm, 4cm, 5cm, 6cm}
+        \foreach \y in {-3cm, -2cm, -1cm, 0cm, 1cm, 2cm, 3cm}
+            \draw (\x, \y) -- (\x, \y + 1mm + \x/20) --
+                  ($(6.5cm, \y) + (0, \x/20 + 1mm) - (\x/20, 0) + abs(\y)*(0.13mm, 0)$)
+                  -- ++(0, -\y);
+
+    \draw[fill=white] (6.2cm, -0.5cm) rectangle (7.8cm, 0.5cm);
+
+
+    \end{tikzpicture}
+    \caption{Power/control cable routing}
+\end{figure}
+
 
 \section{Prototype Pole}
 
