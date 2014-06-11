@@ -21,7 +21,7 @@
 \newcommand{\thegrid}{\textsc{the\textperiodcentered grid}\xspace}
 \newcommand{\amaze}{\textsc{aMAZE}\xspace}
 
-\title{\thegrid\\\small{\textsc{Interactive Field Emission Display}}}
+\title{\thegrid\\\small{\textsc{Interactive Display Matrix}}}
 %\title {\textsc{emission}\\\large{\textsc{The Grid}}}
 \author{\small{David Turner (dwt27@cl.cam.ac.uk)}\\\small{Adam Greig (ag611@eng.cam.ac.uk)}}
 \date{} %Suppress date
@@ -64,13 +64,13 @@ The interactivity camera will be mounted $8\metre$ above the ground on a $10\met
 \subsubsection{Cabling}
 Each LED strip will consume around $2\ampere$ when active.  The wiring for one strip will consist of twin core cable carrying power and return between the strip and the control tent.  Additionally, a coaxial connection will run from the interactivity camera to the control tent.
 
-All cabling inside \thegrid will be buried slightly below ground to avoid a trip hazard.
+Ideally, all cabling inside \thegrid will be buried slightly below ground to avoid a trip hazard.  If this is not possible, cabling could be run between the tops of poles at a height of $2.5\metre$.
 
 \subsubsection{Switching}
 Each LED strip will be controlled using a BD679 Darlington pair as a driver.  The drivers will be switched by six 8-output shift registers, themselves controlled by the CPU.
 
 \subsubsection{Power}
-The maximum power consumption of \thegrid will be $100\ampere$.  This will be provided by four $550\watt$ ATX power supplies, each rated for $32\ampere$ on the $+12\volt$ rail.
+The maximum power consumption of \thegrid will be $100\ampere$.  This will be provided by four $550\watt$ ATX power supplies, each rated for $32\ampere$ on its $+12\volt$ rail.
 
 \subsection{Software and Control}
 A laptop in the control tent will generate display patterns and handle interactivity.  It will transmit lighting data via a serial link to an Arduino.  Upon receiving each frame, the Arduino will clock the data into the shift registers, then activate the output latch.
@@ -91,6 +91,7 @@ A number of interactive patterns will produce interesting visual effects based o
 For times when no users are directly interacting with \thegrid, non-interactive patterns will display pre-programmed effects resembling waves, stars and sparks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
 \section{Risk Assessment}
 \subsection{Mechanical}
 \thegrid is an interactive exhibit designed for people to walk around.  It is also active after sunset.  This leads to a number of risks due to people walking around and through a structure in low lighting.  However, it is anticipated that there is a minimal risk of injury.  As poles are embedded in soft ground and are constructed from thin aluminium section, it is anticipated that there is no serious risk of injury should somebody walk into a pole.
@@ -106,13 +107,14 @@ The backstage area will contain cabling running at ground level alongside other 
 \subsection{Electrical}
 All mains electronics will be contained within the control tent and power is distributed through \thegrid at $12\volt$ DC.  The control tent will be waterproof, and all exposed cabling, connections and electronics will be waterproof.  The low voltage combined with RCD protection means there is a minimal risk of electricution.
 
-\thegrid itself will not contain any flammable materials, so there is no risk of fire.  In the unlikely event of a fire in the control tent, the hazard would be limited to the off-limits backstage area.
+There is minimal risk of the low voltage LED strips in \thegrid itself posing a fire hazard.  In the unlikely event of a fire in the control tent the hazard would be contained in the off-limits backstage area, minimizing the risk to users.
 
 \subsection{Other}
 In the event of a nearby thunder storm, the exposed metal poles could attract lightning strikes (although they are likely negligible compared to the main NOC radio mast).  If there is a significant chance of a thunder storm, \thegrid will be disconnected from the mains supply and placed off limits for the duration of the storm.
 
 There is a risk that individuals with photo-sensitive epilepsy could be affected by \thegrid.  We will have to investigate further how to minimize this risk, whether this be through appropriate warning signage or avoiding problematic patterns such as flashing.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \begin{appendices}
 \section{Engineering Drawings}
@@ -129,6 +131,15 @@ There is a risk that individuals with photo-sensitive epilepsy could be affected
     \includegraphics[width=5cm]{diags/toppole.png}
     \caption{Top view of a single pole with LED strip}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Structural Design Verification}
+
+\section{Electronics Schematic}
+
+\section{Cable layout}
+
+\section{Prototype Pole}
 
 \end{appendices}
 
