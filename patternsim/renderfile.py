@@ -1,5 +1,8 @@
+#!/usr/bin/python3
+
 import time
 import os
+import sys
 
 # File format:
 # First line is a title
@@ -11,7 +14,17 @@ import os
 # O@OOOOO
 # 100
 
-f = open("wave.txt", 'r')
+if len(sys.argv) != 2:
+    print("Sort out your arguments.")
+    print("I want one argument, a filename to run. i.e:")
+    print(sys.argv[0]+" patternfile.txt")
+    exit()
+
+try:
+    f = open(sys.argv[1], 'r')
+except FileNotFoundError:
+    print("File `"+sys.argv[1]+"' doesn't seem to exist...")
+    exit()
 
 def fussyreadline(f):
     line = f.readline()
