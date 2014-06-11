@@ -277,8 +277,26 @@ Standard values for the density and Young Modulus of aluminium are used,
 $\rho=2,700\kilo\gram/\metre$, $E = 69 \times 10^9 \giga\pascal$.
 
 \subsection{Flexural Rigidity}
+A simple test of a beam's rigidity is its deflection under self weight when
+mounted as a horizontal cantilever.  For a horizontal cantilever of length $L$
+with distributed loading $w~\kilo\gram/\metre$, the deflection is:
+
+$$ \delta = \frac{w L^4}{8EI} $$
+
+Applying a loading of $1.60~\newton/\metre$ for the weight of aluminium and
+$0.374~\newton/\metre$ for the LEDs, we get a deflection of $\delta = 3.09
+\times 10^{-4}~\metre$.
 
 \subsection{Columnar Euler Buckling}
+Slender columns under a compressive load will tend to fail by buckling rather
+than crushing.  The standard formula for the maximum load (applied at the tip
+of the column) due to Euler buckling is:
+
+$$ F_{\text{crit}} = \frac{\pi^2 EI}{(KL)^2} $$
+
+$(KL)$ is the effective length, determined by boundary conditions.  Our column is
+a vertical cantilever, which implies a correction of $K=2$.  The maximum load
+of our column is $F_{\text{crit}} = 12.3\kilo\newton$.
 
 \subsection{Wind Loading}
 
