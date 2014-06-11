@@ -220,7 +220,22 @@ problematic patterns such as flashing.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=5cm]{diags/sidepole.png}
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 5.5cm);
+
+    \draw[|<->|] (1.5cm, 0cm) -- (1.5cm, 5.5cm);
+    \draw (1.5cm, 2.75cm) node[right] {$2.5\metre$};
+
+    \draw[|<->|] (1.5cm, 0cm) -- (1.5cm, -1cm);
+    \draw (1.5cm, -0.5cm) node[right] {$0.5\metre$};
+
+    \end{tikzpicture}
     \caption{Side view of a single pole}
 \end{figure}
 
