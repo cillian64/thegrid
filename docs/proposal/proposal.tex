@@ -61,7 +61,8 @@
             \draw (\x, \y) circle (0.5mm) coordinate (\x\y);
 
     \draw (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
-    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,mirror,angle=45},decorate] (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,mirror,angle=45},decorate]
+            (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
     \draw (3.4cm, 1.0cm) node[right] {Backstage};
 
     \draw (3.4cm, -0.3cm) rectangle (3.7cm, 0.3cm) coordinate (control);
@@ -70,7 +71,7 @@
     \draw (4.5cm, 0.0cm) circle (1mm) coordinate (camera);
     \draw[thin] (4.5cm, -0.35cm) -- (4.5cm, -3.2cm) node[below] {Camera Pole};
 
-    \draw[->] (-5.0cm, 0.0cm) -- (-1.5cm, 0.0cm);
+    \draw[->, double] (-5.0cm, 0.0cm) -- (-1.5cm, 0.0cm);
     \draw (-3.5cm, 0.0cm) node[above] {Public Approach};
 
     \draw[<->] (-0.1cm, -2.0cm) -- (3.1cm, -2.0cm);
