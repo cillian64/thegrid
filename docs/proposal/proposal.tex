@@ -269,6 +269,32 @@ problematic patterns such as flashing.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Structural Design Verification}
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 5.5cm);
+
+    \draw[->,double] (-2cm, 4.0cm) -- (-1cm, 4.0cm);
+    \draw (-1.5cm, 4.0cm) node[above]{Wind};
+
+    \draw[thin] (-0.5cm, 0) rectangle (-0.19mm, 5.5cm);
+
+    \foreach \y in {0.2, 0.5, ..., 5.5}
+        \draw[thin,->] (-0.5cm, \y) -- (-0.19mm, \y);
+
+    \draw[thin,->] (0cm, 5.5cm) -- (1cm, 5.5cm);
+    \draw (0.5cm, 5.5cm) node[above] {$\delta$};
+
+    \end{tikzpicture}
+    \caption{Wind loading on pole}
+\end{figure}
+
 \section{Electronics Schematic}
 
 \section{Cable layout}
