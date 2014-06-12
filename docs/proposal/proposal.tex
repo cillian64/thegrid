@@ -42,7 +42,7 @@
 illuminated by white LED strips.  Interactivity is provided through a computer
 vision system utilising a night vision camera.  Applications include a virtual
 maze and interactive display patterns.  Primary requirements are a $14\metre
-\times 18\metre$ area of unlit ground and access to mains power (approx
+\times 24\metre$ area of unlit ground and access to mains power (approx
 $1.5\kilo\watt$ peak).
 \end{abstract}
 
@@ -56,7 +56,7 @@ $1.5\kilo\watt$ peak).
 \clearpage
 \section{Design}
 \subsection{Layout}
-\thegrid would occupy a space of approximately $18\metre \times 14\metre$.  Of
+\thegrid would occupy a space of approximately $24\metre \times 14\metre$.  Of
 this, $12\metre \times 12\metre$ is the grid itself, consisting of a $7 \times
 7$ grid of poles with $2\metre$ spacing.  A backstage area holds the power and
 control tent as well as the camera mast.
@@ -70,16 +70,20 @@ control tent as well as the camera mast.
         \foreach \y in {-1.5cm, -1.0cm, -0.5cm, 0.0cm, 0.5cm, 1.0cm, 1.5cm}
             \draw (\x, \y) circle (0.5mm) coordinate (\x\y);
 
-    \draw (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
-    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+    \draw (6.0cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (6.0cm, 1.6cm);
+    \draw[decoration={border,segment length=1.5mm,amplitude=1.2mm,
                       mirror,angle=45},decorate]
-         (4.5cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (4.5cm, 1.6cm);
-    \draw (3.4cm, 1.0cm) node[right] {Backstage};
+         (6.0cm, -1.6cm) -- (3.2cm, -1.6cm) -- (3.2cm, 1.6cm) -- (6.0cm, 1.6cm);
+    \draw (3.9cm, 1.0cm) node[right] {Backstage};
 
     \draw (3.4cm, -0.3cm) rectangle (3.7cm, 0.3cm) coordinate (control);
     \draw[thin] (3.55cm, -0.35cm) -- (3.55cm, -2.5cm) node[below] {Control};
 
-    \draw (4.5cm, 0.0cm) circle (1mm) coordinate (camera);
+    \draw[thin] (4.5cm, 0cm) -- ++(-0.625cm, -1.08cm);
+    \draw[thin] (4.5cm, 0cm) -- ++(-0.625cm, 1.08cm);
+    \draw[thin] (4.5cm, 0cm) -- ++(1.25cm, 0cm);
+
+    \draw[fill=white] (4.5cm, 0.0cm) circle (1mm) coordinate (camera);
     \draw[thin] (4.5cm, -0.35cm) -- (4.5cm, -3.2cm) node[below] {Camera Pole};
 
     \draw[->, double] (-5.0cm, 0.0cm) -- (-1.5cm, 0.0cm);
@@ -91,8 +95,8 @@ control tent as well as the camera mast.
     \draw[|<->|] (-0.5cm, -1.5cm) -- (-0.5cm, 1.5cm);
     \draw (-0.5cm, -0.5cm) node[left] {12m};
 
-    \draw[|<->|] (0cm, 2.0cm) -- (4.5cm, 2.0cm);
-    \draw (2.3cm, 2.0cm) node[above] {18m};
+    \draw[|<->|] (0cm, 2.0cm) -- (6.0cm, 2.0cm);
+    \draw (3.0cm, 2.0cm) node[above] {24m};
 
     \end{tikzpicture}
     \caption{Plan schematic}
@@ -265,6 +269,43 @@ problematic patterns such as flashing.
     \end{tikzpicture}
     \caption{Top view of a single pole with LED strip}
 \end{figure}
+
+
+\begin{figure}[h]
+      \centering
+      \begin{tikzpicture}[
+          >=latex, thick,
+      ]
+      \draw (-5cm, 0cm) -- (5cm, 0cm);
+      \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                        mirror,angle=45},decorate] (-5cm, 0cm) -- (5cm, 0cm);
+
+      \draw (-0.2mm, 0) -- (-0.075mm, 8cm) -- (0.075mm, 8cm) -- (0.2mm, 0);
+
+      \draw[thin] (0, 4cm) -- (-2cm, 0);
+      \draw[thin] (0, 4cm) -- (-1cm, 0);
+      \draw[thin] (0, 4cm) -- (2cm, 0);
+
+      \draw[thin] (0, 8cm) -- (-4cm, 0);
+      \draw[thin] (0, 8cm) -- (-2cm, 0);
+      \draw[thin] (0, 8cm) -- (4cm, 0);
+
+      \draw[|<->|] (-5cm, 0) -- (-5cm, 8cm);
+      \draw (-5cm, 4cm) node[left] {8\metre};
+
+      \draw[fill=white] (-0.2cm, 3.9cm) rectangle (0.2cm, 4.1cm);
+      \draw (0.2cm, 4cm) node[right] {IR Floodlight};
+
+      \draw[fill=white] (-0.15cm, 7.85cm) rectangle (0.15cm, 8.15cm);
+      \draw[fill=white] (0, 8cm) circle (0.1cm);
+      \draw (0.2cm, 8cm) node[right] {Camera};
+
+      \draw[|<->|] (-4cm, -0.5cm) -- (4cm, -0.5cm);
+      \draw (0cm, -0.5cm) node [below] {guying radius 10\metre};
+
+      \end{tikzpicture}
+      \caption{Side view of camera mast}
+  \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
