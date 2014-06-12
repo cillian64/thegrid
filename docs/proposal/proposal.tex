@@ -25,7 +25,7 @@
 \newcommand{\thegrid}{\textsc{the\textperiodcentered grid}\xspace}
 \newcommand{\amaze}{\textsc{aMAZE}\xspace}
 
-\title{\thegrid\\\small{\textsc{Interactive Display Matrix}}}
+\title{\thegrid\\\small{\textsc{Large Interactive Display Field}}}
 %\title {\textsc{emission}\\\large{\textsc{The Grid}}}
 \author{\small{David Turner (dwt27@cl.cam.ac.uk)}\\
         \small{Adam Greig (ag611@eng.cam.ac.uk)}}
@@ -56,7 +56,7 @@ $1.5\kilo\watt$ peak).
 \clearpage
 \section{Design}
 \subsection{Layout}
-\thegrid would occupy a space of approximately $24\metre \times 14\metre$.  Of
+\thegrid occupies a space of approximately $24\metre \times 14\metre$.  Of
 this, $12\metre \times 12\metre$ is the grid itself, consisting of a $7 \times
 7$ grid of poles with $2\metre$ spacing.  A backstage area holds the power and
 control tent as well as the camera mast.
@@ -104,45 +104,44 @@ control tent as well as the camera mast.
 \end{figure}
 
 \subsection{Structural}
-Each pole will protrude $2.5\metre$ from the ground.  The total length is
-$3\metre$, with $50\centi\metre$ being inserted into the ground.  The poles are
-constructed from $\frac{3}{4}" \times \frac{3}{4}" \times \frac{1}{16}"$
-aluminium angle section.  See Appendix~\ref{app:engdrawings} for detailed
-drawings.
+Each pole is $3\metre$ long, with $50\centi\metre$ being inserted into the
+ground.  The poles are constructed from $\frac{3}{4}" \times \frac{3}{4}"
+\times \frac{1}{16}"$ aluminium angle section.  See
+Appendix~\ref{app:engdrawings} for detailed drawings.
 
-The interactivity camera will be mounted $8\metre$ above the ground on a
-$10\metre$ fishing pole, guyed for rigidity.
+The interactivity camera will be mounted $8\metre$ above the ground on a pole,
+guyed for rigidity.
 
 \subsection{Electrical and Electronics}
 \subsubsection{Cabling}
-Each LED strip will consume around $2\ampere$ when active.  The wiring for one
-strip will consist of twin core cable carrying power and return between the
-strip and the control tent.  Additionally, a coaxial connection will run from
-the interactivity camera to the control tent.
+Each LED strip consumes $18\watt$ when active.  The wiring for one strip will
+consist of twin core cable carrying power and return between the strip and the
+control tent.  Additionally, a coaxial connection will run from the
+interactivity camera to the control tent.
 
 Ideally, all cabling inside \thegrid will be buried slightly below ground to
 avoid a trip hazard.  If this is not possible, cabling could be run between the
 tops of poles at a height of $2.5\metre$.
 
 \subsubsection{Switching}
-Each LED strip will be controlled using a BD679
-Darlington pair as a driver.  The drivers will be switched by six 8-output
-shift registers, themselves controlled by the CPU.
+Each LED strip will be controlled using a MOSFET driver.  The drivers will be
+switched by seven 8-output shift registers, themselves controlled by the CPU.
 
 \subsubsection{Power}
-The maximum power consumption of \thegrid will be
-$100\ampere$.  This will be provided by four $550\watt$ ATX power supplies,
-each rated for $32\ampere$ on its $+12\volt$ rail.
+The maximum power consumption of \thegrid will be $74\ampere$.  This will be
+provided by four $550\watt$ ATX power supplies, each rated for $32\ampere$ on
+its $+12\volt$ rail.
 
 \subsection{Software and Control}
-A laptop in the control tent will generate
-display patterns and handle interactivity.  It will transmit lighting data via
-a serial link to an Arduino.  Upon receiving each frame, the Arduino will clock
-the data into the shift registers, then activate the output latch.
+A laptop in the control tent will generate display patterns and handle
+interactivity.  It will transmit lighting data via a serial link to an
+microcontroller.  Upon receiving each frame, the microcontroller will clock the
+data into the shift registers, then activate the output latch.
 
-A night vision enabled camera (with separate IR floodlight) mounted on a mast
-in the backstage area senses movement and tracks the location of people inside
-\thegrid.  This information is used for interactive applications and patterns.
+A night vision enabled camera mounted on a mast in the backstage area senses
+movement and tracks the location of people inside \thegrid to co-ordiate
+interactive applications and patterns.  Illumination will be provided by
+several IR floodlights.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applications}
@@ -170,28 +169,26 @@ sparks.
 \clearpage
 \section{Risk Assessment}
 \subsection{Mechanical}
-\thegrid is an interactive exhibit designed for people to walk around.  It is
-also active after sunset.  This leads to a number of risks due to people
-walking around and through a structure in low lighting.  However, it is
-anticipated that there is a minimal risk of injury.  As poles are embedded in
-soft ground and are constructed from thin aluminium section, it is anticipated
-that there is no serious risk of injury should somebody walk into a pole.
+\thegrid is an interactive exhibit and will involve people walking around a
+structure in low lighting, however, there is a minimal risk of injury.  As
+poles are embedded in soft ground and are constructed from thin aluminium
+section, there is no serious risk of injury should somebody walk into a pole.
 
 Poles will be $2.5\metre$ (8 foot 2 inches) tall, so there should be no risk of
 impalement or eye injury.
 
 In the very unlikely case of a pole falling on a person, the pole's light
-weight (around $500\gram$) should mean there is minimal possibility for injury.
+weight (around $500\gram$) means there is minimal chance of injury.
 
 With people walking around the installation in low light, there would be a
 significant trip hazard were any cabling or guy-wires exposed.  For this
 reason, all cabling inside \thegrid itself will be buried below the surface of
-the ground.  If the cable cannot be buried, it could be run overhead between
-the top of the poles.  Again, this is high enough that it should be impossible
-to walk into.
+the ground.  If the cable cannot be buried, it will be run overhead between the
+top of the poles.  Again, this is high enough that it will be impossible to
+walk into.
 
 The backstage area will contain cabling running at ground level alongside other
-hazards, and so will be off limits.
+hazards and so will be off limits.
 
 \subsection{Electrical}
 All mains electronics will be contained within the control tent and power is
@@ -207,10 +204,10 @@ users.
 
 \subsection{Other}
 In the event of a nearby thunder storm, the exposed metal poles could attract
-lightning strikes (although they are likely negligible compared to the main NOC
-radio mast).  If there is a significant chance of a thunder storm, \thegrid
-will be disconnected from the mains supply and placed off limits for the
-duration of the storm.
+lightning strikes (although the risk is  likely negligible compared to the main
+NOC mast).  If there is a significant chance of a thunder storm, \thegrid will
+be disconnected from the mains supply and placed off limits for the duration of
+the storm.
 
 There is a risk that individuals with photo-sensitive epilepsy could be
 affected by \thegrid.  We will have to investigate further how to minimize this
@@ -321,9 +318,10 @@ cantilevers subject to self weight and lateral wind loading.
 
 \subsection{Basic Properties}
 The following calculations are based on the beam's \emph{Second Moment of Area
-in the X axis} ($I_{xx}$), \emph{Density} ($\rho$), and \emph{Young's Modulus}
-($E$).  The second moment of area in the U axis ($45^\circ$ from the X and Y
-axes) is defined:
+in the U axis} ($I_{uu}$), \emph{Density} ($\rho$), and \emph{Young's Modulus}
+($E$).  The U axis ($45^\circ$ from the X and Y axes) has the weakest second
+moment of area (see Figure \ref{fig:iangle}).  The second moment of area in the
+U axis is defined:
 
 $$ I_{uu} = \int \! v^2 \, \mathrm{d}A $$
 
@@ -363,19 +361,23 @@ I_{uu} &= 2 t \sqrt{2} \int_{\frac{-a}{2\sqrt{2}}}^{\frac{a}{2\sqrt{2}}}
     \draw (0mm, 20mm) node[above] {$v$};
     \end{tikzpicture}
     \caption{Second Moment of Area for Angle Section}
+    \label{fig:iangle}
 \end{figure}
 
 For $a=\frac{3}{4}"$ and $t=\frac{1}{16}"$, $I = 9.15\times10^{-10}~\metre^4$.
 
-Standard values for the density and Young Modulus of aluminium are used,
+Standard values for the density and Young's Modulus of aluminium are used,
 $\rho=2,700\kilo\gram/\metre$, $E = 69 \times 10^9 \giga\pascal$.
 
 \subsection{Flexural Rigidity}
 A simple test of a beam's rigidity is its deflection under self weight when
 mounted as a horizontal cantilever.  For a horizontal cantilever of length $L$
-with distributed loading $w~\kilo\gram/\metre$, the deflection is:
+with distributed loading $w$, the deflection is:
 
-$$ \delta = \frac{w L^4}{8EI} $$
+\begin{equation}
+\delta = \frac{w L^4}{8EI}
+\label{eq:cantilever}
+\end{equation}
 
 \begin{figure}[h]
     \centering
@@ -404,10 +406,10 @@ $$ \delta = \frac{w L^4}{8EI} $$
 \end{figure}
 
 Applying a loading of $1.60~\newton/\metre$ for the weight of aluminium and
-$0.374~\newton/\metre$ for the LEDs, we get a deflection of
-$\delta = 0.153~\metre$.
+$0.374~\newton/\metre$ for the LEDs, we get a total loading of
+$w=1.97~\newton/\metre$ and a deflection of $\delta = 0.153~\metre$.
 
-\subsection{Columnar Buckling}
+\subsection{Buckling}
 Slender columns under a compressive load will tend to fail by buckling rather
 than crushing.  The standard formula for the maximum load (applied at the tip
 of the column) due to Euler buckling is:
@@ -433,9 +435,10 @@ $$ F_{\text{crit}} = \frac{\pi^2 EI}{(KL)^2} $$
     \caption{Euler buckling of pole}
 \end{figure}
 
-$(KL)$ is the effective length, determined by boundary conditions.  Our column
-is a vertical cantilever, which implies a correction of $K=2$.  The maximum
-load of our column is $F_{\text{crit}} = 24.9~\newton$, or $2.54~\kilo\gram$.
+$(KL)$ is the effective length, determined by boundary conditions.  \thegrid's
+poles are vertical cantilevers, for which the correction factor is $K=2$.  For
+these poles, the critical force due to buckling is $F_{\text{crit}} =
+24.9~\newton$, or $2.54~\kilo\gram$.
 
 The total weight of the aluminium and LEDs is far less than $2.54~\kilo\gram$
 and the self-weight loading is distributed rather than applied at the tip, so
@@ -449,9 +452,8 @@ loading is $119~\newton/\metre^2$, and at $17.9~\metre/\second$ ($40$~mph),
 loading is $268~\newton/\metre^2$.  The maximum lateral cross sectional area of
 the pole is $0.0674~\metre^2$.
 
-Using the formula above for deflection of a cantilever under uniform
-distributed loading, we find that $30$~mph and $40$~mph winds give deflection
-of $0.248~\metre$ and $0.559~\metre$ respectively.
+Using Equation \ref{eq:cantilever}, we find that $30$~mph and $40$~mph winds
+give deflection of $0.248~\metre$ and $0.559~\metre$ respectively.
 
 \begin{figure}[h]
     \centering
@@ -484,8 +486,6 @@ of $0.248~\metre$ and $0.559~\metre$ respectively.
 
 \FloatBarrier
 \clearpage
-\section{Electronics Schematic}
-
 \section{Cable layout}
 \begin{figure}[h]
     \centering
@@ -513,36 +513,25 @@ of $0.248~\metre$ and $0.559~\metre$ respectively.
 
 \section{Electrical Design Verification}
 \subsection{Power and Current Consumption}
-Power consumption of LED strip varies, but is generally quoted as around
-$5-7~\watt/\metre$.  For 49 poles, this gives a total peak power consumption of
-about $600~\watt$ to $900~\watt$.  Using Ohm's Law and the definition of
-electrical power:
+The power consumption of the LED strip is $7.2~\watt/\metre$.  For 49 poles,
+this gives a total peak power consumption of $882~\watt$.  Using Ohm's Law and
+the definition of electrical power:
 
 $$ V = IR $$
 $$ P = VI $$
 
-and using $900~\watt$ as a worst case, the total current flow in \thegrid is
-about $75~\ampere$ at $12~\volt$ DC, although no single conductor carries the
-entire current.
+the maximum current flow in \thegrid is $73.5~\ampere$ at $12~\volt$ DC,
+although no single conductor carries the entire current.
 
 \subsection{Cabling Resistance and Voltage Drop}
 Cabling between the control tent and poles will be 2-core cable with an area of
-$0.5\milli\metre^2$, or $5 \times 10^{-7}~\metre^2$ per conductor.  The
+$0.75\milli\metre^2$, or $7.5 \times 10^{-7}~\metre^2$ per conductor.  The
 resistivity of copper is $1.68 \times 10^{-8}~\ohm\metre$ at room temperature.
 With a maximum cable length of around $20~\metre$ the total conductor length is
-$40~\metre$, giving a resistance of $1.34~\ohm$.  With a current of
-$1.46~\ampere$ per pole, this gives a voltage drop of $1.96~\volt$.
+$40~\metre$, giving a resistance of $0.896~\ohm$.  With a current of
+$1.5~\ampere$ per pole, this gives a voltage drop of $1.34~\volt$.
 
-\subsection{Cabling Self-heating}
-With a resistance of $0.0336~\ohm/\metre$ and a current of $1.46~\ampere$, the
-power dissipated in a conductor will be:
-
-\begin{align*}
-P &= I^2 R \\
-  &= 71.6~\milli\watt/\metre
-\end{align*}
-
-\section{Prototype Pole}
+\section{Preliminary Testing}
 
 \end{appendices}
 
