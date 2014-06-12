@@ -329,7 +329,7 @@ problematic patterns such as flashing.
                       mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
 
     \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
-    \draw[thick] (5mm, 5.5cm) parabola (0mm, 0cm);
+    \draw (5mm, 5.5cm) parabola (0mm, 0cm);
 
     \draw (-0.5cm, 2.5cm) node[above]{$ w~(\newton\metre^{-1}$)};
 
@@ -344,6 +344,26 @@ problematic patterns such as flashing.
     \end{tikzpicture}
     \caption{Horizontal cantilever deflection due to self weight}
 \end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
+    \draw[rotate around={-5:(0,0)}] (-0.19mm, 0cm) rectangle (0.19mm, 5.5cm);
+
+    \draw[thin,->] (0, 6.5cm) -- (0, 5.7cm);
+    \draw (0, 6.5cm) node[above] {$F_{\text{crit}}$};
+
+    \end{tikzpicture}
+    \caption{Euler buckling of pole}
+\end{figure}
+
 
 \section{Electronics Schematic}
 
