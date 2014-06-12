@@ -251,28 +251,29 @@ $$ I_{xx} = \int \! y^2 \, \mathrm{d}A $$
 Assuming the angle section is thin walled, $I_{yy}$ for equal angle section is
 found:
 
-$$ I_{xx} = 2 t \sqrt{2} \int_0^{a/\sqrt{2}} \! x \, \mathrm{d}x = \frac{t a^2
-\sqrt{2}}{2} $$
+$$ I_{xx} = 2 t \sqrt{2} \int_0^{a/\sqrt{2}} \! y^2 \, \mathrm{d}y
+    = \frac{a^3 t}{3} $$
 
 Transforming this to the second moment of area about the neutral axis X' using
-the perpendicular axis theorem:
+the parallel axis theorem:
 
 $$ I_{x'x'} = I_{xx} + A \bar{y}^2 $$
 
 where $\bar{y}$ is the distance between the X and X' axes:
 
-$$ \bar{y} = \frac{\int \! y \, \mathrm{d}A}{A} = \frac{1}{2 a t} \cdot 2
-\int_0^{a/\sqrt{2}} \! x t \sqrt{2} \, \mathrm{d}x = a \sqrt{2} $$
+$$ \bar{y} = \frac{\int \! y \, \mathrm{d}A}{A}
+= \frac{1}{2 a t} \cdot 2 \int_0^{a/\sqrt{2}} \! x t \sqrt{2} \, \mathrm{d}x
+= \frac{a}{2 \sqrt{2}} $$
 
 The final $I_{x'x'}$, hereafter referred to as $I$, is:
 
 \begin{align*}
-I &= \frac{t a^2 \sqrt{2}}{2} + 2 a t (a \sqrt(2))^2 \\
-  &= a^2 t (\frac{\sqrt{2}}{2} + 4a)
+I &= \frac{a^3 t}{3} + 2 a t \left( \frac{a}{2 \sqrt{2}} \right)^2 \\
+  &= \frac{7}{12} a^3 t
 \end{align*}
 
-For our beam, $a=\frac{3}{4}"$, $t=\frac{1}{16}"$, giving $I=4.52 \times
-10^{-7} \metre^4$
+For our beam, $a=\frac{3}{4}"$, $t=\frac{1}{16}"$, giving
+$I=4.76 \times 10^{-8} \metre^4$
 
 Standard values for the density and Young Modulus of aluminium are used,
 $\rho=2,700\kilo\gram/\metre$, $E = 69 \times 10^9 \giga\pascal$.
