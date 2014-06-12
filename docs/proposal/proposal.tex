@@ -272,6 +272,29 @@ problematic patterns such as flashing.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[
+            >=latex, thick,
+    ]
+    \draw[rotate=-45,fill=white] (0, 0) rectangle (-1.588mm, 19mm);
+    \draw[rotate=45,fill=white] (0, 0) rectangle (1.588mm, 19mm);
+
+    \draw[rotate=45, |<->|] (0, -5mm) -- (19mm, -5mm);
+    \draw[rotate=45] (10.5mm, -5mm) node[below] {$a$};
+
+    \draw[rotate=45, |-|] (23mm, 0mm) -- (23mm, 1.588mm);
+    \draw[rotate=45] (23mm, 0.8mm) node[above right] {$t$};
+
+    \draw[thin,->] (-15mm, 6.72mm) -- (11mm, 6.72mm);
+    \draw (-15mm, 6.72mm) node[left] {$u$};
+
+    \draw[thin,->] (0mm, 0mm) -- (0mm, 20mm);
+    \draw (0mm, 20mm) node[above] {$v$};
+    \end{tikzpicture}
+    \caption{Second Moment of Area for Angle Section}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
         >=latex, thick,
     ]
     \draw (-1cm, 0cm) -- (1cm, 0cm);
