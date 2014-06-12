@@ -19,6 +19,8 @@
 \usepackage{tikz}
 
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\usetikzlibrary{calc}
 
 \newcommand{\thegrid}{\textsc{the\textperiodcentered grid}\xspace}
 \newcommand{\amaze}{\textsc{aMAZE}\xspace}
@@ -83,13 +85,13 @@ control tent as well as the camera mast.
     \draw[->, double] (-5.0cm, 0.0cm) -- (-1.5cm, 0.0cm);
     \draw (-3.5cm, 0.0cm) node[above] {Public Approach};
 
-    \draw[<->] (-0.1cm, -2.0cm) -- (3.1cm, -2.0cm);
+    \draw[|<->|] (0cm, -2.0cm) -- (3.0cm, -2.0cm);
     \draw (1.5cm, -2.0cm) node[below] {12m};
 
-    \draw[<->] (-0.5cm, -1.6cm) -- (-0.5cm, 1.6cm);
+    \draw[|<->|] (-0.5cm, -1.5cm) -- (-0.5cm, 1.5cm);
     \draw (-0.5cm, -0.5cm) node[left] {12m};
 
-    \draw[<->] (-0.1cm, 2.0cm) -- (4.6cm, 2.0cm);
+    \draw[|<->|] (0cm, 2.0cm) -- (4.5cm, 2.0cm);
     \draw (2.3cm, 2.0cm) node[above] {18m};
 
     \end{tikzpicture}
@@ -219,13 +221,48 @@ problematic patterns such as flashing.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=5cm]{diags/sidepole.png}
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 5.5cm);
+
+    \draw[|<->|] (1.5cm, 0cm) -- (1.5cm, 5.5cm);
+    \draw (1.5cm, 2.75cm) node[right] {$2.5\metre$};
+
+    \draw[|<->|] (1.5cm, 0cm) -- (1.5cm, -1cm);
+    \draw (1.5cm, -0.5cm) node[right] {$0.5\metre$};
+
+    \end{tikzpicture}
     \caption{Side view of a single pole}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=5cm]{diags/toppole.png}
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (0mm, 0mm) -- (0mm, 19mm) -- (1.6mm, 19mm) --
+          (1.6mm, 1.6mm) -- (19mm, 1.6mm) --  (19mm, 0mm) -- (0mm, 0mm);
+
+    \draw[pattern=north west lines]
+        (0mm, 3.5mm) -- (-4mm, 3.5mm) -- (-4mm, 15.5mm) -- (0mm, 15.5mm);
+
+    \draw[|<->|] (0mm, -3mm) -- (19mm, -3mm);
+    \draw (10.5mm, -3mm) node[below]{$\frac{3}{4}"$};
+
+    \draw[|<->|] (23mm, 0mm) -- (23mm, 19mm);
+    \draw (23mm, 10.5mm) node[right]{$\frac{3}{4}"$};
+
+    \draw[|-|] (0mm, 23mm) -- (1.6mm, 23mm);
+    \draw (1.6mm, 23mm) node[right]{$\frac{1}{16}"$};
+
+    \draw[|<->|] (-7mm, 3.5mm) -- (-7mm, 15.5mm);
+    \draw (-7mm, 10.5mm) node[left]{$12\milli\metre$};
+    \end{tikzpicture}
     \caption{Top view of a single pole with LED strip}
 \end{figure}
 
@@ -264,6 +301,29 @@ I_{uu} &= 2 t \sqrt{2} \int_{\frac{-a}{2\sqrt{2}}}^{\frac{a}{2\sqrt{2}}}
        &= \frac{ta^3}{12}
 \end{align*}
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+            >=latex, thick,
+    ]
+    \draw[rotate=-45,fill=white] (0, 0) rectangle (-1.588mm, 19mm);
+    \draw[rotate=45,fill=white] (0, 0) rectangle (1.588mm, 19mm);
+
+    \draw[rotate=45, |<->|] (0, -5mm) -- (19mm, -5mm);
+    \draw[rotate=45] (10.5mm, -5mm) node[below] {$a$};
+
+    \draw[rotate=45, |-|] (23mm, 0mm) -- (23mm, 1.588mm);
+    \draw[rotate=45] (23mm, 0.8mm) node[above right] {$t$};
+
+    \draw[thin,->] (-15mm, 6.72mm) -- (11mm, 6.72mm);
+    \draw (-15mm, 6.72mm) node[left] {$u$};
+
+    \draw[thin,->] (0mm, 0mm) -- (0mm, 20mm);
+    \draw (0mm, 20mm) node[above] {$v$};
+    \end{tikzpicture}
+    \caption{Second Moment of Area for Angle Section}
+\end{figure}
+
 For $a=\frac{3}{4}"$ and $t=\frac{1}{16}"$, $I = 9.15\times10^{-10}~\metre^4$.
 
 Standard values for the density and Young Modulus of aluminium are used,
@@ -276,16 +336,61 @@ with distributed loading $w~\kilo\gram/\metre$, the deflection is:
 
 $$ \delta = \frac{w L^4}{8EI} $$
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        rotate=-90, >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
+    \draw (5mm, 5.5cm) parabola (0mm, 0cm);
+
+    \draw (-0.5cm, 2.5cm) node[above]{$ w~(\newton\metre^{-1}$)};
+
+    \draw[thin] (-0.5cm, 0) rectangle (-0.19mm, 5.5cm);
+
+    \foreach \y in {0.2, 0.5, ..., 5.5}
+        \draw[thin,->] (-0.5cm, \y) -- (-0.19mm, \y);
+
+    \draw[thin,|->|] (0cm, 5.8cm) -- (0.5cm, 5.8cm);
+    \draw (0.25cm, 5.8cm) node[right] {$\delta$};
+
+    \end{tikzpicture}
+    \caption{Horizontal cantilever deflection due to self weight}
+\end{figure}
+
 Applying a loading of $1.60~\newton/\metre$ for the weight of aluminium and
 $0.374~\newton/\metre$ for the LEDs, we get a deflection of
 $\delta = 0.153~\metre$.
 
-\subsection{Columnar Euler Buckling}
+\subsection{Columnar Buckling}
 Slender columns under a compressive load will tend to fail by buckling rather
 than crushing.  The standard formula for the maximum load (applied at the tip
 of the column) due to Euler buckling is:
 
 $$ F_{\text{crit}} = \frac{\pi^2 EI}{(KL)^2} $$
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
+    \draw[rotate around={-5:(0,0)}] (-0.19mm, 0cm) rectangle (0.19mm, 5.5cm);
+
+    \draw[thin,->] (0, 6.5cm) -- (0, 5.7cm);
+    \draw (0, 6.5cm) node[above] {$F_{\text{crit}}$};
+
+    \end{tikzpicture}
+    \caption{Euler buckling of pole}
+\end{figure}
 
 $(KL)$ is the effective length, determined by boundary conditions.  Our column
 is a vertical cantilever, which implies a correction of $K=2$.  The maximum
@@ -307,9 +412,63 @@ Using the formula above for deflection of a cantilever under uniform
 distributed loading, we find that $30$~mph and $40$~mph winds give deflection
 of $0.248~\metre$ and $0.559~\metre$ respectively.
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
+    \draw[thick] (5mm, 5.5cm) parabola (0mm, 0cm);
+
+    \draw[->,double] (-2cm, 4.0cm) -- (-1cm, 4.0cm);
+    \draw (-1.5cm, 4.0cm) node[above]{Wind};
+
+    \draw[thin] (-0.5cm, 0) rectangle (-0.19mm, 5.5cm);
+
+    \foreach \y in {0.2, 0.5, ..., 5.5}
+        \draw[thin,->] (-0.5cm, \y) -- (-0.19mm, \y);
+
+    \draw[thin,|->|] (0cm, 5.8cm) -- (0.5cm, 5.8cm);
+    \draw (0.25cm, 5.8cm) node[above] {$\delta$};
+
+    \end{tikzpicture}
+    \caption{Wind loading on pole}
+\end{figure}
+
+
+
+\FloatBarrier
+\clearpage
 \section{Electronics Schematic}
 
 \section{Cable layout}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        >=latex, thick,
+    ]
+
+    \foreach \x in {0cm, 1cm, 2cm, 3cm, 4cm, 5cm, 6cm}
+        \foreach \y in {-3cm, -2cm, -1cm, 0cm, 1cm, 2cm, 3cm}
+            \draw (\x, \y) circle (0.5mm);
+
+    \foreach \x in {0cm, 1cm, 2cm, 3cm, 4cm, 5cm, 6cm}
+        \foreach \y in {-3cm, -2cm, -1cm, 0cm, 1cm, 2cm, 3cm}
+            \draw (\x, \y) -- (\x, \y + 1mm + \x/20) --
+                  ($(6.5cm, \y) + (0, \x/20 + 1mm) - (\x/20, 0) + abs(\y)*(0.13mm, 0)$)
+                  -- ++(0, -\y);
+
+    \draw[fill=white] (6.2cm, -0.5cm) rectangle (7.8cm, 0.5cm);
+
+
+    \end{tikzpicture}
+    \caption{Power/control cable routing}
+\end{figure}
+
 
 \section{Electrical Design Verification}
 \subsection{Power and Current Consumption}
