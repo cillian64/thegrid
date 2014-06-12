@@ -319,6 +319,32 @@ problematic patterns such as flashing.
     \caption{Wind loading on pole}
 \end{figure}
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        rotate=-90, >=latex, thick,
+    ]
+    \draw (-1cm, 0cm) -- (1cm, 0cm);
+    \draw[decoration={border,segment length=2mm,amplitude=1.2mm,
+                      mirror,angle=45},decorate] (-1cm, 0cm) -- (1cm, 0cm);
+
+    \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
+    \draw[thick] (5mm, 5.5cm) parabola (0mm, 0cm);
+
+    \draw (-0.5cm, 2.5cm) node[above]{$ w~(\newton\metre^{-1}$)};
+
+    \draw[thin] (-0.5cm, 0) rectangle (-0.19mm, 5.5cm);
+
+    \foreach \y in {0.2, 0.5, ..., 5.5}
+        \draw[thin,->] (-0.5cm, \y) -- (-0.19mm, \y);
+
+    \draw[thin,|->|] (0cm, 5.8cm) -- (0.5cm, 5.8cm);
+    \draw (0.25cm, 5.8cm) node[right] {$\delta$};
+
+    \end{tikzpicture}
+    \caption{Horizontal cantilever deflection}
+\end{figure}
+
 \section{Electronics Schematic}
 
 \section{Cable layout}
