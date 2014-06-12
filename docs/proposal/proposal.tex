@@ -244,36 +244,27 @@ cantilevers subject to self weight and lateral wind loading.
 \subsection{Basic Properties}
 The following calculations are based on the beam's \emph{Second Moment of Area
 in the X axis} ($I_{xx}$), \emph{Density} ($\rho$), and \emph{Young's Modulus}
-($E$).  The second moment of area in the Y axis is defined:
+($E$).  The second moment of area in the U axis ($45^\circ$ from the X and Y
+axes) is defined:
 
-$$ I_{xx} = \int \! y^2 \, \mathrm{d}A $$
+$$ I_{uu} = \int \! v^2 \, \mathrm{d}A $$
 
-Assuming the angle section is thin walled, $I_{yy}$ for equal angle section is
-found:
+where the V axis is perpendicular to the U axis.  For thin walled equal angle
+section:
 
-$$ I_{xx} = 2 t \sqrt{2} \int_0^{a/\sqrt{2}} \! y^2 \, \mathrm{d}y
-    = \frac{a^3 t}{3} $$
-
-Transforming this to the second moment of area about the neutral axis X' using
-the parallel axis theorem:
-
-$$ I_{x'x'} = I_{xx} + A \bar{y}^2 $$
-
-where $\bar{y}$ is the distance between the X and X' axes:
-
-$$ \bar{y} = \frac{\int \! y \, \mathrm{d}A}{A}
-= \frac{1}{2 a t} \cdot 2 \int_0^{a/\sqrt{2}} \! x t \sqrt{2} \, \mathrm{d}x
-= \frac{a}{2 \sqrt{2}} $$
-
-The final $I_{x'x'}$, hereafter referred to as $I$, is:
-
+$$ \mathrm{d}A = 2 t \sqrt{2} \, \mathrm{d}v $$
 \begin{align*}
-I &= \frac{a^3 t}{3} + 2 a t \left( \frac{a}{2 \sqrt{2}} \right)^2 \\
-  &= \frac{7}{12} a^3 t
+I_{uu} &= 2 t \sqrt{2} \int_{\frac{-a}{2\sqrt{2}}}^{\frac{a}{2\sqrt{2}}}
+\! v^2 \, \mathrm{d}v \\
+       &= \frac{2t\sqrt{2}}{3} \left[ y^3 \right]_{\frac{-a}{2\sqrt{2}}}
+          ^{\frac{a}{2\sqrt{2}}} \\
+       &= \frac{2t\sqrt{2}}{3} \left( \frac{a^3}{16\sqrt{2}} -
+          \frac{-a^3}{16\sqrt{2}} \right) \\
+       &= \frac{2t\sqrt{2}}{3} \left( \frac{a^3}{8\sqrt{2}} \right) \\
+       &= \frac{ta^3}{12}
 \end{align*}
 
-For our beam, $a=\frac{3}{4}"$, $t=\frac{1}{16}"$, giving
-$I=4.76 \times 10^{-8} \metre^4$
+For $a=\frac{3}{4}"$ and $t=\frac{1}{16}"$, $I = 9.15\times10^{-10}~\metre^4$.
 
 Standard values for the density and Young Modulus of aluminium are used,
 $\rho=2,700\kilo\gram/\metre$, $E = 69 \times 10^9 \giga\pascal$.
@@ -286,8 +277,8 @@ with distributed loading $w~\kilo\gram/\metre$, the deflection is:
 $$ \delta = \frac{w L^4}{8EI} $$
 
 Applying a loading of $1.60~\newton/\metre$ for the weight of aluminium and
-$0.374~\newton/\metre$ for the LEDs, we get a deflection of $\delta = 3.09
-\times 10^{-4}~\metre$.
+$0.374~\newton/\metre$ for the LEDs, we get a deflection of
+$\delta = 0.153~\metre$.
 
 \subsection{Columnar Euler Buckling}
 Slender columns under a compressive load will tend to fail by buckling rather
@@ -298,7 +289,11 @@ $$ F_{\text{crit}} = \frac{\pi^2 EI}{(KL)^2} $$
 
 $(KL)$ is the effective length, determined by boundary conditions.  Our column
 is a vertical cantilever, which implies a correction of $K=2$.  The maximum
-load of our column is $F_{\text{crit}} = 12.3\kilo\newton$.
+load of our column is $F_{\text{crit}} = 24.9~\newton$, or $2.54~\kilo\gram$.
+
+The total weight of the aluminium and LEDs is far less than $2.54~\kilo\gram$
+and the self-weight loading is distributed rather than applied at the tip, so
+there is no risk of buckling under self weight.
 
 \subsection{Wind Loading}
 Wind loading upon the poles can be modelled as a vertical cantilever subject to
@@ -310,7 +305,7 @@ the pole is $0.0674~\metre^2$.
 
 Using the formula above for deflection of a cantilever under uniform
 distributed loading, we find that $30$~mph and $40$~mph winds give deflection
-of $X~\metre$ and $Y~\metre$ respectively.
+of $0.248~\metre$ and $0.559~\metre$ respectively.
 
 \section{Electronics Schematic}
 
