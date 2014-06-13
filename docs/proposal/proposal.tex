@@ -120,8 +120,19 @@ ground.  The poles are constructed from $\frac{3}{4}'' \times \frac{3}{4}''
 \times \frac{1}{16}''$ aluminium angle section.  See
 Appendix~\ref{app:engdrawings} for detailed drawings.
 
-The interactivity camera will be mounted $8\metre$ above the ground on a pole,
-guyed for rigidity.
+As the aluminium stock is purchased in $5\meter$ lengths, each pole is
+constructed of either a single $3\meter$ section or two overlapping $2\meter$
+sections, leading to a requirement of 34 $5\meter$ lengths in total.
+
+We have determined that with this choice of structure, the poles are
+sufficiently sturdy for the load, remain sound during high wind load, and are
+stiff enough for display purposes.  For detailed calculations see
+Appendix~\ref{app:structures}.
+
+The interactivity camera will be mounted $8\metre$ above the ground on a
+glass fibre pole, guyed for rigidity.  The pole is away from the user
+area of \thegrid, and we have determined empirically that it is rigid and
+sturdy enough for the camera and IR floodlight load.
 
 \subsection{Electrical and Electronics}
 \subsubsection{Cabling}
@@ -134,14 +145,37 @@ Ideally, all cabling inside \thegrid will be buried slightly below ground to
 avoid a trip hazard.  If this is not possible, cabling could be run between the
 tops of poles at a height of $2.5\metre$.
 
+For the selected layout, a total of $462\metre$ of twin-core wire is required,
+plus approximately $50\metre$ slack. See Appendix~\ref{app:cables} for detailed
+cable layouts.
+
+For the $0.75\milli\metre^2$ cable we have selected, the voltage drop on the
+longest segment is $1.34\volt$, which will is within acceptable limits for the
+LED strip. See Appendix~\ref{app:cabledrop} for details.
+
+
 \subsubsection{Switching}
 Each LED strip will be controlled using a MOSFET driver.  The drivers will be
-switched by seven 8-output shift registers, themselves controlled by the CPU.
+switched by seven 8-output shift registers, themselves controlled by a
+microcontroller receiving data from the controlling computer.
+
+We anticipate constructing the main electronics assembly on stripboard due to
+the relatively low complexity and single unit required.
+
 
 \subsubsection{Power}
 The maximum power consumption of \thegrid will be $74\ampere$.  This will be
 provided by four $550\watt$ ATX power supplies, each rated for $32\ampere$ on
-its $+12\volt$ rail.
+its $+12\volt$ rail.  See Appendix~\ref{app:power} for details.
+
+\subsubsection{Lighting}
+Each pole is illuminated by half of a $5\metre$ strip of 30 LED/$\metre$
+5050-sized white LEDs. These strips take 12VDC input and are readibly obtained
+inside waterproof silicone jackets.
+
+\subsubsection{Sound}
+Each pole will also be equipped with a small relay to provide an audible cue
+when the LEDs are activated.
 
 \subsection{Software and Control}
 A laptop in the control tent will generate display patterns and handle
@@ -153,6 +187,12 @@ A night vision enabled camera mounted on a mast in the backstage area senses
 movement and tracks the location of people inside \thegrid to co-ordiate
 interactive applications and patterns.  Illumination will be provided by
 several IR floodlights.
+
+We anticipate using OpenCV to detect areas of motion in successive frames and
+mapping these areas onto an approximately chest-height plane which is gridded
+up into the corresponding \thegrid cells.  This should enable robust and
+low-CPU detection of which cell a person has entered.  The use of IR
+illumination provides high contrast and operation in low visible illumination.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applications}
@@ -220,6 +260,12 @@ NOC mast).  If there is a significant chance of a thunder storm, \thegrid will
 be disconnected from the mains supply and placed off limits for the duration of
 the storm.
 
+In the event of high wind loading, at 40mph winds the pole structures may flex
+up to $56\centi\metre$, which remains safely within operating conditions of the
+structure. To minimise the risk of injury, \thegrid will be off limits in the
+event of very high wind.  See Appendix~\ref{app:wind} for detailed
+calculations.
+
 There is a risk that individuals with photo-sensitive epilepsy could be
 affected by \thegrid.  We will have to investigate further how to minimize this
 risk, whether this be through appropriate warning signage or avoiding
@@ -234,7 +280,7 @@ problematic patterns such as flashing.
         Item & Unit Cost (GBP) & Quantity & Subtotal (GBP) \\
         \hline
         $\frac{3}{4}''$ aluminium angle, 5m & 2.91 & 34 & 98.94\\
-                 White LED strips, 5m & 1.83 & 50 & 91.45\\
+                 White 30LED/m strips, 5m & 1.83 & 50 & 91.45\\
 $0.75\milli\metre^2$ cable, 100m reel, twin core & 17.88 & 6 & 107.28\\
                                Camera & 15.66 & 1 & 15.66\\
                                Camera Coax$^\dagger$ & 10.00 & 1 & 10.00\\
@@ -359,6 +405,7 @@ compromise between cost and utility.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section{Structural Design Verification}
+\label{app:structures}
 The structural design can be verified quantitatively using Euler-Bernoulli beam
 theory.  This assumes any deflection is small and that shear forces cause
 negligible deflection.  These assumptions are justified when the beam concerned
@@ -498,6 +545,7 @@ and the self-weight loading is distributed rather than applied at the tip, so
 there is no risk of buckling under self weight.
 
 \subsection{Wind Loading}
+\label{app:wind}
 Wind loading upon the poles can be modelled as a vertical cantilever subject to
 lateral uniform distributed loading.  The loading depends on the wind speed and
 lateral cross sectional area of the pole.  At $13.4~\metre/\second$ ($30$~mph),
@@ -540,6 +588,7 @@ give deflection of $0.248~\metre$ and $0.559~\metre$ respectively.
 \FloatBarrier
 \clearpage
 \section{Cable layout}
+\label{app:cables}
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[
@@ -566,6 +615,7 @@ give deflection of $0.248~\metre$ and $0.559~\metre$ respectively.
 
 \section{Electrical Design Verification}
 \subsection{Power and Current Consumption}
+\label{app:power}
 The power consumption of the LED strip is $7.2~\watt/\metre$.  For 49 poles,
 this gives a total peak power consumption of $882~\watt$.  Using Ohm's Law and
 the definition of electrical power:
@@ -577,6 +627,7 @@ the maximum current flow in \thegrid is $73.5~\ampere$ at $12~\volt$ DC,
 although no single conductor carries the entire current.
 
 \subsection{Cabling Resistance and Voltage Drop}
+\label{app:cabledrop}
 Cabling between the control tent and poles will be 2-core cable with an area of
 $0.75\milli\metre^2$, or $7.5 \times 10^{-7}~\metre^2$ per conductor.  The
 resistivity of copper is $1.68 \times 10^{-8}~\ohm\metre$ at room temperature.
