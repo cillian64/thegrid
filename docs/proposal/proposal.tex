@@ -84,7 +84,7 @@ control tent as well as the camera mast.
     \draw[thin] (4.5cm, 0cm) -- ++(1.25cm, 0cm);
 
     \draw[fill=white] (4.5cm, 0.0cm) circle (1mm) coordinate (camera);
-    \draw[thin] (4.5cm, -0.35cm) -- (4.5cm, -3.2cm) node[below] {Camera Pole};
+    \draw[thin] (4.5cm, -0.35cm) -- (4.5cm, -3.2cm) node[below] {Camera Mast};
 
     \draw[->, double] (-5.0cm, 0.0cm) -- (-1.5cm, 0.0cm);
     \draw (-3.5cm, 0.0cm) node[above] {Public Approach};
@@ -253,13 +253,13 @@ problematic patterns such as flashing.
         (0mm, 3.5mm) -- (-4mm, 3.5mm) -- (-4mm, 15.5mm) -- (0mm, 15.5mm);
 
     \draw[|<->|] (0mm, -3mm) -- (19mm, -3mm);
-    \draw (10.5mm, -3mm) node[below]{$\frac{3}{4}"$};
+    \draw (10.5mm, -3mm) node[below]{$\frac{3}{4}''$};
 
     \draw[|<->|] (23mm, 0mm) -- (23mm, 19mm);
-    \draw (23mm, 10.5mm) node[right]{$\frac{3}{4}"$};
+    \draw (23mm, 10.5mm) node[right]{$\frac{3}{4}''$};
 
     \draw[|-|] (0mm, 23mm) -- (1.6mm, 23mm);
-    \draw (1.6mm, 23mm) node[right]{$\frac{1}{16}"$};
+    \draw (1.6mm, 23mm) node[right]{$\frac{1}{16}''$};
 
     \draw[|<->|] (-7mm, 3.5mm) -- (-7mm, 15.5mm);
     \draw (-7mm, 10.5mm) node[left]{$12\milli\metre$};
@@ -291,6 +291,7 @@ problematic patterns such as flashing.
       \draw (-5cm, 4cm) node[left] {8\metre};
 
       \draw[fill=white] (-0.2cm, 3.9cm) rectangle (0.2cm, 4.1cm);
+      \draw[fill=white,draw=none] (1.8cm, 3.8cm) rectangle (2.3cm, 4.3cm);
       \draw (0.2cm, 4cm) node[right] {IR Floodlight};
 
       \draw[fill=white] (-0.15cm, 7.85cm) rectangle (0.15cm, 8.15cm);
@@ -298,7 +299,7 @@ problematic patterns such as flashing.
       \draw (0.2cm, 8cm) node[right] {Camera};
 
       \draw[|<->|] (-4cm, -0.5cm) -- (4cm, -0.5cm);
-      \draw (0cm, -0.5cm) node [below] {guying radius 10\metre};
+      \draw (0cm, -0.5cm) node [below] {10\metre guying radius};
 
       \end{tikzpicture}
       \caption{Side view of camera mast}
@@ -391,7 +392,7 @@ with distributed loading $w$, the deflection is:
     \draw (-0.19mm, -1cm) rectangle (0.19mm, 0cm);
     \draw (5mm, 5.5cm) parabola (0mm, 0cm);
 
-    \draw (-0.5cm, 2.5cm) node[above]{$ w~(\newton\metre^{-1}$)};
+    \draw (-0.5cm, 2.5cm) node[above]{$w$};
 
     \draw[thin] (-0.5cm, 0) rectangle (-0.19mm, 5.5cm);
 
@@ -499,7 +500,7 @@ give deflection of $0.248~\metre$ and $0.559~\metre$ respectively.
 
     \foreach \x in {0cm, 1cm, 2cm, 3cm, 4cm, 5cm, 6cm}
         \foreach \y in {-3cm, -2cm, -1cm, 0cm, 1cm, 2cm, 3cm}
-            \draw (\x, \y) -- (\x, \y + 1mm + \x/20) --
+            \draw[thin] (\x, \y) -- (\x, \y + 1mm + \x/20) --
                   ($(6.5cm, \y) + (0, \x/20 + 1mm) - (\x/20, 0) + abs(\y)*(0.13mm, 0)$)
                   -- ++(0, -\y);
 
