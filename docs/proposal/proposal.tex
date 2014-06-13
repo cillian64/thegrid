@@ -40,7 +40,7 @@
 \begin{abstract}
 Discover an immersive art/engineering installation comprising a forest of
 radiant ``trees''.  As you move through \thegrid it senses your presence and
-initiates a ripple of light and a susurration of subtle clicks, propogating
+initiates a ripple of light and a susurration of subtle clicks, propagating
 through the system.  Traverse your own maze of light or stand back and enjoy
 the spectacle.
 
@@ -150,7 +150,7 @@ plus approximately $50\metre$ slack. See Appendix~\ref{app:cables} for detailed
 cable layouts.
 
 For the $0.75\milli\metre^2$ cable we have selected, the voltage drop on the
-longest segment is $1.34\volt$, which will is within acceptable limits for the
+longest segment is $1.34\volt$, which is well within acceptable limits for the
 LED strip. See Appendix~\ref{app:cabledrop} for details.
 
 
@@ -170,7 +170,7 @@ its $+12\volt$ rail.  See Appendix~\ref{app:power} for details.
 
 \subsubsection{Lighting}
 Each pole is illuminated by half of a $5\metre$ strip of 30 LED/$\metre$
-5050-sized white LEDs. These strips take 12VDC input and are readibly obtained
+5050-sized white LEDs. These strips take 12VDC input and are readily obtained
 inside waterproof silicone jackets.
 
 \subsubsection{Sound}
@@ -179,14 +179,14 @@ when the LEDs are activated.
 
 \subsection{Software and Control}
 A laptop in the control tent will generate display patterns and handle
-interactivity.  It will transmit lighting data via a serial link to an
+interactivity.  It will transmit lighting data via a serial link to a
 microcontroller.  Upon receiving each frame, the microcontroller will clock the
 data into the shift registers, then activate the output latch.
 
-A night vision enabled camera mounted on a mast in the backstage area senses
-movement and tracks the location of people inside \thegrid to co-ordiate
-interactive applications and patterns.  Illumination will be provided by
-several IR floodlights.
+An infrared-capable camera mounted on a mast in the backstage area senses
+movement and tracks the location of people inside \thegrid to coordinate
+interactive applications and patterns.  Illumination will be provided by IR
+floodlights.
 
 We anticipate using OpenCV to detect areas of motion in successive frames and
 mapping these areas onto an approximately chest-height plane which is gridded
@@ -246,11 +246,11 @@ All mains electronics will be contained within the control tent and power is
 distributed through \thegrid at $12\volt$ DC\@.  The control tent will be
 waterproof, and all exposed cabling, connections and electronics will be
 waterproof.  The low voltage combined with RCD protection means there is a
-minimal risk of electricution.
+minimal risk of electrocution.
 
 There is minimal risk of the low voltage LED strips in \thegrid itself posing a
 fire hazard.  In the unlikely event of a fire in the control tent the hazard
-would be contained in the off-limits backstage area, minimizing the risk to
+would be contained in the off-limits backstage area, minimising the risk to
 users.
 
 \subsection{Other}
@@ -267,7 +267,7 @@ event of very high wind.  See Appendix~\ref{app:wind} for detailed
 calculations.
 
 There is a risk that individuals with photo-sensitive epilepsy could be
-affected by \thegrid.  We will have to investigate further how to minimize this
+affected by \thegrid.  We will have to investigate further how to minimise this
 risk, whether this be through appropriate warning signage or avoiding
 problematic patterns such as flashing.
 
