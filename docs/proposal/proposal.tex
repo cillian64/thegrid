@@ -584,9 +584,40 @@ With a maximum cable length of around $20~\metre$ the total conductor length is
 $40~\metre$, giving a resistance of $0.896~\ohm$.  With a current of
 $1.5~\ampere$ per pole, this gives a voltage drop of $1.34~\volt$.
 
+\clearpage
 \section{Preliminary Testing}
+A prototype pole was constructed from $20\milli\metre 20\milli\metre
+1.5\milli\metre$ aluminium section (c.f. $19\milli\metre 19\milli\metre
+1.59\milli\metre$ for the final design).  RGB LED strip powered by a bench
+power supply was attached.  This test confirmed the structural rigidity of the
+pole design as well as the effectiveness of lighting with 30LED/$\metre$ strip.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=15cm]{pics/protopole.jpg}
+    \caption{Prototype pole}
+\end{figure}
+
+\clearpage
+To verify the basis of the computer vision system, a night vision camera at a
+height of $4\metre$ was used to observe a person at a distance of $10\metre$,
+with and without an additional IR flood-light.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{pics/ir_no_flood.png}
+    \caption{Night vision camera without IR flood-light}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{pics/ir_flood.png}
+    \caption{Night vision camera with IR flood-light}
+\end{figure}
+
+$12\volt$ relays with $10\ampere$ rated contact current were found to give a
+satisfying click.
 
 \end{appendices}
-
 \end{document}
 
