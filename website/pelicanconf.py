@@ -12,9 +12,14 @@ EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
 }
 
-TIMEZONE = 'Europe/Paris'
+PLUGIN_PATHS=['plugins']
+PLUGINS=['pin_to_top']
+
+TIMEZONE = 'Europe/London'
 
 DEFAULT_LANG = 'en'
+
+DISPLAY_PAGES_ON_MENU = True
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
