@@ -37,6 +37,7 @@ TRANSLATION_FEED_ATOM = None
 #          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = False
+SUMMARY_MAX_LENGTH = 300
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
