@@ -11,3 +11,5 @@ pelican==3.4.0
 python-dateutil==2.2
 pytz==2014.4
 six==1.7.3
+typogrify==2.0.4
+
