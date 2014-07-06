@@ -26,6 +26,19 @@ PSUs:
 Ordered from ebay
 
 Flight Case:
+-----------
 Farnell TLTC1 -
 http://onecall.farnell.com/duratool/d01817/aluminium-tool-case/dp/TLTC1 is
 about 21 quid.
+
+Drivers:
+--------
+Small NPN BJT first stage: BC337-25, farnell 1228215.  5.7p list.  All within
+spec, pretty standard, should be fine!
+
+PMOS second stage: FQP7P06 is 33p list, TO220.  Only problem is .4ohm gives
+almost a watt dissipation and 60deg rise junction to ambient.  So, use Farnell
+1611415, 24K/W resistance for 19.11 pence in 10off.  10 quid for the lot and
+45deg continuous-on is no problemo.
+
+
