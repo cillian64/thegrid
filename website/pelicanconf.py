@@ -7,10 +7,12 @@ SITENAME = 'The·Grid'
 SITEURL = ''
 
 PATH = 'content'
-STATIC_PATHS = ['images', 'extra/CNAME', 'extra/links.css']
+STATIC_PATHS = ['images', 'extra/CNAME', 'extra/links.css',
+                'extra/favicon.ico']
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
     'extra/links.css': {'path': 'links.css'},
+    'extra/favicon.ico': {'path': 'favicon.ico'},
 }
 
 PLUGIN_PATHS=['plugins']
