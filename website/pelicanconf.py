@@ -8,11 +8,12 @@ SITEURL = ''
 
 PATH = 'content'
 STATIC_PATHS = ['images', 'extra/CNAME', 'extra/links.css',
-                'extra/favicon.ico']
+                'extra/favicon.ico', 'extra/proposal.pdf']
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
     'extra/links.css': {'path': 'links.css'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/proposal.pdf': {'path': 'proposal.pdf'},
 }
 
 PLUGIN_PATHS=['plugins']
