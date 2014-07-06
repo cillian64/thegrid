@@ -41,4 +41,21 @@ almost a watt dissipation and 60deg rise junction to ambient.  So, use Farnell
 1611415, 24K/W resistance for 19.11 pence in 10off.  10 quid for the lot and
 45deg continuous-on is no problemo.
 
+Spoke to Matt, he reckons SOT23 and SOT233 are fine to mount on stripboard, and
+can be gotten for 9p or so... That makes a dent. But can't heatsink them.
+Open collector shift register would make life a lot easier but the only
+through-hole part is 3 quid. There's a SOIC16 version for 70p but that's not
+really strip friendly
 
+1470497 is a nice shift register which costs 1.33 and has chunky open drain
+outputs which can drive the PMOS directly.
+
+Indicator LEDs:
+---------------
+The most boring LED that farnell sells: 2335729, 4.1pence in quantity
+
+Resistors:
+----------
+For indicator LEDs, 600ohm .25W: 0.9p TE Connectivity, Farnell 2329545
+MOSFET Gate pullup: 10k is sensible (1us time constant), power is no problem,
+so 1692465 is .1p in quantity.
