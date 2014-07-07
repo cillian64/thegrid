@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/all.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-06T00:00:00+01:00</updated><entry><title>175m Aluminium Angle on its way…</title><link href="http://www.thegrid.fish/175m-aluminium-angle-on-its-way.html" rel="alternate"></link><updated>2014-07-06T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-06:175m-aluminium-angle-on-its-way.html</id><summary type="html">&lt;p&gt;This is all feeling much more real now as we&amp;#8217;ve just placed the order for 35 5m
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/all.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-07T00:00:00+01:00</updated><entry><title>Another day, another order</title><link href="http://www.thegrid.fish/another-day-another-order.html" rel="alternate"></link><updated>2014-07-07T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-07:another-day-another-order.html</id><summary type="html">&lt;p&gt;So, yet more exciting things are on the way, this time in the form of two
+sample rolls of &lt;span class="caps"&gt;LED&lt;/span&gt; strip.  We couldn&amp;#8217;t decide whether &amp;#8220;Pure/Day White&amp;#8221; or
+&amp;#8220;Cool White&amp;#8221; sounded more appropriate, so we&amp;#8217;re going to check out&amp;nbsp;both.&lt;/p&gt;
+&lt;p&gt;In other news, the electronics design is significantly taking shape.  After a
+number of iterations and a lot of discussion, we decided we want high-side
+driving of the &lt;span class="caps"&gt;LED&lt;/span&gt; strip, and therefore P-channel &lt;span class="caps"&gt;MOSFET&lt;/span&gt; drivers.  This
+would&amp;#8217;ve required another row of transistors to interface between our shift
+registers and the MOSFETs, except for Matt&amp;#8217;s (thanks!) neat idea of using shift
+registers with open-drain drivers.  Prototype parts &lt;span class="caps"&gt;ETA&lt;/span&gt; tomorrow, so we&amp;#8217;ll see
+how the idea stands up to&amp;nbsp;testing.&lt;/p&gt;</summary><category term="LEDs"></category><category term="electronics"></category></entry><entry><title>175m Aluminium Angle on its way…</title><link href="http://www.thegrid.fish/175m-aluminium-angle-on-its-way.html" rel="alternate"></link><updated>2014-07-06T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-06:175m-aluminium-angle-on-its-way.html</id><summary type="html">&lt;p&gt;This is all feeling much more real now as we&amp;#8217;ve just placed the order for 35 5m
 lengths of aluminium equal angle. It should arrive Tuesday, apparently! I can
 only imagine how confused the delivery driver will be when the address is a
 residental&amp;nbsp;house.&lt;/p&gt;
