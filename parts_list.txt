@@ -59,3 +59,9 @@ Resistors:
 For indicator LEDs, 600ohm .25W: 0.9p TE Connectivity, Farnell 2329545
 MOSFET Gate pullup: 10k is sensible (1us time constant), power is no problem,
 so 1692465 is .1p in quantity.
+
+Cabling:
+--------
+Farnell does cheaper, but we asked for the nice looking propower CB11159 100m
+0.75mm^2 
+1179199 chunky yellow cable for connecting PSUs to board.
