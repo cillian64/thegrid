@@ -53,3 +53,4 @@ BOOTSTRAP_THEME = "cyborg"
 #SOCIAL = (('You can add links in your config file', '#'),
 #          ('Another social link', '#'),)
 
+SOCIAL = (('@__thegrid', 'https://twitter.com/__thegrid'),)
