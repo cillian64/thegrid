@@ -54,4 +54,4 @@ SHOW_ARTICLE_AUTHOR = True
 #SOCIAL = (('You can add links in your config file', '#'),
 #          ('Another social link', '#'),)
 
-SOCIAL = (('@__thegrid', 'https://twitter.com/__thegrid'),)
+SOCIAL = (('Twitter', 'https://twitter.com/__thegrid'),)
