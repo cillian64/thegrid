@@ -35,6 +35,7 @@ SUMMARY_MAX_LENGTH = 300
 
 THEME = "themes/pelican-bootstrap3"
 BOOTSTRAP_THEME = "cyborg"
+SHOW_ARTICLE_AUTHOR = True
 
 
 
