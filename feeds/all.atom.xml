@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/all.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-08T00:00:00+01:00</updated><entry><title>PSUs arrived (aluminium didn’t)</title><link href="http://www.thegrid.fish/psus-arrived-aluminium-didnt.html" rel="alternate"></link><updated>2014-07-08T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-08:psus-arrived-aluminium-didnt.html</id><summary type="html">&lt;p&gt;Five of the most legitimate 30A 12V PSUs you can find on eBay arrived today:
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/all.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-09T00:00:00+01:00</updated><entry><title>Aluminium Arrived (at last)</title><link href="http://www.thegrid.fish/aluminium-arrived-at-last.html" rel="alternate"></link><updated>2014-07-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-09:aluminium-arrived-at-last.html</id><summary type="html">&lt;p&gt;After some more wrangling with the online vehicle tracking, we eventually had a
+firm &lt;span class="caps"&gt;ETA&lt;/span&gt;&amp;#8230; of an hour in the&amp;nbsp;past.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="delivery tracking..." src="images/eta_the_past.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Luckily the aluminium did eventually arrive and we happily took&amp;nbsp;delivery.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="aluminium in the garden" src="images/alu_in_garden.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;A few hours of hard sawing, filing and taping up later, and we now have eight
+bundles of aluminium angle, all ready to be used for the structural component
+of&amp;nbsp;TheGrid.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="adam sawing" src="images/adam_sawing.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;We also opened up one of the power supplies to investigate the design and
+quality. True to the &amp;#8220;Professional&amp;#8221; sticker on the box, the insides included a
+large toroid that had torn free of its soldering, so we&amp;#8217;ll probably need to do
+a little rework before these are&amp;nbsp;shipshape.&lt;/p&gt;
+&lt;p&gt;The rest of the prototype electronics have also arrived, so we&amp;#8217;re ready to
+start testing the control electronics. Hopefully the first LEDs (to verify
+colour choice) will be arriving tomorrow so we can light something&amp;nbsp;up!&lt;/p&gt;</summary><category term="structures"></category><category term="power"></category></entry><entry><title>PSUs arrived (aluminium didn’t)</title><link href="http://www.thegrid.fish/psus-arrived-aluminium-didnt.html" rel="alternate"></link><updated>2014-07-08T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-08:psus-arrived-aluminium-didnt.html</id><summary type="html">&lt;p&gt;Five of the most legitimate 30A 12V PSUs you can find on eBay arrived today:
 &lt;img alt="PSUs arrived" src="/images/psus_arrived.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Unfortunately the aluminium couldn&amp;#8217;t be delivered today so fingers crossed
 we&amp;#8217;ll get it&amp;nbsp;tomorrow.&lt;/p&gt;</summary><category term="power"></category></entry><entry><title>Another day, another order</title><link href="http://www.thegrid.fish/another-day-another-order.html" rel="alternate"></link><updated>2014-07-07T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-07:another-day-another-order.html</id><summary type="html">&lt;p&gt;So, yet more exciting things are on the way, this time in the form of two
