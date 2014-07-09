@@ -7,4 +7,6 @@ initiates a ripple of light and a susurration of subtle clicks, propagating
 through the system.  Traverse your own maze of light or stand back and enjoy
 the spectacle.
 
+![artist's render](/images/render.png)
+
 Welcome to The·Grid.
