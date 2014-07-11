@@ -66,6 +66,37 @@ The·Grid            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://www.thegrid.fish/rework-and-a-pcb.html">Rework and a <span class="caps">PCB</span></a></h2>
+                <div class="summary"><p>Having made surprisingly short work of reworking the first power supply, a blob
+of epoxy sealed the deal.  Testing will have to wait until we get a few more
+parts, but it looks&nbsp;good.</p>
+<p>We had a number of interesting ideas for making the electronics easier.
+Instead of using an Arduino to talk over <span class="caps">USB</span> and drive the shift registers (and
+have yet another layer of software in the stack), it turns out you can use
+several of the pins on an <span class="caps">FTDI</span> ft232r as GPIOs and use it to drive shift
+registers&nbsp;directly.</p>
+<p>Later in the evening, I was making a quick stripboard prototype with a shift
+register and some PMOSes and complaining bitterly to Adam about cutting
+stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
+to make a <span class="caps">PCB</span>.  Instead of one massive <span class="caps">PCB</span>, we could break it down to 7 PCBs,
+each with a shift register and 7 outputs.  We can cascade the boards&#8217; shift
+registers and connect each board directly to a power supply.  Surprisingly
+quickly, the schematic looked something like&nbsp;this: </p>
+<p><img alt="schematic" src="/images/pcb_schematic.png" /></p>
+<p>This all just about barely fits on a 5cm x 5cm <span class="caps">PCB</span>: (surface mount resistors
+omitted for clarity, but they look like they&#8217;d&nbsp;fit&#8230;)</p>
+<p><img alt="pcb_55" src="/images/pcb_55.png" /></p>
+<p>Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
+little&nbsp;like:</p>
+<p><img alt="pcb_long" src="/images/pcb_long.png" /></p>
+<p>As a bonus, with the PCBs all lined up the LEDs will look something like a
+grid.  In the end we went back to using through-hole components for everything.
+Surface mount resistors would be smaller and cheaper, but through-hole is a lot
+more&nbsp;fun.</p>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://www.thegrid.fish/another-day-another-order.html">Another day, another&nbsp;order</a></h2>
                 <div class="summary"><p>So, yet more exciting things are on the way, this time in the form of two
 sample rolls of <span class="caps">LED</span> strip.  We couldn&#8217;t decide whether &#8220;Pure/Day White&#8221; or
@@ -115,7 +146,7 @@ end of the&nbsp;week.</p>
                                 power
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
+                        <li class="list-group-item tag-1">
                             <a href="http://www.thegrid.fish/tag/electronics.html">
                                 electronics
                             </a>

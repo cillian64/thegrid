@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/david.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-07T00:00:00+01:00</updated><entry><title>Another day, another order</title><link href="http://www.thegrid.fish/another-day-another-order.html" rel="alternate"></link><updated>2014-07-07T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-07:another-day-another-order.html</id><summary type="html">&lt;p&gt;So, yet more exciting things are on the way, this time in the form of two
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/david.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-10T00:00:00+01:00</updated><entry><title>Rework and a PCB</title><link href="http://www.thegrid.fish/rework-and-a-pcb.html" rel="alternate"></link><updated>2014-07-10T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-10:rework-and-a-pcb.html</id><summary type="html">&lt;p&gt;Having made surprisingly short work of reworking the first power supply, a blob
+of epoxy sealed the deal.  Testing will have to wait until we get a few more
+parts, but it looks&amp;nbsp;good.&lt;/p&gt;
+&lt;p&gt;We had a number of interesting ideas for making the electronics easier.
+Instead of using an Arduino to talk over &lt;span class="caps"&gt;USB&lt;/span&gt; and drive the shift registers (and
+have yet another layer of software in the stack), it turns out you can use
+several of the pins on an &lt;span class="caps"&gt;FTDI&lt;/span&gt; ft232r as GPIOs and use it to drive shift
+registers&amp;nbsp;directly.&lt;/p&gt;
+&lt;p&gt;Later in the evening, I was making a quick stripboard prototype with a shift
+register and some PMOSes and complaining bitterly to Adam about cutting
+stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
+to make a &lt;span class="caps"&gt;PCB&lt;/span&gt;.  Instead of one massive &lt;span class="caps"&gt;PCB&lt;/span&gt;, we could break it down to 7 PCBs,
+each with a shift register and 7 outputs.  We can cascade the boards&amp;#8217; shift
+registers and connect each board directly to a power supply.  Surprisingly
+quickly, the schematic looked something like&amp;nbsp;this: &lt;/p&gt;
+&lt;p&gt;&lt;img alt="schematic" src="/images/pcb_schematic.png" /&gt;&lt;/p&gt;
+&lt;p&gt;This all just about barely fits on a 5cm x 5cm &lt;span class="caps"&gt;PCB&lt;/span&gt;: (surface mount resistors
+omitted for clarity, but they look like they&amp;#8217;d&amp;nbsp;fit&amp;#8230;)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb_55" src="/images/pcb_55.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
+little&amp;nbsp;like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb_long" src="/images/pcb_long.png" /&gt;&lt;/p&gt;
+&lt;p&gt;As a bonus, with the PCBs all lined up the LEDs will look something like a
+grid.  In the end we went back to using through-hole components for everything.
+Surface mount resistors would be smaller and cheaper, but through-hole is a lot
+more&amp;nbsp;fun.&lt;/p&gt;</summary><category term="electronics"></category><category term="power"></category></entry><entry><title>Another day, another order</title><link href="http://www.thegrid.fish/another-day-another-order.html" rel="alternate"></link><updated>2014-07-07T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-07:another-day-another-order.html</id><summary type="html">&lt;p&gt;So, yet more exciting things are on the way, this time in the form of two
 sample rolls of &lt;span class="caps"&gt;LED&lt;/span&gt; strip.  We couldn&amp;#8217;t decide whether &amp;#8220;Pure/Day White&amp;#8221; or
 &amp;#8220;Cool White&amp;#8221; sounded more appropriate, so we&amp;#8217;re going to check out&amp;nbsp;both.&lt;/p&gt;
 &lt;p&gt;In other news, the electronics design is significantly taking shape.  After a

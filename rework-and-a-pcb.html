@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>structures - The·Grid</title>
+    <title>Rework and a PCB - The·Grid</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,10 +12,15 @@
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="The·Grid" />
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="The·Grid"/>
-            <meta property="og:url" content="http://www.thegrid.fish"/>
-            <meta property="og:description" content="The·Grid"/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Rework and a PCB"/>
+            <meta property="og:url" content="http://www.thegrid.fish/rework-and-a-pcb.html"/>
+            <meta property="og:description" content="Having made surprisingly short work of reworking the first power supply, a blob of epoxy sealed the deal. Testing will have to wait until we get a few more parts, but it looks good. We had a number of interesting ideas for making the electronics easier. Instead of using an Arduino to talk over USB and drive the shift registers (and have yet another layer of software in the stack), it turns out you can use several of the pins on an FTDI ft232r as GPIOs and use it to drive shift registers directly. Later in the evening, I was making a quick stripboard prototype with a shift register and some PMOSes and complaining bitterly to Adam about cutting stripboard tracks. We shortly decided that it was, in fact, a rather good idea to make a PCB. Instead of one massive PCB, we could break it down to 7 PCBs, each with a shift register and 7 outputs. We can cascade the boards’ shift registers and connect each board directly to a power supply. Surprisingly quickly, the schematic looked something like this: This all just about barely fits on a 5cm x 5cm PCB: (surface mount resistors omitted for clarity, but they look like they’d fit…) Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a little like: As a bonus, with the PCBs all lined up the LEDs will look something like a grid. In the end we went back to using through-hole components for everything. Surface mount resistors would be smaller and cheaper, but through-hole is a lot more fun."/>
+            <meta property="article:published_time" content="2014-07-10" />
+                <meta property="article:section" content="blog" />
+                <meta property="article:tag" content="electronics" />
+                <meta property="article:tag" content="power" />
+                <meta property="article:author" content="David" />
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://www.thegrid.fish/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
@@ -49,7 +54,7 @@ The·Grid            </a>
                          <li><a href="http://www.thegrid.fish/pages/about.html">
                              About
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="http://www.thegrid.fish/category/blog.html">Blog</a>
                         </li>
             </ul>
@@ -65,43 +70,67 @@ The·Grid            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="http://www.thegrid.fish/aluminium-arrived-at-last.html">Aluminium Arrived (at&nbsp;last)</a></h2>
-                <div class="summary"><p>After some more wrangling with the online vehicle tracking, we eventually had a
-firm <span class="caps">ETA</span>&#8230; in the past. It slipped slowly further back in time until the
-estimated delivery was an hour&nbsp;ago.</p>
-<p><img alt="delivery tracking..." src="/images/eta_the_past.png" /></p>
-<p>Luckily the aluminium did eventually make it to the present time and we happily
-took&nbsp;delivery.</p>
-<p><img alt="aluminium in the garden" src="/images/alu_in_garden.jpg" /></p>
-<p>A few hours of hard sawing, filing and taping up later, and we now have eight
-bundles of aluminium angle, all ready to be used for the structural component
-of&nbsp;TheGrid.</p>
-<p><img alt="adam sawing" src="/images/adam_sawing.jpg" /></p>
-<p>We also opened up one of the power supplies to investigate the design and
-quality. True to the &#8220;Professional&#8221; sticker on the box, the insides included a
-large toroid that had torn free of its soldering, so we&#8217;ll probably need to do
-a little rework before these are&nbsp;shipshape.</p>
-<p><img alt="i'm sure this PSU is just fine" src="/images/psu_dodgy_transformer.jpg" /></p>
-<p>The rest of the prototype electronics have also arrived, so we&#8217;re ready to
-start testing the control electronics. Hopefully the first LEDs (to verify
-colour choice) will be arriving tomorrow so we can light something&nbsp;up!</p>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://www.thegrid.fish/rework-and-a-pcb.html"
+                       rel="bookmark"
+                       title="Permalink to Rework and a PCB">
+                        Rework and a <span class="caps">PCB</span>
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-07-10T00:00:00"> Thu 10 July 2014</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://www.thegrid.fish/author/david.html"><i class="fa fa-user"></i> David</a>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://www.thegrid.fish/tag/electronics.html">electronics</a>
+        /
+	<a href="http://www.thegrid.fish/tag/power.html">power</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://www.thegrid.fish/175m-aluminium-angle-on-its-way.html">175m Aluminium Angle on its&nbsp;way&#8230;</a></h2>
-                <div class="summary"><p>This is all feeling much more real now as we&#8217;ve just placed the order for 35 5m
-lengths of aluminium equal angle. It should arrive Tuesday, apparently! I can
-only imagine how confused the delivery driver will be when the address is a
-residental&nbsp;house.</p>
-<p><img alt="the order" src="/images/alu_order.png" /></p>
-<p>We&#8217;ve now also finished the prototype design for the control electronics and
-ordered a few samples to test drive. Hopefully we&#8217;ll have flashing LEDs by the
-end of the&nbsp;week.</p>
-                </div>
-            </article>
-            <hr/>
+                <p>Having made surprisingly short work of reworking the first power supply, a blob
+of epoxy sealed the deal.  Testing will have to wait until we get a few more
+parts, but it looks&nbsp;good.</p>
+<p>We had a number of interesting ideas for making the electronics easier.
+Instead of using an Arduino to talk over <span class="caps">USB</span> and drive the shift registers (and
+have yet another layer of software in the stack), it turns out you can use
+several of the pins on an <span class="caps">FTDI</span> ft232r as GPIOs and use it to drive shift
+registers&nbsp;directly.</p>
+<p>Later in the evening, I was making a quick stripboard prototype with a shift
+register and some PMOSes and complaining bitterly to Adam about cutting
+stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
+to make a <span class="caps">PCB</span>.  Instead of one massive <span class="caps">PCB</span>, we could break it down to 7 PCBs,
+each with a shift register and 7 outputs.  We can cascade the boards&#8217; shift
+registers and connect each board directly to a power supply.  Surprisingly
+quickly, the schematic looked something like&nbsp;this: </p>
+<p><img alt="schematic" src="/images/pcb_schematic.png" /></p>
+<p>This all just about barely fits on a 5cm x 5cm <span class="caps">PCB</span>: (surface mount resistors
+omitted for clarity, but they look like they&#8217;d&nbsp;fit&#8230;)</p>
+<p><img alt="pcb_55" src="/images/pcb_55.png" /></p>
+<p>Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
+little&nbsp;like:</p>
+<p><img alt="pcb_long" src="/images/pcb_long.png" /></p>
+<p>As a bonus, with the PCBs all lined up the LEDs will look something like a
+grid.  In the end we went back to using through-hole components for everything.
+Surface mount resistors would be smaller and cheaper, but through-hole is a lot
+more&nbsp;fun.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
