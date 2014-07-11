@@ -28,7 +28,7 @@
     <link href="http://www.thegrid.fish/theme/css/pygments/native.css" rel="stylesheet">
         <link href="http://www.thegrid.fish/theme/css/typogrify.css" rel="stylesheet">
     <link rel="stylesheet" href="http://www.thegrid.fish/theme/css/style.css" type="text/css"/>
-    <link href="http://www.thegrid.fish/links.css" rel="stylesheet" />
+    <link href="http://www.thegrid.fish/bodges.css" rel="stylesheet" />
 
         <link href="http://www.thegrid.fish/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="The·Grid ATOM Feed"/>
@@ -56,6 +56,17 @@ The·Grid            </a>
                         <li class="active">
                             <a href="http://www.thegrid.fish/category/blog.html">Blog</a>
                         </li>
+<script language="JavaScript">
+var quote = new Array()
+quote[0] = "A mad forest of noisy LEDs"
+quote[1] = "We'd like to buy a large quantity of LED strip..."
+quote[2] = "What's the cheapest way to get 900W at 12V?"
+quote[3] = "I didn't expect the truck to be so big!"
+var qnum = quote.length
+pickquote = Math.round(Math.random()*(qnum-1))
+</script>
+                <li><p><script language="JavaScript">
+                document.write(quote[pickquote])</script></p></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://www.thegrid.fish/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -124,13 +135,13 @@ we&#8217;ll get it&nbsp;tomorrow.</p>
                 <li class="list-group-item"><a href="http://www.thegrid.fish/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group " id="tags">
                         <li class="list-group-item tag-1">
-                            <a href="http://www.thegrid.fish/tag/power.html">
-                                power
+                            <a href="http://www.thegrid.fish/tag/electronics.html">
+                                electronics
                             </a>
                         </li>
                         <li class="list-group-item tag-1">
-                            <a href="http://www.thegrid.fish/tag/electronics.html">
-                                electronics
+                            <a href="http://www.thegrid.fish/tag/power.html">
+                                power
                             </a>
                         </li>
                         <li class="list-group-item tag-2">

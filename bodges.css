@@ -1,0 +1,38 @@
+article a
+{
+    text-decoration: underline;
+}
+
+article h2 a
+{
+    text-decoration: none;
+}
+
+article h1 a
+{
+    text-decoration: none;
+}
+
+.navbar-nav li p:before
+{
+    content: '\201C';
+    font-family: Times New Roman, Times, serif;
+    font-size: 170%;
+    padding-right: 2px
+}
+
+.navbar-nav li p:after
+{
+    content: '\201D';
+    font-family: Times New Roman, Times, serif;
+    font-size: 170%;
+    padding-left: 3px;
+}
+.navbar-nav li p
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 50px;
+    margin-top: -6px;
+}
+
