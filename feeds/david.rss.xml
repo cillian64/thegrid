@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 07 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Another day, another order</title><link>http://www.thegrid.fish/another-day-another-order.html</link><description>&lt;p&gt;So, yet more exciting things are on the way, this time in the form of two
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 11 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Testing LED strips and a PSU</title><link>http://www.thegrid.fish/testing-led-strips-and-a-psu.html</link><description>&lt;p&gt;I received a lot of parcels today!  The LEDs, thermal compound, some relays,
+and what we have affectionately termed The Danger&amp;nbsp;Cable:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="schematic" src="/images/danger_cable.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;At first we weren&amp;#8217;t convinced the &lt;span class="caps"&gt;LED&lt;/span&gt; strips would be bright enough.  A quick
+test in the garden cleared any doubts about the&amp;nbsp;brightness:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="lightsabre" src="/images/lightsabre.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Finally, I finished putting the power supply back together after a good clean
+and a fresh dab of thermal grease.  After a little sanity testing, we thought
+we&amp;#8217;d give it some&amp;nbsp;load:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="power supply testing" src="/images/psu_test.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The power supply seems to work beautifully, although it was only pushing 4A out
+of its rated&amp;nbsp;30A!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Fri, 11 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-11:testing-led-strips-and-a-psu.html</guid><category>electronics</category><category>power</category><category>testing</category></item><item><title>Rework and a PCB</title><link>http://www.thegrid.fish/rework-and-a-pcb.html</link><description>&lt;p&gt;Having made surprisingly short work of reworking the first power supply, a blob
+of epoxy sealed the deal.  Testing will have to wait until we get a few more
+parts, but it looks&amp;nbsp;good.&lt;/p&gt;
+&lt;p&gt;We had a number of interesting ideas for making the electronics easier.
+Instead of using an Arduino to talk over &lt;span class="caps"&gt;USB&lt;/span&gt; and drive the shift registers (and
+have yet another layer of software in the stack), it turns out you can use
+several of the pins on an &lt;span class="caps"&gt;FTDI&lt;/span&gt; ft232r as GPIOs and use it to drive shift
+registers&amp;nbsp;directly.&lt;/p&gt;
+&lt;p&gt;Later in the evening, I was making a quick stripboard prototype with a shift
+register and some PMOSes and complaining bitterly to Adam about cutting
+stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
+to make a &lt;span class="caps"&gt;PCB&lt;/span&gt;.  Instead of one massive &lt;span class="caps"&gt;PCB&lt;/span&gt;, we could break it down to 7 PCBs,
+each with a shift register and 7 outputs.  We can cascade the boards&amp;#8217; shift
+registers and connect each board directly to a power supply.  Surprisingly
+quickly, the schematic looked something like&amp;nbsp;this: &lt;/p&gt;
+&lt;p&gt;&lt;img alt="schematic" src="/images/pcb_schematic.png" /&gt;&lt;/p&gt;
+&lt;p&gt;This all just about barely fits on a 5cm x 5cm &lt;span class="caps"&gt;PCB&lt;/span&gt;: (surface mount resistors
+omitted for clarity, but they look like they&amp;#8217;d&amp;nbsp;fit&amp;#8230;)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb_55" src="/images/pcb_55.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
+little&amp;nbsp;like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb_long" src="/images/pcb_long.png" /&gt;&lt;/p&gt;
+&lt;p&gt;As a bonus, with the PCBs all lined up the LEDs will look something like a
+grid.  In the end we went back to using through-hole components for everything.
+Surface mount resistors would be smaller and cheaper, but through-hole is a lot
+more&amp;nbsp;fun.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Thu, 10 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-10:rework-and-a-pcb.html</guid><category>electronics</category><category>power</category></item><item><title>Another day, another order</title><link>http://www.thegrid.fish/another-day-another-order.html</link><description>&lt;p&gt;So, yet more exciting things are on the way, this time in the form of two
 sample rolls of &lt;span class="caps"&gt;LED&lt;/span&gt; strip.  We couldn&amp;#8217;t decide whether &amp;#8220;Pure/Day White&amp;#8221; or
 &amp;#8220;Cool White&amp;#8221; sounded more appropriate, so we&amp;#8217;re going to check out&amp;nbsp;both.&lt;/p&gt;
 &lt;p&gt;In other news, the electronics design is significantly taking shape.  After a

@@ -24,7 +24,7 @@
     <link href="http://www.thegrid.fish/theme/css/pygments/native.css" rel="stylesheet">
         <link href="http://www.thegrid.fish/theme/css/typogrify.css" rel="stylesheet">
     <link rel="stylesheet" href="http://www.thegrid.fish/theme/css/style.css" type="text/css"/>
-    <link href="http://www.thegrid.fish/links.css" rel="stylesheet" />
+    <link href="http://www.thegrid.fish/bodges.css" rel="stylesheet" />
 
         <link href="http://www.thegrid.fish/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="The·Grid ATOM Feed"/>
@@ -52,6 +52,9 @@ The·Grid            </a>
                         <li >
                             <a href="http://www.thegrid.fish/category/blog.html">Blog</a>
                         </li>
+                <script language="JavaScript" src="/quotes.js"></script>
+                <li><p><script language="JavaScript">
+                document.write(quote[pickquote])</script></p></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="http://www.thegrid.fish/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
@@ -65,6 +68,54 @@ The·Grid            </a>
     <div class="row">
         <div class="col-sm-9">
 
+            <article>
+                <h2><a href="http://www.thegrid.fish/testing-led-strips-and-a-psu.html">Testing <span class="caps">LED</span> strips and a <span class="caps">PSU</span></a></h2>
+                <div class="summary"><p>I received a lot of parcels today!  The LEDs, thermal compound, some relays,
+and what we have affectionately termed The Danger&nbsp;Cable:</p>
+<p><img alt="schematic" src="/images/danger_cable.jpg" /></p>
+<p>At first we weren&#8217;t convinced the <span class="caps">LED</span> strips would be bright enough.  A quick
+test in the garden cleared any doubts about the&nbsp;brightness:</p>
+<p><img alt="lightsabre" src="/images/lightsabre.jpg" /></p>
+<p>Finally, I finished putting the power supply back together after a good clean
+and a fresh dab of thermal grease.  After a little sanity testing, we thought
+we&#8217;d give it some&nbsp;load:</p>
+<p><img alt="power supply testing" src="/images/psu_test.jpg" /></p>
+<p>The power supply seems to work beautifully, although it was only pushing 4A out
+of its rated&nbsp;30A!</p>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://www.thegrid.fish/rework-and-a-pcb.html">Rework and a <span class="caps">PCB</span></a></h2>
+                <div class="summary"><p>Having made surprisingly short work of reworking the first power supply, a blob
+of epoxy sealed the deal.  Testing will have to wait until we get a few more
+parts, but it looks&nbsp;good.</p>
+<p>We had a number of interesting ideas for making the electronics easier.
+Instead of using an Arduino to talk over <span class="caps">USB</span> and drive the shift registers (and
+have yet another layer of software in the stack), it turns out you can use
+several of the pins on an <span class="caps">FTDI</span> ft232r as GPIOs and use it to drive shift
+registers&nbsp;directly.</p>
+<p>Later in the evening, I was making a quick stripboard prototype with a shift
+register and some PMOSes and complaining bitterly to Adam about cutting
+stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
+to make a <span class="caps">PCB</span>.  Instead of one massive <span class="caps">PCB</span>, we could break it down to 7 PCBs,
+each with a shift register and 7 outputs.  We can cascade the boards&#8217; shift
+registers and connect each board directly to a power supply.  Surprisingly
+quickly, the schematic looked something like&nbsp;this: </p>
+<p><img alt="schematic" src="/images/pcb_schematic.png" /></p>
+<p>This all just about barely fits on a 5cm x 5cm <span class="caps">PCB</span>: (surface mount resistors
+omitted for clarity, but they look like they&#8217;d&nbsp;fit&#8230;)</p>
+<p><img alt="pcb_55" src="/images/pcb_55.png" /></p>
+<p>Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
+little&nbsp;like:</p>
+<p><img alt="pcb_long" src="/images/pcb_long.png" /></p>
+<p>As a bonus, with the PCBs all lined up the LEDs will look something like a
+grid.  In the end we went back to using through-hole components for everything.
+Surface mount resistors would be smaller and cheaper, but through-hole is a lot
+more&nbsp;fun.</p>
+                </div>
+            </article>
+            <hr/>
             <article>
                 <h2><a href="http://www.thegrid.fish/another-day-another-order.html">Another day, another&nbsp;order</a></h2>
                 <div class="summary"><p>So, yet more exciting things are on the way, this time in the form of two
@@ -97,7 +148,7 @@ about our proposal, and, they did &#8212; The·Grid at <span class="caps">EMF201
         <ul class="list-group list-group-flush">
                 <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
                   <ul class="list-group" id="social">
-                    <li class="list-group-item"><a href="https://twitter.com/__thegrid"><i class="fa fa-@__thegrid-square fa-lg"></i> @__thegrid</a></li>
+                    <li class="list-group-item"><a href="https://twitter.com/__thegrid"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
                   </ul>
                 </li>
 
@@ -110,14 +161,19 @@ about our proposal, and, they did &#8212; The·Grid at <span class="caps">EMF201
                                 power
                             </a>
                         </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://www.thegrid.fish/tag/electronics.html">
+                                electronics
+                            </a>
+                        </li>
                         <li class="list-group-item tag-2">
                             <a href="http://www.thegrid.fish/tag/structures.html">
                                 structures
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://www.thegrid.fish/tag/electronics.html">
-                                electronics
+                        <li class="list-group-item tag-4">
+                            <a href="http://www.thegrid.fish/tag/testing.html">
+                                testing
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
