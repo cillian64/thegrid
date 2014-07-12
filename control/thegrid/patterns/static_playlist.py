@@ -15,12 +15,13 @@ logger = logging.getLogger(__name__)
 def fussyreadline(f):
     line = f.readline()
     if line == '':
-        return line  # EOF
+        return None  # EOF
     line = line.rstrip()
-    if line == '' or line[0] == '#':
-        return fussyreadline(f)  # Ignore this line
-    else:
-        return line
+    if line == '':
+        return line  # Pass on blank lines
+    if line[0] == '#':  # Comment!
+        return fussyreadline(f)
+    return line
 
 
 @register_pattern("Rectangles", {"file": "rectangles.txt"})
@@ -56,14 +57,28 @@ class Sample(Pattern):
         # Load blocks:
         self.blocks = []
         line = fussyreadline(f)
-        while line != '':
+        while line is not None:  # None is EOF
             block = []
-            for _ in range(0, 8):
-                block.append(line)
+            while line != '' and line is not None:
+                if len(block) != 7 and len(line) != 7:
+                    logger.error("Incorrect line length, block {}, line {}".
+                        format(len(self.blocks)+1, len(block)+1))
+                else:
+                    block.append(line)
                 line = fussyreadline(f)
-            self.blocks.append(block)
+
+            if len(block) != 8:
+                logger.error("Incorrect block length, block {}".
+                    format(len(self.blocks)+1))
+            else:
+                self.blocks.append(block)
 
         logger.info("Loaded {0} frames".format(len(self.blocks)))
+
+        if self.blocks == []:
+            logger.warn("No frames loaded!")
+            self.block = None
+            self.blocks = None
 
         self.block = 0
 
