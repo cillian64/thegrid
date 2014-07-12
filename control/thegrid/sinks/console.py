@@ -20,7 +20,5 @@ class Console(Sink):
     def update(self, state):
         print("\033[9A\r", end='')
         for row in state:
-            a = list(map(lambda x: '#' if x else '.', list(row)))
-            a = ' '.join(a)
-            print(a)
+            print(" ".join("#" if x else '.' for x in row))
         print("")
