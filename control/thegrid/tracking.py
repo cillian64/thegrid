@@ -6,9 +6,14 @@ Person detection and tracking.
 
 import logging
 from multiprocessing import Process
-import cv2
 
 logger = logging.getLogger(__name__)
+
+try:
+    import cv2
+except ImportError:
+    logging.warning("Could not import cv2, continuing with no tracking")
+    cv2 = None
 
 
 def start_tracking(shared_dict):
