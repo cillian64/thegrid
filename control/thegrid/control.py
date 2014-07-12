@@ -51,6 +51,12 @@ class Control:
         port, password = settings.API_PORT, settings.API_PASSWORD
         self.api = API(port, password, self.cmd_queue)
 
+        if settings.DEFAULT_SINK in self.sinks:
+            logger.info("Loading default sink %s", settings.DEFAULT_SINK)
+            self.sink = self.sinks[settings.DEFAULT_SINK]()
+        else:
+            logger.warning("Could not find default sink, check settings")
+
     def main(self):
         while True:
             try:

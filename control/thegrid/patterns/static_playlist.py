@@ -22,20 +22,25 @@ def extract_blocks(lines):
         block.append(line)
         if len(block) == 9:
             if block[0] != "\n":
+                logger.error("Block started with <%s>", repr(block[0]))
                 raise BlockParseError("Blocks must start with a blank line")
             try:
                 delay = int(block[-1])
             except ValueError:
+                logger.error("Block ended with <%s>", block[-1])
                 raise BlockParseError("Blocks must end with an integer")
             rows = []
             for row in block[1:8]:
                 if row[-1] != "\n":
+                    logger.error("Row ended in <%s>", row[-1])
                     raise BlockParseError("Row didn't end in a newline.")
                 row = row[:-1]
                 if len(row) != 7:
+                    logger.error("Row was %d characters", len(row))
                     raise BlockParseError("Rows must only be 7 characters")
                 for char in row:
                     if char not in (".", "*"):
+                        logger.error("Row contained <%s>", char)
                         raise BlockParseError("Rows may only have `.` or `*`")
                 rows.append(row)
             yield rows, delay

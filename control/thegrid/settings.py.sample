@@ -4,3 +4,5 @@ The Grid Settings File.
 
 API_PORT = 8080
 API_PASSWORD = "password"
+
+DEFAULT_SINK = "Console"
