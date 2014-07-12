@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 try:
     import cv2
 except ImportError:
-    logging.warning("Could not import cv2, continuing with no tracking")
+    logger.warning("Could not import cv2, continuing with no tracking")
     cv2 = None
 
 
