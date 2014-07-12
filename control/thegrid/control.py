@@ -33,11 +33,13 @@ class Control:
 
         self.sink = None
         self.sinks = sinks.loaded_sinks
-        logger.info("Available sinks: {}".format(self.sinks.keys()))
+        sink_names = sorted(self.sinks.keys())
+        logger.info("Available sinks: {}".format(sink_names))
 
         self.pattern = None
         self.patterns = patterns.loaded_patterns
-        logger.info("Available patterns: {}".format(self.patterns.keys()))
+        pattern_names = sorted(self.patterns.keys())
+        logger.info("Available patterns: {}".format(pattern_names))
 
         self.tracking_manager = Manager()
         self.tracking_dict = self.tracking_manager.dict()
