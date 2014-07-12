@@ -14,6 +14,7 @@ from multiprocessing import Manager, Queue
 from .api import API
 from .tracking import Tracking
 
+
 def main():
     cmd_queue = Queue()
     tracking_manager = Manager()
@@ -31,7 +32,7 @@ def main():
                 break
         except queue.Empty:
             pass
-        
+
         time.sleep(1)
 
     print("Shutting down")
