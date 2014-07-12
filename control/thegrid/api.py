@@ -41,7 +41,8 @@ def run_server(port, password, queue):
 
 class API:
     def __init__(self, port, password, queue):
-        self.server = Process(target=run_server, args=(port, password, queue))
+        self.server = Process(
+            target=run_server, args=(port, password, queue), daemon=True)
         self.server.start()
 
     def stop(self):
