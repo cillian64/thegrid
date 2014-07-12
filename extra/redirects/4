@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+  var redirects = {
+    "/welcome.html": "/2014/07/05/welcome/",
+    "/approval.html": "/2014/07/05/approval/",
+    "/175m-aluminium-angle-on-its-way.html":
+      "/2014/07/06/175m-aluminium-angle-on-its-way/",
+    "/another-day-another-order.html":
+      "/2014/07/07/another-day-another-order/",
+    "/psus-arrived-aluminium-didnt.html":
+      "/2014/07/08/psus-arrived-aluminium-didnt/",
+    "/aluminium-arrived-at-last.html":
+      "/2014/07/09/aluminium-arrived-at-last/",
+    "/rework-and-a-pcb.html":
+      "/2014/07/10/rework-and-a-pcb/",
+    "/testing-led-strips-and-a-psu.html":
+      "/2014/07/11/testing-led-strips-and-a-psu/",
+    "/control-software.html":
+      "/2014/07/12/control-software/"
+  };
+  window.location.pathname = redirects[window.location.pathname];
+</script>
+<body style="background-color: black; color: white;">
+  <div style="margin: 50px;">
+    <p>
+      <strong>
+        We changed the URL structure and the link you followed is old, so
+        we're trying to redirect you. If it's not working, you may have
+        Javascript disabled. Try browsing to the page you were looking for
+        from our homepage: <a href="http://thegrid.fish">thegrid.fish</a>.
+      </strong>
+    </p>
+  </div>
+</body>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/adam.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 12 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Control Software</title><link>http://www.thegrid.fish/control-software.html</link><description>&lt;p&gt;Last night we started fleshing out the design for the control software. The
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/adam.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 12 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Control Software</title><link>http://www.thegrid.fish/2014/07/12/control-software</link><description>&lt;p&gt;Last night we started fleshing out the design for the control software. The
 bulk of it will be written in Python, because we&amp;#8217;re both familiar with the
 language and it has good bindings to libFTDI and&amp;nbsp;OpenCV.&lt;/p&gt;
 &lt;p&gt;First I sketched out an outline of the overall&amp;nbsp;design:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="paper planning" src="images/software_plan.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="paper planning" src="/images/software_plan.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;We have a central &amp;#8216;Control&amp;#8217; object which is responsible for tying everything
 together, and externally we&amp;#8217;ll use &lt;a href="http://supervisord.org/"&gt;supervisord&lt;/a&gt; to
 start and manage it. It starts an &lt;span class="caps"&gt;API&lt;/span&gt; and Tracking process via multiprocessing,
@@ -39,7 +39,7 @@ empty shell at the moment, and we&amp;#8217;ll be working on the Console sink be
 real hardware one (useful for debugging). Patterns are going to come later too,
 but at least they have something to slot into now. Eventually we&amp;#8217;ll be adding
 an Android app to the mix which uses the &lt;span class="caps"&gt;API&lt;/span&gt; for remote control, but that is
-pretty far down the to-do&amp;nbsp;list!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Sat, 12 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-12:control-software.html</guid><category>software</category></item><item><title>Aluminium Arrived (at last)</title><link>http://www.thegrid.fish/aluminium-arrived-at-last.html</link><description>&lt;p&gt;After some more wrangling with the online vehicle tracking, we eventually had a
+pretty far down the to-do&amp;nbsp;list!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Sat, 12 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-12:2014/07/12/control-software</guid><category>software</category></item><item><title>Aluminium Arrived (at last)</title><link>http://www.thegrid.fish/2014/07/09/aluminium-arrived-at-last</link><description>&lt;p&gt;After some more wrangling with the online vehicle tracking, we eventually had a
 firm &lt;span class="caps"&gt;ETA&lt;/span&gt;&amp;#8230; in the past. It slipped slowly further back in time until the
 estimated delivery was an hour&amp;nbsp;ago.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="delivery tracking..." src="/images/eta_the_past.png" /&gt;&lt;/p&gt;
@@ -57,14 +57,14 @@ a little rework before these are&amp;nbsp;shipshape.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="i'm sure this PSU is just fine" src="/images/psu_dodgy_transformer.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;The rest of the prototype electronics have also arrived, so we&amp;#8217;re ready to
 start testing the control electronics. Hopefully the first LEDs (to verify
-colour choice) will be arriving tomorrow so we can light something&amp;nbsp;up!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Wed, 09 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-09:aluminium-arrived-at-last.html</guid><category>structures</category><category>power</category></item><item><title>PSUs arrived (aluminium didn’t)</title><link>http://www.thegrid.fish/psus-arrived-aluminium-didnt.html</link><description>&lt;p&gt;Five of the most legitimate 30A 12V PSUs you can find on eBay arrived today:
+colour choice) will be arriving tomorrow so we can light something&amp;nbsp;up!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Wed, 09 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-09:2014/07/09/aluminium-arrived-at-last</guid><category>structures</category><category>power</category></item><item><title>PSUs arrived (aluminium didn’t)</title><link>http://www.thegrid.fish/2014/07/08/psus-arrived-aluminium-didnt</link><description>&lt;p&gt;Five of the most legitimate 30A 12V PSUs you can find on eBay arrived today:
 &lt;img alt="PSUs arrived" src="/images/psus_arrived.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Unfortunately the aluminium couldn&amp;#8217;t be delivered today so fingers crossed
-we&amp;#8217;ll get it&amp;nbsp;tomorrow.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Tue, 08 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-08:psus-arrived-aluminium-didnt.html</guid><category>power</category></item><item><title>175m Aluminium Angle on its way…</title><link>http://www.thegrid.fish/175m-aluminium-angle-on-its-way.html</link><description>&lt;p&gt;This is all feeling much more real now as we&amp;#8217;ve just placed the order for 35 5m
+we&amp;#8217;ll get it&amp;nbsp;tomorrow.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Tue, 08 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-08:2014/07/08/psus-arrived-aluminium-didnt</guid><category>power</category></item><item><title>175m Aluminium Angle on its way…</title><link>http://www.thegrid.fish/2014/07/06/175m-aluminium-angle-on-its-way</link><description>&lt;p&gt;This is all feeling much more real now as we&amp;#8217;ve just placed the order for 35 5m
 lengths of aluminium equal angle. It should arrive Tuesday, apparently! I can
 only imagine how confused the delivery driver will be when the address is a
 residental&amp;nbsp;house.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="the order" src="/images/alu_order.png" /&gt;&lt;/p&gt;
 &lt;p&gt;We&amp;#8217;ve now also finished the prototype design for the control electronics and
 ordered a few samples to test drive. Hopefully we&amp;#8217;ll have flashing LEDs by the
-end of the&amp;nbsp;week.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Sun, 06 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-06:175m-aluminium-angle-on-its-way.html</guid><category>structures</category><category>electronics</category></item></channel></rss>
+end of the&amp;nbsp;week.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Sun, 06 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-06:2014/07/06/175m-aluminium-angle-on-its-way</guid><category>structures</category><category>electronics</category></item></channel></rss>
