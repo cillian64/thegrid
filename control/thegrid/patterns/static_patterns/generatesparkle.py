@@ -5,21 +5,16 @@ from random import randrange
 width, height = 7, 7
 
 print("Sparkle")
-print("Kinda cool and sparkley and stuff...")
-print("")
 
-field = []
-for _ in range(0, height):
-    field.append(['.']*10)
+for _ in range(100):
+    field = [['.'] * width for _ in range(height)]
 
-for _ in range(0, 100):
-    for x in range(0, width):
-        for y in range(0, height):
-            field[y][x]='.'
-
+    # Space between flashes
+    print()
     for row in field:
         print("".join(row))
     print(randrange(0, 500))
+    print()
 
     x, y = randrange(0, width), randrange(0, height)
     field[y][x] = '*'
@@ -27,4 +22,3 @@ for _ in range(0, 100):
     for row in field:
         print("".join(row))
     print("50")
-    print("")
