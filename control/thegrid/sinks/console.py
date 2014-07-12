@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 @register_sink("Console")
 class Console(Sink):
     def __init__(self):
-        logger.info("Console sink initialised.")
+        logger.info("Console sink initialised")
 
     def update(self, state):
         pass

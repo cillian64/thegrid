@@ -42,7 +42,7 @@ class Pattern:
         self.config = config
         self.tracking = tracking
 
-    def update():
+    def update(self):
         """
         This function will be called every time control is ready to update the
         grid, on an irregular basis. It should return the desired grid state as

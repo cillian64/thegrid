@@ -13,6 +13,6 @@ logger = logging.getLogger(__name__)
 
 @register_pattern("Sample")
 class Sample(Pattern):
-    def update():
+    def update(self):
         logger.info("Updating pattern")
         return np.zeros((7, 7), dtype=np.bool)

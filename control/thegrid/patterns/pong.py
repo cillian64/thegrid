@@ -17,5 +17,5 @@ class Pong(Pattern):
     def __init__(self, config, tracking):
         logger.info("Pong initialised")
 
-    def update():
+    def update(self):
         return np.zeros((7, 7), dtype=np.bool)

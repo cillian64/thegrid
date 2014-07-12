@@ -17,5 +17,5 @@ class AMaze(Pattern):
     def __init__(self, config, tracking):
         logger.info("aMAZE initialised")
 
-    def update():
+    def update(self):
         return np.zeros((7, 7), dtype=np.bool)

@@ -7,11 +7,16 @@ Hooks together the hardware interface, pattern modules, people tracking, and an
 HTTP API for remote control.
 """
 
-import time
+import sys
 import queue
 import logging
 from multiprocessing import Manager, Queue
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s] %(levelname)s %(name)s: %(message)s")
+
+from . import settings
 from .api import API
 from .tracking import Tracking
 from . import patterns
@@ -21,36 +26,59 @@ from . import sinks
 logger = logging.getLogger("thegrid.control")
 
 
-def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="[%(asctime)s] %(levelname)s %(name)s: %(message)s")
+class Control:
+    def __init__(self, settings):
+        logger.info("The·Grid Control starting up")
+        self.settings = settings
 
-    logger.info("The·Grid Control starting up...")
+        self.sink = None
+        self.sinks = sinks.loaded_sinks
+        logger.info("Available sinks: {}".format(self.sinks.keys()))
 
-    cmd_queue = Queue()
-    tracking_manager = Manager()
-    tracking_dict = tracking_manager.dict()
+        self.pattern = None
+        self.patterns = patterns.loaded_patterns
+        logger.info("Available patterns: {}".format(self.patterns.keys()))
 
-    tracking = Tracking(tracking_dict)
-    api = API(8080, 'password', cmd_queue)
+        self.tracking_manager = Manager()
+        self.tracking_dict = self.tracking_manager.dict()
+        self.tracking = Tracking(self.tracking_dict)
 
-    while True:
-        logger.info("Current tracking: {}".format(tracking_dict))
-        try:
-            cmd = cmd_queue.get_nowait()
-            print("Received command:", cmd)
-            if cmd[0] == "stop":
-                break
-        except queue.Empty:
-            pass
+        self.cmd_queue = Queue()
+        port, password = settings.API_PORT, settings.API_PASSWORD
+        self.api = API(port, password, self.cmd_queue)
 
-        time.sleep(1)
+    def main(self):
+        while True:
+            try:
+                self.process_command(*self.cmd_queue.get_nowait())
+            except queue.Empty:
+                pass
 
-    logger.info("Control shutting down")
-    tracking.stop()
-    api.stop()
+            if self.pattern:
+                state = self.pattern.update()
+                if self.sink:
+                    self.sink.update(state)
 
+    def process_command(self, cmd, val):
+        logger.info("Received command: ({}, {})".format(cmd, val))
+        if cmd == "stop":
+            logger.info("Received STOP command, quitting")
+            self.tracking.stop()
+            self.api.stop()
+            sys.exit(0)
+        if cmd == "load_pattern":
+            logger.info("Received LOAD_PATTERN command")
+            if val in self.patterns.keys():
+                logger.info("Loading pattern {}".format(val))
+                del self.pattern
+                cls, cfg = self.patterns[val]
+                self.pattern = cls(cfg, self.tracking)
+        if cmd == "load_sink":
+            logger.info("Received LOAD_SINK command")
+            if val in self.sinks.keys():
+                logger.info("Loading sink {}".format(val))
+                del self.sink
+                self.sink = self.sinks[val]()
 
 if __name__ == "__main__":
-    main()
+    Control(settings).main()
