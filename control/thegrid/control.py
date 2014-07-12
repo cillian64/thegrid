@@ -9,6 +9,7 @@ HTTP API for remote control.
 
 import sys
 import queue
+import signal
 import logging
 from multiprocessing import Manager, Queue
 
@@ -65,9 +66,7 @@ class Control:
         logger.info("Received command: ({}, {})".format(cmd, val))
         if cmd == "stop":
             logger.info("Received STOP command, quitting")
-            self.tracking.stop()
-            self.api.stop()
-            sys.exit(0)
+            self.stop()
         if cmd == "load_pattern":
             logger.info("Received LOAD_PATTERN command")
             if val in self.patterns.keys():
@@ -82,5 +81,20 @@ class Control:
                 del self.sink
                 self.sink = self.sinks[val]()
 
+    def stop(self):
+        logger.info("Control is now terminating")
+        if self.tracking:
+            self.tracking.stop()
+        if self.api:
+            self.api.stop()
+        sys.exit(0)
+
+    def _signal(self, sig, frame):
+        if sig == signal.SIGINT:
+            logger.info("Received SIGINT, quitting")
+            self.stop()
+
 if __name__ == "__main__":
-    Control(settings).main()
+    control = Control(settings)
+    signal.signal(signal.SIGINT, control._signal)
+    control.main()
