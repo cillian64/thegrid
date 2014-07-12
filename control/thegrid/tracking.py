@@ -4,11 +4,15 @@ tracking.py
 Person detection and tracking.
 """
 
+import logging
 from multiprocessing import Process
 import cv2
 
+logger = logging.getLogger(__name__)
+
 
 def start_tracking(shared_dict):
+    logger.info("Tracking starting up")
     shared_dict['hello'] = "hi"
 
 
