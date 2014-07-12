@@ -23,7 +23,8 @@ def start_tracking(shared_dict):
 
 class Tracking:
     def __init__(self, shared_dict):
-        self.process = Process(target=start_tracking, args=(shared_dict,))
+        self.process = Process(
+            target=start_tracking, args=(shared_dict,), daemon=True)
         self.process.start()
 
     def stop(self):
