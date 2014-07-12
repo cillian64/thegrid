@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 10 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Rework and a PCB</title><link>http://www.thegrid.fish/rework-and-a-pcb.html</link><description>&lt;p&gt;Having made surprisingly short work of reworking the first power supply, a blob
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 11 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Testing LED strips and a PSU</title><link>http://www.thegrid.fish/testing-led-strips-and-a-psu.html</link><description>&lt;p&gt;I received a lot of parcels today!  The LEDs, thermal compound, some relays,
+and what we have affectionately termed The Danger&amp;nbsp;Cable:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="schematic" src="/images/danger_cable.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;At first we weren&amp;#8217;t convinced the &lt;span class="caps"&gt;LED&lt;/span&gt; strips would be bright enough.  A quick
+test in the garden cleared any doubts about the&amp;nbsp;brightness:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="lightsabre" src="/images/lightsabre.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Finally, I finished putting the power supply back together after a good clean
+and a fresh dab of thermal grease.  After a little sanity testing, we thought
+we&amp;#8217;d give it some&amp;nbsp;load:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="power supply testing" src="/images/psu_test.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The power supply seems to work beautifully, although it was only pushing 4A out
+of its rated&amp;nbsp;30A!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Fri, 11 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-11:testing-led-strips-and-a-psu.html</guid><category>electronics</category><category>power</category><category>testing</category></item><item><title>Rework and a PCB</title><link>http://www.thegrid.fish/rework-and-a-pcb.html</link><description>&lt;p&gt;Having made surprisingly short work of reworking the first power supply, a blob
 of epoxy sealed the deal.  Testing will have to wait until we get a few more
 parts, but it looks&amp;nbsp;good.&lt;/p&gt;
 &lt;p&gt;We had a number of interesting ideas for making the electronics easier.

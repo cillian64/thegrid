@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Articles by David - The·Grid</title>
+    <title>testing - The·Grid</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -85,60 +85,6 @@ we&#8217;d give it some&nbsp;load:</p>
 <p><img alt="power supply testing" src="/images/psu_test.jpg" /></p>
 <p>The power supply seems to work beautifully, although it was only pushing 4A out
 of its rated&nbsp;30A!</p>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://www.thegrid.fish/rework-and-a-pcb.html">Rework and a <span class="caps">PCB</span></a></h2>
-                <div class="summary"><p>Having made surprisingly short work of reworking the first power supply, a blob
-of epoxy sealed the deal.  Testing will have to wait until we get a few more
-parts, but it looks&nbsp;good.</p>
-<p>We had a number of interesting ideas for making the electronics easier.
-Instead of using an Arduino to talk over <span class="caps">USB</span> and drive the shift registers (and
-have yet another layer of software in the stack), it turns out you can use
-several of the pins on an <span class="caps">FTDI</span> ft232r as GPIOs and use it to drive shift
-registers&nbsp;directly.</p>
-<p>Later in the evening, I was making a quick stripboard prototype with a shift
-register and some PMOSes and complaining bitterly to Adam about cutting
-stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
-to make a <span class="caps">PCB</span>.  Instead of one massive <span class="caps">PCB</span>, we could break it down to 7 PCBs,
-each with a shift register and 7 outputs.  We can cascade the boards&#8217; shift
-registers and connect each board directly to a power supply.  Surprisingly
-quickly, the schematic looked something like&nbsp;this: </p>
-<p><img alt="schematic" src="/images/pcb_schematic.png" /></p>
-<p>This all just about barely fits on a 5cm x 5cm <span class="caps">PCB</span>: (surface mount resistors
-omitted for clarity, but they look like they&#8217;d&nbsp;fit&#8230;)</p>
-<p><img alt="pcb_55" src="/images/pcb_55.png" /></p>
-<p>Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
-little&nbsp;like:</p>
-<p><img alt="pcb_long" src="/images/pcb_long.png" /></p>
-<p>As a bonus, with the PCBs all lined up the LEDs will look something like a
-grid.  In the end we went back to using through-hole components for everything.
-Surface mount resistors would be smaller and cheaper, but through-hole is a lot
-more&nbsp;fun.</p>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://www.thegrid.fish/another-day-another-order.html">Another day, another&nbsp;order</a></h2>
-                <div class="summary"><p>So, yet more exciting things are on the way, this time in the form of two
-sample rolls of <span class="caps">LED</span> strip.  We couldn&#8217;t decide whether &#8220;Pure/Day White&#8221; or
-&#8220;Cool White&#8221; sounded more appropriate, so we&#8217;re going to check out&nbsp;both.</p>
-<p>In other news, the electronics design is significantly taking shape.  After a
-number of iterations and a lot of discussion, we decided we want high-side
-driving of the <span class="caps">LED</span> strip, and therefore P-channel <span class="caps">MOSFET</span> drivers.  This
-would&#8217;ve required another row of transistors to interface between our shift
-registers and the MOSFETs, except for Matt&#8217;s (thanks!) neat idea of using shift
-registers with open-drain drivers.  Prototype parts <span class="caps">ETA</span> tomorrow, so we&#8217;ll see
-how the idea stands up to&nbsp;testing.</p>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://www.thegrid.fish/approval.html">Approval!</a></h2>
-                <div class="summary"><p>We got approval!  We&#8217;ve been waiting for the <span class="caps">EMF</span> committee to get back to us
-about our proposal, and, they did &#8212; The·Grid at <span class="caps">EMF2014</span> is&nbsp;happening!</p>
-<p>To celebrate, I bought £70 worth of 12V PSUs (150A worth) and we set up this&nbsp;website.</p>
                 </div>
             </article>
             <hr/>

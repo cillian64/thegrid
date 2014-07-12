@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/misc.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-11T00:00:00+01:00</updated><entry><title>Testing LED strips and a PSU</title><link href="http://www.thegrid.fish/testing-led-strips-and-a-psu.html" rel="alternate"></link><updated>2014-07-11T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-11:testing-led-strips-and-a-psu.html</id><summary type="html">&lt;p&gt;I received a lot of parcels today!  The LEDs, thermal compound, some relays,
+and what we have affectionately termed The Danger&amp;nbsp;Cable:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="schematic" src="/images/danger_cable.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;At first we weren&amp;#8217;t convinced the &lt;span class="caps"&gt;LED&lt;/span&gt; strips would be bright enough.  A quick
+test in the garden cleared any doubts about the&amp;nbsp;brightness:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="lightsabre" src="/images/lightsabre.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Finally, I finished putting the power supply back together after a good clean
+and a fresh dab of thermal grease.  After a little sanity testing, we thought
+we&amp;#8217;d give it some&amp;nbsp;load:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="power supply testing" src="/images/psu_test.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The power supply seems to work beautifully, although it was only pushing 4A out
+of its rated&amp;nbsp;30A!&lt;/p&gt;</summary><category term="electronics"></category><category term="power"></category><category term="testing"></category></entry></feed>
