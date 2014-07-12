@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/adam.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-09T00:00:00+01:00</updated><entry><title>Aluminium Arrived (at last)</title><link href="http://www.thegrid.fish/aluminium-arrived-at-last.html" rel="alternate"></link><updated>2014-07-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-09:aluminium-arrived-at-last.html</id><summary type="html">&lt;p&gt;After some more wrangling with the online vehicle tracking, we eventually had a
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/adam.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-12T00:00:00+01:00</updated><entry><title>Control Software</title><link href="http://www.thegrid.fish/control-software.html" rel="alternate"></link><updated>2014-07-12T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-12:control-software.html</id><summary type="html">&lt;p&gt;Last night we started fleshing out the design for the control software. The
+bulk of it will be written in Python, because we&amp;#8217;re both familiar with the
+language and it has good bindings to libFTDI and&amp;nbsp;OpenCV.&lt;/p&gt;
+&lt;p&gt;First I sketched out an outline of the overall&amp;nbsp;design:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="paper planning" src="images/software_plan.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;We have a central &amp;#8216;Control&amp;#8217; object which is responsible for tying everything
+together, and externally we&amp;#8217;ll use &lt;a href="http://supervisord.org/"&gt;supervisord&lt;/a&gt; to
+start and manage it. It starts an &lt;span class="caps"&gt;API&lt;/span&gt; and Tracking process via multiprocessing,
+and loads up all the Patterns and Sinks it knows about and waits for&amp;nbsp;instructions.&lt;/p&gt;
+&lt;p&gt;The &lt;span class="caps"&gt;HTTP&lt;/span&gt; &lt;span class="caps"&gt;API&lt;/span&gt; is in a separate process and uses the wonderful
+&lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; library, with a Queue to pass commands back to
+the Control process. The &lt;span class="caps"&gt;API&lt;/span&gt; receives (command, value) pairs from &lt;span class="caps"&gt;HTTP&lt;/span&gt; &lt;span class="caps"&gt;POST&lt;/span&gt;
+requests, checks the authentication against the settings, then sends the
+command on. Later we&amp;#8217;ll probably extend this to also return data about the
+current state of the system, for example which Patterns are&amp;nbsp;available.&lt;/p&gt;
+&lt;p&gt;The Tracking process will use &lt;a href="http://opencv.org/"&gt;OpenCV&lt;/a&gt; to detect people in
+the grid, estimate the position of their feet in the 2d (top-down) grid via
+projective transforms, assign each person a unique number and keep track of
+them for as long as they remain in the grid. This is probably going to be one
+of the more challenging components to write! It passes this data back to the
+Control process and the Patterns via a proxied dict through a multiprocessing
+Manager&amp;nbsp;object.&lt;/p&gt;
+&lt;p&gt;Patterns and Sinks are similar. Both have their own package for all the pattern
+or sink files, a top level class to inherit from, and register themselves with
+the system using a decorator. For Patterns, the decorator also allows a
+configuration to be registered, so that for example the maze pattern can offer
+one- or two-player patterns. Patterns will have an update() method called
+which returns a full grid state frame (a 7x7 boolean array) and a time to
+display the frame for. Sinks have update(state) called with the state from a
+pattern, and somehow output that pattern, for example to the real hardware on
+the&amp;nbsp;grid.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="source code screenshot" src="/images/code_screenshot.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Then I got coding. In a few hours and 230 lines of Python we now have a
+complete working barebones system, with Control implemented, a simple &lt;span class="caps"&gt;API&lt;/span&gt; that
+can load patterns and sinks, the pattern and sink registration and loading
+system, settings management, logging and a few other bits. Tracking is still an
+empty shell at the moment, and we&amp;#8217;ll be working on the Console sink before the
+real hardware one (useful for debugging). Patterns are going to come later too,
+but at least they have something to slot into now. Eventually we&amp;#8217;ll be adding
+an Android app to the mix which uses the &lt;span class="caps"&gt;API&lt;/span&gt; for remote control, but that is
+pretty far down the to-do&amp;nbsp;list!&lt;/p&gt;</summary><category term="software"></category></entry><entry><title>Aluminium Arrived (at last)</title><link href="http://www.thegrid.fish/aluminium-arrived-at-last.html" rel="alternate"></link><updated>2014-07-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-09:aluminium-arrived-at-last.html</id><summary type="html">&lt;p&gt;After some more wrangling with the online vehicle tracking, we eventually had a
 firm &lt;span class="caps"&gt;ETA&lt;/span&gt;&amp;#8230; in the past. It slipped slowly further back in time until the
 estimated delivery was an hour&amp;nbsp;ago.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="delivery tracking..." src="/images/eta_the_past.png" /&gt;&lt;/p&gt;

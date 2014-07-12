@@ -69,6 +69,39 @@ The·Grid            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://www.thegrid.fish/control-software.html">Control&nbsp;Software</a></h2>
+                <div class="summary"><p>Last night we started fleshing out the design for the control software. The
+bulk of it will be written in Python, because we&#8217;re both familiar with the
+language and it has good bindings to libFTDI and&nbsp;OpenCV.</p>
+<p>First I sketched out an outline of the overall&nbsp;design:</p>
+<p><img alt="paper planning" src="images/software_plan.jpg" /></p>
+<p>We have a central &#8216;Control&#8217; object which is responsible for tying everything
+together, and externally we&#8217;ll use <a href="http://supervisord.org/">supervisord</a> to
+start and manage it. It starts an <span class="caps">API</span> and Tracking process via multiprocessing,
+and loads up all the Patterns and Sinks it knows about and waits for&nbsp;instructions.</p>
+<p>The <span class="caps">HTTP</span> <span class="caps">API</span> is in a separate process and uses the wonderful
+<a href="http://flask.pocoo.org/">Flask</a> library, with a Queue to pass commands back to
+the Control process. The <span class="caps">API</span> receives (command, value) pairs from <span class="caps">HTTP</span> <span class="caps">POST</span>
+requests, checks the authentication against the settings, then sends the
+command on. Later we&#8217;ll probably extend this to also return data about the
+current state of the system, for example which Patterns are&nbsp;available.</p>
+<p>The Tracking process will use <a href="http://opencv.org/">OpenCV</a> to detect people in
+the grid, estimate the position of their feet in the 2d (top-down) grid via
+projective transforms, assign each person a unique number and keep track of
+them for as long as they remain in the grid. This is probably going to be one
+of the more challenging components to write! It passes this data back to the
+Control process and the Patterns via a proxied dict through a multiprocessing
+Manager&nbsp;object.</p>
+<p>Patterns and Sinks are similar. Both have their own package for all the pattern
+or sink files, a top level class to inherit from, and register themselves with
+the system using a decorator. For Patterns, the decorator also allows a
+configuration to be registered, so that for example the maze pattern can offer
+one- ...</p>
+                    <a class="btn btn-default btn-xs" href="http://www.thegrid.fish/control-software.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://www.thegrid.fish/testing-led-strips-and-a-psu.html">Testing <span class="caps">LED</span> strips and a <span class="caps">PSU</span></a></h2>
                 <div class="summary"><p>I received a lot of parcels today!  The LEDs, thermal compound, some relays,
 and what we have affectionately termed The Danger&nbsp;Cable:</p>
@@ -212,13 +245,13 @@ doing, or read the build log below for progress updates and juicy&nbsp;details&#
                 <li class="list-group-item"><a href="http://www.thegrid.fish/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group " id="tags">
                         <li class="list-group-item tag-1">
-                            <a href="http://www.thegrid.fish/tag/power.html">
-                                power
+                            <a href="http://www.thegrid.fish/tag/electronics.html">
+                                electronics
                             </a>
                         </li>
                         <li class="list-group-item tag-1">
-                            <a href="http://www.thegrid.fish/tag/electronics.html">
-                                electronics
+                            <a href="http://www.thegrid.fish/tag/power.html">
+                                power
                             </a>
                         </li>
                         <li class="list-group-item tag-2">
@@ -227,13 +260,18 @@ doing, or read the build log below for progress updates and juicy&nbsp;details&#
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://www.thegrid.fish/tag/testing.html">
-                                testing
+                            <a href="http://www.thegrid.fish/tag/software.html">
+                                software
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://www.thegrid.fish/tag/leds.html">
                                 LEDs
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://www.thegrid.fish/tag/testing.html">
+                                testing
                             </a>
                         </li>
                     </ul>

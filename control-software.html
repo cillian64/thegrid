@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>175m Aluminium Angle on its way… - The·Grid</title>
+    <title>Control Software - The·Grid</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,13 +13,12 @@
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="The·Grid" />
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="175m Aluminium Angle on its way…"/>
-            <meta property="og:url" content="http://www.thegrid.fish/175m-aluminium-angle-on-its-way.html"/>
-            <meta property="og:description" content="This is all feeling much more real now as we’ve just placed the order for 35 5m lengths of aluminium equal angle. It should arrive Tuesday, apparently! I can only imagine how confused the delivery driver will be when the address is a residental house. We’ve now also finished the prototype design for the control electronics and ordered a few samples to test drive. Hopefully we’ll have flashing LEDs by the end of the week."/>
-            <meta property="article:published_time" content="2014-07-06" />
+            <meta property="og:title" content="Control Software"/>
+            <meta property="og:url" content="http://www.thegrid.fish/control-software.html"/>
+            <meta property="og:description" content="Last night we started fleshing out the design for the control software. The bulk of it will be written in Python, because we’re both familiar with the language and it has good bindings to libFTDI and OpenCV. First I sketched out an outline of the overall design: We have a central ‘Control’ object which is responsible for tying everything together, and externally we’ll use supervisord to start and manage it. It starts an API and Tracking process via multiprocessing, and loads up all the Patterns and Sinks it knows about and waits for instructions. The HTTP API is in a separate process and uses the wonderful Flask library, with a Queue to pass commands back to the Control process. The API receives (command, value) pairs from HTTP POST requests, checks the authentication against the settings, then sends the command on. Later we’ll probably extend this to also return data about the current state of the system, for example which Patterns are available. The Tracking process will use OpenCV to detect people in the grid, estimate the position of their feet in the 2d (top-down) grid via projective transforms, assign each person a unique number and keep track of them for as long as they remain in the grid. This is probably going to be one of the more challenging components to write! It passes this data back to the Control process and the Patterns via a proxied dict through a multiprocessing Manager object. Patterns and Sinks are similar. Both have their own package for all the pattern or sink files, a top level class to inherit from, and register themselves with the system using a decorator. For Patterns, the decorator also allows a configuration to be registered, so that for example the maze pattern can offer one- ..."/>
+            <meta property="article:published_time" content="2014-07-12" />
                 <meta property="article:section" content="blog" />
-                <meta property="article:tag" content="structures" />
-                <meta property="article:tag" content="electronics" />
+                <meta property="article:tag" content="software" />
                 <meta property="article:author" content="Adam" />
 
     <!-- Bootstrap -->
@@ -77,10 +76,10 @@ The·Grid            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://www.thegrid.fish/175m-aluminium-angle-on-its-way.html"
+                    <a href="http://www.thegrid.fish/control-software.html"
                        rel="bookmark"
-                       title="Permalink to 175m Aluminium Angle on its way…">
-                        175m Aluminium Angle on its&nbsp;way&#8230;
+                       title="Permalink to Control Software">
+                        Control&nbsp;Software
                     </a>
                 </h1>
             </header>
@@ -90,7 +89,7 @@ The·Grid            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-07-06T00:00:00"> Sun 06 July 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-07-12T00:00:00"> Sat 12 July 2014</time>
     </span>
             <span class="label label-default">By</span>
             <a href="http://www.thegrid.fish/author/adam.html"><i class="fa fa-user"></i> Adam</a>
@@ -98,20 +97,51 @@ The·Grid            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://www.thegrid.fish/tag/structures.html">structures</a>
-        /
-	<a href="http://www.thegrid.fish/tag/electronics.html">electronics</a>
+	<a href="http://www.thegrid.fish/tag/software.html">software</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>This is all feeling much more real now as we&#8217;ve just placed the order for 35 5m
-lengths of aluminium equal angle. It should arrive Tuesday, apparently! I can
-only imagine how confused the delivery driver will be when the address is a
-residental&nbsp;house.</p>
-<p><img alt="the order" src="/images/alu_order.png" /></p>
-<p>We&#8217;ve now also finished the prototype design for the control electronics and
-ordered a few samples to test drive. Hopefully we&#8217;ll have flashing LEDs by the
-end of the&nbsp;week.</p>
+                <p>Last night we started fleshing out the design for the control software. The
+bulk of it will be written in Python, because we&#8217;re both familiar with the
+language and it has good bindings to libFTDI and&nbsp;OpenCV.</p>
+<p>First I sketched out an outline of the overall&nbsp;design:</p>
+<p><img alt="paper planning" src="images/software_plan.jpg" /></p>
+<p>We have a central &#8216;Control&#8217; object which is responsible for tying everything
+together, and externally we&#8217;ll use <a href="http://supervisord.org/">supervisord</a> to
+start and manage it. It starts an <span class="caps">API</span> and Tracking process via multiprocessing,
+and loads up all the Patterns and Sinks it knows about and waits for&nbsp;instructions.</p>
+<p>The <span class="caps">HTTP</span> <span class="caps">API</span> is in a separate process and uses the wonderful
+<a href="http://flask.pocoo.org/">Flask</a> library, with a Queue to pass commands back to
+the Control process. The <span class="caps">API</span> receives (command, value) pairs from <span class="caps">HTTP</span> <span class="caps">POST</span>
+requests, checks the authentication against the settings, then sends the
+command on. Later we&#8217;ll probably extend this to also return data about the
+current state of the system, for example which Patterns are&nbsp;available.</p>
+<p>The Tracking process will use <a href="http://opencv.org/">OpenCV</a> to detect people in
+the grid, estimate the position of their feet in the 2d (top-down) grid via
+projective transforms, assign each person a unique number and keep track of
+them for as long as they remain in the grid. This is probably going to be one
+of the more challenging components to write! It passes this data back to the
+Control process and the Patterns via a proxied dict through a multiprocessing
+Manager&nbsp;object.</p>
+<p>Patterns and Sinks are similar. Both have their own package for all the pattern
+or sink files, a top level class to inherit from, and register themselves with
+the system using a decorator. For Patterns, the decorator also allows a
+configuration to be registered, so that for example the maze pattern can offer
+one- or two-player patterns. Patterns will have an update() method called
+which returns a full grid state frame (a 7x7 boolean array) and a time to
+display the frame for. Sinks have update(state) called with the state from a
+pattern, and somehow output that pattern, for example to the real hardware on
+the&nbsp;grid.</p>
+<p><img alt="source code screenshot" src="/images/code_screenshot.png" /></p>
+<p>Then I got coding. In a few hours and 230 lines of Python we now have a
+complete working barebones system, with Control implemented, a simple <span class="caps">API</span> that
+can load patterns and sinks, the pattern and sink registration and loading
+system, settings management, logging and a few other bits. Tracking is still an
+empty shell at the moment, and we&#8217;ll be working on the Console sink before the
+real hardware one (useful for debugging). Patterns are going to come later too,
+but at least they have something to slot into now. Eventually we&#8217;ll be adding
+an Android app to the mix which uses the <span class="caps">API</span> for remote control, but that is
+pretty far down the to-do&nbsp;list!</p>
             </div>
             <!-- /.entry-content -->
         </article>
