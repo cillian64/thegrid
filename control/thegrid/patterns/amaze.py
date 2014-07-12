@@ -18,4 +18,4 @@ class AMaze(Pattern):
         logger.info("aMAZE initialised")
 
     def update(self):
-        return np.zeros((7, 7), dtype=np.bool)
+        return np.zeros((7, 7), dtype=np.bool), 1.0

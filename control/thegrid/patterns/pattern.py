@@ -45,7 +45,8 @@ class Pattern:
     def update(self):
         """
         This function will be called every time control is ready to update the
-        grid, on an irregular basis. It should return the desired grid state as
-        a 7x7 numpy boolean array.
+        grid, on an irregular basis. It should return a tuple of
+        (the desired grid state as a 7x7 numpy boolean array,
+         the time to display this frame in seconds).
         """
         raise NotImplementedError

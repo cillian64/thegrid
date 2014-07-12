@@ -8,6 +8,7 @@ HTTP API for remote control.
 """
 
 import sys
+import time
 import queue
 import signal
 import logging
@@ -58,9 +59,11 @@ class Control:
                 pass
 
             if self.pattern:
-                state = self.pattern.update()
+                state, delay = self.pattern.update()
+                frametime = time.time()
                 if self.sink:
                     self.sink.update(state)
+                time.sleep(delay - (time.time() - frametime))
 
     def process_command(self, cmd, val):
         logger.info("Received command: ({}, {})".format(cmd, val))

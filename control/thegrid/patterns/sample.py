@@ -15,4 +15,4 @@ logger = logging.getLogger(__name__)
 class Sample(Pattern):
     def update(self):
         logger.info("Updating pattern")
-        return np.zeros((7, 7), dtype=np.bool)
+        return np.zeros((7, 7), dtype=np.bool), 0.1
