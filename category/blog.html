@@ -69,6 +69,29 @@ The·Grid            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://www.thegrid.fish/2014/07/13/testing-intensifies">Testing&nbsp;Intensifies</a></h2>
+                <div class="summary"><p>Another busy day. Further software refinements led to a Tkinter-based sink to
+make visualisation&nbsp;easier:</p>
+<p><img alt="Tkinter GUI" src="/images/tkinter.png" /></p>
+<p>I also stuck together a simple sink using pylibftdi in bitbang mode, which was
+even easier than I expected. It generates the <span class="caps">DATA</span>, <span class="caps">SRCK</span> and <span class="caps">RCK</span> signals for
+the shift registers using three pins on the <span class="caps">FTDI</span>.</p>
+<p>Meanwhile David was busy finishing up the <span class="caps">PCB</span> design (more on that later).
+Afterwards he stuck together the prototype electronics on a breadboard,
+connected up the relays and two (of the eventual 49) <span class="caps">LED</span> strips and we tried
+hooking it all up for the first&nbsp;time.</p>
+<p><img alt="First Full Test" src="/images/first_full_test.jpg" />
+<img alt="Full Test Unrolled" src="/images/full_test_unrolled.jpg" /></p>
+<p>It all worked! Additionally the relays sounded great on one of the aluminium
+poles. This is a very positive result and we&#8217;re now confident that the
+electronics design, software design, and various other choices that led to this
+moment were at least on the right track.  All that&#8217;s left is the actual PCBs,
+the hard parts of the software (person tracking!) and a million other
+tasks-to-do before <span class="caps">EMF</span>.</p>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://www.thegrid.fish/2014/07/12/control-software">Control&nbsp;Software</a></h2>
                 <div class="summary"><p>Last night we started fleshing out the design for the control software. The
 bulk of it will be written in Python, because we&#8217;re both familiar with the
@@ -259,7 +282,7 @@ doing, or read the build log below for progress updates and juicy&nbsp;details&#
                                 structures
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
+                        <li class="list-group-item tag-2">
                             <a href="http://www.thegrid.fish/tag/software.html">
                                 software
                             </a>

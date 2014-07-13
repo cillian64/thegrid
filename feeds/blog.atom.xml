@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-12T00:00:00+01:00</updated><entry><title>Control Software</title><link href="http://www.thegrid.fish/2014/07/12/control-software" rel="alternate"></link><updated>2014-07-12T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-12:2014/07/12/control-software</id><summary type="html">&lt;p&gt;Last night we started fleshing out the design for the control software. The
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-13T00:00:00+01:00</updated><entry><title>Testing Intensifies</title><link href="http://www.thegrid.fish/2014/07/13/testing-intensifies" rel="alternate"></link><updated>2014-07-13T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-13:2014/07/13/testing-intensifies</id><summary type="html">&lt;p&gt;Another busy day. Further software refinements led to a Tkinter-based sink to
+make visualisation&amp;nbsp;easier:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Tkinter GUI" src="/images/tkinter.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I also stuck together a simple sink using pylibftdi in bitbang mode, which was
+even easier than I expected. It generates the &lt;span class="caps"&gt;DATA&lt;/span&gt;, &lt;span class="caps"&gt;SRCK&lt;/span&gt; and &lt;span class="caps"&gt;RCK&lt;/span&gt; signals for
+the shift registers using three pins on the &lt;span class="caps"&gt;FTDI&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Meanwhile David was busy finishing up the &lt;span class="caps"&gt;PCB&lt;/span&gt; design (more on that later).
+Afterwards he stuck together the prototype electronics on a breadboard,
+connected up the relays and two (of the eventual 49) &lt;span class="caps"&gt;LED&lt;/span&gt; strips and we tried
+hooking it all up for the first&amp;nbsp;time.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="First Full Test" src="/images/first_full_test.jpg" /&gt;
+&lt;img alt="Full Test Unrolled" src="/images/full_test_unrolled.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;It all worked! Additionally the relays sounded great on one of the aluminium
+poles. This is a very positive result and we&amp;#8217;re now confident that the
+electronics design, software design, and various other choices that led to this
+moment were at least on the right track.  All that&amp;#8217;s left is the actual PCBs,
+the hard parts of the software (person tracking!) and a million other
+tasks-to-do before &lt;span class="caps"&gt;EMF&lt;/span&gt;.&lt;/p&gt;</summary><category term="electronics"></category><category term="software"></category></entry><entry><title>Control Software</title><link href="http://www.thegrid.fish/2014/07/12/control-software" rel="alternate"></link><updated>2014-07-12T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-07-12:2014/07/12/control-software</id><summary type="html">&lt;p&gt;Last night we started fleshing out the design for the control software. The
 bulk of it will be written in Python, because we&amp;#8217;re both familiar with the
 language and it has good bindings to libFTDI and&amp;nbsp;OpenCV.&lt;/p&gt;
 &lt;p&gt;First I sketched out an outline of the overall&amp;nbsp;design:&lt;/p&gt;
