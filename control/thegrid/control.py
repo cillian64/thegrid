@@ -33,7 +33,7 @@ class Control:
         logger.info("The·Grid Control starting up")
         self.settings = settings
 
-        self.sink = None
+        self.sink = {}
         self.sinks = sinks.loaded_sinks
         sink_names = sorted(self.sinks.keys())
         logger.info("Available sinks: {}".format(sink_names))
@@ -51,11 +51,13 @@ class Control:
         port, password = settings.API_PORT, settings.API_PASSWORD
         self.api = API(port, password, self.cmd_queue)
 
-        if settings.DEFAULT_SINK in self.sinks:
-            logger.info("Loading default sink %s", settings.DEFAULT_SINK)
-            self.sink = self.sinks[settings.DEFAULT_SINK]()
-        else:
-            logger.warning("Could not find default sink, check settings")
+        default_sinks = settings.DEFAULT_SINKS
+        for sink in default_sinks:
+            if sink in self.sinks:
+                logger.info("Loading default sink %s", sink)
+                self.sink[sink] = self.sinks[sink]()
+            else:
+                logger.warning("Could not find default sink %s", sink)
 
     def main(self):
         while True:
@@ -65,30 +67,75 @@ class Control:
                 pass
 
             if self.pattern:
-                state, delay = self.pattern.update()
+                try:
+                    state, delay = self.pattern.update()
+                except Exception:
+                    logger.exception("Exception in pattern %s", self.pattern)
+                    logger.error("Unloading pattern")
+                    del self.pattern
+                    self.pattern = None
+
                 frametime = time.time()
-                if self.sink:
-                    self.sink.update(state)
-                time.sleep(delay - (time.time() - frametime))
+
+                self._update_sinks(state)
+
+                sleeptime = delay - (time.time() - frametime)
+                if sleeptime > 0.0:
+                    time.sleep(delay - (time.time() - frametime))
+                else:
+                    logger.warning("Could not keep up with requested delay")
+
+    def _update_sinks(self, state):
+        if self.sink:
+            for sink in self.sink:
+                try:
+                    self.sink[sink].update(state)
+                except Exception:
+                    logger.exception("Exception in sink %s", sink)
+                    logger.error("Reloading sink")
+                    cls = type(self.sink[sink])
+                    del self.sink[sink]
+                    self.sink[sink] = cls()
+                    logger.info("Reloaded sink %s", sink)
 
     def process_command(self, cmd, val):
-        logger.info("Received command: ({}, {})".format(cmd, val))
-        if cmd == "stop":
-            logger.info("Received STOP command, quitting")
-            self.stop()
-        if cmd == "load_pattern":
-            logger.info("Received LOAD_PATTERN command")
-            if val in self.patterns.keys():
-                logger.info("Loading pattern {}".format(val))
-                del self.pattern
-                cls, cfg = self.patterns[val]
-                self.pattern = cls(cfg, self.tracking)
-        if cmd == "load_sink":
-            logger.info("Received LOAD_SINK command")
-            if val in self.sinks.keys():
-                logger.info("Loading sink {}".format(val))
-                del self.sink
-                self.sink = self.sinks[val]()
+        cmdfun = "_cmd_{}".format(cmd)
+        if hasattr(self, cmdfun):
+            getattr(self, cmdfun)(val)
+        else:
+            logger.warning("Unknown command %s received", cmd)
+
+    def _cmd_stop(self, _):
+        logger.info("Received STOP command, quitting")
+        self.stop()
+
+    def _cmd_load_pattern(self, pattern):
+        logger.info("Received LOAD_PATTERN command for pattern %s", pattern)
+        if pattern in self.patterns.keys():
+            logger.info("Loading pattern {}".format(pattern))
+            del self.pattern
+            cls, cfg = self.patterns[pattern]
+            self.pattern = cls(cfg, self.tracking)
+        else:
+            logger.warning("Could not find pattern %s", pattern)
+
+    def _cmd_load_sink(self, sink):
+        logger.info("Received LOAD_SINK command for sink %s", sink)
+        if sink in self.sinks.keys() and sink not in self.sink:
+            logger.info("Loading sink {}".format(sink))
+            self.sink[sink] = self.sinks[sink]()
+        elif sink not in self.sinks.keys():
+            logger.warning("Could not find sink %s", sink)
+        elif sink in self.sink:
+            logger.warning("Sink %s already loaded", sink)
+
+    def _cmd_unload_sink(self, sink):
+        logger.info("Received UNLOAD_SINK command for sink %s", sink)
+        if sink in self.sink:
+            logger.info("Unloading sink %s", sink)
+            del self.sink[sink]
+        else:
+            logger.warning("Sink %s was not loaded", sink)
 
     def stop(self):
         logger.info("Control is now terminating")
