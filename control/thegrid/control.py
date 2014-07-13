@@ -33,25 +33,30 @@ class Control:
         logger.info("The·Grid Control starting up")
         self.settings = settings
 
+        # Load available sinks
         self.sink = {}
         self.sinks = sinks.loaded_sinks
         sink_names = sorted(self.sinks.keys())
         logger.info("Available sinks: {}".format(sink_names))
 
+        # Load available patterns
         self.pattern = None
         self.pattern_name = None
         self.patterns = patterns.loaded_patterns
         pattern_names = sorted(self.patterns.keys())
         logger.info("Available patterns: {}".format(pattern_names))
 
+        # Start the tracking
         self.tracking_manager = Manager()
         self.tracking_dict = self.tracking_manager.dict()
         self.tracking = Tracking(self.tracking_dict)
 
+        # Start the API
         self.cmd_queue = Queue()
         port, password = settings.API_PORT, settings.API_PASSWORD
         self.api = API(port, password, self.cmd_queue)
 
+        # Activate default sinks
         default_sinks = settings.DEFAULT_SINKS
         for sink in default_sinks:
             if sink in self.sinks:
@@ -62,44 +67,49 @@ class Control:
 
     def main(self):
         while True:
+            # Handle incoming API calls
             try:
                 self.process_command(*self.cmd_queue.get_nowait())
             except queue.Empty:
                 pass
 
-            if self.pattern:
-                try:
-                    state, delay = self.pattern.update()
-                except Exception:
-                    logger.exception("Exception in pattern %s",
-                                     self.pattern_name)
-                    logger.error("Reloading pattern %s", self.pattern_name)
-                    del self.pattern
-                    self.pattern = self.patterns[self.pattern_name]()
-                    logger.info("Reloaded pattern %s", self.pattern_name)
+            if not self.pattern:
+                continue
 
-                frametime = time.time()
+            # Run the pattern
+            try:
+                state, delay = self.pattern.update()
+            except Exception:
+                logger.exception("Exception in pattern %s",
+                                 self.pattern_name)
+                self._load_pattern(self.pattern_name)
+                continue
 
-                self._update_sinks(state)
+            # To compensate for time taken to update sinks
+            frametime = time.time()
 
-                sleeptime = delay - (time.time() - frametime)
-                if sleeptime > 0.0:
-                    time.sleep(delay - (time.time() - frametime))
-                else:
-                    logger.warning("Could not keep up with requested delay")
+            self._update_sinks(state)
+
+            # Wait for next pattern frame
+            sleeptime = delay - (time.time() - frametime)
+            if sleeptime > 0.0:
+                time.sleep(delay - (time.time() - frametime))
+            else:
+                logger.warning("Could not keep up with requested delay")
 
     def _update_sinks(self, state):
-        if self.sink:
-            for sink in self.sink:
-                try:
-                    self.sink[sink].update(state)
-                except Exception:
-                    logger.exception("Exception in sink %s", sink)
-                    logger.error("Reloading sink")
-                    cls = type(self.sink[sink])
-                    del self.sink[sink]
-                    self.sink[sink] = cls()
-                    logger.info("Reloaded sink %s", sink)
+        if not self.sink:
+            return
+        for sink in self.sink:
+            try:
+                self.sink[sink].update(state)
+            except Exception:
+                logger.exception("Exception in sink %s", sink)
+                logger.error("Reloading sink")
+                cls = type(self.sink[sink])
+                del self.sink[sink]
+                self.sink[sink] = cls()
+                logger.info("Reloaded sink %s", sink)
 
     def process_command(self, cmd, val):
         cmdfun = "_cmd_{}".format(cmd)
@@ -115,13 +125,16 @@ class Control:
     def _cmd_load_pattern(self, pattern):
         logger.info("Received LOAD_PATTERN command for pattern %s", pattern)
         if pattern in self.patterns.keys():
-            logger.info("Loading pattern {}".format(pattern))
-            del self.pattern
-            cls, cfg = self.patterns[pattern]
-            self.pattern = cls(cfg, self.tracking)
-            self.pattern_name = pattern
+            self._load_pattern(pattern)
         else:
             logger.error("Could not find pattern %s", pattern)
+
+    def _load_pattern(self, pattern):
+        logger.info("Loading pattern {}".format(pattern))
+        del self.pattern
+        cls, cfg = self.patterns[pattern]
+        self.pattern = cls(cfg, self.tracking)
+        self.pattern_name = pattern
 
     def _cmd_load_sink(self, sink):
         logger.info("Received LOAD_SINK command for sink %s", sink)
