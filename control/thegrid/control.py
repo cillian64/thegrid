@@ -39,6 +39,7 @@ class Control:
         logger.info("Available sinks: {}".format(sink_names))
 
         self.pattern = None
+        self.pattern_name = None
         self.patterns = patterns.loaded_patterns
         pattern_names = sorted(self.patterns.keys())
         logger.info("Available patterns: {}".format(pattern_names))
@@ -70,10 +71,12 @@ class Control:
                 try:
                     state, delay = self.pattern.update()
                 except Exception:
-                    logger.exception("Exception in pattern %s", self.pattern)
-                    logger.error("Unloading pattern")
+                    logger.exception("Exception in pattern %s",
+                                     self.pattern_name)
+                    logger.error("Reloading pattern %s", self.pattern_name)
                     del self.pattern
-                    self.pattern = None
+                    self.pattern = self.patterns[self.pattern_name]()
+                    logger.info("Reloaded pattern %s", self.pattern_name)
 
                 frametime = time.time()
 
@@ -116,6 +119,7 @@ class Control:
             del self.pattern
             cls, cfg = self.patterns[pattern]
             self.pattern = cls(cfg, self.tracking)
+            self.pattern_name = pattern
         else:
             logger.error("Could not find pattern %s", pattern)
 
