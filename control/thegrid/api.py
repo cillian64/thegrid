@@ -26,7 +26,7 @@ def command():
         return Response('Unauthorized', 401)
 
     command = request.form['cmd']
-    value = request.form['val']
+    value = request.form.get('val', None)
     logger.info("Enqueueing API command ({}, {})".format(command, value))
     app.config['QUEUE'].put((command, value))
     return "OK"

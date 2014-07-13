@@ -11,11 +11,15 @@ import settings
 
 
 def main():
-    if len(sys.argv) != 3:
+    if len(sys.argv) not in (2, 3):
         print("Usage: {} <command> <value>")
         return
 
-    cmd, val = sys.argv[1:]
+    cmd = sys.argv[1]
+    try:
+        val = sys.argv[2]
+    except IndexError:
+        val = None
     port, password = settings.API_PORT, settings.API_PASSWORD
     url = "http://localhost:{}/command".format(port)
     data = {"cmd": cmd, "val": val}
