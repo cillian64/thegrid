@@ -71,7 +71,7 @@ class StaticPattern(Pattern):
             return
 
         # Print title
-        title = next(f)
+        title = next(f).strip()
         logger.info("Playlist: {}".format(title))
 
         # Load blocks:
