@@ -57,7 +57,7 @@ class Control:
                 logger.info("Loading default sink %s", sink)
                 self.sink[sink] = self.sinks[sink]()
             else:
-                logger.warning("Could not find default sink %s", sink)
+                logger.error("Could not find default sink %s", sink)
 
     def main(self):
         while True:
@@ -103,7 +103,7 @@ class Control:
         if hasattr(self, cmdfun):
             getattr(self, cmdfun)(val)
         else:
-            logger.warning("Unknown command %s received", cmd)
+            logger.error("Unknown command %s received", cmd)
 
     def _cmd_stop(self, _):
         logger.info("Received STOP command, quitting")
@@ -117,7 +117,7 @@ class Control:
             cls, cfg = self.patterns[pattern]
             self.pattern = cls(cfg, self.tracking)
         else:
-            logger.warning("Could not find pattern %s", pattern)
+            logger.error("Could not find pattern %s", pattern)
 
     def _cmd_load_sink(self, sink):
         logger.info("Received LOAD_SINK command for sink %s", sink)
@@ -125,7 +125,7 @@ class Control:
             logger.info("Loading sink {}".format(sink))
             self.sink[sink] = self.sinks[sink]()
         elif sink not in self.sinks.keys():
-            logger.warning("Could not find sink %s", sink)
+            logger.error("Could not find sink %s", sink)
         elif sink in self.sink:
             logger.warning("Sink %s already loaded", sink)
 
