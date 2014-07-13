@@ -7,6 +7,6 @@ Add any new patterns here with `from . import <name>`.
 
 from . import pong
 from . import amaze
-from . import static_playlist
+from . import static_patterns
 
 from .pattern import loaded_patterns
