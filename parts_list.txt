@@ -65,3 +65,10 @@ Cabling:
 Farnell does cheaper, but we asked for the nice looking propower CB11159 100m
 0.75mm^2 
 1179199 chunky yellow cable for connecting PSUs to board.
+
+.1" 2-way housing and header and crimps:
+----------------------------------------
+CN18792
+CN18779
+CN18767
+
