@@ -6,10 +6,16 @@ FT232RL chip in bitbang mode.
 """
 
 import logging
-from pylibftdi import BitBangDevice
+logger = logging.getLogger(__name__)
+
+try:
+    from pylibftdi import BitBangDevice
+except ImportError:
+    logger.warning("Could not import pylibftdi, continuing with no FTDI sink")
+    BitBangDevice = None
+
 from .sink import Sink, register_sink
 
-logger = logging.getLogger(__name__)
 
 
 @register_sink("FTDI")
