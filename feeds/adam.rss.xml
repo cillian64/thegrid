@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/adam.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 13 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Testing Intensifies</title><link>http://www.thegrid.fish/2014/07/13/testing-intensifies</link><description>&lt;p&gt;Another busy day. Further software refinements led to a Tkinter-based sink to
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/adam.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 16 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>LEDs Arrived!</title><link>http://www.thegrid.fish/2014/07/16/leds-arrived</link><description>&lt;p&gt;The LEDs turned up! £300, 250m, 7500 LEDs, in one unassuming&amp;nbsp;box:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LED parcel" src="/images/led_parcel.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;We opened it up, and sure enough, 50 individually bagged reels of 5m &lt;span class="caps"&gt;LED&lt;/span&gt;&amp;nbsp;strip:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LED strips" src="/images/led_opened.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Obviously we had to test all 50 to be sure they were in fine working order, so
+we sat down and got to&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LED testing" src="/images/led_testing.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m happy to report that every &lt;span class="caps"&gt;LED&lt;/span&gt; functioned correctly.&amp;nbsp;Hurray!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Wed, 16 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-16:2014/07/16/leds-arrived</guid><category>LEDs</category></item><item><title>Testing Intensifies</title><link>http://www.thegrid.fish/2014/07/13/testing-intensifies</link><description>&lt;p&gt;Another busy day. Further software refinements led to a Tkinter-based sink to
 make visualisation&amp;nbsp;easier:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Tkinter GUI" src="/images/tkinter.png" /&gt;&lt;/p&gt;
 &lt;p&gt;I also stuck together a simple sink using pylibftdi in bitbang mode, which was
@@ -11,6 +18,10 @@ connected up the relays and two (of the eventual 49) &lt;span class="caps"&gt;LE
 hooking it all up for the first&amp;nbsp;time.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="First Full Test" src="/images/first_full_test.jpg" /&gt;
 &lt;img alt="Full Test Unrolled" src="/images/full_test_unrolled.jpg" /&gt;&lt;/p&gt;
+&lt;iframe width="420" height="315"
+src="//www.youtube-nocookie.com/embed/3Ok0Z6Nax6U?rel=0" frameborder="0"
+allowfullscreen&gt;&lt;/iframe&gt;
+
 &lt;p&gt;It all worked! Additionally the relays sounded great on one of the aluminium
 poles. This is a very positive result and we&amp;#8217;re now confident that the
 electronics design, software design, and various other choices that led to this
