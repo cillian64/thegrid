@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 13 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Gerbils away!</title><link>http://www.thegrid.fish/2014/07/13/gerbils-away</link><description>&lt;p&gt;After a final slog, the &lt;span class="caps"&gt;PCB&lt;/span&gt; was routed and ready to go!  Less than 48 hours
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 16 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Yellow PCB</title><link>http://www.thegrid.fish/2014/07/16/yellow-pcb</link><description>&lt;p&gt;I&amp;#8217;m really excited about the PCBs, but don&amp;#8217;t really have much to report.
+They&amp;#8217;re with fab house and should be manufactured by the beginning of next week
+and with us by the end of next week.  Before they went to fab, I made a few
+minor changes, mainly to increase clearance and track width.  This should make
+the board pretty hard to get wrong, meaning we get a good&amp;nbsp;yield.&lt;/p&gt;
+&lt;p&gt;Here are the updated gerbers, rendered by &lt;a href="http://dirtypcbs.com/"&gt;Dirty PCBs&lt;/a&gt;
+in a rendition of their final yellow&amp;nbsp;soldermask:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="yellow pcbs" src="/images/pcb_yellow.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Wed, 16 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-16:2014/07/16/yellow-pcb</guid><category>Electronics</category></item><item><title>Gerbils away!</title><link>http://www.thegrid.fish/2014/07/13/gerbils-away</link><description>&lt;p&gt;After a final slog, the &lt;span class="caps"&gt;PCB&lt;/span&gt; was routed and ready to go!  Less than 48 hours
 from deciding to do a &lt;span class="caps"&gt;PCB&lt;/span&gt; to submitting Gerbers has got to be a&amp;nbsp;record.&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;ll try to talk some more about some of the design choices when I&amp;#8217;ve had more
 sleep.  For now, here&amp;#8217;s what it looks&amp;nbsp;like:&lt;/p&gt;

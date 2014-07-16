@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/david.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-13T00:00:00+01:00</updated><entry><title>Gerbils away!</title><link href="http://www.thegrid.fish/2014/07/13/gerbils-away" rel="alternate"></link><updated>2014-07-13T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-13:2014/07/13/gerbils-away</id><summary type="html">&lt;p&gt;After a final slog, the &lt;span class="caps"&gt;PCB&lt;/span&gt; was routed and ready to go!  Less than 48 hours
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/david.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-07-16T00:00:00+01:00</updated><entry><title>Yellow PCB</title><link href="http://www.thegrid.fish/2014/07/16/yellow-pcb" rel="alternate"></link><updated>2014-07-16T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-16:2014/07/16/yellow-pcb</id><summary type="html">&lt;p&gt;I&amp;#8217;m really excited about the PCBs, but don&amp;#8217;t really have much to report.
+They&amp;#8217;re with fab house and should be manufactured by the beginning of next week
+and with us by the end of next week.  Before they went to fab, I made a few
+minor changes, mainly to increase clearance and track width.  This should make
+the board pretty hard to get wrong, meaning we get a good&amp;nbsp;yield.&lt;/p&gt;
+&lt;p&gt;Here are the updated gerbers, rendered by &lt;a href="http://dirtypcbs.com/"&gt;Dirty PCBs&lt;/a&gt;
+in a rendition of their final yellow&amp;nbsp;soldermask:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="yellow pcbs" src="/images/pcb_yellow.png" /&gt;&lt;/p&gt;</summary><category term="Electronics"></category></entry><entry><title>Gerbils away!</title><link href="http://www.thegrid.fish/2014/07/13/gerbils-away" rel="alternate"></link><updated>2014-07-13T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-13:2014/07/13/gerbils-away</id><summary type="html">&lt;p&gt;After a final slog, the &lt;span class="caps"&gt;PCB&lt;/span&gt; was routed and ready to go!  Less than 48 hours
 from deciding to do a &lt;span class="caps"&gt;PCB&lt;/span&gt; to submitting Gerbers has got to be a&amp;nbsp;record.&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;ll try to talk some more about some of the design choices when I&amp;#8217;ve had more
 sleep.  For now, here&amp;#8217;s what it looks&amp;nbsp;like:&lt;/p&gt;
