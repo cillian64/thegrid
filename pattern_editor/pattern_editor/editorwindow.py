@@ -11,18 +11,21 @@ class EditorWindow(pyglet.window.Window):
     h = 1024
     padding = 5
 
-    def __init__(self):
-        super(EditorWindow, self).__init__(
-            caption='Pattern Editor', visible=True, resizable=True,
-            width=512, height=768)
-
-        self.audioline = AudioTimeline(self)
-        self.frameline = FrameTimeline(self)
-        self.griddisplay = GridDisplay(self)
-        self.infobox = InfoBox(self)
+    def __init__(self, *args, main, audiofile, **kwargs):
+        self.main = main
+        self.audioline = AudioTimeline(
+            self, *args, audiofile=audiofile, **kwargs)
+        self.frameline = FrameTimeline(self, *args, **kwargs)
+        self.griddisplay = GridDisplay(self, *args, **kwargs)
+        ttime = self.audioline.audio.duration
+        self.infobox = InfoBox(self, *args, ttime=ttime, **kwargs)
 
         self.controls = [
             self.audioline, self.frameline, self.griddisplay, self.infobox]
+
+        super(EditorWindow, self).__init__(
+            caption='Pattern Editor', visible=True, resizable=True,
+            width=512, height=768)
 
     def on_resize(self, width, height):
         super(EditorWindow, self).on_resize(width, height)
@@ -46,7 +49,7 @@ class EditorWindow(pyglet.window.Window):
         if (width - 2*self.padding) > grid_s:
             self.griddisplay.x += (width - grid_s - 2*self.padding)//2
 
-        self.infobox.y = self.infobox.h
+        self.infobox.y = 0
         self.griddisplay.y = self.infobox.h
         if height//2 > grid_s:
             self.griddisplay.y += (height//2 - grid_s)//2
@@ -60,3 +63,14 @@ class EditorWindow(pyglet.window.Window):
         self.clear()
         for control in self.controls:
             control.draw()
+
+    def on_key_press(self, sym, mod):
+        self.main.handle_keypress(sym, mod)
+
+    def on_mouse_press(self, x, y, btn, mod):
+        for control in self.controls:
+            control.check_mousepress(x, y, btn, mod)
+
+    def on_mouse_drag(self, x, y, dx, dy, btns, mod):
+        for control in self.controls:
+            control.check_mousedrag(x, y, dx, dy, btns, mod)

@@ -4,46 +4,54 @@ from .control import Control
 
 
 STATUS_TEXT = """
+Time: {ctime:.3f}/{ttime:.3f}
 File: {patternf}
 Audio: {audiof}
-Time: {ctime:.3f}/{ttime:.3f}
 """
 
 HELP_TEXT = """
-Space: Play/pause
-d: Delete Frame
-d: Delete Frame
-d: Delete Frame
-d: Delete Frame
-d: Delete Frame
+SPACE  Play/pause       ]     Zoom In      SHIFT+LMB Audio     Place beat marks
+B      All On           [     Zoom Out     SHIFT+RMB Audio     Clear beat marks
+b      All Off          n     Prev Beat    LMB Grid            Turn on pole
+INS    Create Frame     m     Next Beat    RMB Grid            Turn off pole
+DEL    Delete Frame     ,     Prev Frame   LMB Timeline        Jump to time
+s      Save             .     Next Frame
 """
 
 
 class InfoBox(Control):
+    """Display status and help text."""
     h = 256
     w = 512
+    ctime = 0.0
 
     def __init__(self, *args, **kwargs):
         super(InfoBox, self).__init__(*args, **kwargs)
         self.status_text = pyglet.text.Label(
             STATUS_TEXT, font_name="Ubuntu", font_size=10,
-            width=350, multiline=True)
+            width=self.w, multiline=True, anchor_y='bottom')
         self.help_text = pyglet.text.Label(
-            HELP_TEXT, font_name="Ubuntu", font_size=10,
-            width=162, multiline=True, align="right")
+            HELP_TEXT, font_name="Ubuntu Mono", font_size=8,
+            width=self.w, multiline=True, anchor_y='bottom')
+        self.ttime = self.parent.audioline.audio.duration
+        self.patternf = self.parent.main.patternfile
+        self.audiof = self.parent.main.audiofile
+
+    def set_time(self, t):
+        self.ctime = t
 
     def draw(self):
-        self.status_text.text = STATUS_TEXT.format(
-            patternf="/tmp/whatev", audiof="~/nope.mp3",
-            ctime=0, ttime=123.45)
-        self.status_text.x = self.x
-        self.status_text.y = self.y
-        self.status_text.width = int(0.7 * self.w)
-        self.status_text.height = self.h
-        self.status_text.draw()
-
-        self.help_text.x = self.x + self.status_text.width
+        self.help_text.x = self.x
         self.help_text.y = self.y
-        self.help_text.width = int(0.3 * self.w)
-        self.help_text.height = self.h
+        self.help_text.width = self.w
+        self.help_text.height = int(0.7 * self.h)
         self.help_text.draw()
+
+        self.status_text.text = STATUS_TEXT.format(
+            patternf=self.patternf, audiof=self.audiof,
+            ctime=self.ctime, ttime=self.ttime)
+        self.status_text.x = self.x
+        self.status_text.y = self.y + self.help_text.height
+        self.status_text.width = self.w
+        self.status_text.height = int(0.3 * self.h)
+        self.status_text.draw()

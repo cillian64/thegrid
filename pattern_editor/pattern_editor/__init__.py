@@ -1,1 +1,1 @@
-from .editorwindow import EditorWindow
+from .main import Main
