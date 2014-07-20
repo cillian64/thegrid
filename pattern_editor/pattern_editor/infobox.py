@@ -12,8 +12,8 @@ Audio: {audiof}
 HELP_TEXT = """
 SPACE  Play/pause       ]     Zoom In      SHIFT+LMB Audio     Place beat marks
 B      All On           [     Zoom Out     SHIFT+RMB Audio     Clear beat marks
-b      All Off          n     Prev Beat    LMB Grid            Turn on pole
-INS    Create Frame     m     Next Beat    RMB Grid            Turn off pole
+b      All Off          n     Prev Beat    LMB(+Drag) Grid     Turn on pole
+INS    Create Frame     m     Next Beat    RMB(+Drag) Grid     Turn off pole
 DEL    Delete Frame     ,     Prev Frame   LMB Timeline        Jump to time
 s      Save             .     Next Frame
 """

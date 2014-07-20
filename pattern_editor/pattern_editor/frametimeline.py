@@ -15,8 +15,8 @@ class FrameTimeline(Timeline):
 
     def __init__(self, *args, **kwargs):
         super(FrameTimeline, self).__init__(*args, **kwargs)
-        self.tick_verts = pyglet.graphics.vertex_list(0, ('v2f', []))
-        self.frame_verts = pyglet.graphics.vertex_list(0, ('v2f', []))
+        self.tick_verts = pyglet.graphics.vertex_list(0, 'v2f')
+        self.frame_verts = pyglet.graphics.vertex_list(0, 'v2f')
         self.tick_batch = pyglet.graphics.Batch()
 
     def compute_frame_lines(self):

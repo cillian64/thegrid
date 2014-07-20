@@ -14,8 +14,8 @@ class AudioTimeline(Timeline):
 
     def __init__(self, *args, audiofile=None, **kwargs):
         super(AudioTimeline, self).__init__(*args, **kwargs)
-        self.beat_verts = pyglet.graphics.vertex_list(0, ('v2f', []))
-        self.amp_verts = pyglet.graphics.vertex_list(0, ('v2f', []))
+        self.beat_verts = pyglet.graphics.vertex_list(0, 'v2f')
+        self.amp_verts = pyglet.graphics.vertex_list(0, 'v2f')
         if audiofile:
             self.load_audio(audiofile)
 
@@ -23,6 +23,7 @@ class AudioTimeline(Timeline):
         self.audio = pyglet.media.load(audiofile, streaming=False)
         self.player = pyglet.media.Player()
         self.player.queue(self.audio)
+        self.player.eos_action = self.player.EOS_LOOP
         data = np.fromstring(self.audio._data, dtype=np.int16).reshape((-1, 2))
         self.data = data.astype(np.float).sum(axis=1) / 65536.0
         self.sr = self.audio.audio_format.sample_rate
@@ -38,7 +39,7 @@ class AudioTimeline(Timeline):
     def compute_audio_amplitudes(self):
         if not self.audio:
             self.amp_verts.delete()
-            self.amp_verts = pyglet.graphics.vertex_list(0, ('v2f', []))
+            self.amp_verts = pyglet.graphics.vertex_list(0, 'v2f')
             return
 
         duration = self.end_time - self.start_time
@@ -86,7 +87,13 @@ class AudioTimeline(Timeline):
         start, end = self.beats[0], self.beats[-1]
         self.beat_spacing = (end - start) / (len(self.beats) - 1)
         self.first_beat = start % self.beat_spacing
-        first_beat = self.start_time + self.start_time % self.beat_spacing
+
+        t0 = self.first_beat
+        t = self.start_time
+        d = self.beat_spacing
+
+        first_beat = (((t - t0)//d) + 1) * d + t0
+
         b = np.arange(first_beat, self.end_time, self.beat_spacing)
         p = (b - self.start_time) / (self.end_time - self.start_time)
         x = self.x + p * self.w
@@ -97,6 +104,26 @@ class AudioTimeline(Timeline):
         self.beat_verts.delete()
         self.beat_verts = pyglet.graphics.vertex_list(
             len(verts)//2, ('v2f\static', verts), ('c3B\static', colours))
+
+    def next_beat_time(self):
+        if len(self.beats) in (0, 1):
+            return self.current_time
+
+        t = self.current_time
+        t0 = self.first_beat
+        d = self.beat_spacing
+
+        return (((t - t0)//d) + 1) * d + t0
+
+    def prev_beat_time(self):
+        if len(self.beats) in (0, 1):
+            return self.current_time
+
+        t = self.current_time
+        t0 = self.first_beat
+        d = self.beat_spacing
+
+        return ((t - t0)//d) * d + t0
 
     def resize(self):
         super(AudioTimeline, self).resize()

@@ -13,7 +13,7 @@ class Timeline(Control):
 
     def __init__(self, *args, **kwargs):
         super(Timeline, self).__init__(*args, **kwargs)
-        self.time_verts = pyglet.graphics.vertex_list(0, ('v2f', []))
+        self.time_verts = pyglet.graphics.vertex_list(0, 'v2f')
         if 'start' in kwargs and 'end' in kwargs:
             self.set_times(kwargs['start'], kwargs['end'])
         if 'time' in kwargs:
@@ -61,5 +61,4 @@ class Timeline(Control):
                 return
             t = (x / self.w) * (self.end_time - self.start_time)
             t += self.start_time
-            self.parent.main.set_time(t)
-            self.parent.audioline.player.seek(t)
+            self.parent.main.seek_time(t)
