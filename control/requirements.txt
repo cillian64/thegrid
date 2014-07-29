@@ -1,4 +1,4 @@
 requests
 flask
 numpy
-
+pyserial
