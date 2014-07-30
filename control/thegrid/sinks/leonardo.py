@@ -13,6 +13,8 @@ try:
 except ImportError:
     logger.warning("Could not import Serial, aborting leonardo sink")
     serial = None
+else:
+    from serial.serialutil import SerialException
 
 from .sink import Sink, register_sink
 
@@ -22,11 +24,18 @@ from .sink import Sink, register_sink
 class Leonardo(Sink):
     def __init__(self):
         if serial is not None:
-            self.ser = serial.Serial("/dev/ttyACM0", 115200)
-            logger.info("Leonardo sink initialised")
+            try:
+                self.ser = serial.Serial("/dev/ttyACM0", 115200)
+            except SerialException:
+                logger.error("Problem initialising Leonardo serial link:")
+                logger.error("Check the Leonardo is plugged in")
+                logger.error("and that /dev/ttyACM0 exists.")
+                self.ser = None
+            else:
+                logger.info("Leonardo sink initialised")
         else:
             self.ser = None
-            logger.error("Can't initialise leonardo sink, no serial library")
+            logger.error("Can't initialise leonardo sink, no Serial library")
 
     def update(self, state):
         if self.ser is None:
@@ -38,5 +47,10 @@ class Leonardo(Sink):
             for rowidx, bit in enumerate(column):
                 tot += bit * 2**rowidx
             output[colidx+1] = tot
-        self.ser.write(output)
+        try:
+            self.ser.write(output)
+        except OSError:
+            logger.error("Error writing to serial port - Leonardo has")
+            logger.error("probably been unplugged.  Disabling serial port.")
+            self.ser = None
 
