@@ -1,29 +1,6 @@
 Relays:
 -------
-
-http://www.rapidonline.com/electronic-components/hf3ff0121zstf-12vdc-10a-spdt-compact-miniature-cube-power-relay-60-1488
-http://www.rapidonline.com/electronic-components/12v-rudh-series-12a-spdt-relay-60-4680
-http://www.rapidonline.com/electronic-components/12v-rw-series-10a-spdt-relay-60-4662
-http://www.rapidonline.com/electronic-components/12v-rwh-series-12a-spdt-relay-60-4668
-
-http://onecall.farnell.com/te-connectivity-oeg/oj-sh-112dm-000/relay-pcb-spst-no-12vdc-5a/dp/1891681
-http://onecall.farnell.com/te-connectivity-oeg/sdt-s-112lmr-000/relay-pcb-spst-no-12vdc-10a/dp/1892001
-http://onecall.farnell.com/te-connectivity-oeg/sdt-s-112dmr-003/relay-pcb-spst-no-12vdc-10a/dp/1891999
-http://onecall.farnell.com/omron-electronic-components/g5la-1-12dc/relay-pcb-spdt-12vdc-10a/dp/1455504
-
-
-0.75mm^2 twin-core cabling:
----------------------------
-
-http://www.discount-electrical.co.uk/product.php/342658/3182y0-75whi100-basec-approved-3182y-white-2-core-pvc-insulated---sheathed-circular-flexible-cable-0-75mm-100m-reel
-http://www.discount-electrical.co.uk/product.php/341701/3182y0-75whi50-basec-approved-3182y-white-2-core-pvc-insulated---sheathed-circular-flexible-cable-0-75mm-50m-reel
-http://www.discount-electrical.co.uk/product.php/342551/3182y0-75blk100-basec-approved-3182y-black-2-core-pvc-insulated---sheathed-circular-flexible-cable-0-75mm-100m-reel
-http://www.discount-electrical.co.uk/product.php/338138/3182y0-75blk50-basec-approved-3182y-black-2-core-pvc-insulated---sheathed-circular-flexible-cable-0-75mm-50m-reel
-
-
-PSUs:
------
-Ordered from ebay
+Asked Stanto for 1892001, not sure if that's what I prototyped
 
 Flight Case:
 -----------
@@ -33,19 +10,10 @@ about 21 quid.
 
 Drivers:
 --------
-Small NPN BJT first stage: BC337-25, farnell 1228215.  5.7p list.  All within
-spec, pretty standard, should be fine!
-
 PMOS second stage: FQP7P06 is 33p list, TO220.  Only problem is .4ohm gives
 almost a watt dissipation and 60deg rise junction to ambient.  So, use Farnell
 1611415, 24K/W resistance for 19.11 pence in 10off.  10 quid for the lot and
 45deg continuous-on is no problemo.
-
-Spoke to Matt, he reckons SOT23 and SOT233 are fine to mount on stripboard, and
-can be gotten for 9p or so... That makes a dent. But can't heatsink them.
-Open collector shift register would make life a lot easier but the only
-through-hole part is 3 quid. There's a SOIC16 version for 70p but that's not
-really strip friendly
 
 1470497 is a nice shift register which costs 1.33 and has chunky open drain
 outputs which can drive the PMOS directly.
@@ -56,19 +24,30 @@ The most boring LED that farnell sells: 2335729, 4.1pence in quantity
 
 Resistors:
 ----------
-For indicator LEDs, 600ohm .25W: 0.9p TE Connectivity, Farnell 2329545
+For indicator LEDs, 680ohm.  Accidentally gave Stanto 0.5W parts (9338926)
+    because 20mA would dissipate >250mW.  But at 680W, I=14mA so P_R = 150mW.
+    Appropriate part: 2329698 (actually .33W but same size as .25W)
 MOSFET Gate pullup: 10k is sensible (1us time constant), power is no problem,
-so 1692465 is .1p in quantity.
+    so 1692465 is .1p in quantity.
+MOSFET Gate series: 100R.  Same as LED: 2329607 (.33W but .25W-sized)
 
 Cabling:
 --------
 Farnell does cheaper, but we asked for the nice looking propower CB11159 100m
 0.75mm^2 
-1179199 chunky yellow cable for connecting PSUs to board.
+1179199 chunky yellow cable for connecting PSUs to board. Maybe excessive?
+http://www.discount-electrical.co.uk/product.php/342658/3182y0-75whi100-basec-approved-3182y-white-2-core-pvc-insulated---sheathed-circular-flexible-cable-0-75mm-100m-reel
+http://www.discount-electrical.co.uk/product.php/341701/3182y0-75whi50-basec-approved-3182y-white-2-core-pvc-insulated---sheathed-circular-flexible-cable-0-75mm-50m-reel
 
 .1" 2-way housing and header and crimps:
 ----------------------------------------
-CN18792
-CN18779
-CN18767
+CN18792 crimp contact for receptacle
+CN18779 header
+CN18767 receptacle
+
+Board edge connectors
+---------------------
+Socket: 2084274 - 50p is a bit steep but it looks very chunky, and the
+    non-chunky ones are upsettingly bendy (as discovered from h/w lab proto)
+Headers: Used CN14613 on the prototype and it works great.
 
