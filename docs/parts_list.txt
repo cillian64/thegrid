@@ -51,3 +51,8 @@ Socket: 2084274 - 50p is a bit steep but it looks very chunky, and the
     non-chunky ones are upsettingly bendy (as discovered from h/w lab proto)
 Headers: Used CN14613 on the prototype and it works great.
 
+Capacitors:
+-----------
+100n: 2112751
+330n: 1457659
+
