@@ -50,6 +50,7 @@ Board edge connectors
 Socket: 2084274 - 50p is a bit steep but it looks very chunky, and the
     non-chunky ones are upsettingly bendy (as discovered from h/w lab proto)
 Headers: Used CN14613 on the prototype and it works great.
+Wire receptacle: CN18427 used for connecting leonardo to first board
 
 Capacitors:
 -----------
