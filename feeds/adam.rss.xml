@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/adam.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 04 Aug 2014 00:00:00 +0100</lastBuildDate><item><title>Wire Delivery</title><link>http://www.thegrid.fish/2014/08/04/wire-delivery</link><description>&lt;p&gt;Today we got the rest of the &lt;span class="caps"&gt;PCB&lt;/span&gt; components, the flight case that will house
 the electronics, and the first 400m of field cable from &lt;span class="caps"&gt;CPC&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="wire delivery" src="/images/wire_delivery.jpg" /&gt;
-&lt;img alt="wire spools" src="/images/wire_spools.jpg" /&gt;
-&lt;img alt="psus in flight case" src="/images/psus_in_case_mock.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="wire delivery" src="/images/wire_delivery.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="wire spools" src="/images/wire_spools.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="psus in flight case" src="/images/psus_in_case_mock.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Looking good! We&amp;#8217;ll get the rest of the PCBs soldered up over the next few days
 and then all that&amp;#8217;s left is a little mechanical work and a lot of careful&amp;nbsp;software.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Adam</dc:creator><pubDate>Mon, 04 Aug 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-08-04:2014/08/04/wire-delivery</guid><category>electronics</category></item><item><title>LEDs Arrived!</title><link>http://www.thegrid.fish/2014/07/16/leds-arrived</link><description>&lt;p&gt;The LEDs turned up! £300, 250m, 7500 LEDs, in one unassuming&amp;nbsp;box:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="LED parcel" src="/images/led_parcel.jpg" /&gt;&lt;/p&gt;

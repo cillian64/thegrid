@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-04T00:00:00+01:00</updated><entry><title>Wire Delivery</title><link href="http://www.thegrid.fish/2014/08/04/wire-delivery" rel="alternate"></link><updated>2014-08-04T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-04:2014/08/04/wire-delivery</id><summary type="html">&lt;p&gt;Today we got the rest of the &lt;span class="caps"&gt;PCB&lt;/span&gt; components, the flight case that will house
 the electronics, and the first 400m of field cable from &lt;span class="caps"&gt;CPC&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="wire delivery" src="/images/wire_delivery.jpg" /&gt;
-&lt;img alt="wire spools" src="/images/wire_spools.jpg" /&gt;
-&lt;img alt="psus in flight case" src="/images/psus_in_case_mock.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="wire delivery" src="/images/wire_delivery.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="wire spools" src="/images/wire_spools.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="psus in flight case" src="/images/psus_in_case_mock.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Looking good! We&amp;#8217;ll get the rest of the PCBs soldered up over the next few days
 and then all that&amp;#8217;s left is a little mechanical work and a lot of careful&amp;nbsp;software.&lt;/p&gt;</summary><category term="electronics"></category></entry><entry><title>Finished prototype PCB</title><link href="http://www.thegrid.fish/2014/07/31/finished-prototype-pcb" rel="alternate"></link><updated>2014-07-31T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-31:2014/07/31/finished-prototype-pcb</id><summary type="html">&lt;p&gt;Having received the rest of my prototype parts, I finished off the prototype&amp;nbsp;board:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="finished protoboard" src="/images/finished_top.jpg" /&gt;&lt;/p&gt;
