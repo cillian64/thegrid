@@ -69,6 +69,62 @@ The·Grid            </a>
         <div class="col-sm-9">
 
             <article>
+                <h2><a href="http://www.thegrid.fish/2014/07/31/finished-prototype-pcb">Finished prototype <span class="caps">PCB</span></a></h2>
+                <div class="summary"><p>Having received the rest of my prototype parts, I finished off the prototype&nbsp;board:</p>
+<p><img alt="finished protoboard" src="/images/finished_top.jpg" /></p>
+<p><img alt="heatsinks" src="/images/heatsinks.jpg" /></p>
+<p>I&#8217;m very happy with the connectors (Pro Power&#8217;s minipower series).  The <span class="caps">PCB</span>
+headers are very solid and the locking mechanism is reassuringly&nbsp;significant.</p>
+<p>I took the opportunity to put some connectors on <span class="caps">LED</span> strips and do some more
+load&nbsp;testing.</p>
+<p><img alt="connectors" src="/images/connectors.jpg" /></p>
+<p>The board quite happily powered its 35m of <span class="caps">LED</span> strip and only
+got moderately warm after 15 minutes.  Conditions will be less ideal with 7
+boards mounted vertically and close together, but I don&#8217;t plan to be holding
+all the LEDs turned on for extended&nbsp;periods!</p>
+<p>I&#8217;ve now ordered all the parts to build the rest of the boards along with all
+the cabling.  There are still some things left to acquire, but this is the last
+significant&nbsp;purchase.</p>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://www.thegrid.fish/2014/07/30/integration-testing">Integration&nbsp;Testing</a></h2>
+                <div class="summary"><p>I got impatient of waiting for the full set of parts to complete the
+electronics and put a board together with some components I had lying&nbsp;around.</p>
+<p><img alt="Prototype board" src="/images/stuffed_proto.jpg" /></p>
+<p>I only had two MOSFETs and was lacking in connectors, but it was enough to
+test.  Everything fit beautifully and soldered up&nbsp;well.</p>
+<p>Wanting to test things, I connected the board to an <a href="arduino.cc/en/Guide/ArduinoLeonardo">Arduino
+Leonardo</a> with some basic test code, and
+it worked!  It only took a short while more to write the Leonardo firmware to
+accept frames over <span class="caps">USB</span> <span class="caps">CDC</span> and drive the shift registers appropriately.  It
+took an even shorter while to write a sink plugin for the control&nbsp;software.</p>
+<p><img alt="Full stack test" src="/images/full_stack.jpg" /></p>
+<p>That blurry image might not look like much, but it&#8217;s a pretty significant
+result.  The prototype <span class="caps">PCB</span> is driving two of our <span class="caps">LED</span> strips, powered by the
+rebuilt power supplies.  The board was controlled by the control software via
+the Arduino&nbsp;Leonardo.</p>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="http://www.thegrid.fish/2014/07/25/pcbs">PCBs!!!</a></h2>
+                <div class="summary"><p>The PCBs arrived!  They are looking beautiful in yellow silk with shiny <span class="caps">HASL</span>
+finish.  Considering how much Dirty PCBs downplay their quality, these boards
+are excellent.  I can&#8217;t fault anything on the copper, and the soldermask looks
+great.  Registration isn&#8217;t amazing on the drill hits and silk, but it&#8217;s still
+very good.  The silk is iffy in places, but that was expected.  Now all we have
+to do is wait for the full complement of&nbsp;components.</p>
+<p>Thanks to <a href="http://dirtypcbs.com/">Dirty PCBs</a> for excellent service and
+excellent boards &#8212; we&#8217;ll be back for our next&nbsp;project!</p>
+<p><img alt="pcb stack" src="/images/pcb_stack.jpg" /></p>
+<p><img alt="pcb silk" src="/images/pcb_silk.jpg" /></p>
+<p><img alt="pcb clear" src="/images/pcb_two.png" /></p>
+                </div>
+            </article>
+            <hr/>
+            <article>
                 <h2><a href="http://www.thegrid.fish/2014/07/16/yellow-pcb">Yellow <span class="caps">PCB</span></a></h2>
                 <div class="summary"><p>I&#8217;m really excited about the PCBs, but don&#8217;t really have much to report.
 They&#8217;re with fab house and should be manufactured by the beginning of next week
@@ -192,14 +248,14 @@ about our proposal, and, they did &#8212; The·Grid at <span class="caps">EMF201
                                 electronics
                             </a>
                         </li>
-                        <li class="list-group-item tag-3">
-                            <a href="http://www.thegrid.fish/tag/leds.html">
-                                LEDs
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-3">
+                        <li class="list-group-item tag-2">
                             <a href="http://www.thegrid.fish/tag/software.html">
                                 software
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://www.thegrid.fish/tag/leds.html">
+                                leds
                             </a>
                         </li>
                         <li class="list-group-item tag-3">

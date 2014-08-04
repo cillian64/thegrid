@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Rework and a PCB - The·Grid</title>
+    <title>The·Grid</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,15 +12,10 @@
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="The·Grid" />
-            <meta property="og:type" content="article"/>
-            <meta property="og:title" content="Rework and a PCB"/>
-            <meta property="og:url" content="http://www.thegrid.fish/2014/07/10/rework-and-a-pcb"/>
-            <meta property="og:description" content="Having made surprisingly short work of reworking the first power supply, a blob of epoxy sealed the deal. Testing will have to wait until we get a few more parts, but it looks good. We had a number of interesting ideas for making the electronics easier. Instead of using an Arduino to talk over USB and drive the shift registers (and have yet another layer of software in the stack), it turns out you can use several of the pins on an FTDI ft232r as GPIOs and use it to drive shift registers directly. Later in the evening, I was making a quick stripboard prototype with a shift register and some PMOSes and complaining bitterly to Adam about cutting stripboard tracks. We shortly decided that it was, in fact, a rather good idea to make a PCB. Instead of one massive PCB, we could break it down to 7 PCBs, each with a shift register and 7 outputs. We can cascade the boards’ shift registers and connect each board directly to a power supply. Surprisingly quickly, the schematic looked something like this: This all just about barely fits on a 5cm x 5cm PCB: (surface mount resistors omitted for clarity, but they look like they’d fit…) Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a little like: As a bonus, with the PCBs all lined up the LEDs will look something like a grid. In the end we went back to using through-hole components for everything. Surface mount resistors would be smaller and cheaper, but through-hole is a lot more fun."/>
-            <meta property="article:published_time" content="2014-07-10" />
-                <meta property="article:section" content="Blog" />
-                <meta property="article:tag" content="electronics" />
-                <meta property="article:tag" content="power" />
-                <meta property="article:author" content="David" />
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="The·Grid"/>
+            <meta property="og:url" content="http://www.thegrid.fish"/>
+            <meta property="og:description" content="The·Grid"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://www.thegrid.fish/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
@@ -54,7 +49,7 @@ The·Grid            </a>
                          <li><a href="http://www.thegrid.fish/pages/about.html">
                              About
                           </a></li>
-                        <li class="active">
+                        <li >
                             <a href="http://www.thegrid.fish/category/blog.html">Blog</a>
                         </li>
                 <script language="JavaScript" src="/quotes.js"></script>
@@ -73,68 +68,12 @@ The·Grid            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="http://www.thegrid.fish/2014/07/10/rework-and-a-pcb"
-                       rel="bookmark"
-                       title="Permalink to Rework and a PCB">
-                        Rework and a <span class="caps">PCB</span>
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-07-10T00:00:00"> Thu 10 July 2014</time>
-    </span>
-            <span class="label label-default">By</span>
-            <a href="http://www.thegrid.fish/author/david.html"><i class="fa fa-user"></i> David</a>
+<h1>Archives for 25 July 2014</h1>
 
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://www.thegrid.fish/tag/electronics.html">electronics</a>
-        /
-	<a href="http://www.thegrid.fish/tag/power.html">power</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p>Having made surprisingly short work of reworking the first power supply, a blob
-of epoxy sealed the deal.  Testing will have to wait until we get a few more
-parts, but it looks&nbsp;good.</p>
-<p>We had a number of interesting ideas for making the electronics easier.
-Instead of using an Arduino to talk over <span class="caps">USB</span> and drive the shift registers (and
-have yet another layer of software in the stack), it turns out you can use
-several of the pins on an <span class="caps">FTDI</span> ft232r as GPIOs and use it to drive shift
-registers&nbsp;directly.</p>
-<p>Later in the evening, I was making a quick stripboard prototype with a shift
-register and some PMOSes and complaining bitterly to Adam about cutting
-stripboard tracks.  We shortly decided that it was, in fact, a rather good idea
-to make a <span class="caps">PCB</span>.  Instead of one massive <span class="caps">PCB</span>, we could break it down to 7 PCBs,
-each with a shift register and 7 outputs.  We can cascade the boards&#8217; shift
-registers and connect each board directly to a power supply.  Surprisingly
-quickly, the schematic looked something like&nbsp;this: </p>
-<p><img alt="schematic" src="/images/pcb_schematic.png" /></p>
-<p>This all just about barely fits on a 5cm x 5cm <span class="caps">PCB</span>: (surface mount resistors
-omitted for clarity, but they look like they&#8217;d&nbsp;fit&#8230;)</p>
-<p><img alt="pcb_55" src="/images/pcb_55.png" /></p>
-<p>Using a 10cm x 5cm board, everything gets a lot more comfortable, a looks a
-little&nbsp;like:</p>
-<p><img alt="pcb_long" src="/images/pcb_long.png" /></p>
-<p>As a bonus, with the PCBs all lined up the LEDs will look something like a
-grid.  In the end we went back to using through-hole components for everything.
-Surface mount resistors would be smaller and cheaper, but through-hole is a lot
-more&nbsp;fun.</p>
-            </div>
-            <!-- /.entry-content -->
-        </article>
-    </section>
-
+<dl>
+    <dt>Fri 25 July 2014</dt>
+    <dd><a href="http://www.thegrid.fish/2014/07/25/pcbs">PCBs!!!</a></dd>
+</dl>
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
 

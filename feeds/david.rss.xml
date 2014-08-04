@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 16 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Yellow PCB</title><link>http://www.thegrid.fish/2014/07/16/yellow-pcb</link><description>&lt;p&gt;I&amp;#8217;m really excited about the PCBs, but don&amp;#8217;t really have much to report.
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 31 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Finished prototype PCB</title><link>http://www.thegrid.fish/2014/07/31/finished-prototype-pcb</link><description>&lt;p&gt;Having received the rest of my prototype parts, I finished off the prototype&amp;nbsp;board:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="finished protoboard" src="/images/finished_top.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="heatsinks" src="/images/heatsinks.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m very happy with the connectors (Pro Power&amp;#8217;s minipower series).  The &lt;span class="caps"&gt;PCB&lt;/span&gt;
+headers are very solid and the locking mechanism is reassuringly&amp;nbsp;significant.&lt;/p&gt;
+&lt;p&gt;I took the opportunity to put some connectors on &lt;span class="caps"&gt;LED&lt;/span&gt; strips and do some more
+load&amp;nbsp;testing.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="connectors" src="/images/connectors.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The board quite happily powered its 35m of &lt;span class="caps"&gt;LED&lt;/span&gt; strip and only
+got moderately warm after 15 minutes.  Conditions will be less ideal with 7
+boards mounted vertically and close together, but I don&amp;#8217;t plan to be holding
+all the LEDs turned on for extended&amp;nbsp;periods!&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve now ordered all the parts to build the rest of the boards along with all
+the cabling.  There are still some things left to acquire, but this is the last
+significant&amp;nbsp;purchase.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Thu, 31 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-31:2014/07/31/finished-prototype-pcb</guid><category>electronics</category></item><item><title>Integration Testing</title><link>http://www.thegrid.fish/2014/07/30/integration-testing</link><description>&lt;p&gt;I got impatient of waiting for the full set of parts to complete the
+electronics and put a board together with some components I had lying&amp;nbsp;around.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Prototype board" src="/images/stuffed_proto.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I only had two MOSFETs and was lacking in connectors, but it was enough to
+test.  Everything fit beautifully and soldered up&amp;nbsp;well.&lt;/p&gt;
+&lt;p&gt;Wanting to test things, I connected the board to an &lt;a href="arduino.cc/en/Guide/ArduinoLeonardo"&gt;Arduino
+Leonardo&lt;/a&gt; with some basic test code, and
+it worked!  It only took a short while more to write the Leonardo firmware to
+accept frames over &lt;span class="caps"&gt;USB&lt;/span&gt; &lt;span class="caps"&gt;CDC&lt;/span&gt; and drive the shift registers appropriately.  It
+took an even shorter while to write a sink plugin for the control&amp;nbsp;software.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Full stack test" src="/images/full_stack.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;That blurry image might not look like much, but it&amp;#8217;s a pretty significant
+result.  The prototype &lt;span class="caps"&gt;PCB&lt;/span&gt; is driving two of our &lt;span class="caps"&gt;LED&lt;/span&gt; strips, powered by the
+rebuilt power supplies.  The board was controlled by the control software via
+the Arduino&amp;nbsp;Leonardo.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Wed, 30 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-30:2014/07/30/integration-testing</guid><category>electronics</category><category>power</category><category>leds</category><category>software</category></item><item><title>PCBs!!!</title><link>http://www.thegrid.fish/2014/07/25/pcbs</link><description>&lt;p&gt;The PCBs arrived!  They are looking beautiful in yellow silk with shiny &lt;span class="caps"&gt;HASL&lt;/span&gt;
+finish.  Considering how much Dirty PCBs downplay their quality, these boards
+are excellent.  I can&amp;#8217;t fault anything on the copper, and the soldermask looks
+great.  Registration isn&amp;#8217;t amazing on the drill hits and silk, but it&amp;#8217;s still
+very good.  The silk is iffy in places, but that was expected.  Now all we have
+to do is wait for the full complement of&amp;nbsp;components.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href="http://dirtypcbs.com/"&gt;Dirty PCBs&lt;/a&gt; for excellent service and
+excellent boards &amp;#8212; we&amp;#8217;ll be back for our next&amp;nbsp;project!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb stack" src="/images/pcb_stack.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb silk" src="/images/pcb_silk.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb clear" src="/images/pcb_two.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Fri, 25 Jul 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-07-25:2014/07/25/pcbs</guid><category>Electronics</category></item><item><title>Yellow PCB</title><link>http://www.thegrid.fish/2014/07/16/yellow-pcb</link><description>&lt;p&gt;I&amp;#8217;m really excited about the PCBs, but don&amp;#8217;t really have much to report.
 They&amp;#8217;re with fab house and should be manufactured by the beginning of next week
 and with us by the end of next week.  Before they went to fab, I made a few
 minor changes, mainly to increase clearance and track width.  This should make
