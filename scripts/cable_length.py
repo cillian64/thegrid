@@ -3,7 +3,7 @@ for x in range(7):
     for y in range(7):
         xlength = 12 - 2 * x
         ylength = 2 * abs(y - 3)
-        pad = 2.5
+        pad = 2.7
         total = xlength + ylength + pad
         lengths.append(total)
         print("LED ({}, {}): {}m + {}m + {}m = {}m".format(
