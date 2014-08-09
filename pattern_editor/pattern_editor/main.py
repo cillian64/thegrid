@@ -30,9 +30,9 @@ class Main:
             self.update_zoom(2.0)
         elif sym == pyglet.window.key.B:
             self.window.griddisplay.blanking(mod)
-        elif sym == pyglet.window.key.INSERT:
+        elif sym == pyglet.window.key.INSERT or sym == pyglet.window.key.A:
             self.add_frame()
-        elif sym == pyglet.window.key.DELETE:
+        elif sym == pyglet.window.key.DELETE or sym == pyglet.window.key.D:
             self.remove_frame()
         elif sym == pyglet.window.key.LEFT:
             self.prev_time_block()
