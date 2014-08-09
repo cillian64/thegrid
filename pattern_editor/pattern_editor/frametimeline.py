@@ -142,7 +142,10 @@ class FrameTimeline(Timeline):
 
     def next_frame_time(self):
         if self.current_frame is None:
-            return self.frame_times[0]
+            if self.frame_times:
+                return self.frame_times[0]
+            else:
+                return 0.0
         if len(self.frame_times) == self.current_frame + 1:
             return self.frame_times[-1]
         return self.frame_times[self.current_frame + 1]
