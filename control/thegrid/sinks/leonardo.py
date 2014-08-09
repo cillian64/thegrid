@@ -45,8 +45,8 @@ class Leonardo(Sink):
         for colidx, column in enumerate(state.T):
             tot = 0
             for rowidx, bit in enumerate(column):
-                tot += bit * 2**rowidx
-            output[colidx+1] = tot
+                tot += bit * (128 // 2**rowidx) # invert again.
+            output[7-colidx] = tot # invert because it seems inverted...
         try:
             self.ser.write(output)
         except OSError:
