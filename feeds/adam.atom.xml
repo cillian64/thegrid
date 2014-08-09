@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/adam.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-04T00:00:00+01:00</updated><entry><title>Wire Delivery</title><link href="http://www.thegrid.fish/2014/08/04/wire-delivery" rel="alternate"></link><updated>2014-08-04T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-04:2014/08/04/wire-delivery</id><summary type="html">&lt;p&gt;Today we got the rest of the &lt;span class="caps"&gt;PCB&lt;/span&gt; components, the flight case that will house
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/adam.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-09T00:00:00+01:00</updated><entry><title>Pattern Editor</title><link href="http://www.thegrid.fish/2014/08/09/pattern-editor" rel="alternate"></link><updated>2014-08-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-09:2014/08/09/pattern-editor</id><summary type="html">&lt;p&gt;We&amp;#8217;ve been working on a piece of software to make it easy to edit the
+non-interactive grid patterns, especially ones we want syncrhonised to music.
+That software is now ready for&amp;nbsp;use!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pattern editor screenshot" src="/images/mpe.png" /&gt;&lt;/p&gt;
+&lt;p&gt;It works by defining frames at any point in time, which can contain any
+pattern, and making it as easy as possible to create and edit frames, including
+beat synchronisation. It&amp;#8217;s programmed in Python using the Pyglet library and a
+handful of&amp;nbsp;OpenGL.&lt;/p&gt;</summary><category term="software"></category></entry><entry><title>Wire Delivery</title><link href="http://www.thegrid.fish/2014/08/04/wire-delivery" rel="alternate"></link><updated>2014-08-04T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-04:2014/08/04/wire-delivery</id><summary type="html">&lt;p&gt;Today we got the rest of the &lt;span class="caps"&gt;PCB&lt;/span&gt; components, the flight case that will house
 the electronics, and the first 400m of field cable from &lt;span class="caps"&gt;CPC&lt;/span&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="wire delivery" src="/images/wire_delivery.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="wire spools" src="/images/wire_spools.jpg" /&gt;&lt;/p&gt;

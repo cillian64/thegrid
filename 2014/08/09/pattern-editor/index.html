@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Categories - The·Grid</title>
+    <title>Pattern Editor - The·Grid</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,10 +12,14 @@
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="The·Grid" />
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="The·Grid"/>
-            <meta property="og:url" content="http://www.thegrid.fish"/>
-            <meta property="og:description" content="The·Grid"/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Pattern Editor"/>
+            <meta property="og:url" content="http://www.thegrid.fish/2014/08/09/pattern-editor"/>
+            <meta property="og:description" content="We’ve been working on a piece of software to make it easy to edit the non-interactive grid patterns, especially ones we want syncrhonised to music. That software is now ready for use! It works by defining frames at any point in time, which can contain any pattern, and making it as easy as possible to create and edit frames, including beat synchronisation. It’s programmed in Python using the Pyglet library and a handful of OpenGL."/>
+            <meta property="article:published_time" content="2014-08-09" />
+                <meta property="article:section" content="Blog" />
+                <meta property="article:tag" content="software" />
+                <meta property="article:author" content="Adam" />
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://www.thegrid.fish/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
@@ -49,7 +53,7 @@ The·Grid            </a>
                          <li><a href="http://www.thegrid.fish/pages/about.html">
                              About
                           </a></li>
-                        <li >
+                        <li class="active">
                             <a href="http://www.thegrid.fish/category/blog.html">Blog</a>
                         </li>
                 <script language="JavaScript" src="/quotes.js"></script>
@@ -68,41 +72,48 @@ The·Grid            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="categories">
-        <h1>All Categories for The·Grid</h1>
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-blog">Blog <span class="badge pull-right">18</span></a>
-                    </h4>
-                </div>
-                <div id="collapse-blog" class="panel-collapse collapse">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://www.thegrid.fish/2014/08/09/pattern-editor"
+                       rel="bookmark"
+                       title="Permalink to Pattern Editor">
+                        Pattern&nbsp;Editor
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
                     <div class="panel-body">
-                        <p><span class="categories-timestamp"><time datetime="2014-08-09T00:00:00">Sat 09 August 2014</time></span> <a href="http://www.thegrid.fish/2014/08/09/pattern-editor">Pattern&nbsp;Editor</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-08-04T00:00:00">Mon 04 August 2014</time></span> <a href="http://www.thegrid.fish/2014/08/04/wire-delivery">Wire&nbsp;Delivery</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-31T00:00:00">Thu 31 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/31/finished-prototype-pcb">Finished prototype <span class="caps">PCB</span></a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-30T00:00:00">Wed 30 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/30/integration-testing">Integration&nbsp;Testing</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-25T00:00:00">Fri 25 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/25/pcbs">PCBs!!!</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-16T00:00:00">Wed 16 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/16/leds-arrived">LEDs&nbsp;Arrived!</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-16T00:00:00">Wed 16 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/16/yellow-pcb">Yellow <span class="caps">PCB</span></a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-13T00:00:00">Sun 13 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/13/gerbils-away">Gerbils&nbsp;away!</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-13T00:00:00">Sun 13 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/13/testing-intensifies">Testing&nbsp;Intensifies</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-12T00:00:00">Sat 12 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/12/control-software">Control&nbsp;Software</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-11T00:00:00">Fri 11 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/11/testing-led-strips-and-a-psu">Testing <span class="caps">LED</span> strips and a <span class="caps">PSU</span></a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-10T00:00:00">Thu 10 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/10/rework-and-a-pcb">Rework and a <span class="caps">PCB</span></a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-09T00:00:00">Wed 09 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/09/aluminium-arrived-at-last">Aluminium Arrived (at&nbsp;last)</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-08T00:00:00">Tue 08 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/08/psus-arrived-aluminium-didnt">PSUs arrived (aluminium&nbsp;didn&#8217;t)</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-07T00:00:00">Mon 07 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/07/another-day-another-order">Another day, another&nbsp;order</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-06T00:00:00">Sun 06 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/06/175m-aluminium-angle-on-its-way">175m Aluminium Angle on its&nbsp;way&#8230;</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-05T00:00:00">Sat 05 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/05/approval">Approval!</a></p>
-                        <p><span class="categories-timestamp"><time datetime="2014-07-05T00:00:00">Sat 05 July 2014</time></span> <a href="http://www.thegrid.fish/2014/07/05/welcome">Welcome</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-08-09T00:00:00"> Sat 09 August 2014</time>
+    </span>
+            <span class="label label-default">By</span>
+            <a href="http://www.thegrid.fish/author/adam.html"><i class="fa fa-user"></i> Adam</a>
 
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://www.thegrid.fish/tag/software.html">software</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>We&#8217;ve been working on a piece of software to make it easy to edit the
+non-interactive grid patterns, especially ones we want syncrhonised to music.
+That software is now ready for&nbsp;use!</p>
+<p><img alt="pattern editor screenshot" src="/images/mpe.png" /></p>
+<p>It works by defining frames at any point in time, which can contain any
+pattern, and making it as easy as possible to create and edit frames, including
+beat synchronisation. It&#8217;s programmed in Python using the Pyglet library and a
+handful of&nbsp;OpenGL.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
     </section>
+
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
 
