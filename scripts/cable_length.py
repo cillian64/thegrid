@@ -9,7 +9,7 @@ for x in range(7):
         print("LED ({}, {}): {}m + {}m + {}m = {}m".format(
               x, y, xlength, ylength, pad, total))
 
-print("\nTotal length: {}\n".format(sum(lengths)))
+print("\nTotal length: {:.1f}\n".format(sum(lengths)))
 
 bins = [[], [], [], [], [], []]
 unbinned = []
@@ -24,6 +24,6 @@ for length in reversed(sorted(lengths)):
 
 for idx, b in enumerate(bins):
     print("Bin {}: {}".format(idx, ', '.join(["{}m".format(l) for l in b])))
-    print("Total length: {}m\n".format(sum(b)))
+    print("Total length: {:.1f}m\n".format(sum(b)))
 
-print("Unbinned: {}".format(', '.join(["{}m".format(l) for l in unbinned])))
+print("Unbinned: {}".format(', '.join(["{:.1f}m".format(l) for l in unbinned])))
