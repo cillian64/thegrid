@@ -6,11 +6,9 @@
 // 2k is a lot of it, but this code only uses 155 bytes so we're
 // OK really)
 
-const int datapin = 2;
-const int srckpin = 1;
-const int rckpin = 0;
-
-const int ledpin = 13;
+const int datapin = 10;
+const int srckpin = 11;
+const int rckpin = 12;
 
 void setup()
 {
@@ -19,11 +17,9 @@ void setup()
   pinMode(datapin, OUTPUT);
   pinMode(srckpin, OUTPUT);
   pinMode(rckpin, OUTPUT);
-  pinMode(ledpin, OUTPUT);
 
   digitalWrite(srckpin, LOW);
   digitalWrite(rckpin, LOW);
-  digitalWrite(ledpin, LOW);
 }
 
 void wait()
