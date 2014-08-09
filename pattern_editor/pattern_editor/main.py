@@ -1,4 +1,6 @@
+import json
 import pyglet
+import numpy as np
 from .editorwindow import EditorWindow
 
 
@@ -13,6 +15,7 @@ class Main:
         self.audiofile = audiofile
         self.window = EditorWindow(
             main=self, audiofile=audiofile)
+        self.load()
 
     def run(self):
         pyglet.clock.schedule_interval(self.tick, 1/50)
@@ -69,6 +72,8 @@ class Main:
         self.current_time = t
         for control in self.window.controls:
             control.set_time(t)
+        if t < self.start_time:
+            self.prev_time_block()
         if t > self.end_time:
             self.next_time_block()
 
@@ -106,10 +111,10 @@ class Main:
         self.window.frameline.remove_frame()
 
     def prev_frame(self):
-        pass
+        self.seek_time(self.window.frameline.prev_frame_time())
 
     def next_frame(self):
-        pass
+        self.seek_time(self.window.frameline.next_frame_time())
 
     def prev_beat(self):
         self.seek_time(self.window.audioline.prev_beat_time())
@@ -118,4 +123,21 @@ class Main:
         self.seek_time(self.window.audioline.next_beat_time())
 
     def save(self):
-        pass
+        data = self.window.frameline.frame_data
+        for time in data:
+            data[time] = data[time].astype(int).tolist()
+        with open(self.patternfile, "w") as f:
+            json.dump(data, f)
+
+    def load(self):
+        try:
+            with open(self.patternfile, "r") as f:
+                data = json.load(f)
+            indata = {}
+            for time in data:
+                indata[float(time)] = np.array(data[time]).astype(np.bool)
+            self.window.frameline.frame_times = list(sorted(indata.keys()))
+            self.window.frameline.frame_data = indata
+        except IOError:
+            print("Could not load '{}', it will be created on save."
+                  .format(self.patternfile))

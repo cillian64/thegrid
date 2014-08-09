@@ -14,7 +14,9 @@ class GridDisplay(Control):
     light_w = 15
     n_angles = 20
 
-    def __init__(self, *args, **kwarsg):
+    def __init__(self, *args, **kwargs):
+        super(GridDisplay, self).__init__(*args, **kwargs)
+        self.state = np.zeros((7, 7), dtype=np.bool)
         self.pole_verticies = pyglet.graphics.vertex_list(0, 'v2f')
         self.light_verticies = pyglet.graphics.vertex_list(0, 'v2f', 'c3B')
         self.light_colours = np.zeros(self.n_angles*3*3*7*7, dtype=np.uint8)

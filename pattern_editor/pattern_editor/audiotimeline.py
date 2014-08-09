@@ -109,21 +109,21 @@ class AudioTimeline(Timeline):
         if len(self.beats) in (0, 1):
             return self.current_time
 
-        t = self.current_time
+        t = self.current_time + 0.001
         t0 = self.first_beat
         d = self.beat_spacing
 
-        return (((t - t0)//d) + 1) * d + t0
+        return min(self.audio.duration, (((t - t0)//d) + 1) * d + t0)
 
     def prev_beat_time(self):
         if len(self.beats) in (0, 1):
             return self.current_time
 
-        t = self.current_time
+        t = self.current_time - 0.001
         t0 = self.first_beat
         d = self.beat_spacing
 
-        return ((t - t0)//d) * d + t0
+        return max(0.0, ((t - t0)//d) * d + t0)
 
     def resize(self):
         super(AudioTimeline, self).resize()
