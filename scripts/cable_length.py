@@ -1,3 +1,8 @@
+# Convert coordinate pair to a nice formatted string
+def coords(x, y):
+    letters = "ABCDEFG"
+    return "{}{}".format(letters[x], y+1)
+
 cuts = []
 
 for x in range(7):
@@ -7,8 +12,8 @@ for x in range(7):
         pad = 2.7
         total = xlength + ylength + pad
         cuts.append((total, x, y))
-        print("LED ({}, {}): {}m + {}m + {}m = {}m".format(
-              x, y, xlength, ylength, pad, total))
+        print("LED {}: {}m + {}m + {}m = {}m".format(coords(x,y), xlength,
+                                                     ylength, pad, total))
 
 print("\nTotal length: {:.1f}\n".format(sum([c[0] for c in cuts])))
 
@@ -31,6 +36,7 @@ for idx, b in enumerate(bins):
 
 print("Unbinned: {}".format(', '.join([" ".format(c[0]) for c in unbinned])))
 
+
 # Cutting list:
 print("")
 print("")
@@ -38,5 +44,5 @@ print("--== CUTTING LIST ==--")
 for idx, b in enumerate(bins):
     print("--- Reel {} ---".format(idx+1))
     for cut in b:
-        print("({},{}): {:.2f}m\t[ ]".format(cut[1], cut[2], cut[0]))
+        print("{}: {:.2f}m\t[ ]".format(coords(cut[1], cut[2]), cut[0]))
     print("")
