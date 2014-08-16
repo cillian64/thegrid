@@ -1,7 +1,7 @@
 # Convert coordinate pair to a nice formatted string
 def coords(x, y):
     letters = "ABCDEFG"
-    return "{}{}".format(letters[x], y+1)
+    return "{}{}".format(letters[y], x+1)
 
 cuts = []
 
@@ -33,8 +33,8 @@ for idx, b in enumerate(bins):
     print("Bin {}: {}".format(idx, ', '.join(
         ["{:.2f}m".format(c[0]) for c in b])))
     print("Total length: {:.1f}m\n".format(sum([c[0] for c in b])))
-
-print("Unbinned: {}".format(', '.join([" ".format(c[0]) for c in unbinned])))
+print(unbinned)
+print("Unbinned: {}".format(', '.join(["{}m ".format(c[0]) for c in unbinned])))
 
 
 # Cutting list:
@@ -44,5 +44,9 @@ print("--== CUTTING LIST ==--")
 for idx, b in enumerate(bins):
     print("--- Reel {} ---".format(idx+1))
     for cut in b:
-        print("{}: {:.2f}m\t[ ]".format(coords(cut[1], cut[2]), cut[0]))
+        print("{}: {:.1f}m\t[ ]".format(coords(cut[1], cut[2]), cut[0]))
     print("")
+
+print("--- Leftover ---")
+for cut in unbinned:
+    print("{}: {:.1f}m\t[ ]".format(coords(cut[1], cut[2]), cut[0]))
