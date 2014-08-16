@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 31 Jul 2014 00:00:00 +0100</lastBuildDate><item><title>Finished prototype PCB</title><link>http://www.thegrid.fish/2014/07/31/finished-prototype-pcb</link><description>&lt;p&gt;Having received the rest of my prototype parts, I finished off the prototype&amp;nbsp;board:&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The·Grid</title><link>http://www.thegrid.fish/</link><description></description><atom:link href="http://www.thegrid.fish/feeds/david.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 15 Aug 2014 00:00:00 +0100</lastBuildDate><item><title>Busy</title><link>http://www.thegrid.fish/2014/08/15/busy</link><description>&lt;p&gt;I&amp;#8217;ve been extraordinarily busy!  First, I&amp;#8217;ve finished filling all the PCBs,
+shown here in the flight case with my Arduino Leonardo clone, the spare &lt;span class="caps"&gt;PCB&lt;/span&gt; and
+the prototype &lt;span class="caps"&gt;PCB&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcbs" src="/images/pcbs.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb" src="/images/pcb.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;More recently, I laser cut some beautiful rings to assist with guying of the
+camera&amp;nbsp;mast:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="guying rings" src="/images/guying_rings.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I also finished cutting all the cable into correct&amp;nbsp;lengths:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="lots of cable" src="/images/lots_cable.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Hopefully tomorrow we&amp;#8217;ll be getting started on the computer vision&amp;nbsp;code&amp;#8230;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David</dc:creator><pubDate>Fri, 15 Aug 2014 00:00:00 +0100</pubDate><guid>tag:www.thegrid.fish,2014-08-15:2014/08/15/busy</guid><category>Electronics</category><category>cable</category><category>lasers</category></item><item><title>Finished prototype PCB</title><link>http://www.thegrid.fish/2014/07/31/finished-prototype-pcb</link><description>&lt;p&gt;Having received the rest of my prototype parts, I finished off the prototype&amp;nbsp;board:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="finished protoboard" src="/images/finished_top.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="heatsinks" src="/images/heatsinks.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;m very happy with the connectors (Pro Power&amp;#8217;s minipower series).  The &lt;span class="caps"&gt;PCB&lt;/span&gt;

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-09T00:00:00+01:00</updated><entry><title>Pattern Editor</title><link href="http://www.thegrid.fish/2014/08/09/pattern-editor" rel="alternate"></link><updated>2014-08-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-09:2014/08/09/pattern-editor</id><summary type="html">&lt;p&gt;We&amp;#8217;ve been working on a piece of software to make it easy to edit the
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-15T00:00:00+01:00</updated><entry><title>Busy</title><link href="http://www.thegrid.fish/2014/08/15/busy" rel="alternate"></link><updated>2014-08-15T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-08-15:2014/08/15/busy</id><summary type="html">&lt;p&gt;I&amp;#8217;ve been extraordinarily busy!  First, I&amp;#8217;ve finished filling all the PCBs,
+shown here in the flight case with my Arduino Leonardo clone, the spare &lt;span class="caps"&gt;PCB&lt;/span&gt; and
+the prototype &lt;span class="caps"&gt;PCB&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcbs" src="/images/pcbs.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="pcb" src="/images/pcb.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;More recently, I laser cut some beautiful rings to assist with guying of the
+camera&amp;nbsp;mast:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="guying rings" src="/images/guying_rings.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I also finished cutting all the cable into correct&amp;nbsp;lengths:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="lots of cable" src="/images/lots_cable.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Hopefully tomorrow we&amp;#8217;ll be getting started on the computer vision&amp;nbsp;code&amp;#8230;&lt;/p&gt;</summary><category term="Electronics"></category><category term="cable"></category><category term="lasers"></category></entry><entry><title>Pattern Editor</title><link href="http://www.thegrid.fish/2014/08/09/pattern-editor" rel="alternate"></link><updated>2014-08-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-09:2014/08/09/pattern-editor</id><summary type="html">&lt;p&gt;We&amp;#8217;ve been working on a piece of software to make it easy to edit the
 non-interactive grid patterns, especially ones we want syncrhonised to music.
 That software is now ready for&amp;nbsp;use!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="pattern editor screenshot" src="/images/mpe.png" /&gt;&lt;/p&gt;
