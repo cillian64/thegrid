@@ -6,21 +6,12 @@
 // 2k is a lot of it, but this code only uses 155 bytes so we're
 // OK really)
 
+// Pin definitions
 const int datapin = 10;
 const int srckpin = 11;
 const int rckpin = 12;
 
-void setup()
-{
-  Serial.begin(115200);
-  
-  pinMode(datapin, OUTPUT);
-  pinMode(srckpin, OUTPUT);
-  pinMode(rckpin, OUTPUT);
-
-  digitalWrite(srckpin, LOW);
-  digitalWrite(rckpin, LOW);
-}
+// Helper functions:
 
 void wait()
 {
@@ -44,6 +35,17 @@ void txbyte(int thebyte)
     txbit(0); // First bit is ignored
     for(int i=0; i<7; i++)
       txbit(thebyte >> i);
+}
+
+void setup()
+{
+  Serial.begin(115200);
+  
+  pinMode(datapin, OUTPUT);
+  pinMode(srckpin, OUTPUT);
+  pinMode(rckpin, OUTPUT);
+  digitalWrite(srckpin, LOW);
+  digitalWrite(rckpin, LOW);  
 }
 
 void loop()
