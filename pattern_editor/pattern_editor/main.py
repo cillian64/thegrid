@@ -123,7 +123,7 @@ class Main:
         self.seek_time(self.window.audioline.next_beat_time())
 
     def save(self):
-        data = self.window.frameline.frame_data
+        data = self.window.frameline.frame_data.copy()
         for time in data:
             data[time] = data[time].astype(int).tolist()
         with open(self.patternfile, "w") as f:
