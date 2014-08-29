@@ -13,14 +13,18 @@ logger = logging.getLogger(__name__)
 
 playlists = {
     "Cool Patterns": [
-        ("Rectangles", 10),
-        ("Wave", 10),
-        ("Zoom", 10),
-        ("Zoomout", 10),
-        ("Smile", 10)
-    ],
-}
-
+        ("Sparkle", 180),
+        ("Rectangles", 60),
+        ("Wave", 100),
+        ("Zoom", 30),
+        ("Zoomout", 30),
+        ("Zoom", 30),
+        ("Zoomout", 30),
+        ("Zoom", 30),
+        ("Zoomout", 30),
+        ("Zoom", 30),
+        ("Zoomout", 30)
+        ]}
 
 class Playlist(Pattern):
     def __init__(self, playlist, tracking):
