@@ -7,6 +7,8 @@ Person detection and tracking.
 import logging
 from multiprocessing import Process
 
+from .cv import get_centroids
+
 logger = logging.getLogger(__name__)
 
 try:
@@ -18,7 +20,8 @@ except ImportError:
 
 def start_tracking(shared_dict):
     logger.info("Tracking starting up")
-    shared_dict['hello'] = "hi"
+    while True:
+        shared_dict['centroids'] = get_centroids()
 
 
 class Tracking:
@@ -27,6 +30,7 @@ class Tracking:
             target=start_tracking, args=(shared_dict,))
         self.process.daemon = True
         self.process.start()
+        self.data = shared_dict
 
     def stop(self):
         self.process.terminate()

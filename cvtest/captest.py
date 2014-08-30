@@ -36,7 +36,7 @@ def draw_grid(frame, corners, splits=6):
         cv2.line(frame, points[1][i - 1], points[3][-i], (0, 255, 0), 2)
 
 
-cap = cv2.VideoCapture(-1)
+cap = cv2.VideoCapture(1)
 
 cv2.namedWindow('image')
 cv2.setMouseCallback('image', mouse_cb)
