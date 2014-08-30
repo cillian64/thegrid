@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-15T00:00:00+01:00</updated><entry><title>Busy</title><link href="http://www.thegrid.fish/2014/08/15/busy" rel="alternate"></link><updated>2014-08-15T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-08-15:2014/08/15/busy</id><summary type="html">&lt;p&gt;I&amp;#8217;ve been extraordinarily busy!  First, I&amp;#8217;ve finished filling all the PCBs,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-30T00:00:00+01:00</updated><entry><title>Welcome to EMF!</title><link href="http://www.thegrid.fish/2014/08/30/welcome-to-emf" rel="alternate"></link><updated>2014-08-30T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-08-30:2014/08/30/welcome-to-emf</id><summary type="html">&lt;p&gt;Welcome to &lt;span class="caps"&gt;EMF&lt;/span&gt;! A lot of you will have seen us setup last night for a few
+hours, so thanks to everybody who dropped by.  Hopefully later today we&amp;#8217;ll set
+up again and keep running continuously for the rest of the weekend.  Also,
+we&amp;#8217;re hoping to get the interactivity working by&amp;nbsp;tonight.&lt;/p&gt;
+&lt;p&gt;More importantly, here&amp;#8217;s how to get started contributing your own patterns.
+All of our code is available at &lt;a href="https://www.github.com/cillian64/thegrid/"&gt;Our
+github&lt;/a&gt;.  This includes a number of
+patterns which you can copy and modify, and everything you need to test them
+out on your own laptop.  Once you&amp;#8217;re happy, make a pull request against our
+repository and we&amp;#8217;ll include the good&amp;nbsp;ones.&lt;/p&gt;
+&lt;p&gt;If you want to get in contact with us, drop an email to
+&lt;a href="mailto:the.grid@drhouse.me.uk"&gt;the.grid@drhouse.me.uk&lt;/a&gt;, tweet us at
+&lt;a href="https://www.twitter.com/__thegrid"&gt;__thegrid&lt;/a&gt;, or come find us at HABville or
+milling around&amp;nbsp;The·Grid.&lt;/p&gt;</summary><category term="EMF"></category></entry><entry><title>Busy</title><link href="http://www.thegrid.fish/2014/08/15/busy" rel="alternate"></link><updated>2014-08-15T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-08-15:2014/08/15/busy</id><summary type="html">&lt;p&gt;I&amp;#8217;ve been extraordinarily busy!  First, I&amp;#8217;ve finished filling all the PCBs,
 shown here in the flight case with my Arduino Leonardo clone, the spare &lt;span class="caps"&gt;PCB&lt;/span&gt; and
 the prototype &lt;span class="caps"&gt;PCB&lt;/span&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="pcbs" src="/images/pcbs.jpg" /&gt;&lt;/p&gt;
