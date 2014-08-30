@@ -9,6 +9,33 @@ github&lt;/a&gt;.  This includes a number of
 patterns which you can copy and modify, and everything you need to test them
 out on your own laptop.  Once you&amp;#8217;re happy, make a pull request against our
 repository and we&amp;#8217;ll include the good&amp;nbsp;ones.&lt;/p&gt;
+&lt;p&gt;Setup&amp;nbsp;steps:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/cillian64/thegrid.git&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;thegrid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;thegrid&lt;/span&gt;
+&lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sample&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="p"&gt;..&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;thegrid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This should start up the control server. To load a pattern, in a new window&amp;nbsp;run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;thegrid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;thegrid&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;load_pattern&lt;/span&gt; &lt;span class="n"&gt;Sparkle&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Replacing &lt;code&gt;Sparkle&lt;/code&gt; with whichever pattern&amp;nbsp;name.&lt;/p&gt;
+&lt;p&gt;A sample pattern is available in &lt;code&gt;control/thegrid/sample.py&lt;/code&gt;. The key concept
+is that you will need to make a new class, &lt;code&gt;YourPattern&lt;/code&gt;, which inherits from
+&lt;code&gt;Pattern&lt;/code&gt;, and decorate it with &lt;code&gt;@register_pattern("Your Pattern Name")&lt;/code&gt;. It
+ust contain at least &lt;code&gt;update(self)&lt;/code&gt; which should return &lt;code&gt;(a 7x7 numpy bool
+array, the time in seconds until the next frame)&lt;/code&gt;. &lt;code&gt;Pattern&lt;/code&gt; and
+&lt;code&gt;register_pattern&lt;/code&gt; are imported as &lt;code&gt;from .pattern import Pattern,
+register_pattern&lt;/code&gt;. See that sample.py file for a full&amp;nbsp;example.&lt;/p&gt;
+&lt;p&gt;Add your own new pattern as a .py file in &lt;code&gt;patterns&lt;/code&gt;, then add &lt;code&gt;from . import
+your_file_name&lt;/code&gt; to &lt;code&gt;patterns/__init__.py&lt;/code&gt; to cause it to get imported and&amp;nbsp;registered.&lt;/p&gt;
+&lt;p&gt;Drop us a tweet @__thegrid or email (below) for any other help. Either send us
+your new pattern.py file or better yet, open a pull request on&amp;nbsp;GitHub.&lt;/p&gt;
 &lt;p&gt;If you want to get in contact with us, drop an email to
 &lt;a href="mailto:the.grid@drhouse.me.uk"&gt;the.grid@drhouse.me.uk&lt;/a&gt;, tweet us at
 &lt;a href="https://www.twitter.com/__thegrid"&gt;__thegrid&lt;/a&gt;, or come find us at HABville or

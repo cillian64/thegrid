@@ -80,10 +80,34 @@ github</a>.  This includes a number of
 patterns which you can copy and modify, and everything you need to test them
 out on your own laptop.  Once you&#8217;re happy, make a pull request against our
 repository and we&#8217;ll include the good&nbsp;ones.</p>
-<p>If you want to get in contact with us, drop an email to
-<a href="mailto:the.grid@drhouse.me.uk">the.grid@drhouse.me.uk</a>, tweet us at
-<a href="https://www.twitter.com/__thegrid">__thegrid</a>, or come find us at HABville or
-milling around&nbsp;The·Grid.</p>
+<p>Setup&nbsp;steps:</p>
+<div class="highlight"><pre><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/cillian64/thegrid.git</span>
+<span class="n">cd</span> <span class="n">thegrid</span><span class="o">/</span><span class="n">control</span><span class="o">/</span><span class="n">thegrid</span>
+<span class="n">cp</span> <span class="n">settings</span><span class="p">.</span><span class="n">py</span><span class="p">.</span><span class="n">sample</span> <span class="n">settings</span><span class="p">.</span><span class="n">py</span>
+<span class="n">cd</span> <span class="p">..</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">thegrid</span><span class="p">.</span><span class="n">control</span>
+</pre></div>
+
+
+<p>This should start up the control server. To load a pattern, in a new window&nbsp;run:</p>
+<div class="highlight"><pre><span class="n">cd</span> <span class="n">thegrid</span><span class="o">/</span><span class="n">control</span><span class="o">/</span><span class="n">thegrid</span>
+<span class="n">python</span> <span class="n">api</span><span class="p">.</span><span class="n">py</span> <span class="n">load_pattern</span> <span class="n">Sparkle</span>
+</pre></div>
+
+
+<p>Replacing <code>Sparkle</code> with whichever pattern&nbsp;name.</p>
+<p>A sample pattern is available in <code>control/thegrid/sample.py</code>. The key concept
+is that you will need to make a new class, <code>YourPattern</code>, which inherits from
+<code>Pattern</code>, and decorate it with <code>@register_pattern("Your Pattern Name")</code>. It
+ust contain at least <code>update(self)</code> which should return <code>(a 7x7 numpy bool
+array, the time in seconds until the next frame)</code>. <code>Pattern</code> and
+<code>register_pattern</code> are imported as <code>from .pattern import Pattern,
+register_pattern</code>. See that sample.py file for a full&nbsp;example.</p>
+<p>Add your own new pattern as a .py file in <code>patterns</code>, then add <code>from . import
+your_file_name</code> to <code>patterns/__init__.py</code> to cause it to get imported and&nbsp;registered.</p>
+<p>Drop us a tweet @__thegrid or email (below) for any other help. Either send us
+your new pattern.py file ...</p>
+                    <a class="btn btn-default btn-xs" href="http://www.thegrid.fish/2014/08/30/welcome-to-emf">more ...</a>
                 </div>
             </article>
             <hr/>
@@ -105,23 +129,23 @@ milling around&nbsp;The·Grid.</p>
                 <li class="list-group-item"><a href="http://www.thegrid.fish/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                     <ul class="list-group " id="tags">
                         <li class="list-group-item tag-1">
-                            <a href="http://www.thegrid.fish/tag/electronics.html">
-                                Electronics
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-1">
                             <a href="http://www.thegrid.fish/tag/power.html">
                                 power
                             </a>
                         </li>
-                        <li class="list-group-item tag-2">
-                            <a href="http://www.thegrid.fish/tag/software.html">
-                                software
+                        <li class="list-group-item tag-1">
+                            <a href="http://www.thegrid.fish/tag/electronics.html">
+                                Electronics
                             </a>
                         </li>
                         <li class="list-group-item tag-2">
                             <a href="http://www.thegrid.fish/tag/leds.html">
                                 leds
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://www.thegrid.fish/tag/software.html">
+                                software
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
@@ -135,8 +159,8 @@ milling around&nbsp;The·Grid.</p>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://www.thegrid.fish/tag/testing.html">
-                                testing
+                            <a href="http://www.thegrid.fish/tag/emf.html">
+                                EMF
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -145,8 +169,8 @@ milling around&nbsp;The·Grid.</p>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://www.thegrid.fish/tag/emf.html">
-                                EMF
+                            <a href="http://www.thegrid.fish/tag/testing.html">
+                                testing
                             </a>
                         </li>
                     </ul>
