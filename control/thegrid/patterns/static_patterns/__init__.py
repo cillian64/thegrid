@@ -3,7 +3,7 @@ static_pattern.py
 
 Playlist of cool static patterns.
 """
-
+from __future__ import division
 import os
 import logging
 import numpy as np

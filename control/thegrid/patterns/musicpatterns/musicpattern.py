@@ -8,7 +8,10 @@ from.
 import logging
 logger = logging.getLogger(__name__)
 
-import pyglet
+try:
+    import pyglet
+except ImportError:
+    print("Could not import pyglet, music patterns won't be available")
 from ..pattern import Pattern
 from math import floor
 

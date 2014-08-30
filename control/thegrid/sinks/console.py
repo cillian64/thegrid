@@ -4,6 +4,7 @@ console.py
 Visualise grid output state on an console terminal.
 """
 
+from __future__ import print_function
 import logging
 from .sink import Sink, register_sink
 

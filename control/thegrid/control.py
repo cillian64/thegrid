@@ -9,7 +9,10 @@ HTTP API for remote control.
 
 import sys
 import time
-import queue
+try:
+    from queue import Empty
+except ImportError:
+    from Queue import Empty
 import signal
 import logging
 from multiprocessing import Manager, Queue
@@ -70,7 +73,7 @@ class Control:
             # Handle incoming API calls
             try:
                 self.process_command(*self.cmd_queue.get_nowait())
-            except queue.Empty:
+            except Empty:
                 pass
 
             if not self.pattern:
