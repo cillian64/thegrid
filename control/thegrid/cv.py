@@ -8,11 +8,15 @@ import numpy as np
 
 diff_th = 20
 closing_kernel = np.ones((10, 10), np.uint8)
-grid_corners = ((57, 346), (159, 211), (508, 183), (649, 303))
+grid_corners = ((68, 334), (174, 207), (525, 180), (658, 293))
 grid_left = grid_corners[0][0] - 20
 grid_right = grid_corners[3][0] + 20
 grid_top = grid_corners[0][1] + 20
 grid_bottom = grid_corners[1][1] - 20
+
+trans = cv2.getPerspectiveTransform(
+    np.array(grid_corners, dtype=np.float32),
+    np.array(((0, 6), (0, 0), (6, 0), (6, 6)), dtype=np.float32))
 
 
 def draw_grid(frame, corners, splits=6):
@@ -65,8 +69,14 @@ def get_centroids():
         else:
             cv2.rectangle(draw_frame, (x, y), (x+w, y+h), (0, 255, 0))
             cv2.circle(draw_frame, (cx, cy), 5, (0, 255, 0), -1)
-            cxx = (cx - grid_left) / (grid_right - grid_left)
-            cyy = (cy - grid_bottom) / (grid_top - grid_bottom)
+            #cxx = (cx - grid_left) / (grid_right - grid_left)
+            #cyy = (cy - grid_bottom) / (grid_top - grid_bottom)
+            src = np.array([centroid], dtype=np.float32)
+            rv = cv2.perspectiveTransform(
+                np.array([[centroid]], dtype=np.float32), trans)
+            #rv = np.dot(trans, [centroid[0], centroid[1], 1.0])
+            #cxx, cyy, cww = rv
+            cxx, cyy = rv[0][0]
             exported_centroids.append((cxx, cyy))
     draw_grid(draw_frame, grid_corners)
     cv2.imshow('video', draw_frame.astype(np.uint8))

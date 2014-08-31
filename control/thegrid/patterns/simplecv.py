@@ -14,8 +14,8 @@ class SimpleCV(Pattern):
     def update(self):
         grid = np.zeros((7, 7), dtype=np.bool)
         for centroid in self.tracking.data['centroids']:
-            x = max(0, min(6, int(round(centroid[0] * 7))))
-            y = max(0, min(6, int(round(centroid[1] * 7))))
+            x = max(0, min(6, int(round(centroid[0]))))
+            y = max(0, min(6, int(round(centroid[1]))))
             logger.info("centroid={},{} grid={},{}".format(
                 centroid[0], centroid[1], x, y))
             self.lit[(y, 6-x)] = time.time()
