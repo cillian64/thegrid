@@ -24,7 +24,7 @@ class Lightning(Pattern):
 		if (full):
 			newgrid = np.zeros((7, 7), dtype=np.bool)
 			#Initiate a seed for the lightning
-			newgrid[random.randint(0,7),random.randint(0,7)] = True
+			newgrid[random.randint(0,6),random.randint(0,6)] = True
 			full = False
 			if invert:
 				invert = False
