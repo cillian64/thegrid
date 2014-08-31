@@ -1,6 +1,9 @@
 from __future__ import division
 import sys
-import cv2
+try:
+    import cv2
+except ImportError:
+    cv2 = None # This will crash later but it doesn't matter.
 import numpy as np
 
 diff_th = 20
@@ -34,8 +37,9 @@ def draw_grid(frame, corners, splits=6):
         cv2.line(frame, points[0][i - 1], points[2][-i], (0, 155, 0), 1)
         cv2.line(frame, points[1][i - 1], points[3][-i], (0, 155, 0), 1)
 
-cap = cv2.VideoCapture(1);
-last_frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
+if cv2 is not None:
+    cap = cv2.VideoCapture(1);
+    last_frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
 
 def get_centroids():
     global last_frame
