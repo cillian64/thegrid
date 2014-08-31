@@ -23,8 +23,7 @@ playlists = {
         ("Zoomout", 30),
         ("Zoom", 30),
         ("Zoomout", 30),
-        ("Zoom", 30),
-        ("Zoomout", 30),
+        ("Lightning", 120),
 #        ("SimpleCV", 120),
         ]}
 
