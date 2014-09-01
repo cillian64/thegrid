@@ -14,9 +14,10 @@ grid_right = grid_corners[3][0] + 20
 grid_top = grid_corners[0][1] + 20
 grid_bottom = grid_corners[1][1] - 20
 
-trans = cv2.getPerspectiveTransform(
-    np.array(grid_corners, dtype=np.float32),
-    np.array(((0, 6), (0, 0), (6, 0), (6, 6)), dtype=np.float32))
+if cv2:
+    trans = cv2.getPerspectiveTransform(
+        np.array(grid_corners, dtype=np.float32),
+        np.array(((0, 6), (0, 0), (6, 0), (6, 6)), dtype=np.float32))
 
 
 def draw_grid(frame, corners, splits=6):
