@@ -25,9 +25,8 @@
 \newcommand{\thegrid}{\textsc{the\textperiodcentered grid}\xspace}
 \newcommand{\amaze}{\textsc{aMAZE}\xspace}
 
-\title{\thegrid\\\small{\textsc{Technicolour Edition}}}
-\author{\small{David Turner (dwt27@cl.cam.ac.uk)}\\
-        \small{Adam Greig (ag611@eng.cam.ac.uk)}}
+\title{\thegrid\\\small{\textsc{interactive polychromatic lighting array}}}
+\author{}
 \date{} %Suppress date
 
 % Begin the document
@@ -46,23 +45,36 @@ the spectacle.
 \vspace{5mm}
 
 \thegrid is a $7\times7$ matrix of aluminium poles, illuminated by RGB LED
-strips coordinated by a central control system.  User presence is detected by
-an infrared computer vision system allowing both predefined and interactive
-displays.
+strips coordinated by an easily extensible software system.  User presence is
+detected by an infrared computer vision system allowing both predefined and
+interactive displays.
 \\
 ~
 \\
 \textbf{Requirements:} $14\metre \times 24\metre$ unlit ground, mains power
-($1\kilo\watt$ peak).
+($1.2\kilo\watt$ peak).
 \end{abstract}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{pics/render1.png}
-    \caption{A computer graphics simulation of \thegrid lit up in white.}
+    \includegraphics[width=0.8\textwidth]{pics/thegrid_at_emf14_1.jpg}
+    \caption{\thegrid installed at EMF 2014}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/thegrid_at_emf14_2.jpg}
+    \caption{The computer vision system detecting a user in \thegrid}
+\end{figure}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pics/thegrid_at_emf14_4.jpg}
+    \caption{An aerial view of \thegrid at EMF 2014}
+\end{figure}
+
 \clearpage
 \section{Design}
 \subsection{Layout}
@@ -135,59 +147,56 @@ sturdy enough for the camera and IR floodlight load.
 
 \subsection{Electrical and Electronics}
 \subsubsection{Cabling}
-% TODO: Check power of RGB strip
-Each LED strip consumes $18\watt$ when active.  The wiring for one strip will
+Each LED strip consumes $24\watt$ when active.  The wiring for one strip will
 consist of twin core cable carrying power and return between the strip and the
 control tent.  Additionally, a coaxial connection will run from the
 interactivity camera to the control tent.
 
-Ideally, all cabling inside \thegrid will be buried slightly below ground to
-avoid a trip hazard.  If this is not possible, cabling could be run between the
-tops of poles at a height of $2.5\metre$.
+All cabling inside \thegrid will be buried slightly below ground to
+avoid a trip hazard.
 
 For the selected layout, a total of $462\metre$ of twin-core wire is required,
 plus approximately $50\metre$ slack. See Appendix~\ref{app:cables} for detailed
 cable layouts.
 
 For the $0.75\milli\metre^2$ cable we have selected, the voltage drop on the
-longest segment is $1.34\volt$, which is well within acceptable limits for the
+longest segment is $1.79\volt$, which is well within acceptable limits for the
 LED strip. See Appendix~\ref{app:cabledrop} for details.
 
 
 \subsubsection{Switching}
-Each LED strip will be controlled using three MOSFET drivers on a control unit
-per-pole. These are networked to a central control computer.
+Each LED strip has an intelligent local control unit which drives the three
+colour channels using MOSFETs. Each control unit is networked over a hardwired
+serial link to the central controller.
 
 \subsubsection{Power}
-% TODO check maximum power usage
-The maximum power consumption of \thegrid will be $74\ampere$.  This will be
-provided by four $550\watt$ ATX power supplies, each rated for $32\ampere$ on
-its $+12\volt$ rail.  See Appendix~\ref{app:power} for details.
+The maximum power consumption of \thegrid will be $98\ampere$.  This will be
+provided by four $360\watt$ ATX power supplies, each rated for $30\ampere$ over
+their three $+12\volt$ rail.  See Appendix~\ref{app:power} for details.
 
 \subsubsection{Lighting}
-Each pole is illuminated by half of a $5\metre$ strip of 30 LED/$\metre$
-5050-sized RGB LEDs. These strips take 12VDC input and are readily obtained
-inside waterproof silicone jackets.
+Each pole is illuminated by a $5\metre$ strip of 30 LED/$\metre$ 5050-sized RGB
+LEDs. These strips take 12VDC input and are readily obtained inside waterproof
+epoxy jackets.
 
 \subsubsection{Sound}
 Each pole will also be equipped with a sounder unit which can emit a variety of
 different sound effects, including clicks/beeps/buzzes/etc.
 
 \subsection{Software and Control}
-A laptop in the control tent will generate display patterns and handle
+A computer in the control tent will generate display patterns and handle
 interactivity.  It will transmit lighting data via a serial link to the
 controllers on each pole.
 
 An infrared-capable camera mounted on a mast in the backstage area senses
 movement and tracks the location of people inside \thegrid to coordinate
-interactive applications and patterns.  Illumination will be provided by IR
-floodlights.
+interactive applications and patterns.
 
-We anticipate using OpenCV to detect areas of motion in successive frames and
-mapping these areas onto an approximately chest-height plane which is gridded
-up into the corresponding \thegrid cells.  This should enable robust and
-low-CPU detection of which cell a person has entered.  The use of IR
-illumination provides high contrast and operation in low visible illumination.
+We use OpenCV to detect areas of motion in successive frames and map these
+areas onto an approximately chest-height plane which is gridded up into the
+corresponding \thegrid cells.  This enables robust and low-CPU detection of
+which cell a person has entered.  The use of IR illumination provides high
+contrast and operation in low visible illumination.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applications}
@@ -279,13 +288,13 @@ problematic patterns such as flashing.
         Item & Unit Cost (GBP) & Quantity & Subtotal (GBP) \\
         \hline
         Existing \thegrid Equipment              &  0.00 &  1 &   0.00 \\
-        New 30LED/m 5m RGB LED strip             &  7.50 & 50 & 375.00 \\
-        New controller units$^\dagger$           &  8.00 & 50 & 400.00 \\
+        New 30LED/m 5m RGB LED strip             &  7.00 & 50 & 350.00 \\
+        New controller units$^\dagger$           &  7.00 & 50 & 350.00 \\
 
                                 &&&\\
                                 &&&\\
 
-                 \textbf{Total} & & & \textbf{775.00}\\
+                 \textbf{Total} & & & \textbf{700.00}\\
 
     \end{tabular}
 \end{table}
@@ -599,14 +608,14 @@ give deflection of $0.248~\metre$ and $0.559~\metre$ respectively.
 \section{Electrical Design Verification}
 \subsection{Power and Current Consumption}
 \label{app:power}
-The power consumption of the LED strip is $7.2~\watt/\metre$.  For 49 poles,
-this gives a total peak power consumption of $882~\watt$.  Using Ohm's Law and
+The power consumption of the LED strip is $4.8~\watt/\metre$.  For 49 poles,
+this gives a total peak power consumption of $1176~\watt$.  Using Ohm's Law and
 the definition of electrical power:
 
 $$ V = IR $$
 $$ P = VI $$
 
-the maximum current flow in \thegrid is $73.5~\ampere$ at $12~\volt$ DC,
+the peak current draw in \thegrid is $98~\ampere$ at $12~\volt$ DC,
 although no single conductor carries the entire current.
 
 \subsection{Cabling Resistance and Voltage Drop}
@@ -616,44 +625,7 @@ $0.75\milli\metre^2$, or $7.5 \times 10^{-7}~\metre^2$ per conductor.  The
 resistivity of copper is $1.68 \times 10^{-8}~\ohm\metre$ at room temperature.
 With a maximum cable length of around $20~\metre$ the total conductor length is
 $40~\metre$, giving a resistance of $0.896~\ohm$.  With a current of
-$1.5~\ampere$ per pole, this gives a voltage drop of $1.34~\volt$.
-
-\clearpage
-\section{Preliminary Testing}
-A prototype pole was constructed from $20\milli\metre \times 20\milli\metre
-\times 1.5\milli\metre$ aluminium section (c.f. $19\milli\metre \times
-19\milli\metre \times 1.59\milli\metre$ for the final design).  We attached RGB
-LED strip powered by a bench power supply.  This test confirmed the structural
-rigidity of the pole design as well as the effectiveness of lighting with
-30LED/$\metre$ strip.  We also confirmed the acceptable voltage range of the
-LED strip.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[height=15cm]{pics/protopole.jpg}
-    \caption{Prototype pole}
-\end{figure}
-
-\clearpage
-To verify the basis of the computer vision system, a night vision camera at a
-height of $4\metre$ was used to observe a person at a distance of $10\metre$,
-with and without an additional IR flood-light.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=10cm]{pics/ir_no_flood.png}
-    \caption{Night vision camera without IR flood-light}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=10cm]{pics/ir_flood.png}
-    \caption{Night vision camera with IR flood-light}
-\end{figure}
-
-$12\volt$ relays with $10\ampere$ rated contact current were found to give a
-satisfying click.
+$2~\ampere$ per pole, this gives a voltage drop of $1.79~\volt$.
 
 \end{appendices}
 \end{document}
-
