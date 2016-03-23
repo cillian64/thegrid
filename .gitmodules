@@ -1,0 +1,3 @@
+[submodule "pcb2/agg-kicad"]
+	path = pcb2/agg-kicad
+	url = git@github.com:cillian64/agg-kicad.git
