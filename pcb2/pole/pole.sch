@@ -31,6 +31,7 @@ LIBS:valves
 LIBS:lmx93
 LIBS:swd_tc
 LIBS:stm32f0xxkxux
+LIBS:testpad
 LIBS:pole-cache
 EELAYER 25 0
 EELAYER END
@@ -583,8 +584,6 @@ F 3 "http://www.farnell.com/datasheets/1916063.pdf" H 9450 5600 50  0001 C CNN
 	1    9450 5600
 	1    0    0    -1  
 $EndComp
-Text Label 4500 3000 2    60   ~ 0
-NRST
 Text Label 5500 3600 0    60   ~ 0
 SWDIO
 Text Label 5500 3700 0    60   ~ 0
@@ -713,5 +712,52 @@ F 2 "" H 3550 2500 50  0000 C CNN
 F 3 "" H 3550 2500 50  0000 C CNN
 	1    3550 2500
 	1    0    0    -1  
+$EndComp
+$Comp
+L +3V3 #PWR029
+U 1 1 56F86196
+P 4200 2500
+F 0 "#PWR029" H 4200 2350 50  0001 C CNN
+F 1 "+3V3" H 4200 2640 50  0000 C CNN
+F 2 "" H 4200 2500 50  0000 C CNN
+F 3 "" H 4200 2500 50  0000 C CNN
+	1    4200 2500
+	1    0    0    -1  
+$EndComp
+Connection ~ 4200 2500
+Connection ~ 3850 2400
+$Comp
+L +3V3 #PWR030
+U 1 1 56F861DA
+P 3850 2400
+F 0 "#PWR030" H 3850 2250 50  0001 C CNN
+F 1 "+3V3" H 3850 2540 50  0000 C CNN
+F 2 "" H 3850 2400 50  0000 C CNN
+F 3 "" H 3850 2400 50  0000 C CNN
+	1    3850 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3V3 #PWR031
+U 1 1 56F8621A
+P 3400 2300
+F 0 "#PWR031" H 3400 2150 50  0001 C CNN
+F 1 "+3V3" H 3400 2440 50  0000 C CNN
+F 2 "" H 3400 2300 50  0000 C CNN
+F 3 "" H 3400 2300 50  0000 C CNN
+	1    3400 2300
+	1    0    0    -1  
+$EndComp
+Connection ~ 3400 2300
+$Comp
+L TESTPAD TP1
+U 1 1 56F866D2
+P 4500 3000
+F 0 "TP1" H 4500 3050 50  0000 L CNN
+F 1 "RST" H 4500 2925 50  0001 L CNN
+F 2 "agg:TESTPAD" H 4500 2850 50  0001 L CNN
+F 3 "" H 4500 3000 50  0001 C CNN
+	1    4500 3000
+	-1   0    0    1   
 $EndComp
 $EndSCHEMATC

@@ -1,4 +1,4 @@
-update=Sun 27 Mar 2016 19:43:44 BST
+update=Sun 27 Mar 2016 21:42:29 BST
 version=1
 last_client=kicad
 [pcbnew]
@@ -61,3 +61,4 @@ LibName29=valves
 LibName30=ic/analogue/lmx93
 LibName31=connector/swd_tc
 LibName32=ic/microcontroller/stm32f0xxkxux
+LibName33=misc/testpad
