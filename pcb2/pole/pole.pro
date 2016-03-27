@@ -1,4 +1,4 @@
-update=Tue 22 Mar 2016 22:51:24 GMT
+update=Sun 27 Mar 2016 19:43:44 BST
 version=1
 last_client=kicad
 [pcbnew]
@@ -58,6 +58,6 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=ic/microcontroller/stm32f0xxkxtx
-LibName31=ic/analogue/lmx93
-LibName32=connector/swd_tc
+LibName30=ic/analogue/lmx93
+LibName31=connector/swd_tc
+LibName32=ic/microcontroller/stm32f0xxkxux
