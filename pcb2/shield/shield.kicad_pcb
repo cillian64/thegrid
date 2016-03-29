@@ -1,4 +1,4 @@
-(kicad_pcb (version 4) (host pcbnew 4.0.2-4+6225~38~ubuntu15.10.1-stable)
+(kicad_pcb (version 4) (host pcbnew 0.201601071449+6428~40~ubuntu14.04.1-stable)
 
   (general
     (links 40)
@@ -62,11 +62,11 @@
     (mod_text_width 0.15)
     (pad_size 1.524 1.524)
     (pad_drill 0.762)
-    (pad_to_mask_clearance 0.2)
+    (pad_to_mask_clearance 0)
     (aux_axis_origin 0 0)
     (visible_elements FFFFFF7F)
     (pcbplotparams
-      (layerselection 0x010f8_80000001)
+      (layerselection 0x010f8_ffffffff)
       (usegerberextensions true)
       (excludeedgelayer true)
       (linewidth 0.100000)
