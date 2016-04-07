@@ -1,29 +1,35 @@
-# Convert coordinate pair to a nice formatted string
-def coords(x, y):
-    letters = "ABCDEFG"
-    return "{}{}".format(letters[y], x+1)
+#!/usr/bin/python3
+
+print("Serial cable patch lengths")
+
+pole_spacing = 2.0      # Spacing between grid poles
+reel_length = 98.0     # Length of reels of serial cable
+real_reel_length = 100
+inside_col_slack = 1.2  # Slack added to inter-pole patches in each column
+end_col_slack = 3.2     # Slack added to patches between cols and tent
 
 cuts = []
 
 for x in range(7):
-    for y in range(7):
-        xlength = 12 - 2 * x
-        ylength = 2 * abs(y - 3)
-        pad = 2.7
-        total = xlength + ylength + pad
-        cuts.append((total, x, y))
-        print("LED {}: {}m + {}m + {}m = {}m".format(coords(x,y), xlength,
-                                                     ylength, pad, total))
+    # 2m patches between poles in each column
+    for y in range(1, 7):
+        cuts.append(pole_spacing + inside_col_slack)
+    # Variable length patches from tents to starts of columns
+    cuts.append(pole_spacing * abs(x - 3) + end_col_slack)
 
-print("\nTotal length: {:.1f}\n".format(sum([c[0] for c in cuts])))
+# Spares: one inter-pole and one end-col
+cuts.append(pole_spacing + inside_col_slack)
+cuts.append(pole_spacing * abs(x - 3) + end_col_slack)
 
-bins = [[], [], [], [], [], []]
+
+print("\nTotal length: {:.1f}\n".format(sum(cuts)))
+
+bins = [[], []]
 unbinned = []
 
-for cut in reversed(sorted(cuts, key=lambda cut: cut[0])):
-    length = cut[0]
+for cut in reversed(sorted(cuts)):
     for b in bins:
-        if 100.0 - sum([c[0] for c in b]) >= length:
+        if reel_length - sum(b) >= cut:
             b.append(cut)
             break
     else:
@@ -31,10 +37,15 @@ for cut in reversed(sorted(cuts, key=lambda cut: cut[0])):
 
 for idx, b in enumerate(bins):
     print("Bin {}: {}".format(idx, ', '.join(
-        ["{:.2f}m".format(c[0]) for c in b])))
-    print("Total length: {:.1f}m\n".format(sum([c[0] for c in b])))
-print(unbinned)
-print("Unbinned: {}".format(', '.join(["{}m ".format(c[0]) for c in unbinned])))
+        ["{:.2f}m".format(cut) for cut in b])))
+    print("Total length: {:.1f}m, spare {:.1f}m\n".format(sum(b),
+        reel_length - sum(b)))
+
+if len(unbinned) != 0:
+    print("Unbinned: {}".format(
+        ', '.join(["{}m ".format(c) for c in unbinned])))
+else:
+    print("None unbinned.")
 
 
 # Cutting list:
@@ -44,9 +55,11 @@ print("--== CUTTING LIST ==--")
 for idx, b in enumerate(bins):
     print("--- Reel {} ---".format(idx+1))
     for cut in b:
-        print("{}: {:.1f}m\t[ ]".format(coords(cut[1], cut[2]), cut[0]))
+        print("{:.1f}m\t[ ]".format(cut))
+    print("Leftover: {:.1f}m".format(real_reel_length - sum(b)))
     print("")
 
-print("--- Leftover ---")
-for cut in unbinned:
-    print("{}: {:.1f}m\t[ ]".format(coords(cut[1], cut[2]), cut[0]))
+if len(unbinned) != 0:
+    print("--- Leftover ---")
+    for cut in unbinned:
+        print("{:.1f}m\t[ ]".format(cut))
