@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/auto/homes/dwt27/git/thegrid/pcb2/shield/shield.sch</source>
-    <date>Tue 29 Mar 2016 12:44:39 BST</date>
-    <tool>Eeschema 4.0.2-4+6225~38~ubuntu14.04.1-stable</tool>
+    <source>/home/dwt27/git/thegrid/pcb2/shield/shield.sch</source>
+    <date>Mon 11 Apr 2016 00:09:33 BST</date>
+    <tool>Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/auto/homes/dwt27/git/thegrid/pcb2/pole/pole.sch</source>
-    <date>Tue 29 Mar 2016 12:25:57 BST</date>
-    <tool>Eeschema 4.0.2-4+6225~38~ubuntu14.04.1-stable</tool>
+    <source>/home/dwt27/git/thegrid/pcb2/pole/pole.sch</source>
+    <date>Tue 12 Apr 2016 20:10:03 BST</date>
+    <tool>Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -21,7 +21,7 @@
   <components>
     <comp ref="IC1">
       <value>LMx93</value>
-      <footprint>SOIC-8</footprint>
+      <footprint>agg:SOIC-8</footprint>
       <datasheet>http://www.ti.com/lit/ds/symlink/lm393.pdf</datasheet>
       <fields>
         <field name="Farnell">2342314</field>
@@ -516,26 +516,26 @@
     </libpart>
   </libparts>
   <libraries>
-    <library logical="device">
-      <uri>/usr/share/kicad/library/device.lib</uri>
+    <library logical="regul">
+      <uri>/usr/share/kicad/library/regul.lib</uri>
     </library>
     <library logical="conn">
       <uri>/usr/share/kicad/library/conn.lib</uri>
     </library>
-    <library logical="regul">
-      <uri>/usr/share/kicad/library/regul.lib</uri>
-    </library>
     <library logical="lmx93">
-      <uri>/auto/homes/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/analogue/lmx93.lib</uri>
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/analogue/lmx93.lib</uri>
     </library>
     <library logical="swd_tc">
-      <uri>/auto/homes/dwt27/git/thegrid/pcb2/agg-kicad/lib/connector/swd_tc.lib</uri>
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/connector/swd_tc.lib</uri>
     </library>
     <library logical="stm32f0xxkxux">
-      <uri>/auto/homes/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/microcontroller/stm32f0xxkxux.lib</uri>
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/microcontroller/stm32f0xxkxux.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>/usr/share/kicad/library/device.lib</uri>
     </library>
     <library logical="testpad">
-      <uri>/auto/homes/dwt27/git/thegrid/pcb2/agg-kicad/lib/misc/testpad.lib</uri>
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/misc/testpad.lib</uri>
     </library>
   </libraries>
   <nets>
