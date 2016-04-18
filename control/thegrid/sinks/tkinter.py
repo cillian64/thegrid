@@ -43,13 +43,16 @@ def run_tk(arr):
         def draw_grid(self):
             for light in self.lights:
                 self.canvas.delete(light)
-            for idx, v in enumerate(self.arr):
-                if v:
-                    y = (idx // 7) * 100 + 50
-                    x = (idx % 7) * 100 + 50
-                    light = self.canvas.create_oval(
-                        x - 15, y - 15, x + 15, y + 15, fill="white")
-                    self.lights.append(light)
+            for idx in range(49):
+                y = (idx // 7) * 100 + 50
+                x = (idx % 7) * 100 + 50
+                r = self.arr[idx * 3]
+                g = self.arr[idx * 3 + 1]
+                b = self.arr[idx * 3 + 2]
+                colour = "#{:02x}{:02x}{:02x}".format(r, g, b)
+                light = self.canvas.create_oval(
+                    x - 15, y - 15, x + 15, y + 15, fill=colour)
+                self.lights.append(light)
             self.after_idle(self.draw_grid)
 
     root = tk.Tk()
@@ -62,7 +65,9 @@ def run_tk(arr):
 class Tkinter(Sink):
     def __init__(self):
         logger.info("Tkinter sink loading")
-        self.arr = Array('b', [0]*49)
+        # Array stores pixels in left-right top-down reading order
+        # with colours strobed R,G,B,R,G...
+        self.arr = Array('i', [0]*49*3)
         self.process = Process(
             target=run_tk, args=(self.arr,), daemon=True)
         self.process.start()
@@ -75,5 +80,5 @@ class Tkinter(Sink):
         self.stop()
 
     def update(self, state):
-        for idx, x in enumerate(state.reshape(-1).astype(int).tolist()):
+        for idx, x in enumerate(state.flatten().tolist()):
             self.arr[idx] = x
