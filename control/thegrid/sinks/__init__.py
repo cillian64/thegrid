@@ -5,5 +5,5 @@ class in `sinks.sink`.
 Add any new sinks here with `from . import <name>`.
 """
 
-from . import console, ftdi, tkinter, leonardo
+from . import ftdi, tkinter, leonardo
 from .sink import loaded_sinks
