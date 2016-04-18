@@ -16,6 +16,7 @@ except ImportError:
 import signal
 import logging
 from multiprocessing import Manager, Queue
+import numpy as np
 
 logging.basicConfig(
     level=logging.INFO,
@@ -59,6 +60,9 @@ class Control:
         port, password = settings.API_PORT, settings.API_PASSWORD
         self.api = API(port, password, self.cmd_queue)
 
+        # Set default legacy pattern colour
+        self.legacycolour = (255, 255, 255)
+
         # Activate default sinks
         default_sinks = settings.DEFAULT_SINKS
         for sink in default_sinks:
@@ -90,6 +94,17 @@ class Control:
 
             # To compensate for time taken to update sinks
             frametime = time.time()
+
+            # Convert legacy monochrome patterns to colour:
+            if state.shape == (7, 7):
+                colourstate = np.zeros((7, 7, 3), dtype=np.int)
+                for x in range(7):
+                    for y in range(7):
+                        if state[y][x]:
+                            colourstate[y][x] = self.legacycolour
+                        else:
+                            colourstate[y][x] = (0, 0, 0)
+                state = colourstate
 
             self._update_sinks(state)
 
@@ -148,6 +163,9 @@ class Control:
         cls, cfg = self.patterns[pattern]
         self.pattern = cls(cfg, self.tracking)
         self.pattern_name = pattern
+
+    def _cmd_set_legacy_colour(self, colour):
+        self.legacycolour = tuple(map(int, colour.split(",")))
 
     def _cmd_load_sink(self, sink):
         logger.info("Received LOAD_SINK command for sink %s", sink)
