@@ -136,6 +136,11 @@ class Control:
         else:
             logger.error("Unknown command %s received", cmd)
 
+    def _cmd_list_commands(self, _):
+        commands = ", ".join(x[5:] for x in dir(self) if x.startswith("_cmd_"))
+        logger.info("Received LIST COMMANDS command.  Commands: {}".format(
+            commands))
+
     def _cmd_stop(self, _):
         logger.info("Received STOP command, quitting")
         self.stop()
