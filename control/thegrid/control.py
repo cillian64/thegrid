@@ -132,6 +132,16 @@ class Control:
         else:
             logger.error("Could not find pattern %s", pattern)
 
+    def _cmd_list_patterns(self, _):
+        patterns = ", ".join(self.patterns.keys())
+        logger.info("Received LIST_PATTERNS command.  Available patterns: {}"
+                    "".format(patterns))
+
+    def _cmd_list_sinks(self, _):
+        sinks = ", ".join(self.sinks.keys())
+        logger.info("Received LIST_SINK command.  Available sinks: {}"
+                    "".format(sinks))
+
     def _load_pattern(self, pattern):
         logger.info("Loading pattern {}".format(pattern))
         del self.pattern
