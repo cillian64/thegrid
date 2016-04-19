@@ -69,13 +69,15 @@ class Snake(Pattern):
 
         # If the head is in the same spot as the food, move the food
         if (self.SnakeBody[0].IsEqual(self.Food)):
-            #logger.info("Eaten Food")
-            self.Food = Point(random.randint(0,6),random.randint(0,6))
-            if len(self.SnakeBody) < 10:
-                self.SnakeBody.append(LastSnakePoint)
+            logger.info("Eaten Food")
 
-        #for sna in self.SnakeBody:
-        #    logger.info("Bit: %d %d", sna.x, sna.y)
+            self.SnakeBody.append(LastSnakePoint)
+
+            allpoints = [[Point(x, y) for x in range(7)] for y in range(7)]
+            allpoints = [i for sl in allpoints for i in sl]  # flatten
+            allpoints = [p for p in allpoints if p not in self.SnakeBody]
+            self.Food = random.choice(allpoints)
+
 
         # Update the grid
         newgrid = np.zeros((7, 7, 3), dtype=np.int)
