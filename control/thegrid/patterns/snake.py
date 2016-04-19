@@ -31,10 +31,14 @@ class Point:
             return False
 
 
-@register_pattern("Snake")
+@register_pattern("Snake", False)
+@register_pattern("StripeySnake", True)
 class Snake(Pattern):
-    Food = Point(random.randint(0,6),random.randint(0,6))
-    SnakeBody = [Point(3,4),Point(4,4)]
+    def __init__(self, cfg, tracking):
+        self.Food = Point(random.randint(0,6),random.randint(0,6))
+        self.SnakeBody = [Point(3,4),Point(4,4)]
+        self.stripey = cfg
+        
     def update(self):
         # Check if spaces next to the head are empty
         FreePoints = []
@@ -83,8 +87,10 @@ class Snake(Pattern):
         newgrid = np.zeros((7, 7, 3), dtype=np.int)
         for idx, SnakePoint in enumerate(self.SnakeBody):
             if idx == 0:
-                newgrid[SnakePoint.x,SnakePoint.y] = (255, 255, 0)
-            else: 
+                newgrid[SnakePoint.x,SnakePoint.y] = (255, 200, 0)
+            elif self.stripey and (idx % 2 == 0):
+                newgrid[SnakePoint.x,SnakePoint.y] = (0, 128, 0)
+            else:
                 newgrid[SnakePoint.x,SnakePoint.y] = (0, 255, 0)
         newgrid[self.Food.x,self.Food.y] = (255, 0, 0)
 
