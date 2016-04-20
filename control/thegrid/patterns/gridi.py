@@ -13,6 +13,7 @@ import time
 import midi
 import midi.sequencer
 from colorsys import hsv_to_rgb
+import time
 
 @register_pattern("Gridi")
 class Sample(Pattern):
@@ -21,7 +22,13 @@ class Sample(Pattern):
         self.gen = self.generator()
         self.midi_p = midi.read_midifile("thegrid/patterns/canyon.mid")
         self.midi_res = self.midi_p.resolution
+        self.midi_p.make_ticks_abs()
         self.events = self.midi_p[np.argmax([len(t) for t in self.midi_p])]
+        self.events = []
+        for t in self.midi_p:
+            for event in t:
+                self.events.append(event)
+        self.events.sort(key=lambda x: x.tick)
         self.t_delay = 60 / 120 / self.midi_res
         self.state = np.zeros((7, 7, 3), dtype=np.int)
 
@@ -43,10 +50,11 @@ class Sample(Pattern):
         self.channels.sort()
 
     def generator(self):
+        t0 = time.time()
         for event in self.events:
-            if event.tick != 0:
-                yield self.state, self.t_delay*event.tick
-            event.tick = 0
+            current_ticks = (time.time() - t0) / self.t_delay
+            if event.tick - current_ticks > 0:
+                yield self.state, self.t_delay*(event.tick - current_ticks)
             self.seq.event_write(event, False, False, True)
 
             if isinstance(event, midi.SetTempoEvent):
