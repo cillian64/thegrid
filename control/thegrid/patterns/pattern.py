@@ -20,7 +20,7 @@ def register_pattern(name, config=None):
     """
     def wrapper(pattern):
         loaded_patterns[name] = (pattern, config)
-        logger.info("Registered pattern {}".format(name))
+        logger.debug("Registered pattern {}".format(name))
         return pattern
     return wrapper
 
