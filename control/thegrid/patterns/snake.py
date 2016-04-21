@@ -84,7 +84,7 @@ class Snake(Pattern):
 
 
         # Update the grid
-        newgrid = np.zeros((7, 7, 3), dtype=np.int)
+        newgrid = np.zeros((7, 7, 3), dtype=np.uint8)
         for idx, SnakePoint in enumerate(self.SnakeBody):
             if idx == 0:
                 newgrid[SnakePoint.x,SnakePoint.y] = (255, 200, 0)
