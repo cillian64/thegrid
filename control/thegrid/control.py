@@ -97,7 +97,7 @@ class Control:
 
             # Convert legacy monochrome patterns to colour:
             if state.shape == (7, 7):
-                colourstate = np.zeros((7, 7, 3), dtype=np.int)
+                colourstate = np.zeros((7, 7, 3), dtype=np.uint8)
                 for x in range(7):
                     for y in range(7):
                         if state[y][x]:

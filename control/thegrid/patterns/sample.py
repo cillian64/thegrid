@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class Sample(Pattern):
     def update(self):
         logger.info("Updating pattern")
-        grid = np.zeros((7, 7, 3), dtype=np.int)
+        grid = np.zeros((7, 7, 3), dtype=np.uint8)
         grid[0][0][0] = 255
         grid[0][1][1] = 255
         grid[0][2][2] = 255

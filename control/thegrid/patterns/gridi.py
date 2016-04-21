@@ -30,7 +30,7 @@ class Sample(Pattern):
                 self.events.append(event)
         self.events.sort(key=lambda x: x.tick)
         self.t_delay = 60 / 120 / self.midi_res
-        self.state = np.zeros((7, 7, 3), dtype=np.int)
+        self.state = np.zeros((7, 7, 3), dtype=np.uint8)
 
         self.midi_client = 128
         self.midi_port = 0
