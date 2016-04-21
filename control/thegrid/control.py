@@ -11,6 +11,7 @@ import sys
 import time
 try:
     from queue import Empty
+    from imp import reload
 except ImportError:
     from Queue import Empty
 import signal
@@ -147,6 +148,7 @@ class Control:
 
     def _cmd_load_pattern(self, pattern):
         logger.info("Received LOAD_PATTERN command for pattern %s", pattern)
+        self._reload_patterns()
         if pattern in self.patterns.keys():
             self._load_pattern(pattern)
         else:
@@ -161,6 +163,15 @@ class Control:
         sinks = ", ".join(self.sinks.keys())
         logger.info("Received LIST_SINK command.  Available sinks: {}"
                     "".format(sinks))
+
+    def _reload_patterns(self):
+        logger.info("Reloading patterns")
+        self.patterns.clear()
+        for mod in sys.modules:
+            if mod.startswith("thegrid.patterns."):
+                reload(sys.modules[mod])
+        reload(sys.modules["thegrid.patterns"])
+        self.patterns = sys.modules["thegrid.patterns"].loaded_patterns
 
     def _load_pattern(self, pattern):
         logger.info("Loading pattern {}".format(pattern))
