@@ -1,6 +1,7 @@
 requests
 flask
 numpy
+scipy
 pyserial
 Werkzeug
 jinja2

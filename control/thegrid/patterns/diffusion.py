@@ -6,6 +6,9 @@ Colour points diffuse through the grid.
 
 import logging
 import numpy as np
+import scipy
+import scipy.ndimage
+import scipy.signal
 from .pattern import Pattern, register_pattern
 from colorsys import hsv_to_rgb
 from numpy.random import randint
@@ -20,38 +23,44 @@ class Sample(Pattern):
         logger.info("Diffusion pattern starting up")
         self.grid = np.zeros((7, 7, 3), dtype=int)
         self.n_points = 3
-        self.reset()
+        self.sigma = 0.4
+        n = np.ceil(np.sqrt(2 * self.sigma**2 * np.log(1000)))
+        if n % 2 == 0:
+            n = n + 1
+        impulse = np.zeros((n, n))
+        impulse[n//2, n//2] = 1.0
+        self.kernel = scipy.ndimage.filters.gaussian_filter(impulse,
+                      (self.sigma, self.sigma))
+        # Normalise the kernel - the discretisation loses us a lot of the
+        # energy very quickly:
+        self.kernel /= np.sum(self.kernel)
 
-    def isuniform(self):
-        zeroed = self.grid[:, :] - self.grid[0, 0]
-        return np.allclose(zeroed, np.zeros((7, 7, 3)))
-
-    def reset(self):
-        self.grid[:, :] = (0, 0, 0)
-        for _ in range(self.n_points):
-            rgb = hsv_to_rgb(np.random.random(), 1.0, 1.0)
-            self.grid[randint(7), randint(7)] = [int(x*255) for x in rgb]
-
-    def neighbours(self, x, y):
-        points = []
-        for i in range(-1, 2):
-            for j in range(-1, 2):
-                if (x+i >= 0 and x+i < 7 and
-                    y+j >= 0 and y+j < 7):
-                    points.append((y+j, x+i))
-        return points
+    def drop(self):
+        rgb = hsv_to_rgb(np.random.random(), 1.0, 1.0)
+        self.grid[randint(5)+1, randint(5)+1] = [int(x*255) for x in rgb]
 
     def diffuse(self):
-        for x in range(7):
-            for y in range(7):
-                neighbours = self.neighbours(x, y)
-                for point in neighbours:
-                    self.grid[y, x] += self.grid[point[1], point[0]]
-                    self.grid[y, x] /= 2
-                    self.grid[point[1], point[0]] = self.grid[y, x]
+        # Generate a gaussian kernel by gaussian filtering a Dirac Delta
+        # Find how big the gaussian needs to be for 1/1000 magnitude at
+        # truncation.  We need this n to be odd so that we can place the
+        # impulse precisely in the middle.
+        self.grid[:, :, 0] = scipy.signal.convolve2d(self.grid[:, :, 0],
+                             self.kernel, mode="same", boundary="fill",
+                             fillvalue=0)
+        self.grid[:, :, 1] = scipy.signal.convolve2d(self.grid[:, :, 1],
+                             self.kernel, mode="same", boundary="fill",
+                             fillvalue=0)
+        self.grid[:, :, 2] = scipy.signal.convolve2d(self.grid[:, :, 2],
+                             self.kernel, mode="same", boundary="fill",
+                             fillvalue=0)
 
     def update(self):
         self.diffuse()
-        if self.isuniform():
-            self.reset()
-        return self.grid, 1.0
+        if np.random.random() < 0.03:
+            self.drop()
+
+        maxgrid = np.zeros((7, 7, 3), dtype=np.uint8)
+        maxgrid += 255
+        truncated = np.zeros((7, 7, 3), dtype=np.uint8)
+        truncated[:, :, :] = np.minimum(self.grid, maxgrid)
+        return truncated, 0.03
