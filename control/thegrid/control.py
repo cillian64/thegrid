@@ -166,7 +166,6 @@ class Control:
 
     def _reload_patterns(self):
         logger.info("Reloading patterns")
-        self.patterns.clear()
         reload(sys.modules["thegrid.patterns"])
         reload(sys.modules["thegrid.patterns.pattern"])
         for mod in sys.modules:
