@@ -20,17 +20,21 @@ static THD_FUNCTION(threadLEDs, arg) {
     (void)arg;
     chRegSetThreadName("LEDs");
     while (true) {
-        int ch;
-        for(ch=0; ch<3; ch++) {
-            int duty;
-            for(duty=0; duty<100; duty++) {
-                pwmEnableChannel(&PWMD1, ch, duty);
-                chThdSleepMilliseconds(10);
-            }
-            for(duty=100; duty>0; duty--) {
-                pwmEnableChannel(&PWMD1, ch, duty);
-                chThdSleepMilliseconds(10);
-            }
+        int i;
+        for(i=0; i<8; i++) {
+            if(i & 1)
+                pwmEnableChannel(&PWMD1, 0, 100);
+            else
+                pwmEnableChannel(&PWMD1, 0, 0);
+            if(i & 2)
+                pwmEnableChannel(&PWMD1, 1, 100);
+            else
+                pwmEnableChannel(&PWMD1, 1, 0);
+            if(i & 4)
+                pwmEnableChannel(&PWMD1, 2, 100);
+            else
+                pwmEnableChannel(&PWMD1, 2, 0);
+            chThdSleepMilliseconds(500);
         }
     }
 }
@@ -42,10 +46,7 @@ static void rxchar(UARTDriver *uartp, uint16_t c)
 {
     (void)uartp;
     (void)c;
-    rxbuf[rxbufptr++] = (uint8_t)c;
-    if(rxbufptr >= sizeof(rxbuf)) {
-        rxbufptr = 0;
-    };
+    dacPutChannelX(&DACD1, 0, 800+(c<<1));
 }
 
 static UARTConfig uartcfg = {
@@ -56,7 +57,6 @@ static UARTConfig uartcfg = {
     rxerr_cb: NULL,
     speed: 115200,
     cr1: 0,
-    /*cr2: USART_CR2_RXINV,*/
     cr2: 0,
     cr3: 0
 };
@@ -127,7 +127,7 @@ static void error_cb1(DACDriver *dacp, dacerror_t err) {
 }
 
 static const DACConfig daccfg = {
-  .init         = 2047U,
+  .init         = 0,
   .datamode     = DAC_DHRM_12BIT_RIGHT
 };
 
@@ -139,7 +139,7 @@ static const DACConversionGroup dacgrpcfg1 = {
 };
 
 static const GPTConfig gpt6cfg = {
-  .frequency    = 1500000U,
+  .frequency    = 1200000U,
   .callback     = NULL,
   .cr2          = TIM_CR2_MMS_1,    /* MMS = 010 = TRGO on Update Event.    */
   .dier         = 0U
@@ -150,20 +150,20 @@ int main(void) {
     halInit();
     chSysInit();
 
-    pwmStart(&PWMD1, &pwmcfg);
+    /*pwmStart(&PWMD1, &pwmcfg);*/
     uartStart(&UARTD2, &uartcfg);
 
     dacStart(&DACD1, &daccfg);
-    gptStart(&GPTD6, &gpt6cfg);
+    /*gptStart(&GPTD6, &gpt6cfg);*/
 
-    dacStartConversion(&DACD1, &dacgrpcfg1, dac_buffer, DAC_BUFFER_SIZE);
-    gptStartContinuous(&GPTD6, 2U);
+    /*dacStartConversion(&DACD1, &dacgrpcfg1, dac_buffer, DAC_BUFFER_SIZE);*/
+    /*gptStartContinuous(&GPTD6, 2U);*/
 
-    chThdCreateStatic(waThreadLEDs, sizeof(waThreadLEDs),
-                      NORMALPRIO, threadLEDs, NULL);
+    /*chThdCreateStatic(waThreadLEDs, sizeof(waThreadLEDs),*/
+                      /*NORMALPRIO, threadLEDs, NULL);*/
 
-    chThdCreateStatic(waThreadUART, sizeof(waThreadUART),
-                      NORMALPRIO, threadUART, NULL);
+    /*chThdCreateStatic(waThreadUART, sizeof(waThreadUART),*/
+                      /*NORMALPRIO, threadUART, NULL);*/
 
     while (true) {
     }
