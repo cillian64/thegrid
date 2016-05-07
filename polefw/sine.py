@@ -3,6 +3,7 @@ from scipy.io import wavfile
 from scipy.signal import resample
 import matplotlib.pyplot as plt
 import serial
+import sys
 
 ser = serial.Serial("/dev/ttyUSB0", 115200)
 
@@ -18,7 +19,6 @@ time.sleep(1)
     #for dur in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
         #sq = np.repeat([255,0]*(3000//dur), dur).astype(np.uint8)
         #ser.write(list(sq))
-#import sys
 #sys.exit()
 
 # Usable linearish range 50-80 in 8bit
@@ -27,15 +27,15 @@ time.sleep(1)
 # So take input bit, shift left by one, add 800
 # Output is 784 to 1296
 
-#x = 80
+#x = 50
 #while True:
 #    print("x =", x)
 #    ser.write([x, x, x, 0, 0, 0]*(11520//4))
-#    x += 20
-#    if x > 250:
-#        x = 80
+#    x += 3
+#    if x > 80:
+#        x = 50
 
-rate, wav = wavfile.read("/tmp/north.wav")
+rate, wav = wavfile.read(sys.argv[1])
 wav = resample(wav, int(11520*(wav.size / rate))).astype(np.int16)
 wav /= 512
 wav += 127
