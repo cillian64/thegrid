@@ -71,5 +71,11 @@ class Sample(Pattern):
                 self.state.reshape(49, 3)[firstpole:
                         firstpole+self.poles_per_ch] = rgb
 
+            if isinstance(event, midi.NoteOffEvent):
+                firstpole = (self.channels.index(event.channel) *
+                             self.poles_per_ch)
+                self.state.reshape(49, 3)[firstpole:
+                        firstpole+self.poles_per_ch] = (0, 0, 0)
+
     def update(self):
         return next(self.gen)
