@@ -7,7 +7,7 @@ Add any new patterns here with `from . import <name>`.
 
 from . import pong, amaze, sparkle, playlist, static_patterns, on, sample
 from . import pattern_one, strike, lightning
-from . import snake, diffusion, colourwheel, radar
+from . import snake, diffusion, colourwheel, radar, vu
 from .musicpatterns import thegrid
 try:
     import cv2

@@ -6,3 +6,5 @@ pyserial
 Werkzeug
 jinja2
 itsdangerous
+pyalsaaudio
+
