@@ -18,7 +18,6 @@ class Point:
         self.y = ny
 
     def IsEqual(self, Point):
-        logger.info("Points: %d:%d %d:%d", self.x, self.y, Point.x, Point.y)
         if (self.x == Point.x and self.y == Point.y):
             return True
         else:
@@ -49,12 +48,9 @@ class Snake(Pattern):
             if self.IsCollisionFree(NewPoint) and self.IsInGrid(NewPoint):
                 FreePoints.append(NewPoint)
 
-        logger.info("FreePoints: %d", len(FreePoints))
-
         if len(FreePoints) == 0:
             self.Food = Point(random.randint(0,6),random.randint(0,6))
             self.SnakeBody = [Point(3,4),Point(4,4)]
-            logger.info("DIEIEIEIEE-------------------------")
             return ~np.zeros((7, 7), dtype=np.bool), 0.2
 
            # Out of free points, check which is closest to food
@@ -63,7 +59,6 @@ class Snake(Pattern):
            # Move the segments into new position
         LastSnakePoint = Point(self.SnakeBody[len(self.SnakeBody)-1].x,self.SnakeBody[len(self.SnakeBody)-1].y) 
         for i in range(len(self.SnakeBody)-1, -1, -1):
-        #    logger.info("i: %d", i)
             if (i == 0):
                 self.SnakeBody[i].x = MinPoint.x
                 self.SnakeBody[i].y = MinPoint.y
@@ -73,8 +68,6 @@ class Snake(Pattern):
 
         # If the head is in the same spot as the food, move the food
         if (self.SnakeBody[0].IsEqual(self.Food)):
-            logger.info("Eaten Food")
-
             self.SnakeBody.append(LastSnakePoint)
 
             allpoints = [[Point(x, y) for x in range(7)] for y in range(7)]
@@ -94,8 +87,6 @@ class Snake(Pattern):
                 newgrid[SnakePoint.x,SnakePoint.y] = (0, 255, 0)
         newgrid[self.Food.x,self.Food.y] = (255, 0, 0)
 
-        #logger.info("Snake")
-        #logger.info(newgrid)
         return newgrid, 0.2
 
     def GetClosestPoint(self, Target, List):
@@ -117,7 +108,6 @@ class Snake(Pattern):
     def IsCollisionFree(self, TPoint):
         for SPoint in self.SnakeBody:
             if (SPoint.IsEqual(TPoint)):
-                logger.info("CLLIIOSOSOSOSOS")
                 return False
         return True
 
