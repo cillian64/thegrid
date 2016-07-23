@@ -97,12 +97,6 @@ static THD_FUNCTION(threadTest, arg) {
                 pwmEnableChannel(&PWMD1, i, 100);
                 pwmEnableChannel(&PWMD1, (i+1) % 3, 0);
                 pwmEnableChannel(&PWMD1, (i+2) % 3, 0);
-
-                if(i == 0)
-                    gptStartContinuous(&GPTD6, 2U);
-                else
-                    gptStopTimer(&GPTD6);
-
                 chThdSleepMilliseconds(333);
             }
         } else if(rxstatus == 1) {
@@ -110,10 +104,11 @@ static THD_FUNCTION(threadTest, arg) {
             pwmEnableChannel(&PWMD1, LED_RED, 0);
             pwmEnableChannel(&PWMD1, LED_BLU, 0);
             gptStartContinuous(&GPTD6, 3U);
-            chThdSleepMilliseconds(500);
+            chThdSleepMilliseconds(200);
             pwmEnableChannel(&PWMD1, LED_GRN, 0);
             gptStopTimer(&GPTD6);
             chThdSleepMilliseconds(500);
+            rxstatus = 0;
         } else if(rxstatus == 2) {
             pwmEnableChannel(&PWMD1, LED_RED, 100);
             pwmEnableChannel(&PWMD1, LED_GRN, 0);
@@ -123,6 +118,7 @@ static THD_FUNCTION(threadTest, arg) {
             pwmEnableChannel(&PWMD1, LED_RED, 0);
             gptStopTimer(&GPTD6);
             chThdSleepMilliseconds(500);
+            rxstatus = 0;
         }
     }
 }
