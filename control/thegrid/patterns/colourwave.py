@@ -23,8 +23,8 @@ class PatternColourwave(Pattern):
                                               # thegrid's hypotenues.  Add a 
                                               # bit for safety.
         self.rectwidth = 3.2  # Three gridpoles plus a bit.
-        self.rectspeed = 0.25 # One unit per update
-        self.updaterate = 0.05 # Time delay between updates, in seconds.
+        self.rectspeed = 0.05 # One unit per update
+        self.updaterate = 0.01 # Time delay between updates, in seconds.
 
         self.arr = np.zeros((7, 7, 3), dtype=np.uint8)
         self.new_wave()
@@ -49,6 +49,19 @@ class PatternColourwave(Pattern):
 #        print("New wave, angle={:.1f} degrees".format(
 #            self.wavedir/2/pi*360))
 
+    def soft_set_point(self, target, colour):
+        """Change a point in a numpy matrix to a new colour.
+        But do it slowly and subtley.  If it doesn't already match the new
+        colour, move it a small step towards the new colour so it fades
+        gradually."""
+        rate = 0.02
+        if target[0] != colour[0]:
+            target[0] += (colour[0] - target[0]) * rate
+        if target[1] != colour[1]:
+            target[1] += (colour[1] - target[1]) * rate
+        if target[2] != colour[2]:
+            target[2] += (colour[2] - target[2]) * rate
+
 
     def update(self):
         # First let's update the rectangle centre.
@@ -66,9 +79,9 @@ class PatternColourwave(Pattern):
             for y in range(7):
                 if self.is_in_rect(self.rectx, self.recty, self.wavedir,
                                    self.rectlength, self.rectwidth, x, y):
-                    self.arr[x, y] = self.rectcolour
+                    self.soft_set_point(self.arr[x, y], self.rectcolour)
                 else:
-                    self.arr[x, y] = self.bgcolour
+                    self.soft_set_point(self.arr[x, y], self.bgcolour)
 
         return self.arr, self.updaterate
 
