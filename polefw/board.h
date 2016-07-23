@@ -23,6 +23,11 @@
 #define BOARD_ST_STM32F0_DISCOVERY
 #define BOARD_NAME                  "TheGrid Pole PCB r1"
 
+/* RGB LED channels */
+#define LED_GRN 0
+#define LED_RED 1
+#define LED_BLU 2
+
 /*
  * Board oscillators-related settings.
  * NOTE: LSE not fitted.
