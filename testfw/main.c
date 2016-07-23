@@ -104,7 +104,7 @@ static THD_FUNCTION(threadTest, arg) {
             pwmEnableChannel(&PWMD1, LED_RED, 0);
             pwmEnableChannel(&PWMD1, LED_BLU, 0);
             gptStartContinuous(&GPTD6, 3U);
-            chThdSleepMilliseconds(200);
+            chThdSleepMilliseconds(400);
             pwmEnableChannel(&PWMD1, LED_GRN, 0);
             gptStopTimer(&GPTD6);
             chThdSleepMilliseconds(500);
@@ -113,10 +113,9 @@ static THD_FUNCTION(threadTest, arg) {
             pwmEnableChannel(&PWMD1, LED_RED, 100);
             pwmEnableChannel(&PWMD1, LED_GRN, 0);
             pwmEnableChannel(&PWMD1, LED_BLU, 0);
-            gptStartContinuous(&GPTD6, 5U);
+            gptStopTimer(&GPTD6);
             chThdSleepMilliseconds(500);
             pwmEnableChannel(&PWMD1, LED_RED, 0);
-            gptStopTimer(&GPTD6);
             chThdSleepMilliseconds(500);
             rxstatus = 0;
         }
