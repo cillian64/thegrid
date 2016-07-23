@@ -222,7 +222,8 @@ flash: build/$(PROJECT).elf
 					  -ex 'monitor version' \
 					  -ex 'monitor swdp_scan' \
 					  -ex 'attach 1' \
-					  -ex 'load' build/$(PROJECT).elf \
+					  -ex 'load' \
+					  -ex 'compare-sections' build/$(PROJECT).elf
 
 debug: build/$(PROJECT).elf
 	arm-none-eabi-gdb -ex 'target extended-remote /dev/ttyACM0' \
