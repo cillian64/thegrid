@@ -39,9 +39,10 @@ def extract_blocks(lines):
                     logger.error("Row was %d characters", len(row))
                     raise BlockParseError("Rows must only be 7 characters")
                 for char in row:
-                    if char not in (".", "*"):
+                    if char not in (".", "*", "r", "R", "g", "G", "b", "B"):
                         logger.error("Row contained <%s>", char)
-                        raise BlockParseError("Rows may only have `.` or `*`")
+                        raise BlockParseError("Rows may only have `.`, `*`, "
+                                              "`r`, `R`, `g`, `G`, `b`, `B`")
                 rows.append(row)
             yield rows, delay
             block = []
@@ -55,6 +56,8 @@ def extract_blocks(lines):
 @register_pattern("Wave", {"file": "wave.txt"})
 @register_pattern("Zoom", {"file": "zoom.txt"})
 @register_pattern("Zoomout", {"file": "zoomout.txt"})
+@register_pattern("Colourspin", {"file": "colourspin.txt"})
+@register_pattern("Colourzoom", {"file": "colourzoom.txt"})
 class StaticPattern(Pattern):
     def __init__(self, config, tracking):
         basepath = os.path.normpath(
@@ -84,16 +87,29 @@ class StaticPattern(Pattern):
             self.blocks = None
 
         self.block = 0
+        self.arr = np.zeros((7, 7, 3), dtype=np.uint8)
 
     def update(self):
         if self.blocks is None or self.block is None:
             logger.warn("No frames available!")
-            return np.zeros((7, 7), dtype=np.bool), 1
+            return self.arr, 1
 
         curblock = self.blocks[self.block]
         self.block += 1
         self.block %= len(self.blocks)
 
-        frame = np.array([list(l) for l in curblock[0]]) == '*'
+        for y, row in enumerate(curblock[0]):
+            for x, col in enumerate(row):
+                if col == '*' or col == 'w' or col == 'W':
+                    self.arr[y, x] = (255, 255, 255)
+                elif col == 'r' or col == 'R':
+                    self.arr[y, x] = (255, 0, 0)
+                elif col == 'g' or col == 'G':
+                    self.arr[y, x] = (0, 255, 0)
+                elif col == 'b' or col == 'B':
+                    self.arr[y, x] = (0, 0, 255)
+                else:
+                    self.arr[y, x] = (0, 0, 0)
+
         sleep = curblock[1] / 1000
-        return frame, sleep
+        return self.arr, sleep
