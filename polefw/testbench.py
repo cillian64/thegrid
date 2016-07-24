@@ -52,11 +52,14 @@ def main():
             ser.write(sync + packets + crc)
 
     h = [hh/49 for hh in range(49)]
+    f = 80
     while True:
         rgbs = [colorsys.hsv_to_rgb(hh, 1, 1) for hh in h]
-        grid = [(0, 0, 0, int(r*255), int(g*255), int(b*255))
+        grid = [(4, int(f), 255, int(r*255), int(g*255), int(b*255))
                 for (r, g, b) in rgbs]
         h = [0 if hh >= 1 else hh + 0.005 for hh in h]
+        if f > 255:
+            f = 100
         frame = makeframe()
         ser.write(frame)
 
