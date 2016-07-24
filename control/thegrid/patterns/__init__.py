@@ -8,6 +8,7 @@ Add any new patterns here with `from . import <name>`.
 from . import pong, amaze, sparkle, playlist, static_patterns, on, sample
 from . import pattern_one, strike, lightning
 from . import snake, diffusion, colourwheel, radar, colourwave
+from . import grid_of_life
 from .musicpatterns import thegrid
 try:
     import cv2
