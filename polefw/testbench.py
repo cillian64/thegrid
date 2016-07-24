@@ -39,6 +39,7 @@ def makeframe():
 
 
 def main():
+    global grid
     if args.set_id is not None:
         print("Setting ID to", args.set_id)
         cmd = (0xFE, 0xFE, 0xFE, 0xFE, 0xFE, args.set_id & 0xFF)
@@ -50,16 +51,12 @@ def main():
         for _ in range(30):
             ser.write(sync + packets + crc)
 
-    h = 0
+    h = [hh/49 for hh in range(49)]
     while True:
-        r, g, b = colorsys.hsv_to_rgb(h, 1, 1)
-        grid[0] = (0, 0, 0, int(r*255), int(g*255), int(b*255))
-        grid[1] = (0, 0, 0, int(g*255), int(b*255), int(r*255))
-        grid[2] = (0, 0, 0, 0, 255, 0)
-        grid[3] = (0, 0, 0, 255, 0, 0)
-        h += 0.005
-        if h >= 1:
-            h = 0
+        rgbs = [colorsys.hsv_to_rgb(hh, 1, 1) for hh in h]
+        grid = [(0, 0, 0, int(r*255), int(g*255), int(b*255))
+                for (r, g, b) in rgbs]
+        h = [0 if hh >= 1 else hh + 0.005 for hh in h]
         frame = makeframe()
         ser.write(frame)
 
