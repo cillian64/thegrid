@@ -1,4 +1,4 @@
-update=Sunday, 24 July 2016 'pmt' 13:26:35
+update=Sunday, 24 July 2016 'pmt' 14:42:57
 version=1
 last_client=kicad
 [pcbnew]
@@ -63,3 +63,4 @@ LibName31=ic/microcontroller/stm32f0xxkxtx
 LibName32=connector/microusb
 LibName33=ic/power/mcp1700
 LibName34=connector/swd_tc
+LibName35=misc/part
