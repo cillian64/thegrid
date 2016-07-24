@@ -1,4 +1,4 @@
-update=Sun 27 Mar 2016 23:15:38 BST
+update=Sunday, 24 July 2016 'pmt' 14:42:57
 version=1
 last_client=kicad
 [pcbnew]
@@ -58,4 +58,9 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/interface/am26c31cnsr
+LibName30=ic/interface/am26c31
+LibName31=ic/microcontroller/stm32f0xxkxtx
+LibName32=connector/microusb
+LibName33=ic/power/mcp1700
+LibName34=connector/swd_tc
+LibName35=misc/part
