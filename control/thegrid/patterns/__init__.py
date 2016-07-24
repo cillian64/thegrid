@@ -6,7 +6,7 @@ Add any new patterns here with `from . import <name>`.
 """
 
 from . import pong, amaze, sparkle, playlist, static_patterns, on, sample
-from . import pattern_one, strike, lightning
+from . import pattern_one, strike, lightning, fire, spotlights
 from . import snake, diffusion, colourwheel, radar, colourwave
 from .musicpatterns import thegrid
 try:
