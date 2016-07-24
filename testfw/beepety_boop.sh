@@ -1,19 +1,21 @@
 #!/bin/bash
 
+make
+
 while true
 do
-    clear
 	if arm-none-eabi-gdb --batch \
                       -return-child-result \
-		              -ex 'target extended-remote /dev/ttyACM0' \
+		              -ex 'target extended-remote /dev/cu.usbmodemD6CBAEC1' \
 					  -ex 'monitor version' \
 					  -ex 'monitor swdp_scan' \
 					  -ex 'attach 1' \
 					  -ex 'load' \
-                      -ex 'compare-sections' build/polefw
+                      build/testfw.elf | grep Transfer
     then
-        echo Success!
+        echo Programmed okay: sending magic
         afplay tada.mp3
+        python3 send_magic.py /dev/tty.usbserial-A1001Nsc
         sleep 5
     else
         echo Fail!

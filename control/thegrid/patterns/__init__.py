@@ -5,29 +5,38 @@ base class in `patterns.pattern`.
 Add any new patterns here with `from . import <name>`.
 """
 
-from . import pong, amaze, sparkle, playlist, static_patterns, on, sample
-from . import pattern_one, strike, lightning
-from . import snake, diffusion, colourwheel, radar, colourwave
+from . import pong
+from . import amaze
+from . import sparkle
+from . import playlist
+from . import static_patterns
+from . import on
+from . import sample
+from . import pattern_one
+from . import strike
+from . import lightning
+from . import fire
+from . import spotlights
+from . import snake
+from . import diffusion
+from . import colourwheel
+from . import radar
+from . import colourwave
 from . import grid_of_life
 from .musicpatterns import thegrid
-try:
-    import cv2
-except:
-    pass
-else:
-    from . import simplecv
-try:
-    import alsaaudio
-except:
-    pass
-else:
-    from . import vu
-try:
-    import midi.sequencer
-except:
-    pass
-else:
-    from . import gridi
+
+# The other imports have optional dependencies:
+try: import cv2
+except: pass
+else: from . import simplecv
+
+try: import alsaaudio
+except: pass
+else: from . import vu
+
+try: import midi.sequencer
+except: pass
+else: from . import gridi
 
 from .pattern import loaded_patterns
 
