@@ -104,6 +104,7 @@ class PatternColourwheel(Pattern):
             if cfg['colour']:
                 cell_colours[has_died] = np.random.randint(0, 255,
                     (np.sum(has_died), 3))
+                has_died[:, :] = False
 
 
     def update(self):
@@ -142,7 +143,7 @@ class PatternColourwheel(Pattern):
         # Don't know why I can't do 'if cells[:, :, 0] in self.buffer' here
         for buf in self.buffer:
             if np.allclose(cells[:, :, 0], buf):
-                print("Resetting because of oscillation")
+                print("Resetting because of oscillation or extinction")
                 self.ttl = T
                 self.buffer = np.zeros((N, 7, 7), dtype=np.uint8)
                 return True # Boring due to oscillation
