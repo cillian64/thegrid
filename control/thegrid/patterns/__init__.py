@@ -32,7 +32,7 @@ else: from . import simplecv
 
 try: import alsaaudio
 except: pass
-else: from . import vu
+else: from . import vu, spectrogram
 
 try: import midi.sequencer
 except: pass
