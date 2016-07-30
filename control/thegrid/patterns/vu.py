@@ -69,9 +69,9 @@ class PatternVU(Pattern):
 
             for i in range(7):
                 if i <= level:
-                    lights[i, :] = colours[i]
+                    lights[6-i, :] = colours[i]
                 else:
-                    lights[i, :] = (0, 0, 0)
+                    lights[6-i, :] = (0, 0, 0)
 
             yield lights, 0.001
 
