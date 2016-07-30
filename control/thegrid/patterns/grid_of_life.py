@@ -1,4 +1,4 @@
-# Game of life pattern (hark)
+# Game of life pattern (by hark originally, dirty hacks by David Turner)
 
 
 import numpy as np
@@ -69,6 +69,28 @@ class PatternColourwheel(Pattern):
                     else:
                         next_cells[x][y] = (n == 3)
 
+            if cfg['pattern'].lower() == 'random':
+                if self.is_boring(cells):
+                    # If the pattern is not extinction, hold it for a few
+                    # updates of appreciation and then fade it out.
+                    if np.sum(cells) != 0:
+                            # Hold for a few updates
+                            yield lights, 1.0/ups*3
+                            # Now fade out.
+                            frames = fps*ups*3
+                            for i in range(fps*ups*3):
+                                cur = 1 - i/frames
+                                lights[:, :, :] = cells * cell_colours * cur
+                                yield lights, 1/fps
+
+                    # Give a few updates of black to divide:
+                    yield np.zeros((7, 7, 3), dtype=np.uint8), 1.0/ups*3
+
+                    # Reinitialise!
+                    cells[:, :] = 0
+                    next_cells[:, :] = np.random.randint(0, 2, (7, 7, 1))
+                    has_died[:, :] = True
+
             frames = fps*ups
             for i in range(frames):
                 # We are fading between lights and next_cells*cell_colours
@@ -83,5 +105,49 @@ class PatternColourwheel(Pattern):
                 cell_colours[has_died] = np.random.randint(0, 255,
                     (np.sum(has_died), 3))
 
+
     def update(self):
         return self.gen.__next__()
+
+
+    def is_boring(self, cells):
+        """Decide if the current configuration is boring enough to trigger
+        a reset.  We do this using a buffer of the previous N cells
+        states.  If the current state is equal to any of the previous N
+        states, the current system is oscillating with a period of less
+        than N.  This implicitly detects extinction.  We also include
+        a total life timer of T to catch possible long, boring,
+        oscillations or unexpected mishaps (like a glider!)"""
+
+        # We don't need to worry about checking against the buffer before it
+        # is full, because empty buffer slots are all zeros, and all zeros is
+        # a good sign of boringness.
+
+        N = 5 # State change buffer
+        T = 60 # State change life timer
+
+        if not hasattr(self, 'buffer'):
+                self.buffer = np.zeros((N, 7, 7), dtype=np.uint8)
+        if not hasattr(self, 'ttl'):
+                self.ttl = T
+
+        if self.ttl == 0:
+            print("Resetting due to age limit")
+            self.ttl = T
+            self.buffer = np.zeros((N, 7, 7), dtype=np.uint8)
+            return True # Boring due to age
+        else:
+            self.ttl -= 1
+
+        # Don't know why I can't do 'if cells[:, :, 0] in self.buffer' here
+        for buf in self.buffer:
+            if np.allclose(cells[:, :, 0], buf):
+                print("Resetting because of oscillation")
+                self.ttl = T
+                self.buffer = np.zeros((N, 7, 7), dtype=np.uint8)
+                return True # Boring due to oscillation
+
+        self.buffer[:, :, :] = np.roll(self.buffer, 1, 0)
+        self.buffer[0, :, :] = cells[:, :, 0]  # implicit copy
+
+        return False # Not boring!
