@@ -23,7 +23,6 @@ from . import colourwheel
 from . import radar
 from . import colourwave
 from . import grid_of_life
-from .musicpatterns import thegrid
 
 # The other imports have optional dependencies:
 try: import cv2
@@ -37,6 +36,10 @@ else: from . import vu, spectrogram
 try: import midi.sequencer
 except: pass
 else: from . import gridi
+
+try: import pyglet
+except: pass
+else: from .musicpatterns import thegrid, captainkirk
 
 from .pattern import loaded_patterns
 
