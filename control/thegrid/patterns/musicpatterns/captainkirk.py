@@ -50,14 +50,12 @@ class CaptainKirk(MusicPattern):
         # Intro:
         # Red stepping
         if beat >= 1 and beat <= 32:
-            print("Step {}".format(barbeat))
             self.state[:] = 0
             self.state[5, int(barbeat)] = (255, 0, 0)
 
         # Lyrics start:
         # Red stepping with yellow pulse
         elif beat >= 33 and beat <= 60:
-            print("Step and pulse: {}".format(barbeat))
             self.state[5, int(barbeat)] = (255, 0, 0)
             if barbeat in (2, 4) and beat_portion < 0.2:
                 self.state[:, 0] = (255, 255, 0)
@@ -65,7 +63,6 @@ class CaptainKirk(MusicPattern):
 
         # Breakdown before chorus: yellow pulse solo
         elif beat >= 61 and beat <= 64:
-            print("Pulse: {}".format(barbeat))
             if barbeat in (2, 4) and beat_portion < 0.2:
                 self.state[:, 0] = (255, 255, 0)
                 self.state[:, 6] = (255, 255, 0)
@@ -122,10 +119,10 @@ class CaptainKirk(MusicPattern):
             if barbeat in (1, 3) and beat_portion < 0.2:
                 self.state[2:5, 2:5] = (255, 255, 0)
             if barbeat in (2, 4) and beat_portion < 0.2:
-                self.state[0:6, 0] = (255, 255, 0)
-                self.state[0:6, 6] = (255, 255, 0)
-                self.state[0, 0:6] = (255, 255, 0)
-                self.state[6, 0:6] = (255, 255, 0)
+                self.state[0:7, 0] = (255, 255, 0)
+                self.state[0:7, 6] = (255, 255, 0)
+                self.state[0, 0:7] = (255, 255, 0)
+                self.state[6, 0:7] = (255, 255, 0)
 
         # Kirk is on the mountain. Checkerboard effect.
         elif beat >= 153 and beat <= 156:
@@ -181,10 +178,10 @@ class CaptainKirk(MusicPattern):
                 for i in range(1, 6):
                     self.state[i, 6-i] = (255, 255, 0)
             if barbeat in (2, 4) and beat_portion < 0.2:
-                self.state[0:6, 0] = (255, 0, 0)
-                self.state[0:6, 6] = (255, 0, 0)
-                self.state[0, 0:6] = (255, 0, 0)
-                self.state[6, 0:6] = (255, 0, 0)
+                self.state[0:7, 0] = (255, 0, 0)
+                self.state[0:7, 6] = (255, 0, 0)
+                self.state[0, 0:7] = (255, 0, 0)
+                self.state[6, 0:7] = (255, 0, 0)
 
         # Dark patch in the bar 189-193, with two flashes in the last beat:
         elif beat == 192:
