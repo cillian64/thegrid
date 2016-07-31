@@ -7,7 +7,6 @@
 static void bus_rx(UARTDriver*, uint16_t);
 
 extern binary_semaphore_t frame_thread_sem;
-static volatile unsigned int framebuf_ctr = 0;
 
 static const UARTConfig uart_cfg = {
     .txend1_cb = NULL,
@@ -24,6 +23,7 @@ static const UARTConfig uart_cfg = {
 static void bus_rx(UARTDriver *uartp, uint16_t c)
 {
     (void)uartp;
+    static unsigned int framebuf_ctr = 0;
 
     if(framebuf_ctr < 6) {
         /* Wait for sync packet */
