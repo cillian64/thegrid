@@ -7,4 +7,5 @@ Werkzeug
 jinja2
 itsdangerous
 pyalsaaudio
+pyglet
 
