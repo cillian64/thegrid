@@ -10,6 +10,7 @@ import logging
 import numpy as np
 from ..pattern import register_pattern, loaded_patterns
 from .musicpattern import MusicPattern
+from colorsys import hsv_to_rgb
 
 logger = logging.getLogger(__name__)
 
@@ -193,28 +194,134 @@ class CaptainKirk(MusicPattern):
                 print("BAP")
 
         # God there's more verse.  Okay let's do some zoomout/pyramids.
-#        elif beat >= 193 and beat <= 200:
-#            colour = (255, 0, 0)
-#            if barbeat == 1:
-#                self.state[3, 3] = colour
-#            if barbeat == 2:
-#                self.state[2, 2:5] = colour
-#                self.state[4, 2:5] = colour
-#                self.state[3, 2] = colour
-#                self.state[3, 4] = colour
-#            if barbeat == 3:
-#                self.state[1, 1:6] = colour
-#                self.state[5, 1:6] = colour
-#                self.state[1:6, 1] = colour
-#                self.state[1:6, 5] = colour
-#            if barbeat == 4:
-#                self.state[0, 0:7] = colour
-#                self.state[6, 0:7
+        elif beat >= 193 and beat <= 224:
+            if beat >= 193 and beat <= 196:
+                colour = (255, 0, 0)
+            elif beat >= 197 and beat <= 200:
+                colour = (255, 128, 0)
+            elif beat >= 201 and beat <= 204:
+                colour = (255, 255, 0)
+            elif beat >= 205 and beat <= 208:
+                colour = (128, 255, 0)
+            elif beat >= 209 and beat <= 212:
+                colour = (0, 255, 0)
+            elif beat >= 213 and beat <= 216:
+                colour = (0, 255, 255)
+            elif beat >= 217 and beat <= 220:
+                colour = (0, 128, 255)
+            else:
+                colour = (0, 0, 255)
+                barbeat = 5 - barbeat # lol switcheroo!
 
+            if barbeat == 1:
+                self.state[3, 3] = colour
+            elif barbeat == 2:
+                self.state[2, 2:5] = colour
+                self.state[4, 2:5] = colour
+                self.state[3, 2] = colour
+                self.state[3, 4] = colour
+            elif barbeat == 3:
+                self.state[1, 1:6] = colour
+                self.state[5, 1:6] = colour
+                self.state[1:6, 1] = colour
+                self.state[1:6, 5] = colour
+            else: # barbeat == 4
+                self.state[0, 0:7] = colour
+                self.state[6, 0:7] = colour
+                self.state[0:7, 0] = colour
+                self.state[0:7, 6] = colour
+
+        # Chorus! Phew.  Multicolour fuzz for a while
+        # First, blue fuzz <3
+        elif beat >= 225 and beat <= 232:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                self.state[x, y] = (0, 0, np.random.randint(64, 256))
+        # Now cyan:
+        elif beat >= 233 and beat <= 240:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                self.state[x, y] = (0,
+                                    np.random.randint(128, 256),
+                                    np.random.randint(128, 256))
+        # Now blue/green:
+        elif beat >= 241 and beat <= 248:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                self.state[x, y] = (0,
+                                    np.random.randint(0, 256),
+                                    np.random.randint(0, 256))
+
+        # Penultimately grey for half a bar:
+        elif beat >= 249 and beat <= 252:
+            for _ in range(10):
+                level = np.random.randint(64, 196)
+                x, y = np.random.randint(0, 7, (2,))
+                self.state[x, y, :] = level
+
+        # Finally white.
+        elif beat >= 253 and beat <= 256:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                self.state[x, y] = (255, 255, 255)
+
+        # More chorus.  Let's have some random fully saturated fuzz:
+        elif beat >= 257 and beat <= 288:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                rgb = hsv_to_rgb(np.random.rand(), 1.0, 1.0)
+                self.state[x, y] = [int(255*x) for x in rgb]
+
+        # Yet more chorus.  For the finale let's have fully saturated fuzz
+        # with overlayed full white spinner.
+        elif beat >= 289 and beat <= 304:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                rgb = hsv_to_rgb(np.random.rand(), 1.0, 1.0)
+                self.state[x, y] = [int(200*x) for x in rgb]
+            if beat_portion < 0.25:
+                self.state[3, :] = (255, 255, 255)
+            elif beat_portion < 0.5:
+                for n in range(7):
+                    self.state[n, 6-n] = (255, 255, 255)
+            elif beat_portion < 0.75:
+                self.state[:, 3] = (255, 255, 255)
+            else:
+                for n in range(7):
+                    self.state[n, n] = (255, 255, 255)
+
+        # More chorus.  Now fully saturated fuzz overlayed with white zoomout
+        elif beat >= 305 and beat <= 315:
+            for _ in range(10):
+                x, y = np.random.randint(0, 7, (2,))
+                rgb = hsv_to_rgb(np.random.rand(), 1.0, 1.0)
+                self.state[x, y] = [int(200*x) for x in rgb]
+            if beat_portion < 0.25:
+                self.state[3, 3] = (255, 255, 255)
+            elif beat_portion < 0.5:
+                self.state[2, 2:5] = (255, 255, 255)
+                self.state[4, 2:5] = (255, 255, 255)
+                self.state[3, 2] = (255, 255, 255)
+                self.state[3, 4] = (255, 255, 255)
+            elif beat_portion < 0.75:
+                self.state[1, 1:6] = (255, 255, 255)
+                self.state[5, 1:6] = (255, 255, 255)
+                self.state[1:6, 1] = (255, 255, 255)
+                self.state[1:6, 5] = (255, 255, 255)
+            else:
+                self.state[0, 0:7] = (255, 255, 255)
+                self.state[6, 0:7] = (255, 255, 255)
+                self.state[0:7, 0] = (255, 255, 255)
+                self.state[0:7, 6] = (255, 255, 255)
+
+        # Outro - blinking centre pole
+        elif beat >= 316 and beat <= 320:
+            if beat_portion < 0.2:
+                self.state[3, 3] = (255, 255, 255)
 
         else:
             self.state[:, :] = (0, 0, 0)
 #            print("Stop!")
 
-        return self.state, 0.1
+        return self.state, 0.10
 
