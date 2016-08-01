@@ -21,7 +21,7 @@ class PatternColourwheel(Pattern):
         lights = np.zeros((7, 7, 3), dtype=np.uint8)
 
         # Frames per second
-        fps = 10
+        fps = 30
         # Updates per second
         ups = 1
 
