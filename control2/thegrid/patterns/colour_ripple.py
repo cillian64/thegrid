@@ -19,14 +19,19 @@ class ColourRipple(Pattern):
     If you override __init__(), please call super().__init__().
     """
 
+    def __init__(self, config, ui):
+        super().__init__(config, ui)
+        self.grid_gen = self.generate_grid()
+
     @staticmethod
     def linear_colour_gradient(start_rgb=(0, 0, 0),
-                               end_rgb=(255, 255, 255), n=50):
-        for i in range(1, n):
-            colour = [start_rgb[channel] +
-                      i/(n-1) * (end_rgb[channel] - start_rgb[channel])
-                      for channel in range(3)]
-            yield tuple(colour)
+                               end_rgb=(255, 255, 255), n=10):
+        while True:
+            for i in range(1, n):
+                colour = [start_rgb[channel] +
+                          i/(n-1) * (end_rgb[channel] - start_rgb[channel])
+                          for channel in range(3)]
+                yield tuple(colour)
 
     def update(self):
         """
@@ -53,6 +58,9 @@ class ColourRipple(Pattern):
 
         Return a tuple of (new_grid, update_time).
         """
+        return next(self.grid_gen), 1
+
+    def generate_grid(self):
         colour_gradient = self.linear_colour_gradient()
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
@@ -75,4 +83,4 @@ class ColourRipple(Pattern):
             grid[0, :] = next(colour_gradient) + (0, 0, 0)
             grid[6, :] = next(colour_gradient) + (0, 0, 0)
 
-            yield grid, 10
+            yield grid
