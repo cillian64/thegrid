@@ -1,3 +1,4 @@
+import json
 import asyncio
 import os.path
 import logging
@@ -40,9 +41,41 @@ def simpage(req):
 
 
 @asyncio.coroutine
-def apipage(req):
-    with open(os.path.join(webpath, "api.html"), "rb") as f:
-        return web.Response(Body=f.read())
+def simredirect(req):
+    return web.Response(status=301, headers={"Location": "/sim/"})
+
+
+@asyncio.coroutine
+def ctrlpage(req):
+    with open(os.path.join(webpath, "ctrl.html"), "rb") as f:
+        return web.Response(body=f.read())
+
+
+@asyncio.coroutine
+def uipage(req):
+    with open(os.path.join(webpath, "ui.html"), "rb") as f:
+        return web.Response(body=f.read())
+
+
+@asyncio.coroutine
+def ui(req):
+    return web.Response(body=b"OK")
+
+
+@asyncio.coroutine
+def list_patterns(req):
+    names = list(iter(req.app['control'].patterns.keys()))
+    return web.Response(body=json.dumps(names).encode())
+
+
+@asyncio.coroutine
+def load_pattern(req):
+    name = req.match_info['name']
+    if name in req.app['control'].patterns:
+        req.app['control'].load_pattern(name)
+        return web.Response(body=b"OK")
+    else:
+        return web.Response(status=404, body=b"Not Found")
 
 
 @asyncio.coroutine
@@ -51,9 +84,16 @@ def on_shutdown(app):
         yield from ws.close(code=999, message='Server shutdown')
 
 
-def start_server(host, port):
+def start_server(host, port, control):
     app.router.add_route("GET", "/ws", wshandler)
+    app.router.add_route("GET", "/sim", simredirect)
     app.router.add_route("GET", "/sim/", simpage)
+    app.router.add_route("GET", "/ctrl", ctrlpage)
+    app.router.add_route("GET", "/", uipage)
+    app.router.add_route("GET", "/api/list_patterns", list_patterns)
+    load_pattern_resource = app.router.add_resource('/api/load_pattern/{name}')
+    load_pattern_resource.add_route('POST', load_pattern)
+    app.router.add_route("*", "/ui", ui)
     app.router.add_static('/sim/', simpath)
     app.router.add_static('/', webpath)
     app.on_shutdown.append(on_shutdown)
@@ -62,7 +102,9 @@ def start_server(host, port):
     coro = loop.create_server(handler, host, port)
     loop.create_task(coro)
     logger.info("HTTP server running at http://{}:{}/".format(host, port))
+    logger.info("Control at http://{}:{}/ctrl".format(host, port))
     app['handler'] = handler
+    app['control'] = control
 
     # Shut up some of the logging
     weblogger = logging.getLogger("aiohttp.access")

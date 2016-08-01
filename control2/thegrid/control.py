@@ -35,7 +35,7 @@ class Control:
         logger.info("Starting up")
 
         # Start HTTP server
-        web.start_server(args.web_host, args.web_port)
+        web.start_server(args.web_host, args.web_port, self)
 
         # Set up serial port
         if args.serial_port:
