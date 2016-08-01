@@ -65,6 +65,7 @@ def ui(req):
 @asyncio.coroutine
 def list_patterns(req):
     names = list(iter(req.app['control'].patterns.keys()))
+    names.sort()
     return web.Response(body=json.dumps(names).encode())
 
 
