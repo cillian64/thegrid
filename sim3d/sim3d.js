@@ -106,11 +106,11 @@ function set_pole(i, j, data) {
     var pole = poles[i*7+j];
     var light = pole.children[0];
     var sound = pole.children[1];
-    var color = new THREE.Color().fromArray(data);
+    var color = new THREE.Color(data[0]/255, data[1]/255, data[2]/255);
     pole.material.emissive.setHex(color.getHex());
     light.color.setHex(color.getHex());
-    sound.source.frequency.value = data[4];
-    sound.setVolume(data[5]);
+    sound.source.frequency.value = data[4] / 255 * 6000;
+    sound.setVolume(data[5] / 255);
     if(data[3] == 1) {
         sound.source.type = "sine";
     } else if(data[3] == 2) {
@@ -163,7 +163,8 @@ function update() {
 
 var ws;
 function init_ws() {
-    ws = new WebSocket("ws://localhost:8765/");
+    var path = "ws://" + window.location.host + "/ws";
+    ws = new WebSocket(path);
     ws.onclose = retry_ws;
     ws.onerror = retry_ws;
     ws.onmessage = handle_ws;
@@ -188,7 +189,8 @@ function retry_ws() {
     status.style.color = 'red';
     status.innerHTML = 'Disconnected';
     window.setTimeout(function() {
-        ws = new WebSocket("ws://localhost:8765/");
+        var path = "ws://" + window.location.host + "/ws";
+        ws = new WebSocket(path);
         ws.onclose = retry_ws;
         ws.onmessage = handle_ws;
     }, 1000);
