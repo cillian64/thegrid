@@ -50,14 +50,14 @@ def extract_blocks(lines):
         raise BlockParseError("Last block malformed")
 
 
-@register_pattern("Rectangles", {"file": "rectangles.txt"})
-@register_pattern("Smile", {"file": "smile.txt"})
-@register_pattern("Spinner", {"file": "spinner.txt"})
-@register_pattern("Wave", {"file": "wave.txt"})
-@register_pattern("Zoom", {"file": "zoom.txt"})
-@register_pattern("Zoomout", {"file": "zoomout.txt"})
-@register_pattern("Colourspin", {"file": "colourspin.txt"})
-@register_pattern("Colourzoom", {"file": "colourzoom.txt"})
+@register_pattern("[MONOCHROME] Rectangles", {"file": "rectangles.txt"})
+@register_pattern("[MONOCHROME] Smile", {"file": "smile.txt"})
+@register_pattern("[MONOCHROME] Spinner", {"file": "spinner.txt"})
+@register_pattern("[MONOCHROME] Wave", {"file": "wave.txt"})
+@register_pattern("[MONOCHROME] Zoom", {"file": "zoom.txt"})
+@register_pattern("[MONOCHROME] Zoomout", {"file": "zoomout.txt"})
+@register_pattern("[COLOUR] Spin", {"file": "colourspin.txt"})
+@register_pattern("[COLOUR] Zoom", {"file": "colourzoom.txt"})
 @clicker()
 class StaticPattern(Pattern):
     def __init__(self, config, tracking):

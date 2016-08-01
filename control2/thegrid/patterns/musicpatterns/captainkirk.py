@@ -27,7 +27,7 @@ def roll_without_wrap(a, shift, axis):
     return temp
 
 
-@register_pattern("CaptainKirk",
+@register_pattern("[MUSIC] Shatner of the Mount",
                   {"filename": "thegrid/patterns/musicpatterns/kirk.wav",
                    "first_beat": 0.8,
                    "align_beat": 45.0,

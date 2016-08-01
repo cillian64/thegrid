@@ -1,4 +1,4 @@
-Colourspin
+COLOUR_Spin
 
 ...rrrr
 ...rrrr

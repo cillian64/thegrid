@@ -13,8 +13,7 @@ logger = logging.getLogger(__name__)
 full = True
 grid = np.zeros((7, 7), dtype=np.bool)
 invert = False
-np.zeros((7, 7), dtype=np.bool)
-@register_pattern("Lightning")
+@register_pattern("[MONOCHROME] Lightning")
 @monochrome()
 class Lightning(Pattern):
 	def update(self):

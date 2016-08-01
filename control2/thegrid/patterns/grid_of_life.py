@@ -7,9 +7,14 @@ from ..pattern import Pattern, register_pattern, clicker
 grid_size = 7
 
 
-@register_pattern("Life_WhiteGlider", {'colour': False, 'pattern': 'glider'})
-@register_pattern("Life_WhiteRandom", {'colour': False, 'pattern': 'random'})
-@register_pattern("Life_ColourRandom", {'colour': True, 'pattern': 'random'})
+@register_pattern("[MONOCHROME] Game of Life: Glider",
+                  {'colour': False, 'pattern': 'glider'})
+@register_pattern("[MONOCHROME] Game of Life",
+                  {'colour': False, 'pattern': 'random'})
+@register_pattern("[COLOUR] Game of Life: Glider",
+                  {'colour': True, 'pattern': 'glider'})
+@register_pattern("[COLOUR] Game of Life",
+                  {'colour': True, 'pattern': 'random'})
 @clicker()
 class PatternColourwheel(Pattern):
     def __init__(self, cfg, tracking):
