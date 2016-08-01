@@ -19,9 +19,110 @@ import time
 @clicker()
 class Sample(Pattern):
     def __init__(self, cfg, tracking):
+        # This bit is quite tedious.  I apologise.
+        self.segmentation = []
+        for _ in range(18):
+            self.segmentation.append(np.zeros((7, 7), dtype=np.uint8))
+
+        self.segmentation[1][:, :] = 1
+        
+        self.segmentation[2][:, :] = 2
+        self.segmentation[2][0:3, :] = 1
+        self.segmentation[2][3, 0:3] = 1
+
+        self.segmentation[3][:, :] = 1
+        self.segmentation[3][2, 2:] = 2
+        self.segmentation[3][3:5, :] = 2
+        self.segmentation[3][4, 5:] = 3
+        self.segmentation[3][5:, :] = 3
+
+        self.segmentation[4][:, :] = 1
+        self.segmentation[4][:4, 4:] = 2
+        self.segmentation[4][4:, 3:] = 3
+        self.segmentation[4][3:, :3] = 4
+
+        self.segmentation[5][:, :] = 5
+        self.segmentation[5][:3, :3] = 1
+        self.segmentation[5][:3, 4:] = 3
+        self.segmentation[5][4:, :3] = 2
+        self.segmentation[5][4:, 4:] = 4
+
+        self.segmentation[6][:, :] = 1
+        self.segmentation[6][:4, 2:4] = 2
+        self.segmentation[6][:4, 4:6] = 3
+        self.segmentation[6][4:, :3] = 4
+        self.segmentation[6][4:, 3:6] = 5
+
+        self.segmentation[7][0, :] = 1
+        self.segmentation[7][1, :] = 2
+        self.segmentation[7][2, :] = 3
+        self.segmentation[7][3, :] = 4
+        self.segmentation[7][4, :] = 5
+        self.segmentation[7][5, :] = 6
+        self.segmentation[7][6, :] = 7
+
+        self.segmentation[8][:, :] = 7
+        self.segmentation[8][:, 6] = 8
+        self.segmentation[8][:3, :2] = 1
+        self.segmentation[8][:3, 2:4] = 2
+        self.segmentation[8][:3, 4:6] = 3
+        self.segmentation[8][3:6, :2] = 4
+        self.segmentation[8][3:6, 2:4] = 5
+        self.segmentation[8][3:6, 4:6] = 6
+
+        self.segmentation[9][:, :] = 9
+        self.segmentation[9][:2, :2] = 1
+        self.segmentation[9][:2, 2:4] = 2
+        self.segmentation[9][:2, 4:] = 3
+        self.segmentation[9][2:4, :2] = 4
+        self.segmentation[9][2:4, 2:4] = 5
+        self.segmentation[9][2:4, 4:] = 6
+        self.segmentation[9][4:6, :3] = 7
+        self.segmentation[9][4:6, 3:] = 8
+
+        self.segmentation[10][:, :] = self.segmentation[9]
+        self.segmentation[10][6, 3:] = 10
+
+        self.segmentation[11][:, :] = self.segmentation[9]
+        self.segmentation[11][4:6, 5:] = 9
+        self.segmentation[11][6, :3] = 10
+        self.segmentation[11][6, 3:] = 11
+
+        self.segmentation[12][:, :] = self.segmentation[11]
+        self.segmentation[12][:4, 6] = 12
+
+        self.segmentation[13][:, :] = 13
+        self.segmentation[13][:3, 0] = 1
+        self.segmentation[13][:3, 1] = 2
+        self.segmentation[13][:3, 2] = 3
+        self.segmentation[13][:3, 3] = 4
+        self.segmentation[13][:3, 4] = 5
+        self.segmentation[13][:3, 5] = 6
+        self.segmentation[13][3:6, 0] = 7
+        self.segmentation[13][3:6, 1] = 8
+        self.segmentation[13][3:6, 2] = 9
+        self.segmentation[13][3:6, 3] = 10
+        self.segmentation[13][3:6, 4] = 11
+        self.segmentation[13][3:6, 5] = 12
+
+        self.segmentation[14][:, :] = self.segmentation[13]
+        self.segmentation[14][6, :] = 14
+
+        self.segmentation[15][:, :] = self.segmentation[14]
+        self.segmentation[15][6, 4:] = 15
+        self.segmentation[15][4:, 6] = 15
+
+        self.segmentation[16][:, :] = self.segmentation[15]
+        self.segmentation[16][6, 3] = 15
+        self.segmentation[16][4:, 6] = 16
+
+        # Urgh, that was awful.
+
+
+
         logger.info("Starting Gridi")
         self.gen = self.generator()
-        self.midi_p = midi.read_midifile("thegrid/patterns/canyon.mid")
+        self.midi_p = midi.read_midifile("thegrid/patterns/mids/canyon.mid")
         self.midi_res = self.midi_p.resolution
         self.midi_p.make_ticks_abs()
         self.events = self.midi_p[np.argmax([len(t) for t in self.midi_p])]
@@ -46,9 +147,16 @@ class Sample(Pattern):
             if isinstance(event, midi.NoteOnEvent):
                 if event.channel not in self.channels:
                     self.channels.append(event.channel)
-
-        self.poles_per_ch = 49 // len(self.channels)
         self.channels.sort()
+
+        # Now we know how many channels we have.  We choose the appropriate
+        # self.segmentations, then for each channel make a mask array.
+        # This part is a little messy becuase the channels may not be
+        # sequential, or all exist. e.g. we could just have 1 and 12.
+        self.pole_assignments = []
+        for idx in range(len(self.channels)):
+            self.pole_assignments.append(
+                self.segmentation[len(self.channels)] == idx + 1)
 
     def generator(self):
         t0 = time.time()
@@ -67,16 +175,18 @@ class Sample(Pattern):
                 hue = (event.pitch % 12) / 12.0
                 rgbf = hsv_to_rgb(hue, 1.0, v)
                 rgb = tuple(int(x*255) for x in rgbf)
-                firstpole = (self.channels.index(event.channel) *
-                             self.poles_per_ch)
-                self.state.reshape(49, 3)[firstpole:
-                        firstpole+self.poles_per_ch] = rgb
+
+                ass_idx = self.channels.index(event.channel)
+                mask = self.pole_assignments[ass_idx]
+                self.state[mask] = rgb
 
             if isinstance(event, midi.NoteOffEvent):
-                firstpole = (self.channels.index(event.channel) *
-                             self.poles_per_ch)
-                self.state.reshape(49, 3)[firstpole:
-                        firstpole+self.poles_per_ch] = (0, 0, 0)
+                ass_idx = self.channels.index(event.channel)
+                mask = self.pole_assignments[ass_idx]
+                self.state[mask] = (0, 0, 0)
+        
+        while True:
+            yield np.zeros((7, 7, 3), dtype=np.uint8), 0.5
 
     def update(self):
         return next(self.gen)
