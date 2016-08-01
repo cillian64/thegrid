@@ -28,7 +28,7 @@ class MusicPattern(Pattern):
 
     def __del__(self):
         self.musicplayer.delete()
-        self.musicfile.delete()
+        del self.musicfile
 
     def setup_bpm(self, config):
         self.first_beat = config["first_beat"]
