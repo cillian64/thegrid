@@ -170,6 +170,9 @@ function init_ws() {
 }
 
 function handle_ws(event) {
+    var status = document.getElementById('status');
+    status.style.color = 'green';
+    status.innerHTML = 'Connected';
     var poledata = JSON.parse(event.data);
     for(var i=0; i<7; i++) {
         for(var j=0; j<7; j++) {
@@ -181,6 +184,9 @@ function handle_ws(event) {
 
 function retry_ws() {
     console.log("Websocket closed/error, retrying in 1s");
+    var status = document.getElementById('status');
+    status.style.color = 'red';
+    status.innerHTML = 'Disconnected';
     window.setTimeout(function() {
         ws = new WebSocket("ws://localhost:8765/");
         ws.onclose = retry_ws;
