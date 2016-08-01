@@ -12,6 +12,14 @@
   </table>
 </body>
 <script>
+  function sendform() {
+    var fd = new FormData(this.form);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', this.form.action, true);
+    xhr.send(fd);
+    return false;
+  };
+
   var req = new XMLHttpRequest();
   req.open("GET", "/api/list_patterns", true);
   req.send();
@@ -29,6 +37,7 @@
       var loadbtn = document.createElement("input");
       loadbtn.setAttribute("type", "submit");
       loadbtn.setAttribute("value", "load");
+      loadbtn.onclick = sendform;
       loadform.appendChild(loadbtn);
       load.appendChild(loadform);
     }

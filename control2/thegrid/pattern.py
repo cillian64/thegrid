@@ -22,7 +22,7 @@ def monochrome(colour=None):
     colour, such as (255, 0, 255) or (255, 0, 255, 1, 200, 255).
     """
     if colour is None:
-        colour == (255, 255, 255)
+        colour = (255, 255, 255)
     colour = np.array(colour).reshape(1, -1)
     if colour.size == 3:
         colour = np.append(colour, (0, 0, 0)).reshape(1, -1)
@@ -33,6 +33,7 @@ def monochrome(colour=None):
 
             def update(self):
                 poles, delay = super().update()
+                print(poles.shape)
                 return poles.reshape(7, 7, 1).dot(colour), delay
         NewPattern.__name__ = "{}_monochrome".format(pattern.__name__)
         return NewPattern
@@ -51,7 +52,7 @@ def clicker(freq=255, vol=255):
 
             def update(self):
                 poles, delay = super().update()
-                new_poles = poles[:, :, :3]
+                new_poles = poles.reshape(7, 7, -1)[:, :, :3]
                 changed = np.any(new_poles != self.last_poles, axis=2)
                 sound = np.array((5, freq, vol), dtype=np.uint8).reshape(1, 3)
                 sounds = changed.reshape(7, 7, 1).dot(sound)

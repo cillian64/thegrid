@@ -28,7 +28,6 @@ class Control:
         self.pattern = None
         self.pattern_name = None
         self.patterns = patterns.loaded_patterns
-        self.load_pattern(next(iter(self.patterns.keys())))
 
     @asyncio.coroutine
     def setup(self):
@@ -56,7 +55,6 @@ class Control:
 
     def load_pattern(self, name):
         logger.info("Loading pattern %s", name)
-        del self.pattern
         cls, cfg = self.patterns[name]
         self.pattern = cls(cfg, self.ui)
         self.pattern_name = name
@@ -70,12 +68,17 @@ class Control:
         self.patterns = sys.modules["thegrid.patterns"].loaded_patterns
 
     def run_pattern(self):
+        # Skip if no pattern loaded
+        if getattr(self, 'pattern') is None:
+            self.loop.call_later(1, self.run_pattern)
+            return
+
         try:
             poles, delay = self.pattern.update()
         except Exception:
             logger.exception("Error in pattern %s, retrying in 1 second",
                              self.pattern_name)
-            asyncio.get_event_loop().call_later(1, self.run_pattern)
+            self.loop.call_later(1, self.run_pattern)
         else:
             # Enqueue next frame
             self.loop.call_later(delay, self.run_pattern)
