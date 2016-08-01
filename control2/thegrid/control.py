@@ -54,6 +54,16 @@ class Control:
         del self.pattern
 
     def load_pattern(self, name):
+        # First kill old pattern
+        if self.pattern is not None:
+            # Call a shutdown method if one exists:
+            if hasattr(self.pattern, "shutdown"):
+                logger.info("Calling shutdown method on old pattern")
+                self.pattern.shutdown()
+            del self.pattern
+            self.pattern = None
+            self.pattern_name = None
+
         logger.info("Loading pattern %s", name)
         cls, cfg = self.patterns[name]
         self.pattern = cls(cfg, self.ui)
