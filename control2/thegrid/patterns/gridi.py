@@ -15,10 +15,33 @@ import midi.sequencer
 from colorsys import hsv_to_rgb
 import time
 
-@register_pattern("Gridi")
+@register_pattern("[MUSIC] MIDI player: barbie.mid",
+                        "thegrid/patterns/mids/barbie.mid")
+@register_pattern("[MUSIC] MIDI player: canyon.mid",
+                        "thegrid/patterns/mids/canyon.mid")
+@register_pattern("[MUSIC] MIDI player: crawling.mid",
+                        "thegrid/patterns/mids/crawling.mid")
+@register_pattern("[MUSIC] MIDI player: dancingqueen.mid",
+                        "thegrid/patterns/mids/dancingqueen.mid")
+@register_pattern("[MUSIC] MIDI player: ff7.mid",
+                        "thegrid/patterns/mids/ff7.mid")
+@register_pattern("[MUSIC] MIDI player: freebird.mid",
+                        "thegrid/patterns/mids/freebird.mid")
+@register_pattern("[MUSIC] MIDI player: getlucky.mid",
+                        "thegrid/patterns/mids/getlucky.mid")
+@register_pattern("[MUSIC] MIDI player: gimme.mid",
+                        "thegrid/patterns/mids/gimme.mid")
+@register_pattern("[MUSIC] MIDI player: money.mid",
+                        "thegrid/patterns/mids/money.mid")
+@register_pattern("[MUSIC] MIDI player: bohemian.mid",
+                        "thegrid/patterns/mids/bohemian.mid")
+@register_pattern("[MUSIC] MIDI player: sweetchild.mid",
+                        "thegrid/patterns/mids/sweetchild.mid")
+@register_pattern("[MUSIC] MIDI player: tubthumping.mid.mid",
+                        "thegrid/patterns/mids/tubthumping.mid.mid")
 @clicker()
-class Sample(Pattern):
-    def __init__(self, cfg, tracking):
+class Gridi(Pattern):
+    def __init__(self, cfg, ui):
         # This bit is quite tedious.  I apologise.
         self.segmentation = []
         for _ in range(18):
@@ -119,10 +142,9 @@ class Sample(Pattern):
         # Urgh, that was awful.
 
 
-
         logger.info("Starting Gridi")
         self.gen = self.generator()
-        self.midi_p = midi.read_midifile("thegrid/patterns/mids/canyon.mid")
+        self.midi_p = midi.read_midifile(cfg)
         self.midi_res = self.midi_p.resolution
         self.midi_p.make_ticks_abs()
         self.events = self.midi_p[np.argmax([len(t) for t in self.midi_p])]
