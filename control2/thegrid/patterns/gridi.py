@@ -19,8 +19,6 @@ import time
                         "thegrid/patterns/mids/barbie.mid")
 @register_pattern("[MUSIC] MIDI player: canyon.mid",
                         "thegrid/patterns/mids/canyon.mid")
-@register_pattern("[MUSIC] MIDI player: crawling.mid",
-                        "thegrid/patterns/mids/crawling.mid")
 @register_pattern("[MUSIC] MIDI player: dancingqueen.mid",
                         "thegrid/patterns/mids/dancingqueen.mid")
 @register_pattern("[MUSIC] MIDI player: ff7.mid",
@@ -29,16 +27,12 @@ import time
                         "thegrid/patterns/mids/freebird.mid")
 @register_pattern("[MUSIC] MIDI player: getlucky.mid",
                         "thegrid/patterns/mids/getlucky.mid")
-@register_pattern("[MUSIC] MIDI player: gimme.mid",
-                        "thegrid/patterns/mids/gimme.mid")
-@register_pattern("[MUSIC] MIDI player: money.mid",
-                        "thegrid/patterns/mids/money.mid")
 @register_pattern("[MUSIC] MIDI player: bohemian.mid",
                         "thegrid/patterns/mids/bohemian.mid")
 @register_pattern("[MUSIC] MIDI player: sweetchild.mid",
                         "thegrid/patterns/mids/sweetchild.mid")
-@register_pattern("[MUSIC] MIDI player: tubthumping.mid.mid",
-                        "thegrid/patterns/mids/tubthumping.mid.mid")
+@register_pattern("[MUSIC] MIDI player: tubthumping.mid",
+                        "thegrid/patterns/mids/tubthumping.mid")
 @clicker()
 class Gridi(Pattern):
     def __init__(self, cfg, ui):
@@ -180,13 +174,26 @@ class Gridi(Pattern):
             self.pole_assignments.append(
                 self.segmentation[len(self.channels)] == idx + 1)
 
+    def shutdown(self):
+        del self.seq
+        del self.hw
+
     def generator(self):
         t0 = time.time()
         for event in self.events:
             current_ticks = (time.time() - t0) / self.t_delay
             if event.tick - current_ticks > 0:
                 yield self.state, self.t_delay*(event.tick - current_ticks)
-            self.seq.event_write(event, False, False, True)
+
+            # Filter out some event types which timidity finds particularly
+            # upsetting.
+            if not isinstance(event, (midi.SmpteOffsetEvent, midi.PortEvent,
+                    midi.SysexEvent, midi.TimeSignatureEvent,
+                    midi.KeySignatureEvent, midi.TrackNameEvent,
+                    midi.TextMetaEvent, midi.SequencerSpecificEvent,
+                    midi.MarkerEvent, midi.AfterTouchEvent,
+                    midi.ChannelPrefixEvent)):
+                self.seq.event_write(event, False, False, True)
 
             if isinstance(event, midi.SetTempoEvent):
                 tempo = event.get_bpm()
