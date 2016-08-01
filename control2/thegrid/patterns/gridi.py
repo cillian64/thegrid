@@ -33,6 +33,10 @@ import time
                         "thegrid/patterns/mids/sweetchild.mid")
 @register_pattern("[MUSIC] MIDI player: tubthumping.mid",
                         "thegrid/patterns/mids/tubthumping.mid")
+@register_pattern("[MUSIC] MIDI player: newlife.mid",
+                        "thegrid/patterns/mids/newlife.mid")
+@register_pattern("[MUSIC] MIDI player: justcantgetenough.mid",
+                        "thegrid/patterns/mids/justcantgetenough.mid")
 @clicker()
 class Gridi(Pattern):
     def __init__(self, cfg, ui):
