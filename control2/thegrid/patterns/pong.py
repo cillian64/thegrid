@@ -11,8 +11,8 @@ from ..pattern import Pattern, register_pattern, monochrome, clicker
 logger = logging.getLogger(__name__)
 
 
-@register_pattern("Pong1P", {"players": 1})
-@register_pattern("Pong2P", {"players": 2})
+@register_pattern("[INTERACTIVE] Pong1P", {"players": 1})
+@register_pattern("[INTERACTIVE] Pong2P", {"players": 2})
 @clicker()
 @monochrome()
 class Pong(Pattern):

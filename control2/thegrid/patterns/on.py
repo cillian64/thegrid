@@ -11,7 +11,7 @@ from ..pattern import Pattern, register_pattern, clicker, monochrome
 logger = logging.getLogger(__name__)
 
 
-@register_pattern("On")
+@register_pattern("[MONOCHROME] On")
 @clicker()
 @monochrome()
 class Sample(Pattern):
