@@ -5,6 +5,7 @@ Colours will rippple from the centre of The Grid, with the colour changing
 gradually through the spectrum.  Pretty!  Hopefully.
 """
 
+import copy
 import numpy as np
 import logging
 from ..pattern import Pattern, register_pattern
@@ -24,14 +25,16 @@ class ColourRipple(Pattern):
         self.grid_gen = self.generate_grid()
 
     @staticmethod
-    def linear_colour_gradient(start_rgb=(0, 0, 0),
-                               end_rgb=(255, 255, 255), n=10):
+    def linear_colour_gradient(start_rgb=[0, 0, 0],
+                               end_rgb=[255, 255, 255], n=100):
         while True:
-            for i in range(1, n):
-                colour = [start_rgb[channel] +
-                          i/(n-1) * (end_rgb[channel] - start_rgb[channel])
-                          for channel in range(3)]
-                yield tuple(colour)
+            for channel in range(3):
+                for i in range(1, n):
+                    rgb = copy.deepcopy(start_rgb)
+                    rgb[channel] = (start_rgb[channel] +
+                                    i/(n-1) *
+                                    (end_rgb[channel] - start_rgb[channel]))
+                    yield tuple(rgb)
 
     def update(self):
         """
@@ -58,7 +61,7 @@ class ColourRipple(Pattern):
 
         Return a tuple of (new_grid, update_time).
         """
-        return next(self.grid_gen), 1
+        return next(self.grid_gen), 1/10
 
     def generate_grid(self):
         colour_gradient = self.linear_colour_gradient()
