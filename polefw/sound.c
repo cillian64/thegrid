@@ -122,13 +122,27 @@ static const DACConversionGroup dac_grp_cfg = {
     .trigger      = DAC_TRG(0),
 };
 
+
+static void shuffle_noise(uint8_t mag);
+static uint8_t current_sound = 0, current_freq = 0, current_mag = 0;
+
+static binary_semaphore_t shuffle_thread_sem;
+static THD_WORKING_AREA(shuffle_thread_wa, 128);
+static THD_FUNCTION(shuffle_thread, arg) {
+    (void)arg;
+    while(true) {
+        chBSemWait(&shuffle_thread_sem);
+        shuffle_noise(current_mag);
+    }
+}
+
 void sound_init() {
     dacStart(&DACD1, &dac_cfg);
     gptStart(&GPTD6, &gpt_cfg);
+    chBSemObjectInit(&shuffle_thread_sem, FALSE);
+    chThdCreateStatic(shuffle_thread_wa, sizeof(shuffle_thread_wa),
+        NORMALPRIO, shuffle_thread, NULL);
 }
-
-static void load_noise(uint8_t mag);
-static uint8_t current_sound = 0, current_freq = 0, current_mag = 0;
 
 void sound_set(uint8_t id, uint8_t freq, uint8_t mag) {
     (void)mag;
@@ -145,7 +159,7 @@ void sound_set(uint8_t id, uint8_t freq, uint8_t mag) {
         /* randomly load the noise sound and run at a fixed frequency */
         dacStopConversion(&DACD1);
         gptStopTimer(&GPTD6);
-        load_noise(mag);
+        shuffle_noise(mag);
         gptStartContinuous(&GPTD6, 2048);
         dacStartConversion(&DACD1, &dac_grp_cfg, sound_buf, SOUND_BUF_SIZE);
     } else if(id == SOUND_CLICK) {
@@ -189,7 +203,9 @@ static void sound_end_cb(DACDriver* dacp, const dacsample_t *buf, size_t n) {
     (void)buf;
     (void)n;
     if(current_sound == SOUND_NOISE) {
-        load_noise(current_mag);
+        chSysLockFromISR();
+        chBSemSignalI(&shuffle_thread_sem);
+        chSysUnlockFromISR();
     }
 }
 
@@ -205,23 +221,19 @@ uint8_t lfsr() {
 /* randomly load sample_noise into sound_buf (scaled by mag), so that it
  * doesn't sound periodic when the same random noise is repeated over and over.
  */
-static void load_noise(uint8_t mag) {
+static void shuffle_noise(uint8_t mag) {
     static uint32_t i, j=0;
     for(i=0; i<SOUND_BUF_SIZE; i++) {
 
         /* increment j while lfsr returns 1 */
+        j++;
         while(lfsr()) {
-            if(j++ > sizeof(sample_noise)) {
+            if(j++ >= sizeof(sample_noise)) {
                 j = 0;
             }
         }
 
         /* copy into buffer from sample j */
         sound_buf[i] = (((uint16_t)sample_noise[j] * (mag+1)) >> 8) + 1028;
-
-        /* ensure at least one inc */
-        if(j++ > sizeof(sample_noise)) {
-            j = 0;
-        }
     }
 }
