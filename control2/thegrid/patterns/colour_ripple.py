@@ -39,7 +39,6 @@ class ColourRipple(Pattern):
                     rgb[channel] = int(start_rgb[channel] + i/n *
                                        (end_rgb[channel] - start_rgb[channel]))
                     colours.appendleft(tuple(rgb))
-                    logger.info('put success')
                     yield colours
 
     def update(self):
