@@ -40,6 +40,7 @@ class ColourRipple(Pattern):
                                        (end_rgb[channel] - start_rgb[channel]))
                     colours.appendleft(tuple(rgb))
                     yield colours
+                start_rgb = rgb
 
     def update(self):
         """
@@ -66,7 +67,7 @@ class ColourRipple(Pattern):
 
         Return a tuple of (new_grid, update_time).
         """
-        return next(self.grid_gen), 1/10
+        return next(self.grid_gen), 1/50
 
     def generate_grid(self):
         colour_gradient = self.colour_gradient()
