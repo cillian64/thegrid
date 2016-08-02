@@ -6,14 +6,12 @@ You can add logic around the import statement to check for dependencies etc.
 from ..pattern import loaded_patterns
 
 # Import all patterns to load below here
-from . import simple
 from . import pong
 from . import sparkle
 from . import playlist
 from . import static_patterns
 from . import on
 from . import sample
-from . import pattern_one
 from . import strike
 from . import lightning
 from . import fire
@@ -37,4 +35,4 @@ else: from . import gridi
 
 try: import pyglet
 except: pass
-else: from .musicpatterns import thegrid, captainkirk
+else: from .musicpatterns import captainkirk

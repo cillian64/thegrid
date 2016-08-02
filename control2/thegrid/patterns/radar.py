@@ -5,7 +5,7 @@ from ..pattern import Pattern, register_pattern, clicker
 
 grid_size = 7
 
-@register_pattern("RadarStatic")
+@register_pattern("[COLOUR] Radar (Static)")
 @clicker()
 class PatternRadarStatic(Pattern):
     def __init__(self, cfg, tracking):
@@ -61,7 +61,7 @@ class PatternRadarStatic(Pattern):
     def update(self):
         return self.gen.__next__()
 
-@register_pattern("RadarMoving")
+@register_pattern("[COLOUR] Radar (Moving)")
 @clicker()
 class PatternRadarMoving(Pattern):
     def __init__(self, cfg, tracking):

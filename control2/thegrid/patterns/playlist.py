@@ -12,17 +12,16 @@ logger = logging.getLogger(__name__)
 
 
 playlists = {
-    "Cool Patterns": [
-        ("Lightning", 120),
-        ("Snake", 180),
-        ("On", 20),
-        ("Sparkle", 20),
-        ("Rectangles", 60),
-        ("Wave", 100),
-        ("Zoom", 30),
-        ("Zoomout", 30),
-        ("Zoom", 30),
-        ("Zoomout", 30),
+    "[MONOCHROME] Cool Patterns": [
+        ("[MONOCHROME] Lightning", 120),
+        ("[MONOCHROME] On", 20),
+        ("[MONOCHROME] Sparkle", 20),
+        ("[MONOCHROME] Rectangles", 60),
+        ("[MONOCHROME] Wave", 100),
+        ("[MONOCHROME] Zoom", 30),
+        ("[MONOCHROME] Zoomout", 30),
+        ("[MONOCHROME] Zoom", 30),
+        ("[MONOCHROME] Zoomout", 30),
         ]}
 
 class Playlist(Pattern):

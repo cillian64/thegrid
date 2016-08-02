@@ -6,7 +6,7 @@ from math import sqrt, sin, cos, pi
 from ..pattern import Pattern, register_pattern, clicker
 from colorsys import hsv_to_rgb
 
-@register_pattern("Spotlights")
+@register_pattern("[COLOUR] Spotlights")
 @clicker()
 class PatternColourwave(Pattern):
     def __init__(self, cfg, tracking):

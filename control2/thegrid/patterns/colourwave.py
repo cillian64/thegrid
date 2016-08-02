@@ -16,7 +16,7 @@ from math import sqrt, sin, cos, pi
 from ..pattern import Pattern, register_pattern, clicker
 from colorsys import hsv_to_rgb
 
-@register_pattern("Colourwave")
+@register_pattern("[COLOUR] Wave")
 @clicker()
 class PatternColourwave(Pattern):
     def __init__(self, cfg, tracking):
@@ -24,8 +24,8 @@ class PatternColourwave(Pattern):
                                               # thegrid's hypotenues.  Add a 
                                               # bit for safety.
         self.rectwidth = 3.2  # Three gridpoles plus a bit.
-        self.rectspeed = 0.05 # One unit per update
-        self.updaterate = 0.01 # Time delay between updates, in seconds.
+        self.rectspeed = 0.1 # One unit per update
+        self.updaterate = 1.0/30 # Time delay between updates, in seconds.
 
         self.arr = np.zeros((7, 7, 3), dtype=np.uint8)
         self.new_wave()

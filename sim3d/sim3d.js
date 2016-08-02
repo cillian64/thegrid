@@ -58,7 +58,7 @@ function init_world() {
 
 var poles;
 function init_scene() {
-    var alight = new THREE.AmbientLight(0x404040);
+    var alight = new THREE.AmbientLight(0x101010);
     scene.add(alight);
 
     var sky_geo = new THREE.BoxGeometry(100, 100, 100);
