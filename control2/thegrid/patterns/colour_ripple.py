@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 from ..pattern import Pattern, register_pattern
 
 
-@register_pattern("ColourRipple")
+@register_pattern("[COLOUR] Ripple")
 class ColourRipple(Pattern):
     """
     Colour ripple pattern
