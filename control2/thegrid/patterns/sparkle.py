@@ -13,8 +13,8 @@ from ..pattern import Pattern, register_pattern, monochrome, clicker
 logger = logging.getLogger(__name__)
 
 
-@register_pattern("Sparkle", {'flashlen': 0.05,
-                              'delaylen': 0.5})
+@register_pattern("[MONOCHROME] Sparkle", {'flashlen': 0.05,
+                                           'delaylen': 0.5})
 @clicker()
 @monochrome()
 class Sample(Pattern):

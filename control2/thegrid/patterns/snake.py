@@ -30,8 +30,8 @@ class Point:
             return False
 
 
-@register_pattern("Snake", False)
-@register_pattern("StripeySnake", True)
+@register_pattern("[COLOUR] Snake", False)
+@register_pattern("[COLOUR] Snake (stripy)", True)
 @clicker()
 class Snake(Pattern):
     def __init__(self, cfg, tracking):

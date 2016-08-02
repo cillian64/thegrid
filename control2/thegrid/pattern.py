@@ -33,7 +33,6 @@ def monochrome(colour=None):
 
             def update(self):
                 poles, delay = super().update()
-                print(poles.shape)
                 return poles.reshape(7, 7, 1).dot(colour), delay
         NewPattern.__name__ = "{}_monochrome".format(pattern.__name__)
         return NewPattern

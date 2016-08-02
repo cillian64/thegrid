@@ -27,19 +27,19 @@ def roll_without_wrap(a, shift, axis):
     return temp
 
 
-@register_pattern("CaptainKirk",
-                  {"filename": "kirk.wav",
+@register_pattern("[MUSIC] Shatner of the Mount",
+                  {"filename": "thegrid/patterns/musicpatterns/kirk.wav",
                    "first_beat": 0.8,
                    "align_beat": 45.0,
                    "align_beat_no": 95.5,
                    "beats_per_bar": 4})
 @clicker()
 class CaptainKirk(MusicPattern):
-    def __init__(self, config, tracking):
+    def __init__(self, config, ui):
         self.state = np.zeros((7, 7, 3), dtype=np.uint8)
         self.last_bar = 0
         self.last_beat = 0
-        super(CaptainKirk, self).__init__(config, tracking)
+        super().__init__(config, ui)
 
     def update(self):
         bar, barbeat = self.get_barbeat()
@@ -189,7 +189,6 @@ class CaptainKirk(MusicPattern):
             if ((beat_portion >= 0.0 and beat_portion <= 0.2)
                 or (beat_portion >= 0.5 and beat_portion <= 0.7)):
                 self.state[:, :] = (255, 255, 255)
-                print("BAP")
 
         # God there's more verse.  Okay let's do some zoomout/pyramids.
         elif beat >= 193 and beat <= 224:
@@ -321,5 +320,5 @@ class CaptainKirk(MusicPattern):
             self.state[:, :] = (0, 0, 0)
 #            print("Stop!")
 
-        return self.state, 0.10
+        return self.state, 1.0/30
 

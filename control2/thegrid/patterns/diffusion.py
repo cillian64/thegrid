@@ -17,7 +17,7 @@ import sys
 logger = logging.getLogger(__name__)
 
 
-@register_pattern("Diffusion")
+@register_pattern("[COLOUR] Diffusion")
 @clicker()
 class Sample(Pattern):
     def __init__(self, cfg, tracking):
@@ -25,11 +25,11 @@ class Sample(Pattern):
         self.grid = np.zeros((7, 7, 3), dtype=int)
         self.n_points = 3
         self.sigma = 0.4
-        n = np.ceil(np.sqrt(2 * self.sigma**2 * np.log(1000)))
+        n = int(np.ceil(np.sqrt(2 * self.sigma**2 * np.log(1000))))
         if n % 2 == 0:
             n = n + 1
         impulse = np.zeros((n, n))
-        impulse[n//2, n//2] = 1.0
+        impulse[int(n//2), int(n//2)] = 1.0
         self.kernel = scipy.ndimage.filters.gaussian_filter(impulse,
                       (self.sigma, self.sigma))
         # Normalise the kernel - the discretisation loses us a lot of the
@@ -57,11 +57,11 @@ class Sample(Pattern):
 
     def update(self):
         self.diffuse()
-        if np.random.random() < 0.03:
+        if np.random.random() < 0.05:
             self.drop()
 
         maxgrid = np.zeros((7, 7, 3), dtype=np.uint8)
         maxgrid += 255
         truncated = np.zeros((7, 7, 3), dtype=np.uint8)
         truncated[:, :, :] = np.minimum(self.grid, maxgrid)
-        return truncated, 0.03
+        return truncated, 1.0/30

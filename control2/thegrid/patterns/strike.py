@@ -17,7 +17,7 @@ np.zeros((7, 7), dtype=np.bool)
 x=0
 y=0
 moves = 0
-@register_pattern("strike")
+@register_pattern("[MONOCHROME] Strike")
 @clicker()
 @monochrome()
 class Lightning(Pattern):
