@@ -26,10 +26,9 @@ class ColourRipple(Pattern):
         self.grid_gen = self.generate_grid()
 
     @staticmethod
-    def linear_colour_gradient(start_rgb=[0, 0, 0],
-                               end_rgb=[255, 255, 255], n=100):
-        """Yields 4 colours, advances 1 each yield"""
-        colours = queue.LifoQueue(maxsize=4)
+    def colour_gradient(start_rgb=[0, 0, 0], end_rgb=[255, 255, 255], n=100):
+        """Yields FIFO queue containing four RGB tuples."""
+        colours = queue.Queue(maxsize=4)
         for _ in range(4):
             colours.put((255, 255, 255))
 
@@ -71,7 +70,7 @@ class ColourRipple(Pattern):
         return next(self.grid_gen), 1/10
 
     def generate_grid(self):
-        colour_gradient = self.linear_colour_gradient()
+        colour_gradient = self.colour_gradient()
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
         while True:
