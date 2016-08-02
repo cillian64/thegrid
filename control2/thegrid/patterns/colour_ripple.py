@@ -7,6 +7,7 @@ gradually through the spectrum.  Pretty!  Hopefully.
 
 import copy
 import numpy as np
+import queue
 import logging
 from ..pattern import Pattern, register_pattern
 logger = logging.getLogger(__name__)
@@ -27,6 +28,11 @@ class ColourRipple(Pattern):
     @staticmethod
     def linear_colour_gradient(start_rgb=[0, 0, 0],
                                end_rgb=[255, 255, 255], n=100):
+        """Yields 4 colours, advances 1 each yield"""
+        colours = queue.LifoQueue(maxsize=4)
+        for _ in range(4):
+            colours.put((255, 255, 255))
+
         while True:
             for channel in range(3):
                 for i in range(1, n):
@@ -34,7 +40,8 @@ class ColourRipple(Pattern):
                     rgb[channel] = (start_rgb[channel] +
                                     i/(n-1) *
                                     (end_rgb[channel] - start_rgb[channel]))
-                    yield tuple(rgb)
+                    colours.put(tuple(rgb))
+                    yield colours
 
     def update(self):
         """
@@ -69,21 +76,25 @@ class ColourRipple(Pattern):
 
         while True:
             logger.info("Updating pattern")
-            grid[3][3] = next(colour_gradient) + (0, 0, 0)
+            colours = next(colour_gradient)
+            grid[3][3] = colours.get() + (0, 0, 0)
 
-            grid[:, 2] = next(colour_gradient) + (0, 0, 0)
-            grid[:, 4] = next(colour_gradient) + (0, 0, 0)
-            grid[2, :] = next(colour_gradient) + (0, 0, 0)
-            grid[4, :] = next(colour_gradient) + (0, 0, 0)
+            c = colours.get()
+            grid[:, 2] = c + (0, 0, 0)
+            grid[:, 4] = c + (0, 0, 0)
+            grid[2, :] = c + (0, 0, 0)
+            grid[4, :] = c + (0, 0, 0)
 
-            grid[:, 1] = next(colour_gradient) + (0, 0, 0)
-            grid[:, 5] = next(colour_gradient) + (0, 0, 0)
-            grid[1, :] = next(colour_gradient) + (0, 0, 0)
-            grid[5, :] = next(colour_gradient) + (0, 0, 0)
+            c = colours.get()
+            grid[:, 1] = c + (0, 0, 0)
+            grid[:, 5] = c + (0, 0, 0)
+            grid[1, :] = c + (0, 0, 0)
+            grid[5, :] = c + (0, 0, 0)
 
-            grid[:, 0] = next(colour_gradient) + (0, 0, 0)
-            grid[:, 6] = next(colour_gradient) + (0, 0, 0)
-            grid[0, :] = next(colour_gradient) + (0, 0, 0)
-            grid[6, :] = next(colour_gradient) + (0, 0, 0)
+            c = colours.get()
+            grid[:, 0] = c + (0, 0, 0)
+            grid[:, 6] = c + (0, 0, 0)
+            grid[0, :] = c + (0, 0, 0)
+            grid[6, :] = c + (0, 0, 0)
 
             yield grid
