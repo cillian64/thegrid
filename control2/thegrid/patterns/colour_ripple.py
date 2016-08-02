@@ -28,7 +28,7 @@ class ColourRipple(Pattern):
         self.grid_gen = self.generate_grid()
 
     @staticmethod
-    def colour_gradient(n=50):
+    def colour_gradient(n=10):
         """Yields deque containing four RGB tuples."""
         colours = collections.deque(maxlen=4)
         for _ in range(4):
@@ -52,7 +52,7 @@ class ColourRipple(Pattern):
 
     def update(self):
         """Return a tuple of (new_grid, update_time)"""
-        return next(self.grid_gen), 1/50
+        return next(self.grid_gen), 1/10
 
     def generate_grid(self):
         colour_gradient = self.colour_gradient()
