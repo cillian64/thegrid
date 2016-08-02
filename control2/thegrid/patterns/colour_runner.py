@@ -4,10 +4,12 @@ Colour runner pattern
 Looks as if a coloured pole is running through The Grid!  Imagine: grid is set
 to all blue.  Suddenly, one of them is red, and the co-ordinates of the red
 pole changes, leaving a fading red trail in its wake.  We call this moving red
-pole the runner.  The colour of the runner changes, as does the background i
+pole the runner.  The colour of the runner changes, as does the background
 colour.  Exciting!
 """
 
+import copy
+import itertools
 import numpy as np
 import logging
 logger = logging.getLogger(__name__)
@@ -30,16 +32,16 @@ class ColourRunner(Pattern):
     @staticmethod
     def runner_location():
         """Yields (x, y) co-ordinates of the runner"""
-        start = [0, 0]
-        yield start
+        x_length_cycle = itertools.cycle((list(range(7)) +
+                                          list(reversed(range(7)))))
+        y_length_cycle = copy.deepcopy(x_length_cycle)
+        x, y = next(x_length_cycle), next(y_length_cycle)
+        yield x, y
 
-        loc = start
         while True:
-            if loc[0] == 6:
-                loc = [loc[0] - 1, loc[1]]
-            else:
-                loc = [loc[0] + 1, loc[1]]
-            yield loc
+            for _ in range(6):
+                yield (next(x_length_cycle), y)
+            y = next(y_length_cycle)
 
     def generate_grid(self):
         """
@@ -48,8 +50,8 @@ class ColourRunner(Pattern):
         Yields a 7x7x6 numpy array, with each entry representing the
         configuration of a pole in The Grid.
         """
-        grid = np.zeros((7, 7, 6), dtype=np.uint8)
         while True:
+            grid = np.zeros((7, 7, 6), dtype=np.uint8)
             runner_x, runner_y = next(self.runner_loc)
             grid[runner_x][runner_y][0:3] = [255, 0, 0]
             yield grid
