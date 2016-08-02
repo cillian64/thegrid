@@ -78,7 +78,7 @@ class ColourRipple(Pattern):
             grid[3][3] = colours.pop() + (0, 0, 0)
 
             for i, j in zip([2, 1, 0], [4, 5, 6]):
-                c = colours.popleft()
+                c = colours.pop()
                 grid[:, i] = c + (0, 0, 0)
                 grid[:, j] = c + (0, 0, 0)
                 grid[i, :] = c + (0, 0, 0)
