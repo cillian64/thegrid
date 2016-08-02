@@ -43,6 +43,12 @@ class ColourRunner(Pattern):
                 yield (next(x_length_cycle), y)
             y = next(y_length_cycle)
 
+    @staticmethod
+    def interpolate_rgb(start_rgb, end_rgb, distance):
+        return [int(start_rgb[channel] + distance/7
+                * (end_rgb[channel] - start_rgb[channel]))
+                for channel in range(3)]
+
     def generate_grid(self):
         """
         Yields 7x7x6 numpy array representing grid pole configurations
@@ -50,10 +56,16 @@ class ColourRunner(Pattern):
         Yields a 7x7x6 numpy array, with each entry representing the
         configuration of a pole in The Grid.
         """
+        blue = [0, 0, 255]
+        red = [255, 0, 0]
 
         while True:
             grid = np.zeros((7, 7, 6), dtype=np.uint8)
-            grid[:, :] = (0, 0, 255, 0, 0, 0)
-            runner_x, runner_y = next(self.runner_loc)
-            grid[runner_x][runner_y][0:3] = [255, 0, 0]
-            yield grid
+            grid[:, :] = blue + [0, 0, 0]
+            for i in range(7):
+                runner_x, runner_y = next(self.runner_loc)
+                grid[runner_x][runner_y][0:3] = red
+                yield grid
+
+                grid[runner_x][runner_y][0:3] = self.interpolate_rgb(red,
+                                                                     blue, i)
