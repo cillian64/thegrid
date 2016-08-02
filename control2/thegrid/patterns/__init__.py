@@ -22,6 +22,7 @@ from . import colourwheel
 from . import radar
 from . import colourwave
 from . import grid_of_life
+from . import colour_ripple
 
 # The other imports have optional dependencies:
 try: import alsaaudio
