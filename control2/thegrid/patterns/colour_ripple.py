@@ -7,6 +7,7 @@ gradually through the spectrum.  Pretty!  Hopefully.
 
 import collections
 import copy
+import itertools
 import numpy as np
 import logging
 from ..pattern import Pattern, register_pattern
@@ -27,25 +28,28 @@ class ColourRipple(Pattern):
         self.grid_gen = self.generate_grid()
 
     @staticmethod
-    def colour_gradient(n=100):
+    def colour_gradient(n=50):
         """Yields deque containing four RGB tuples."""
         colours = collections.deque(maxlen=4)
         for _ in range(4):
             colours.appendleft(tuple([255, 255, 255]))
 
-        while True:
-            start_rgb = [0, 0, 0]
-            for channel in range(3):
-                end_rgb = [0, 0, 0]
-                end_rgb[channel] = 255
+        red = [255, 0, 0]
+        green = [0, 255, 0]
+        blue = [0, 0, 255]
+        start_rgb_cycle = itertools.cycle([red, green, blue])
+        end_rgb_cycle = itertools.cycle([green, blue, red])
 
-                for i in range(n):
-                    rgb = copy.deepcopy(start_rgb)
-                    rgb[channel] = int(start_rgb[channel] + i/n *
-                                       (end_rgb[channel] - start_rgb[channel]))
-                    colours.appendleft(tuple(rgb))
-                    yield colours
-                start_rgb = rgb
+        while True:
+            start_rgb = next(start_rgb_cycle)
+            end_rgb = next(end_rgb_cycle)
+            for i in range(n):
+                rgb = [int(start_rgb[channel] +
+                       i/n * (end_rgb[channel] - start_rgb[channel]))
+                       for channel in range(3)]
+                print(rgb)
+                colours.appendleft(tuple(rgb))
+                yield colours
 
     def update(self):
         """Return a tuple of (new_grid, update_time)"""
