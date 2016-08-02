@@ -5,9 +5,9 @@ Colours will rippple from the centre of The Grid, with the colour changing
 gradually through the spectrum.  Pretty!  Hopefully.
 """
 
+import collections
 import copy
 import numpy as np
-import queue
 import logging
 from ..pattern import Pattern, register_pattern
 logger = logging.getLogger(__name__)
@@ -27,10 +27,10 @@ class ColourRipple(Pattern):
 
     @staticmethod
     def colour_gradient(start_rgb=[0, 0, 0], end_rgb=[255, 255, 255], n=100):
-        """Yields FIFO queue containing four RGB tuples."""
-        colours = queue.Queue(maxsize=4)
+        """Yields deque containing four RGB tuples."""
+        colours = collections.deque(maxlen=4)
         for _ in range(4):
-            colours.put(tuple(start_rgb))
+            colours.appendleft(tuple(start_rgb))
 
         while True:
             for channel in range(3):
@@ -38,7 +38,7 @@ class ColourRipple(Pattern):
                     rgb = copy.deepcopy(start_rgb)
                     rgb[channel] = int(start_rgb[channel] + i/n *
                                        (end_rgb[channel] - start_rgb[channel]))
-                    colours.put(tuple(rgb))
+                    colours.appendleft(tuple(rgb))
                     logger.info('put success')
                     yield colours
 
@@ -74,14 +74,11 @@ class ColourRipple(Pattern):
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
         while True:
-            logger.info("Updating pattern")
-            colours = next(colour_gradient)
-            logger.info("Got colours from queue")
-            grid[3][3] = colours.get() + (0, 0, 0)
-            logger.info("Set centre pole")
+            colours = copy.deepcopy(next(colour_gradient))
+            grid[3][3] = colours.popleft() + (0, 0, 0)
 
-            for i, j in [2, 1, 0], [4, 5, 6]:
-                c = colours.get()
+            for i, j in zip([2, 1, 0], [4, 5, 6]):
+                c = colours.popleft()
                 grid[:, i] = c + (0, 0, 0)
                 grid[:, j] = c + (0, 0, 0)
                 grid[i, :] = c + (0, 0, 0)
