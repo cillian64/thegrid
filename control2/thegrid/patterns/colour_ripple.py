@@ -26,14 +26,18 @@ class ColourRipple(Pattern):
         self.grid_gen = self.generate_grid()
 
     @staticmethod
-    def colour_gradient(start_rgb=[0, 0, 0], end_rgb=[255, 255, 255], n=100):
+    def colour_gradient(n=100):
         """Yields deque containing four RGB tuples."""
         colours = collections.deque(maxlen=4)
         for _ in range(4):
-            colours.appendleft(tuple(start_rgb))
+            colours.appendleft(tuple([255, 255, 255]))
 
         while True:
+            start_rgb = [0, 0, 0]
             for channel in range(3):
+                end_rgb = [0, 0, 0]
+                end_rgb[channel] = 255
+
                 for i in range(n):
                     rgb = copy.deepcopy(start_rgb)
                     rgb[channel] = int(start_rgb[channel] + i/n *
