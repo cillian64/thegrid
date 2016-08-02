@@ -1,8 +1,8 @@
 """
 Colour ripple pattern
 
-Colours will rippple from the centre of The Grid, with the colour changing
-gradually through the spectrum.  Pretty!  Hopefully.
+Colours will emanate from the centre of The Grid, with the colour changing
+gradually through the spectrum.  Pretty!
 """
 
 import collections
@@ -10,8 +10,9 @@ import copy
 import itertools
 import numpy as np
 import logging
-from ..pattern import Pattern, register_pattern
 logger = logging.getLogger(__name__)
+
+from ..pattern import Pattern, register_pattern
 
 
 @register_pattern("ColourRipple")
@@ -29,7 +30,14 @@ class ColourRipple(Pattern):
 
     @staticmethod
     def colour_gradient(n=10):
-        """Yields deque containing four RGB tuples."""
+        """
+        Yields deque containing four RGB tuples that gradate through spectrum
+
+        Yields a deque of four RGB tuples, each one interpolation away from the
+        other, resulting in a smooth move through the spectrum.  Each yield,
+        a new RGB tuple is appended to the left of the deque, removing the
+        right-most tuple.
+        """
         colours = collections.deque(maxlen=4)
         for _ in range(4):
             colours.appendleft(tuple([255, 255, 255]))
@@ -51,10 +59,17 @@ class ColourRipple(Pattern):
                 yield colours
 
     def update(self):
-        """Return a tuple of (new_grid, update_time)"""
         return next(self.grid_gen), 1/10
 
     def generate_grid(self):
+        """
+        Yields 7x7x6 numpy array representing grid pole configurations
+
+        Yields a 7x7x6 numpy array, with each entry representing the
+        configuration of a pole in The Grid.  The centre pole will be set to
+        the first colour in the colour gradient, then each of the surrounding
+        rectangles of poles will be set to successive colours in the gradient.
+        """
         colour_gradient = self.colour_gradient()
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
