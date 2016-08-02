@@ -8,6 +8,7 @@ pole the runner.  The colour of the runner changes, as does the background
 colour.  Exciting!
 """
 
+import collections
 import copy
 import itertools
 import numpy as np
@@ -27,7 +28,7 @@ class ColourRunner(Pattern):
         self.runner_loc = self.runner_location()
 
     def update(self):
-        return next(self.grid_gen), 1/10
+        return next(self.grid_gen), 1/5
 
     @staticmethod
     def runner_location():
@@ -44,8 +45,8 @@ class ColourRunner(Pattern):
             y = next(y_length_cycle)
 
     @staticmethod
-    def interpolate_rgb(start_rgb, end_rgb, distance):
-        return [int(start_rgb[channel] + distance/7
+    def interpolate_rgb(start_rgb, end_rgb, distance, n=7):
+        return [int(start_rgb[channel] + distance/n
                 * (end_rgb[channel] - start_rgb[channel]))
                 for channel in range(3)]
 
@@ -59,13 +60,21 @@ class ColourRunner(Pattern):
         blue = [0, 0, 255]
         red = [255, 0, 0]
 
-        while True:
-            grid = np.zeros((7, 7, 6), dtype=np.uint8)
-            grid[:, :] = blue + [0, 0, 0]
-            for i in range(7):
-                runner_x, runner_y = next(self.runner_loc)
-                grid[runner_x][runner_y][0:3] = red
-                yield grid
+        wake = collections.deque(maxlen=7)
+        wake.append(next(self.runner_loc))
 
-                grid[runner_x][runner_y][0:3] = self.interpolate_rgb(red,
-                                                                     blue, i)
+        grid = np.zeros((7, 7, 6), dtype=np.uint8)
+        grid[:, :] = blue + [0, 0, 0]
+
+        while True:
+            runner_x, runner_y = wake[-1]
+            grid[runner_x][runner_y][0:3] = red
+            yield grid
+
+            print()
+            for i in range(len(wake)):
+                x, y = wake[-i]
+                logger.info('x, y = {0}, {1}'.format(x, y))
+                grid[x][y][0:3] = self.interpolate_rgb(red, blue, i)
+                logger.info(grid[x][y][0:3])
+            wake.append(next(self.runner_loc))
