@@ -34,10 +34,10 @@ class ColourRipple(Pattern):
 
         while True:
             for channel in range(3):
-                for i in range(1, n):
+                for i in range(n):
                     rgb = copy.deepcopy(start_rgb)
                     rgb[channel] = (start_rgb[channel] +
-                                    i/(n-1) *
+                                    i/(n) *
                                     (end_rgb[channel] - start_rgb[channel]))
                     colours.put(tuple(rgb))
                     yield colours
@@ -76,7 +76,9 @@ class ColourRipple(Pattern):
         while True:
             logger.info("Updating pattern")
             colours = next(colour_gradient)
+            logger.info("Got colours from queue")
             grid[3][3] = colours.get() + (0, 0, 0)
+            logger.info("Set centre pole")
 
             for i, j in [2, 1, 0], [4, 5, 6]:
                 c = colours.get()
