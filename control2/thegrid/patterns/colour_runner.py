@@ -35,11 +35,11 @@ class ColourRunner(Pattern):
         x_length_cycle = itertools.cycle((list(range(7)) +
                                           list(reversed(range(7)))))
         y_length_cycle = copy.deepcopy(x_length_cycle)
-        x, y = next(x_length_cycle), next(y_length_cycle)
+        x, y = 0, next(y_length_cycle)
         yield x, y
 
         while True:
-            for _ in range(6):
+            for _ in range(7):
                 yield (next(x_length_cycle), y)
             y = next(y_length_cycle)
 
