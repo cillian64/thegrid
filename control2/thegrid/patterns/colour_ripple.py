@@ -16,9 +16,10 @@ logger = logging.getLogger(__name__)
 @register_pattern("ColourRipple")
 class ColourRipple(Pattern):
     """
-    This class will have self.config set from the register_pattern argument,
-    and self.ui set as a reference to the global UI helper.
-    If you override __init__(), please call super().__init__().
+    Colour ripple pattern
+
+    Colours will emanate from the centre of the grid, with colour moving
+    gradually through the spectrum.
     """
 
     def __init__(self, config, ui):
@@ -47,30 +48,7 @@ class ColourRipple(Pattern):
                 start_rgb = rgb
 
     def update(self):
-        """
-        The update() method is called by the main control loop on a time basis
-        you can specify. You should compute the new grid state in this method.
-
-        The grid shape is specified by a (7, 7, 6) numpy array of type uint8,
-        with the first two dimensions specifying the (x, y) pole coordinate,
-        and the third dimension giving (red, green, blue, sound type, sound
-        frequency, sound volume).
-
-        Sound types:
-            0: silent
-            1: sine
-            2: square
-            3: triangle
-            4: noise
-            5: click
-
-        Sound frequencies and volumes range 0-255 and are scaled in hardware to
-        meet the available sounder response.
-
-        The time until next update is specified in seconds.
-
-        Return a tuple of (new_grid, update_time).
-        """
+        """Return a tuple of (new_grid, update_time)"""
         return next(self.grid_gen), 1/50
 
     def generate_grid(self):
