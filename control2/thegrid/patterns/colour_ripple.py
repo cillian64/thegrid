@@ -47,7 +47,6 @@ class ColourRipple(Pattern):
                 rgb = [int(start_rgb[channel] +
                        i/n * (end_rgb[channel] - start_rgb[channel]))
                        for channel in range(3)]
-                print(rgb)
                 colours.appendleft(tuple(rgb))
                 yield colours
 
