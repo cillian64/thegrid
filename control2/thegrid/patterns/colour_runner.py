@@ -8,6 +8,7 @@ pole changes, leaving a fading red trail in its wake.  The colour of the runner
 """
 
 import numpy as np
+import random
 import logging
 logger = logging.getLogger(__name__)
 
@@ -21,11 +22,14 @@ class ColourRunner(Pattern):
     def __init__(self, config, ui):
         super().__init__(config, ui)
         self.grid_gen = self.generate_grid()
+        self.runner_loc = self.runner_location()
 
     @staticmethod
     def runner_location():
         """Yields (x, y) co-ordinates of the runner"""
-        pass
+        start = (random.randint(0, 7), random.randint(0, 7))
+        while True:
+            yield start
 
     def update(self):
         return next(self.grid_gen), 1/10
@@ -35,9 +39,10 @@ class ColourRunner(Pattern):
         Yields 7x7x6 numpy array representing grid pole configurations
 
         Yields a 7x7x6 numpy array, with each entry representing the
-        configuration of a pole in The Grid.  The centre pole will be set to
-        the first colour in the colour gradient, then each of the surrounding
-        rectangles of poles will be set to successive colours in the gradient.
+        configuration of a pole in The Grid.
         """
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
-        yield grid
+        while True:
+            runner_x, runner_y = next(self.runner_loc)
+            grid[runner_x][runner_y][0:3] = [255, 0, 0]
+            yield grid
