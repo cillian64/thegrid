@@ -189,7 +189,6 @@ class CaptainKirk(MusicPattern):
             if ((beat_portion >= 0.0 and beat_portion <= 0.2)
                 or (beat_portion >= 0.5 and beat_portion <= 0.7)):
                 self.state[:, :] = (255, 255, 255)
-                print("BAP")
 
         # God there's more verse.  Okay let's do some zoomout/pyramids.
         elif beat >= 193 and beat <= 224:
