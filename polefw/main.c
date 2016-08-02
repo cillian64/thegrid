@@ -14,9 +14,10 @@
 #include "flash.h"
 
 binary_semaphore_t frame_thread_sem;
-static THD_WORKING_AREA(frame_thread_wa, 128);
+static THD_WORKING_AREA(frame_thread_wa, 1024);
 static THD_FUNCTION(frame_thread, arg) {
     (void)arg;
+
     while(true) {
         chBSemWait(&frame_thread_sem);
         frame_process();
