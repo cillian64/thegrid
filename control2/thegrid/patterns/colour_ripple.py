@@ -30,16 +30,16 @@ class ColourRipple(Pattern):
         """Yields FIFO queue containing four RGB tuples."""
         colours = queue.Queue(maxsize=4)
         for _ in range(4):
-            colours.put((255, 255, 255))
+            colours.put(tuple(start_rgb))
 
         while True:
             for channel in range(3):
                 for i in range(n):
                     rgb = copy.deepcopy(start_rgb)
-                    rgb[channel] = (start_rgb[channel] +
-                                    i/(n) *
-                                    (end_rgb[channel] - start_rgb[channel]))
+                    rgb[channel] = int(start_rgb[channel] + i/n *
+                                       (end_rgb[channel] - start_rgb[channel]))
                     colours.put(tuple(rgb))
+                    logger.info('put success')
                     yield colours
 
     def update(self):
