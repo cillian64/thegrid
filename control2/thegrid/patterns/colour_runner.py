@@ -50,8 +50,10 @@ class ColourRunner(Pattern):
         Yields a 7x7x6 numpy array, with each entry representing the
         configuration of a pole in The Grid.
         """
+
         while True:
             grid = np.zeros((7, 7, 6), dtype=np.uint8)
+            grid[:, :] = (0, 0, 255, 0, 0, 0)
             runner_x, runner_y = next(self.runner_loc)
             grid[runner_x][runner_y][0:3] = [255, 0, 0]
             yield grid
