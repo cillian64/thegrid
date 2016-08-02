@@ -75,7 +75,7 @@ class ColourRipple(Pattern):
 
         while True:
             colours = copy.deepcopy(next(colour_gradient))
-            grid[3][3] = colours.popleft() + (0, 0, 0)
+            grid[3][3] = colours.pop() + (0, 0, 0)
 
             for i, j in zip([2, 1, 0], [4, 5, 6]):
                 c = colours.popleft()
