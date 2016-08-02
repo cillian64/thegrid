@@ -79,7 +79,7 @@ class ColourRipple(Pattern):
             colours = next(colour_gradient)
             grid[3][3] = colours.get() + (0, 0, 0)
 
-            for i, j in reversed(range(2)), range(4, 6):
+            for i, j in [2, 1, 0], [4, 5, 6]:
                 c = colours.get()
                 grid[:, i] = c + (0, 0, 0)
                 grid[:, j] = c + (0, 0, 0)
