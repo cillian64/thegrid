@@ -1,8 +1,7 @@
 """
-thegrid.py
+captainkirk.py
 
-Pattern to the music of Daft Punk's "The Grid" from the soundtrack to Tron
-Legacy.
+Captain Kirk is climbing a mountain. Why is he climbing a mountain?
 """
 
 import random
@@ -13,18 +12,6 @@ from .musicpattern import MusicPattern
 from colorsys import hsv_to_rgb
 
 logger = logging.getLogger(__name__)
-
-def roll_without_wrap(a, shift, axis):
-    temp = np.roll(a, shift, axis)
-    if axis == 0 and shift > 0: # down
-        temp[0, :] = False
-    if axis == 0 and shift < 0: # up
-        temp[-1, :] = False
-    if axis == 1 and shift > 0: # right
-        temp[:, 0] = False
-    if axis == 1 and shift < 0: # left
-        temp[:, -1] = False
-    return temp
 
 
 @register_pattern("[MUSIC] Shatner of the Mount",
