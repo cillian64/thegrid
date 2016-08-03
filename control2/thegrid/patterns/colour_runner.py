@@ -61,20 +61,22 @@ class ColourRunner(Pattern):
         red = [255, 0, 0]
 
         wake = collections.deque(maxlen=7)
-        wake.append(next(self.runner_loc))
+        wake.appendleft(next(self.runner_loc))
 
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
         grid[:, :] = blue + [0, 0, 0]
 
         while True:
-            runner_x, runner_y = wake[-1]
+            runner_x, runner_y = wake[0]
+            print()
+            logger.info('runner_x, runner_y = {0}, {1}'.format(runner_x,
+                                                               runner_y))
             grid[runner_x][runner_y][0:3] = red
             yield grid
 
-            print()
             for i in range(len(wake)):
-                x, y = wake[-i]
+                x, y = wake[i]
                 logger.info('x, y = {0}, {1}'.format(x, y))
                 grid[x][y][0:3] = self.interpolate_rgb(red, blue, i)
                 logger.info(grid[x][y][0:3])
-            wake.append(next(self.runner_loc))
+            wake.appendleft(next(self.runner_loc))
