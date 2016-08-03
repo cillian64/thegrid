@@ -51,7 +51,7 @@ class MusicPattern(Pattern):
         beat = self.t_to_beat(t) % self.beats_per_bar 
         if beat == 0:
             beat = self.beats_per_bar
-        return (bar, beat)
+        return (int(bar), int(beat))
 
     def t_to_beat_portion(self, t):
         # Convert the time to a beat number, then find the time of the start
