@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-30T00:00:00+01:00</updated><entry><title>Welcome to EMF!</title><link href="http://www.thegrid.fish/2014/08/30/welcome-to-emf" rel="alternate"></link><updated>2014-08-30T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-08-30:2014/08/30/welcome-to-emf</id><summary type="html">&lt;p&gt;Welcome to &lt;span class="caps"&gt;EMF&lt;/span&gt;! A lot of you will have seen us setup last night for a few
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/blog.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2016-08-03T00:00:00+01:00</updated><entry><title>Welcome to EMF 2016!</title><link href="http://www.thegrid.fish/2016/08/03/welcome-to-emf-2016" rel="alternate"></link><updated>2016-08-03T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2016-08-03:2016/08/03/welcome-to-emf-2016</id><summary type="html">&lt;p&gt;We&amp;#8217;re back again! No build log this time (it would have been great though, 
+check out our &lt;a href="https://twitter.com/__thegrid"&gt;twitter&lt;/a&gt; for some photos etc), 
+but we&amp;#8217;ve made a bunch of improvements and can&amp;#8217;t wait to show you them at &lt;span class="caps"&gt;EMF&lt;/span&gt;&amp;nbsp;2016.&lt;/p&gt;
+&lt;p&gt;More usefully though, the information below on writing your own patterns is 
+outdated, please check 
+&lt;a href="https://github.com/cillian64/thegrid/blob/master/software/README.md"&gt;here&lt;/a&gt; for 
+details this&amp;nbsp;time!&lt;/p&gt;</summary></entry><entry><title>Welcome to EMF!</title><link href="http://www.thegrid.fish/2014/08/30/welcome-to-emf" rel="alternate"></link><updated>2014-08-30T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-08-30:2014/08/30/welcome-to-emf</id><summary type="html">&lt;p&gt;Welcome to &lt;span class="caps"&gt;EMF&lt;/span&gt;! A lot of you will have seen us setup last night for a few
 hours, so thanks to everybody who dropped by.  Hopefully later today we&amp;#8217;ll set
 up again and keep running continuously for the rest of the weekend.  Also,
 we&amp;#8217;re hoping to get the interactivity working by&amp;nbsp;tonight.&lt;/p&gt;
@@ -9,6 +15,7 @@ github&lt;/a&gt;.  This includes a number of
 patterns which you can copy and modify, and everything you need to test them
 out on your own laptop.  Once you&amp;#8217;re happy, make a pull request against our
 repository and we&amp;#8217;ll include the good&amp;nbsp;ones.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;OUTDATED&lt;/span&gt;! Please see more recent blog post for 2016&amp;nbsp;information.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Setup&amp;nbsp;steps:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/cillian64/thegrid.git&lt;/span&gt;
 &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;thegrid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;thegrid&lt;/span&gt;
@@ -257,7 +264,7 @@ residental&amp;nbsp;house.&lt;/p&gt;
 ordered a few samples to test drive. Hopefully we&amp;#8217;ll have flashing LEDs by the
 end of the&amp;nbsp;week.&lt;/p&gt;</summary><category term="structures"></category><category term="electronics"></category></entry><entry><title>Approval!</title><link href="http://www.thegrid.fish/2014/07/05/approval" rel="alternate"></link><updated>2014-07-05T00:00:00+01:00</updated><author><name>David</name></author><id>tag:www.thegrid.fish,2014-07-05:2014/07/05/approval</id><summary type="html">&lt;p&gt;We got approval!  We&amp;#8217;ve been waiting for the &lt;span class="caps"&gt;EMF&lt;/span&gt; committee to get back to us
 about our proposal, and, they did &amp;#8212; The·Grid at &lt;span class="caps"&gt;EMF2014&lt;/span&gt; is&amp;nbsp;happening!&lt;/p&gt;
-&lt;p&gt;To celebrate, I bought £70 worth of 12V PSUs (150A worth) and we set up this&amp;nbsp;website.&lt;/p&gt;</summary><category term="power"></category></entry><entry><title>Welcome</title><link href="http://www.thegrid.fish/2014/07/05/welcome" rel="alternate"></link><updated>2014-07-05T00:00:00+01:00</updated><author><name>Dr House Industries</name></author><id>tag:www.thegrid.fish,2014-07-05:2014/07/05/welcome</id><summary type="html">&lt;p&gt;The·Grid is an art/engineering installation to be displayed at &lt;a href="http://www.emfcamp.org"&gt;&lt;span class="caps"&gt;EMF&lt;/span&gt;
-2014&lt;/a&gt;.  Visit the
+&lt;p&gt;To celebrate, I bought £70 worth of 12V PSUs (150A worth) and we set up this&amp;nbsp;website.&lt;/p&gt;</summary><category term="power"></category></entry><entry><title>Welcome</title><link href="http://www.thegrid.fish/2014/07/05/welcome" rel="alternate"></link><updated>2014-07-05T00:00:00+01:00</updated><author><name>Dr House Industries</name></author><id>tag:www.thegrid.fish,2014-07-05:2014/07/05/welcome</id><summary type="html">&lt;p&gt;The·Grid is an art/engineering installation to be displayed at 
+&lt;a href="http://www.emfcamp.org"&gt;&lt;span class="caps"&gt;EMF&lt;/span&gt;&lt;/a&gt; 2014 and 2016.  Visit the
 &lt;a href="http://www.thegrid.fish/pages/about.html"&gt;About&lt;/a&gt; page for a quick overview of what we&amp;#8217;re
 doing, or read the build log below for progress updates and juicy&amp;nbsp;details&amp;#8230;&lt;/p&gt;</summary></entry></feed>

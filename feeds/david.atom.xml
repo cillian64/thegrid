@@ -9,6 +9,7 @@ github&lt;/a&gt;.  This includes a number of
 patterns which you can copy and modify, and everything you need to test them
 out on your own laptop.  Once you&amp;#8217;re happy, make a pull request against our
 repository and we&amp;#8217;ll include the good&amp;nbsp;ones.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;OUTDATED&lt;/span&gt;! Please see more recent blog post for 2016&amp;nbsp;information.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Setup&amp;nbsp;steps:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/cillian64/thegrid.git&lt;/span&gt;
 &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;thegrid&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;control&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;thegrid&lt;/span&gt;

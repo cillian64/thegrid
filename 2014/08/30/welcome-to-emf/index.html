@@ -15,7 +15,7 @@
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Welcome to EMF!"/>
             <meta property="og:url" content="http://www.thegrid.fish/2014/08/30/welcome-to-emf"/>
-            <meta property="og:description" content="Welcome to EMF! A lot of you will have seen us setup last night for a few hours, so thanks to everybody who dropped by. Hopefully later today we’ll set up again and keep running continuously for the rest of the weekend. Also, we’re hoping to get the interactivity working by tonight. More importantly, here’s how to get started contributing your own patterns. All of our code is available at Our github. This includes a number of patterns which you can copy and modify, and everything you need to test them out on your own laptop. Once you’re happy, make a pull request against our repository and we’ll include the good ones. Setup steps: git clone https://github.com/cillian64/thegrid.git cd thegrid/control/thegrid cp settings.py.sample settings.py cd .. python -m thegrid.control This should start up the control server. To load a pattern, in a new window run: cd thegrid/control/thegrid python api.py load_pattern Sparkle Replacing Sparkle with whichever pattern name. A sample pattern is available in control/thegrid/sample.py. The key concept is that you will need to make a new class, YourPattern, which inherits from Pattern, and decorate it with @register_pattern(&#34;Your Pattern Name&#34;). It ust contain at least update(self) which should return (a 7x7 numpy bool array, the time in seconds until the next frame). Pattern and register_pattern are imported as from .pattern import Pattern, register_pattern. See that sample.py file for a full example. Add your own new pattern as a .py file in patterns, then add from . import your_file_name to patterns/__init__.py to cause it to get imported and registered. Drop us a tweet @__thegrid or email (below) for any other help. Either send us your new pattern.py file ..."/>
+            <meta property="og:description" content="Welcome to EMF! A lot of you will have seen us setup last night for a few hours, so thanks to everybody who dropped by. Hopefully later today we’ll set up again and keep running continuously for the rest of the weekend. Also, we’re hoping to get the interactivity working by tonight. More importantly, here’s how to get started contributing your own patterns. All of our code is available at Our github. This includes a number of patterns which you can copy and modify, and everything you need to test them out on your own laptop. Once you’re happy, make a pull request against our repository and we’ll include the good ones. OUTDATED! Please see more recent blog post for 2016 information. Setup steps: git clone https://github.com/cillian64/thegrid.git cd thegrid/control/thegrid cp settings.py.sample settings.py cd .. python -m thegrid.control This should start up the control server. To load a pattern, in a new window run: cd thegrid/control/thegrid python api.py load_pattern Sparkle Replacing Sparkle with whichever pattern name. A sample pattern is available in control/thegrid/sample.py. The key concept is that you will need to make a new class, YourPattern, which inherits from Pattern, and decorate it with @register_pattern(&#34;Your Pattern Name&#34;). It ust contain at least update(self) which should return (a 7x7 numpy bool array, the time in seconds until the next frame). Pattern and register_pattern are imported as from .pattern import Pattern, register_pattern. See that sample.py file for a full example. Add your own new pattern as a .py file in patterns, then add from . import your_file_name to patterns/__init__.py to cause it to get imported and registered. Drop us a tweet @__thegrid or email (below) for any ..."/>
             <meta property="article:published_time" content="2014-08-30" />
                 <meta property="article:section" content="Blog" />
                 <meta property="article:tag" content="EMF" />
@@ -111,6 +111,7 @@ github</a>.  This includes a number of
 patterns which you can copy and modify, and everything you need to test them
 out on your own laptop.  Once you&#8217;re happy, make a pull request against our
 repository and we&#8217;ll include the good&nbsp;ones.</p>
+<p><strong><span class="caps">OUTDATED</span>! Please see more recent blog post for 2016&nbsp;information.</strong></p>
 <p>Setup&nbsp;steps:</p>
 <div class="highlight"><pre><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">:</span><span class="c1">//github.com/cillian64/thegrid.git</span>
 <span class="n">cd</span> <span class="n">thegrid</span><span class="o">/</span><span class="n">control</span><span class="o">/</span><span class="n">thegrid</span>
@@ -174,28 +175,18 @@ milling around&nbsp;The·Grid.</p>
                             </a>
                         </li>
                         <li class="list-group-item tag-2">
-                            <a href="http://www.thegrid.fish/tag/leds.html">
-                                leds
+                            <a href="http://www.thegrid.fish/tag/software.html">
+                                software
                             </a>
                         </li>
                         <li class="list-group-item tag-2">
-                            <a href="http://www.thegrid.fish/tag/software.html">
-                                software
+                            <a href="http://www.thegrid.fish/tag/leds.html">
+                                leds
                             </a>
                         </li>
                         <li class="list-group-item tag-3">
                             <a href="http://www.thegrid.fish/tag/structures.html">
                                 structures
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://www.thegrid.fish/tag/cable.html">
-                                cable
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://www.thegrid.fish/tag/emf.html">
-                                EMF
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -206,6 +197,16 @@ milling around&nbsp;The·Grid.</p>
                         <li class="list-group-item tag-4">
                             <a href="http://www.thegrid.fish/tag/testing.html">
                                 testing
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://www.thegrid.fish/tag/cable.html">
+                                cable
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://www.thegrid.fish/tag/emf.html">
+                                EMF
                             </a>
                         </li>
                     </ul>
@@ -230,7 +231,7 @@ milling around&nbsp;The·Grid.</p>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2014 Dr House Industries
+         <div class="col-xs-10">&copy; 2016 Dr House Industries
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/adam.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2014-08-09T00:00:00+01:00</updated><entry><title>Pattern Editor</title><link href="http://www.thegrid.fish/2014/08/09/pattern-editor" rel="alternate"></link><updated>2014-08-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-09:2014/08/09/pattern-editor</id><summary type="html">&lt;p&gt;We&amp;#8217;ve been working on a piece of software to make it easy to edit the
+<feed xmlns="http://www.w3.org/2005/Atom"><title>The·Grid</title><link href="http://www.thegrid.fish/" rel="alternate"></link><link href="http://www.thegrid.fish/feeds/adam.atom.xml" rel="self"></link><id>http://www.thegrid.fish/</id><updated>2016-08-03T00:00:00+01:00</updated><entry><title>Welcome to EMF 2016!</title><link href="http://www.thegrid.fish/2016/08/03/welcome-to-emf-2016" rel="alternate"></link><updated>2016-08-03T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2016-08-03:2016/08/03/welcome-to-emf-2016</id><summary type="html">&lt;p&gt;We&amp;#8217;re back again! No build log this time (it would have been great though, 
+check out our &lt;a href="https://twitter.com/__thegrid"&gt;twitter&lt;/a&gt; for some photos etc), 
+but we&amp;#8217;ve made a bunch of improvements and can&amp;#8217;t wait to show you them at &lt;span class="caps"&gt;EMF&lt;/span&gt;&amp;nbsp;2016.&lt;/p&gt;
+&lt;p&gt;More usefully though, the information below on writing your own patterns is 
+outdated, please check 
+&lt;a href="https://github.com/cillian64/thegrid/blob/master/software/README.md"&gt;here&lt;/a&gt; for 
+details this&amp;nbsp;time!&lt;/p&gt;</summary></entry><entry><title>Pattern Editor</title><link href="http://www.thegrid.fish/2014/08/09/pattern-editor" rel="alternate"></link><updated>2014-08-09T00:00:00+01:00</updated><author><name>Adam</name></author><id>tag:www.thegrid.fish,2014-08-09:2014/08/09/pattern-editor</id><summary type="html">&lt;p&gt;We&amp;#8217;ve been working on a piece of software to make it easy to edit the
 non-interactive grid patterns, especially ones we want syncrhonised to music.
 That software is now ready for&amp;nbsp;use!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="pattern editor screenshot" src="/images/mpe.png" /&gt;&lt;/p&gt;
