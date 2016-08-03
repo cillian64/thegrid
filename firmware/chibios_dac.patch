@@ -1,0 +1,54 @@
+diff --git a/os/hal/ports/STM32/LLD/DACv1/dac_lld.c b/os/hal/ports/STM32/LLD/DACv1/dac_lld.c
+index 5fcd43e..ab7da52 100644
+--- a/os/hal/ports/STM32/LLD/DACv1/dac_lld.c
++++ b/os/hal/ports/STM32/LLD/DACv1/dac_lld.c
+@@ -284,9 +284,13 @@ void dac_lld_stop(DACDriver *dacp) {
+ 
+ #if STM32_DAC_USE_DAC1_CH1
+     if (&DACD1 == dacp) {
++#if STM32_DAC_USE_DAC1_CH2
+       if ((dacp->params->dac->CR & DAC_CR_EN2) == 0U) {
+         rccDisableDAC1(false);
+       }
++#else
++      rccDisableDAC1(false);
++#endif
+     }
+ #endif
+ 
+@@ -341,9 +345,11 @@ void dac_lld_put_channel(DACDriver *dacp,
+       *(&dacp->params->dac->DHR12R1 + dacp->params->dataoffset) = (uint32_t)sample;
+ #endif
+     }
++#if STM32_DAC_USE_DAC1_CH2
+     else {
+       dacp->params->dac->DHR12R2 = (uint32_t)sample;
+     }
++#endif
+     break;
+   case DAC_DHRM_12BIT_LEFT:
+ #if STM32_DAC_DUAL_MODE
+@@ -356,9 +362,11 @@ void dac_lld_put_channel(DACDriver *dacp,
+       *(&dacp->params->dac->DHR12L1 + dacp->params->dataoffset) = (uint32_t)sample;
+ #endif
+     }
++#if STM32_DAC_USE_DAC1_CH2
+     else {
+       dacp->params->dac->DHR12L2 = (uint32_t)sample;
+     }
++#endif
+     break;
+   case DAC_DHRM_8BIT_RIGHT:
+ #if STM32_DAC_DUAL_MODE
+@@ -371,9 +379,11 @@ void dac_lld_put_channel(DACDriver *dacp,
+       *(&dacp->params->dac->DHR8R1 + dacp->params->dataoffset) = (uint32_t)sample;
+ #endif
+     }
++#if STM32_DAC_USE_DAC1_CH2
+     else {
+       dacp->params->dac->DHR8R2 = (uint32_t)sample;
+     }
++#endif
+     break;
+   default:
+     osalDbgAssert(false, "unexpected DAC mode");

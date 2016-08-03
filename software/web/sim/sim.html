@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=utf-8>
+  <title>The·Grid</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { width: 100%; height: 100%; }
+    #help { position: absolute; top: 0; left: 10%; color: white; font-size: 0.8em; }
+    #status { position: absolute; top: 0; right: 20px; color: red }
+  </style>
+</head>
+<body>
+<div id=help>
+  1: Elevated · 2: Side · 3: Overhead · WASD: Move · QE: Roll · RF: Up/Down · Mouse Drag: Look · M: (Un)Mute
+</div>
+<div id=status>
+  Disconnected
+</div>
+</body>
+<script src="threejs/three.min.js"></script>
+<script src="threejs/stats.min.js"></script>
+<script src="threejs/FlyControls.js"></script>
+<script src="threejs/EffectComposer.js"></script>
+<script src="threejs/BloomPass.js"></script>
+<script src="threejs/RenderPass.js"></script>
+<script src="threejs/ShaderPass.js"></script>
+<script src="threejs/CopyShader.js"></script>
+<script src="threejs/ConvolutionShader.js"></script>
+<script src="threejs/CombinedCamera.js"></script>
+<script src="sim.js"></script>

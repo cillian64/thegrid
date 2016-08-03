@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/dwt27/git/thegrid/pcb2/pole/pole.sch</source>
+    <date>Tue 12 Apr 2016 20:10:03 BST</date>
+    <tool>Eeschema 4.0.2-4+6225~38~ubuntu15.10.1-stable</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>pole.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="IC1">
+      <value>LMx93</value>
+      <footprint>agg:SOIC-8</footprint>
+      <datasheet>http://www.ti.com/lit/ds/symlink/lm393.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2342314</field>
+      </fields>
+      <libsource lib="lmx93" part="LMx93"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1CC5E</tstamp>
+    </comp>
+    <comp ref="P4">
+      <value>SWD_TC</value>
+      <footprint>agg:TC2030-NL</footprint>
+      <libsource lib="swd_tc" part="SWD_TC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1CCE2</tstamp>
+    </comp>
+    <comp ref="P1">
+      <value>POWER_IN</value>
+      <footprint>thegrid:minipow_edge</footprint>
+      <fields>
+        <field name="Farnell">CN18779</field>
+      </fields>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1CD31</tstamp>
+    </comp>
+    <comp ref="P2">
+      <value>BUS_IN</value>
+      <footprint>agg:S02B-PASK-2</footprint>
+      <fields>
+        <field name="Farnell">1830747</field>
+      </fields>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1CD9E</tstamp>
+    </comp>
+    <comp ref="P5">
+      <value>LEDs</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x04</footprint>
+      <libsource lib="conn" part="CONN_01X04"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1CDBF</tstamp>
+    </comp>
+    <comp ref="P3">
+      <value>BUS_OUT</value>
+      <footprint>agg:S02B-PASK-2</footprint>
+      <fields>
+        <field name="Farnell">1830747</field>
+      </fields>
+      <libsource lib="conn" part="CONN_01X02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1D07F</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>100n</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496833</field>
+      </fields>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1D5B2</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>100n</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496833</field>
+      </fields>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1D9E7</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>4u7</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496930</field>
+      </fields>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1DA30</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>10n</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496826</field>
+      </fields>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F1DB0A</tstamp>
+    </comp>
+    <comp ref="SP1">
+      <value>SPEAKER</value>
+      <footprint>thegrid:piezo</footprint>
+      <datasheet>http://www.farnell.com/datasheets/579045.pdf</datasheet>
+      <fields>
+        <field name="Farnell">1823866</field>
+      </fields>
+      <libsource lib="device" part="SPEAKER"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F594FE</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">9330399</field>
+      </fields>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F5991E</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>LD1117DT33CTR</value>
+      <footprint>thegrid:TO-252-3</footprint>
+      <datasheet>http://www.farnell.com/datasheets/93498.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2296040</field>
+      </fields>
+      <libsource lib="regul" part="LD1117S33TR"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F59E11</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>100n</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496833</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F59EF4</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>10u</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2494233</field>
+      </fields>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F5A02D</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>MTM232270LBF</value>
+      <footprint>agg:SOT-323</footprint>
+      <datasheet>http://www.farnell.com/datasheets/1916063.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2284077</field>
+      </fields>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F7F4AA</tstamp>
+    </comp>
+    <comp ref="Q2">
+      <value>MTM232270LBF</value>
+      <footprint>agg:SOT-323</footprint>
+      <datasheet>http://www.farnell.com/datasheets/1916063.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2284077</field>
+      </fields>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F7FD6F</tstamp>
+    </comp>
+    <comp ref="Q3">
+      <value>MTM232270LBF</value>
+      <footprint>agg:SOT-323</footprint>
+      <datasheet>http://www.farnell.com/datasheets/1916063.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2284077</field>
+      </fields>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F7FDD0</tstamp>
+    </comp>
+    <comp ref="Q4">
+      <value>MTM232270LBF</value>
+      <footprint>agg:SOT-323</footprint>
+      <datasheet>http://www.farnell.com/datasheets/1916063.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2284077</field>
+      </fields>
+      <libsource lib="device" part="Q_NMOS_GSD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F7FE4E</tstamp>
+    </comp>
+    <comp ref="IC2">
+      <value>STM32F0xxKxUx</value>
+      <footprint>agg:QFN-32-EP-ST</footprint>
+      <datasheet>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00039193.pdf</datasheet>
+      <fields>
+        <field name="Farnell">2393639</field>
+      </fields>
+      <libsource lib="stm32f0xxkxux" part="STM32F0xxKxUx"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F830E4</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>1u</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496916</field>
+      </fields>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F83C48</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>100n</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">2496833</field>
+      </fields>
+      <libsource lib="device" part="C_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F842FC</tstamp>
+    </comp>
+    <comp ref="TP1">
+      <value>RST</value>
+      <footprint>agg:TESTPAD</footprint>
+      <libsource lib="testpad" part="TESTPAD"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F866D2</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">9330399</field>
+      </fields>
+      <libsource lib="device" part="R_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F86DEF</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>1M</value>
+      <footprint>agg:0603</footprint>
+      <fields>
+        <field name="Farnell">9330410</field>
+      </fields>
+      <libsource lib="device" part="R_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>56F86E8C</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C?</fp>
+        <fp>C_????_*</fp>
+        <fp>C_????</fp>
+        <fp>SMD*_c</fp>
+        <fp>Capacitor*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X02">
+      <description>Connector 01x02</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X02</fp>
+        <fp>Pin_Header_Angled_1X02</fp>
+        <fp>Socket_Strip_Straight_1X02</fp>
+        <fp>Socket_Strip_Angled_1X02</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="CONN_01X04">
+      <description>Connector 01x04</description>
+      <footprints>
+        <fp>Pin_Header_Straight_1X04</fp>
+        <fp>Pin_Header_Angled_1X04</fp>
+        <fp>Socket_Strip_Straight_1X04</fp>
+        <fp>Socket_Strip_Angled_1X04</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">CONN_01X04</field>
+      </fields>
+      <pins>
+        <pin num="1" name="P1" type="passive"/>
+        <pin num="2" name="P2" type="passive"/>
+        <pin num="3" name="P3" type="passive"/>
+        <pin num="4" name="P4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C_Small">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C?</fp>
+        <fp>C_????_*</fp>
+        <fp>C_????</fp>
+        <fp>SMD*_c</fp>
+        <fp>Capacitor*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="regul" part="LD1117S33TR">
+      <aliases>
+        <alias>LD1117S33CTR</alias>
+        <alias>LD1117S12TR</alias>
+        <alias>LD1117S12CTR</alias>
+        <alias>LD1117S18TR</alias>
+        <alias>LD1117S18CTR</alias>
+        <alias>LD1117S25TR</alias>
+        <alias>LD1117S25CTR</alias>
+        <alias>LD1117S50TR</alias>
+        <alias>LD1117S50CTR</alias>
+      </aliases>
+      <description>800mA Fixed Low Drop Positive Voltage Regulator, Fixed Output 3.3V, SOT223</description>
+      <docs>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00000544.pdf</docs>
+      <footprints>
+        <fp>SOT223</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">LD1117S33TR</field>
+        <field name="Footprint">SOT-223</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="VO" type="power_out"/>
+        <pin num="3" name="VI" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="lmx93" part="LMx93">
+      <description>Dual differential comparator</description>
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">LMx93</field>
+        <field name="Footprint">SOIC-8</field>
+        <field name="Datasheet">http://www.ti.com/lit/ds/symlink/lm393.pdf</field>
+        <field name="Farnell">2342314</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1OUT" type="output"/>
+        <pin num="2" name="1IN-" type="input"/>
+        <pin num="3" name="1IN+" type="input"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="2IN+" type="input"/>
+        <pin num="6" name="2IN-" type="input"/>
+        <pin num="7" name="2OUT" type="output"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="Q_NMOS_GSD">
+      <description>Transistor N-MOSFET (general)</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_GSD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>Resistor_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R_Small">
+      <description>Resistor</description>
+      <footprints>
+        <fp>Resistor_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="SPEAKER">
+      <fields>
+        <field name="Reference">SP</field>
+        <field name="Value">SPEAKER</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="input"/>
+        <pin num="2" name="2" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="stm32f0xxkxux" part="STM32F0xxKxUx">
+      <description>STM32F0 32 pin UFQFPN package</description>
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">STM32F0xxKxUx</field>
+        <field name="Footprint">agg:QFN-32-EP-ST</field>
+        <field name="Datasheet">http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00039193.pdf</field>
+        <field name="Farnell">2393639</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDD" type="power_in"/>
+        <pin num="2" name="PF0" type="BiDi"/>
+        <pin num="3" name="PF1" type="BiDi"/>
+        <pin num="4" name="NRST" type="input"/>
+        <pin num="5" name="VDDA" type="power_in"/>
+        <pin num="6" name="PA0" type="BiDi"/>
+        <pin num="7" name="PA1" type="BiDi"/>
+        <pin num="8" name="PA2" type="BiDi"/>
+        <pin num="9" name="PA3" type="BiDi"/>
+        <pin num="10" name="PA4" type="BiDi"/>
+        <pin num="11" name="PA5" type="BiDi"/>
+        <pin num="12" name="PA6" type="BiDi"/>
+        <pin num="13" name="PA7" type="BiDi"/>
+        <pin num="14" name="PB0" type="BiDi"/>
+        <pin num="15" name="PB1" type="BiDi"/>
+        <pin num="16" name="PB2" type="BiDi"/>
+        <pin num="17" name="VDD" type="power_in"/>
+        <pin num="18" name="PA8" type="BiDi"/>
+        <pin num="19" name="PA9" type="BiDi"/>
+        <pin num="20" name="PA10" type="BiDi"/>
+        <pin num="21" name="PA11" type="BiDi"/>
+        <pin num="22" name="PA12" type="BiDi"/>
+        <pin num="23" name="PA13" type="BiDi"/>
+        <pin num="24" name="PA14" type="BiDi"/>
+        <pin num="25" name="PA15" type="BiDi"/>
+        <pin num="26" name="PB3" type="BiDi"/>
+        <pin num="27" name="PB4" type="BiDi"/>
+        <pin num="28" name="PB5" type="BiDi"/>
+        <pin num="29" name="PB6" type="BiDi"/>
+        <pin num="30" name="PB7" type="BiDi"/>
+        <pin num="31" name="BOOT0" type="input"/>
+        <pin num="32" name="PB8" type="BiDi"/>
+        <pin num="EP" name="VSS" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="swd_tc" part="SWD_TC">
+      <description>SWD TagConnect</description>
+      <fields>
+        <field name="Reference">P</field>
+        <field name="Value">SWD_TC</field>
+        <field name="Footprint">agg:TC2030-NL</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDD" type="power_in"/>
+        <pin num="2" name="SWDIO" type="BiDi"/>
+        <pin num="3" name="~RST" type="output"/>
+        <pin num="4" name="SWDCLK" type="output"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="6" name="SWO" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="testpad" part="TESTPAD">
+      <description>Test pad</description>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TESTPAD</field>
+        <field name="Footprint">agg:TESTPAD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="TP" type="input"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="regul">
+      <uri>/usr/share/kicad/library/regul.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>/usr/share/kicad/library/conn.lib</uri>
+    </library>
+    <library logical="lmx93">
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/analogue/lmx93.lib</uri>
+    </library>
+    <library logical="swd_tc">
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/connector/swd_tc.lib</uri>
+    </library>
+    <library logical="stm32f0xxkxux">
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/ic/microcontroller/stm32f0xxkxux.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>/usr/share/kicad/library/device.lib</uri>
+    </library>
+    <library logical="testpad">
+      <uri>/home/dwt27/git/thegrid/pcb2/agg-kicad/lib/misc/testpad.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(IC2-Pad13)">
+      <node ref="IC2" pin="13"/>
+    </net>
+    <net code="2" name="Net-(IC2-Pad6)">
+      <node ref="IC2" pin="6"/>
+    </net>
+    <net code="3" name="Net-(IC2-Pad7)">
+      <node ref="IC2" pin="7"/>
+    </net>
+    <net code="4" name="Net-(IC2-Pad8)">
+      <node ref="IC2" pin="8"/>
+    </net>
+    <net code="5" name="/PIEZO">
+      <node ref="IC2" pin="10"/>
+      <node ref="Q4" pin="1"/>
+    </net>
+    <net code="6" name="Net-(IC2-Pad30)">
+      <node ref="IC2" pin="30"/>
+    </net>
+    <net code="7" name="Net-(IC2-Pad11)">
+      <node ref="IC2" pin="11"/>
+    </net>
+    <net code="8" name="Net-(IC2-Pad21)">
+      <node ref="IC2" pin="21"/>
+    </net>
+    <net code="9" name="Net-(IC2-Pad12)">
+      <node ref="IC2" pin="12"/>
+    </net>
+    <net code="10" name="Net-(IC2-Pad22)">
+      <node ref="IC2" pin="22"/>
+    </net>
+    <net code="11" name="Net-(IC2-Pad32)">
+      <node ref="IC2" pin="32"/>
+    </net>
+    <net code="12" name="Net-(IC2-Pad3)">
+      <node ref="IC2" pin="3"/>
+    </net>
+    <net code="13" name="/SWDIO">
+      <node ref="IC2" pin="23"/>
+      <node ref="P4" pin="2"/>
+    </net>
+    <net code="14" name="Net-(IC2-Pad14)">
+      <node ref="IC2" pin="14"/>
+    </net>
+    <net code="15" name="/SWDCLK">
+      <node ref="IC2" pin="24"/>
+      <node ref="P4" pin="4"/>
+    </net>
+    <net code="16" name="Net-(IC2-Pad15)">
+      <node ref="IC2" pin="15"/>
+    </net>
+    <net code="17" name="Net-(IC2-Pad25)">
+      <node ref="IC2" pin="25"/>
+    </net>
+    <net code="18" name="Net-(IC2-Pad16)">
+      <node ref="IC2" pin="16"/>
+    </net>
+    <net code="19" name="Net-(IC2-Pad26)">
+      <node ref="IC2" pin="26"/>
+    </net>
+    <net code="20" name="Net-(IC2-Pad27)">
+      <node ref="IC2" pin="27"/>
+    </net>
+    <net code="21" name="/LED_R">
+      <node ref="Q1" pin="1"/>
+      <node ref="IC2" pin="18"/>
+    </net>
+    <net code="22" name="Net-(IC2-Pad28)">
+      <node ref="IC2" pin="28"/>
+    </net>
+    <net code="23" name="/LED_G">
+      <node ref="IC2" pin="19"/>
+      <node ref="Q2" pin="1"/>
+    </net>
+    <net code="24" name="Net-(IC2-Pad29)">
+      <node ref="IC2" pin="29"/>
+    </net>
+    <net code="25" name="+3V3">
+      <node ref="P4" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="IC1" pin="8"/>
+      <node ref="IC2" pin="5"/>
+      <node ref="IC2" pin="17"/>
+      <node ref="C8" pin="1"/>
+      <node ref="C7" pin="1"/>
+      <node ref="C4" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C3" pin="1"/>
+      <node ref="C1" pin="2"/>
+      <node ref="U1" pin="2"/>
+      <node ref="IC2" pin="1"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="26" name="GND">
+      <node ref="IC1" pin="4"/>
+      <node ref="C1" pin="1"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="IC1" pin="5"/>
+      <node ref="U1" pin="1"/>
+      <node ref="P1" pin="1"/>
+      <node ref="P4" pin="5"/>
+      <node ref="IC1" pin="6"/>
+      <node ref="C5" pin="2"/>
+      <node ref="Q4" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="Q2" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="Q3" pin="2"/>
+      <node ref="IC2" pin="EP"/>
+      <node ref="IC2" pin="31"/>
+    </net>
+    <net code="27" name="/LED_B">
+      <node ref="IC2" pin="20"/>
+      <node ref="Q3" pin="1"/>
+    </net>
+    <net code="28" name="Net-(Q4-Pad3)">
+      <node ref="Q4" pin="3"/>
+      <node ref="SP1" pin="2"/>
+    </net>
+    <net code="29" name="Net-(IC2-Pad2)">
+      <node ref="IC2" pin="2"/>
+    </net>
+    <net code="30" name="Net-(IC1-Pad3)">
+      <node ref="IC1" pin="3"/>
+      <node ref="R2" pin="1"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="31" name="Net-(P4-Pad3)">
+      <node ref="P4" pin="3"/>
+    </net>
+    <net code="32" name="Net-(IC2-Pad4)">
+      <node ref="IC2" pin="4"/>
+      <node ref="TP1" pin="1"/>
+    </net>
+    <net code="33" name="/BUS_A">
+      <node ref="IC1" pin="2"/>
+      <node ref="P2" pin="1"/>
+      <node ref="P3" pin="1"/>
+    </net>
+    <net code="34" name="/BUS_B">
+      <node ref="P3" pin="2"/>
+      <node ref="R2" pin="2"/>
+      <node ref="P2" pin="2"/>
+    </net>
+    <net code="35" name="Net-(IC1-Pad7)">
+      <node ref="IC1" pin="7"/>
+    </net>
+    <net code="36" name="Net-(P4-Pad6)">
+      <node ref="P4" pin="6"/>
+    </net>
+    <net code="37" name="/DRIVE_R">
+      <node ref="P5" pin="2"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="38" name="/DRIVE_G">
+      <node ref="Q2" pin="3"/>
+      <node ref="P5" pin="3"/>
+    </net>
+    <net code="39" name="/DRIVE_B">
+      <node ref="P5" pin="4"/>
+      <node ref="Q3" pin="3"/>
+    </net>
+    <net code="40" name="+12V">
+      <node ref="SP1" pin="1"/>
+      <node ref="P5" pin="1"/>
+      <node ref="P1" pin="2"/>
+      <node ref="U1" pin="3"/>
+      <node ref="C6" pin="1"/>
+    </net>
+    <net code="41" name="/BUS">
+      <node ref="IC2" pin="9"/>
+      <node ref="R3" pin="1"/>
+      <node ref="IC1" pin="1"/>
+      <node ref="R1" pin="2"/>
+    </net>
+  </nets>
+</export>

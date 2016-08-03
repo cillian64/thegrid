@@ -1,0 +1,7 @@
+pyserial==3.1.1
+git+https://github.com/pyserial/pyserial-asyncio.git#egg=pyserial_asyncio
+aiohttp==0.22.4
+numpy
+scipy
+pyglet
+

@@ -1,0 +1,58 @@
+Bill Of Materials
+=================
+
+Source file: shield.xml
+Date: 2016-07-29T17:58:04.806572
+
+Parts Missing Footprints
+------------------------
+
+
+Parts Missing Order Codes
+-------------------------
+P5     SHIFT           Pin_Headers:Pin_Header_Straight_1x04
+P1     SWD_TC          agg:TC2030-NL
+X1     PART            agg:M3_MOUNT
+X2     PART            agg:M3_MOUNT
+X3     PART            agg:M3_MOUNT
+X4     PART            agg:M3_MOUNT
+
+Inconsistent Order Codes
+------------------------
+  Farnell
+  ~~~~~~~
+    1830747: 
+      P6     BUS1            agg:S02B-PASK-2
+      P7     BUS2            agg:S02B-PASK-2
+      P8     BUS3            agg:S02B-PASK-2
+      P9     BUS4            agg:S02B-PASK-2
+      P10    BUS5            agg:S02B-PASK-2
+      P11    BUS6            agg:S02B-PASK-2
+      P12    BUS7            agg:S02B-PASK-2
+      P13    BUS8            agg:S02B-PASK-2
+
+Vendor Specific BOMs
+--------------------
+  Farnell
+  ~~~~~~~
+2524817,6,6x 100n 0603
+4975637,2,2x AM26C31 SOIC-16
+1296592,1,1x MCP1700 SOT-23
+1830747,8,8x BUS4 BUS6 BUS5 BUS3 BUS1 BU
+2494230,1,1x 10u 0603
+2524858,3,3x 1u 0603
+2469553,1,1x STM32F0xxKxTx LQFP-32
+1568023,1,1x MICROUSB MICROUSB_MOLEX_475
+
+
+Assembly BOM
+------------
+2524817              6   100n            0603            C1 C2 C3 C5 C6 C8
+4975637              2   AM26C31         SOIC-16         IC3 IC4
+1296592              1   MCP1700         SOT-23          IC2
+1830747              8   BUS4,BUS6,BUS5,BUS3,BUS1,BUS8,BUS7,BUS2 S02B-PASK-2     P10 P11 P12 P13 P6 P7 P8 P9
+2494230              1   10u             0603            C4
+2524858              3   1u              0603            C10 C7 C9
+2469553              1   STM32F0xxKxTx   LQFP-32         IC1
+1568023              1   MICROUSB        MICROUSB_MOLEX_47589-0001 J1
+

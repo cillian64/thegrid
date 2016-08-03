@@ -1,5 +1,0 @@
-(fp_lib_table
-  (lib (name TO220_hs)(type KiCad)(uri /home/dwt27/git/thegrid/pcb/to220_hs.pretty)(options "")(descr ""))
-  (lib (name solder_pad)(type KiCad)(uri /home/dwt27/git/thegrid/pcb/solder_pad.pretty)(options "")(descr ""))
-  (lib (name minipower)(type KiCad)(uri /home/dwt27/git/thegrid/pcb/minipower.pretty)(options "")(descr ""))
-)
