@@ -46,8 +46,8 @@ class ColourRunner(Pattern):
 
     @staticmethod
     def interpolate_rgb(start_rgb, end_rgb, distance, n=7):
-        return [int(start_rgb[channel] + distance/n
-                * (end_rgb[channel] - start_rgb[channel]))
+        return [int(start_rgb[channel] + distance/n *
+                (end_rgb[channel] - start_rgb[channel]))
                 for channel in range(3)]
 
     def generate_grid(self):
@@ -68,15 +68,10 @@ class ColourRunner(Pattern):
 
         while True:
             runner_x, runner_y = wake[0]
-            print()
-            logger.info('runner_x, runner_y = {0}, {1}'.format(runner_x,
-                                                               runner_y))
             grid[runner_x][runner_y][0:3] = red
             yield grid
 
             for i in range(len(wake)):
                 x, y = wake[i]
-                logger.info('x, y = {0}, {1}'.format(x, y))
                 grid[x][y][0:3] = self.interpolate_rgb(red, blue, i)
-                logger.info(grid[x][y][0:3])
             wake.appendleft(next(self.runner_loc))
