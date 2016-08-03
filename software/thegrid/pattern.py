@@ -51,7 +51,7 @@ def clicker(freq=255, vol=255):
 
             def update(self):
                 poles, delay = super().update()
-                new_poles = poles.reshape(7, 7, -1)[:, :, :3]
+                new_poles = poles.copy().reshape(7, 7, -1)[:, :, :3]
                 changed = np.any(new_poles != self.last_poles, axis=2)
                 sound = np.array((5, freq, vol), dtype=np.uint8).reshape(1, 3)
                 sounds = changed.reshape(7, 7, 1).dot(sound)
