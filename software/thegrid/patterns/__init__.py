@@ -37,4 +37,4 @@ else: from . import gridi
 
 try: import pyglet
 except: pass
-else: from .musicpatterns import captainkirk
+else: from .musicpatterns import captainkirk, ayb
