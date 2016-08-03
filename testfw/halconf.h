@@ -1,1 +1,0 @@
-../polefw/halconf.h

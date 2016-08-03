@@ -1,1 +1,0 @@
-../polefw/STM32F051x6.ld
