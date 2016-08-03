@@ -111,7 +111,7 @@ class PatternRadarMoving(Pattern):
 
             lights[3, 3, 1] = 150
             yield lights, 0.03
-            beam_angle += 0.2 # Sweep speed
+            beam_angle += 0.1 # Sweep speed
             if beam_angle > 2*np.pi:
                 beam_angle -= 2*np.pi
 
