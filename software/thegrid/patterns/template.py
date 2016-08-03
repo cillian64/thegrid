@@ -20,7 +20,9 @@ class Template(Pattern):
     """
     This class will have self.config set from the register_pattern argument,
     and self.ui set as a reference to the global UI helper.
-    If you override __init__(), please call super().__init__().
+
+    If you override __init__(config, ui), either call
+    super().__init__(config, ui) or store config and ui on self (if used).
     """
 
     def update(self):
@@ -47,6 +49,9 @@ class Template(Pattern):
         The time until next update is specified in seconds.
 
         Return a tuple of (new_grid, update_time).
+
+        If you're "finished", you can also raise StopIteration to signal to the
+        control loop that it should advance to some other pattern.
         """
         logger.info("Updating pattern")
 

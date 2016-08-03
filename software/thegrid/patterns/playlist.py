@@ -22,7 +22,14 @@ playlists = {
         ("[MONOCHROME] Zoomout", 30),
         ("[MONOCHROME] Zoom", 30),
         ("[MONOCHROME] Zoomout", 30),
-        ]}
+    ],
+    "[TEST] Stopping Playlist": [
+        ("[TEST] Stopping Red", 30),
+        ("[TEST] Stopping Grn", 30),
+        ("[TEST] Stopping Blu", 30),
+    ]
+}
+
 
 class Playlist(Pattern):
     def __init__(self, playlist, tracking):
@@ -40,16 +47,21 @@ class Playlist(Pattern):
         self.entry_idx = len(self.playlist) - 1
 
     def update(self):
-        #logger.info("time - self.time is: %f", time.time() - self.time)
-        #logger.info("pattern time is: %d", self.playlist[self.entry_idx][1])
         if time.time() - self.time > self.playlist[self.entry_idx][1]:
-            self.entry_idx += 1
-            self.entry_idx %= len(self.playlist)
-            logger.info("Playlist advancing to entry %d", self.entry_idx)
-            cls, cfg = loaded_patterns[self.playlist[self.entry_idx][0]]
-            self.child = cls(cfg, self.tracking)
-            self.time = time.time()
-        return self.child.update()
+            self._advance_playlist()
+        try:
+            return self.child.update()
+        except StopIteration:
+            self._advance_playlist()
+            return self.child.update()
+
+    def _advance_playlist(self):
+        self.entry_idx += 1
+        self.entry_idx %= len(self.playlist)
+        logger.info("Playlist advancing to entry %d", self.entry_idx)
+        cls, cfg = loaded_patterns[self.playlist[self.entry_idx][0]]
+        self.child = cls(cfg, self.tracking)
+        self.time = time.time()
 
 for name, playlist in playlists.items():
     register_pattern(name, playlist)(Playlist)

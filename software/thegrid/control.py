@@ -3,6 +3,7 @@ import argparse
 import asyncio
 import logging
 import json
+import numpy as np
 from imp import reload
 
 from . import patterns, web, serial
@@ -85,15 +86,31 @@ class Control:
 
         try:
             poles, delay = self.pattern.update()
+        except StopIteration:
+            logger.info("Pattern %s stopped, restarting in 1 second",
+                        self.pattern_name)
+            self.clear_grid()
+            self.load_pattern(self.pattern_name)
+            self.loop.call_later(1, self.run_pattern)
         except Exception:
-            logger.exception("Error in pattern %s, retrying in 1 second",
+            logger.exception("Error in pattern %s, restarting in 1 second",
                              self.pattern_name)
+            self.clear_grid()
+            self.load_pattern(self.pattern_name)
             self.loop.call_later(1, self.run_pattern)
         else:
             # Enqueue next frame
             self.loop.call_later(delay, self.run_pattern)
 
             # Enqueue writing new frame to serial port and web sockets
-            serial.write(poles)
-            for ws in web.app['sockets']:
-                ws.send_str(json.dumps(poles.tolist()))
+            self.send_frame(poles)
+
+    def send_frame(self, poles):
+        serial.write(poles)
+        ws_str = json.dumps(poles.tolist())
+        for ws in web.app['sockets']:
+            ws.send_str(ws_str)
+
+    def clear_grid(self):
+        poles = np.zeros((7, 7, 6), dtype=np.uint8)
+        self.send_frame(poles)
