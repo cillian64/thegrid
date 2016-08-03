@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name TO220_hs)(type KiCad)(uri $(KIPRJMOD)/to220_hs.pretty)(options "")(descr ""))
+  (lib (name solder_pad)(type KiCad)(uri $(KIPRJMOD)/solder_pad.pretty)(options "")(descr ""))
+  (lib (name minipower)(type KiCad)(uri $(KIPRJMOD)/minipower.pretty)(options "")(descr ""))
+)
