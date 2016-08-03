@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -O0 -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -78,10 +78,10 @@ endif
 #
 
 # Define project name here
-PROJECT = polefw
+PROJECT = driverfw
 
 # Imported source files and paths
-CHIBIOS = ChibiOS
+CHIBIOS = ../ChibiOS
 # Startup files.
 include $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC/mk/startup_stm32f0xx.mk
 # HAL-OSAL files (optional).
@@ -99,7 +99,7 @@ BOARDSRC = ./board.c
 BOARDINC = .
 
 # Define linker script file here
-LDSCRIPT= STM32F051x6.ld
+LDSCRIPT= STM32F042x6.ld
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -111,10 +111,7 @@ CSRC = $(STARTUPSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
        $(TESTSRC) \
-       main.c frame.c sound.c bus.c leds.c flash.c \
-#       $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
-#       $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
-
+       main.c usbcfg.c frame.c bus.c power.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -207,7 +204,6 @@ UINCDIR =
 ULIBDIR =
 
 # List all user libraries here
-#ULIBS = --specs=rdimon.specs -lrdimon
 ULIBS =
 
 #
@@ -220,10 +216,9 @@ include $(RULESPATH)/rules.mk
 ##############################################################################
 # Black Magic Probe flashing via GDB
 #
-BMP_PORT = $(wildcard /dev/serial/by-id/usb-Black_Sphere_Technologies_Black_Magic_Probe_*-if00)
 flash: build/$(PROJECT).elf
 	arm-none-eabi-gdb --batch \
-		              -ex 'target extended-remote $(BMP_PORT)' \
+		              -ex 'target extended-remote /dev/ttyACM0' \
 					  -ex 'monitor version' \
 					  -ex 'monitor swdp_scan' \
 					  -ex 'attach 1' \
@@ -231,17 +226,17 @@ flash: build/$(PROJECT).elf
 					  -ex 'compare-sections' build/$(PROJECT).elf
 
 debug: build/$(PROJECT).elf
-	arm-none-eabi-gdb -ex 'target extended-remote $(BMP_PORT)' \
+	arm-none-eabi-gdb -ex 'target extended-remote /dev/ttyACM0' \
 		              -ex 'monitor swdp_scan' \
 					  -ex 'attach 1' \
 					  -ex "file build/$(PROJECT).elf"
 power:
 	arm-none-eabi-gdb --batch \
-	                  -ex 'target extended-remote $(BMP_PORT)' \
+	                  -ex 'target extended-remote /dev/ttyACM0' \
 		              -ex 'monitor tpwr enable'
 unpower:
 	arm-none-eabi-gdb --batch \
-		              -ex 'target extended-remote $(BMP_PORT)' \
+		              -ex 'target extended-remote /dev/ttyACM0' \
 		              -ex 'monitor tpwr disable'
 
 #
