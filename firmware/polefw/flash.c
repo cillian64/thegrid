@@ -10,6 +10,9 @@ uint8_t node_id;
 void flash_init() {
     uint16_t* node_id_ptr = (uint16_t*)FLASH_NODE_ID;
     node_id = (uint8_t)(*node_id_ptr);
+    if(node_id > 48) {
+        node_id = 0;
+    }
 }
 
 void flash_set_node_id(uint8_t id) {
