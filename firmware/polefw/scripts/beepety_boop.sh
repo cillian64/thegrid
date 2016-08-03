@@ -15,7 +15,7 @@ do
     then
         echo Programmed okay: sending magic
         afplay tada.mp3
-        python3 send_magic.py /dev/tty.usbserial-A1001Nsc
+        python3 quicktest.py
         sleep 5
     else
         echo Fail!
