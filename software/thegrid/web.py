@@ -8,7 +8,6 @@ from aiohttp.errors import ClientDisconnectedError
 logger = logging.getLogger(__name__)
 basepath = os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir))
 webpath = os.path.join(basepath, os.pardir, "web")
-simpath = os.path.join(basepath, os.pardir, os.pardir, "sim3d")
 app = web.Application()
 app['sockets'] = []
 
@@ -36,7 +35,7 @@ def wshandler(request):
 
 @asyncio.coroutine
 def simpage(req):
-    with open(os.path.join(simpath, "sim3d.html"), "rb") as f:
+    with open(os.path.join(webpath, "sim", "sim.html"), "rb") as f:
         return web.Response(body=f.read())
 
 
@@ -95,7 +94,6 @@ def start_server(host, port, control):
     load_pattern_resource = app.router.add_resource('/api/load_pattern/{name}')
     load_pattern_resource.add_route('POST', load_pattern)
     app.router.add_route("*", "/ui", ui)
-    app.router.add_static('/sim/', simpath)
     app.router.add_static('/', webpath)
     app.on_shutdown.append(on_shutdown)
     loop = asyncio.get_event_loop()
@@ -104,6 +102,7 @@ def start_server(host, port, control):
     loop.create_task(coro)
     logger.info("HTTP server running at http://{}:{}/".format(host, port))
     logger.info("Control at http://{}:{}/ctrl".format(host, port))
+    logger.info("Simulator at http://{}:{}/sim".format(host, port))
     app['handler'] = handler
     app['control'] = control
 
