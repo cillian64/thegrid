@@ -63,8 +63,10 @@ void frame_process() {
     if(!packet_check_sync())
         return;
 
-    if(!packet_check_checksum())
+    if(!packet_check_checksum()) {
+        leds_set(255, 0, 0);
         return;
+    }
 
     Packet pkt = framebuf.packets[node_id];
     switch(pkt.cmd_id) {
