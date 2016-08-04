@@ -38,9 +38,7 @@ static void usb_rx(uint8_t c)
         framebuf.raw[framebuf_ctr++] = c;
         if(framebuf_ctr == sizeof(framebuf)) {
             framebuf_ctr = 0;
-            chSysLockFromISR();
-            chBSemSignalI(&frame_thread_sem);
-            chSysUnlockFromISR();
+            chBSemSignal(&frame_thread_sem);
         }
     }
 }

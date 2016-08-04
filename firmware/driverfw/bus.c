@@ -15,7 +15,7 @@ static const UARTConfig uart_cfg = {
     .rxerr_cb  = NULL,
     .speed     = 115200,
     .cr1       = 0,
-    .cr2       = 0,
+    .cr2       = USART_CR2_TXINV,
     .cr3       = 0,
 };
 
@@ -24,5 +24,6 @@ void bus_init() {
 }
 
 void bus_tx() {
-    uartStartSend(&UARTD2, sizeof(Frame), &framebuf.raw);
+    size_t n = sizeof(Frame);
+    uartSendTimeout(&UARTD2, &n, &framebuf.raw, TIME_INFINITE);
 }

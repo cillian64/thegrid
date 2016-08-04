@@ -25,6 +25,7 @@ from . import grid_of_life
 from . import colour_ripple
 from . import stopping
 from . import soundtest
+from . import quickderp
 
 # The other imports have optional dependencies:
 try: import alsaaudio
