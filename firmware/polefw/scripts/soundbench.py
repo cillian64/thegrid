@@ -43,7 +43,7 @@ def main():
         #(4, 0, 100, 0, 50, 0),
         #(0, 0, 0, 0, 50, 50),
         #(5, 0, 255, 0, 0, 50),
-        (4, 0, 255, 0, 0, 0),
+        (0, 0, 255, 0, 255, 0),
         (0, 0, 0, 0, 0, 0),
     ]
     while True:
@@ -51,7 +51,7 @@ def main():
             grid = [sound] * 49
             frame = makeframe(grid)
             ser.write(frame)
-            time.sleep(1/50)
+            time.sleep(1/30)
 
 if __name__ == "__main__":
     main()
