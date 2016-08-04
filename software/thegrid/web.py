@@ -45,8 +45,8 @@ def simredirect(req):
 
 
 @asyncio.coroutine
-def ctrlpage(req):
-    with open(os.path.join(webpath, "ctrl.html"), "rb") as f:
+def adminpage(req):
+    with open(os.path.join(webpath, "admin.html"), "rb") as f:
         return web.Response(body=f.read())
 
 
@@ -57,8 +57,9 @@ def uipage(req):
 
 
 @asyncio.coroutine
-def ui(req):
-    return web.Response(body=b"OK")
+def homepage(req):
+    with open(os.path.join(webpath, "home.html"), "rb") as f:
+        return web.Response(body=f.read())
 
 
 @asyncio.coroutine
@@ -69,13 +70,69 @@ def list_patterns(req):
 
 
 @asyncio.coroutine
+def now_playing(req):
+    return web.Response(body=req.app['control'].pattern_name.encode())
+
+
+@asyncio.coroutine
+def locked(req):
+    if req.app['locked']:
+        return web.Response(body=b"locked")
+    else:
+        return web.Response(body=b"unlocked")
+
+
+@asyncio.coroutine
+def lock(req):
+    yield from req.post()
+    pw = req.POST.get('password')
+    if pw == req.app['control'].password:
+        req.app['locked'] = True
+        return web.Response(body=b"OK")
+    else:
+        return web.Response(body=b"Auth Err", status=403)
+
+
+@asyncio.coroutine
+def unlock(req):
+    yield from req.post()
+    pw = req.POST.get('password')
+    if pw == req.app['control'].password:
+        req.app['locked'] = False
+        return web.Response(body=b"OK")
+    else:
+        return web.Response(body=b"Auth Err", status=403)
+
+
+@asyncio.coroutine
+def reload_patterns(req):
+    yield from req.post()
+    pw = req.POST.get('password')
+    if pw == req.app['control'].password:
+        req.app['control'].reload_patterns()
+        return web.Response(body=b"OK")
+    else:
+        return web.Response(body=b"Auth Err", status=403)
+
+
+@asyncio.coroutine
 def load_pattern(req):
-    name = req.match_info['name']
+    yield from req.post()
+    name = req.POST.get('name')
+    if req.app['locked']:
+        pw = req.POST.get('password')
+        if pw != req.app['control'].password:
+            return web.Response(body=b"locked", status=403)
     if name in req.app['control'].patterns:
         req.app['control'].load_pattern(name)
         return web.Response(body=b"OK")
     else:
         return web.Response(status=404, body=b"Not Found")
+
+
+@asyncio.coroutine
+def ui(req):
+    return web.Response(body=b"")
 
 
 @asyncio.coroutine
@@ -88,12 +145,17 @@ def start_server(host, port, control):
     app.router.add_route("GET", "/ws", wshandler)
     app.router.add_route("GET", "/sim", simredirect)
     app.router.add_route("GET", "/sim/", simpage)
-    app.router.add_route("GET", "/ctrl", ctrlpage)
-    app.router.add_route("GET", "/", uipage)
+    app.router.add_route("GET", "/admin", adminpage)
+    app.router.add_route("GET", "/ui", uipage)
+    app.router.add_route("GET", "/api/now_playing", now_playing)
     app.router.add_route("GET", "/api/list_patterns", list_patterns)
-    load_pattern_resource = app.router.add_resource('/api/load_pattern/{name}')
-    load_pattern_resource.add_route('POST', load_pattern)
-    app.router.add_route("*", "/ui", ui)
+    app.router.add_route("POST", "/api/reload_patterns", reload_patterns)
+    app.router.add_route("POST", "/api/lock", lock)
+    app.router.add_route("POST", "/api/unlock", unlock)
+    app.router.add_route("GET", "/api/locked", locked)
+    app.router.add_route("POST", "/api/load_pattern", load_pattern)
+    app.router.add_route("POST", "/api/ui", ui)
+    app.router.add_route("GET", "/", homepage)
     app.router.add_static('/', webpath)
     app.on_shutdown.append(on_shutdown)
     loop = asyncio.get_event_loop()
@@ -101,10 +163,11 @@ def start_server(host, port, control):
     coro = loop.create_server(handler, host, port)
     loop.create_task(coro)
     logger.info("HTTP server running at http://{}:{}/".format(host, port))
-    logger.info("Control at http://{}:{}/ctrl".format(host, port))
+    logger.info("Admin at http://{}:{}/admin".format(host, port))
     logger.info("Simulator at http://{}:{}/sim".format(host, port))
     app['handler'] = handler
     app['control'] = control
+    app['locked'] = False
 
     # Shut up some of the logging
     weblogger = logging.getLogger("aiohttp.access")

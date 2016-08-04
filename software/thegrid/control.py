@@ -15,6 +15,8 @@ parser.add_argument('--serial-port')
 parser.add_argument('--web-host', default='localhost',
                     help="Host/IP for HTTP server")
 parser.add_argument('--web-port', default=8080, help="Port for HTTP server")
+parser.add_argument('--password', default="hunter2",
+                    help="Password for web admin access")
 args = parser.parse_args()
 
 
@@ -29,6 +31,9 @@ class Control:
         self.pattern = None
         self.pattern_name = None
         self.patterns = patterns.loaded_patterns
+
+        # Store password for admin access
+        self.password = args.password
 
     @asyncio.coroutine
     def setup(self):
