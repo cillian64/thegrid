@@ -1,18 +1,6 @@
-<<<<<<< HEAD
-[submodule "pcb2/agg-kicad"]
-	path = pcb2/agg-kicad
-	url = git@github.com:cillian64/agg-kicad.git
-[submodule "polefw/ChibiOS"]
-	path = polefw/ChibiOS
-	url = https://github.com/ChibiOS/ChibiOS.git
-[submodule "control/thegrid/patterns/midi"]
-	path = control/thegrid/patterns/midi
-	url = https://github.com/vishnubob/python-midi.git
-=======
 [submodule "firmware/ChibiOS"]
 	path = firmware/ChibiOS
 	url = https://github.com/ChibiOS/ChibiOS.git
 [submodule "hardware/agg-kicad"]
 	path = hardware/agg-kicad
 	url = https://github.com/adamgreig/agg-kicad.git
->>>>>>> upstream/master
