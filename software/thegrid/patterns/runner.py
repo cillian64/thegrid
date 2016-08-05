@@ -96,7 +96,7 @@ class ColourRunner(Runner):
 class RainbowRunner(Runner):
 
     @staticmethod
-    def colour_gradient(n=5):
+    def colour_gradient(n=4):
         """
         Returns list of rainbow colours in gradient.
 
@@ -121,7 +121,7 @@ class RainbowRunner(Runner):
                 colours.append(rgb)
         return colours
 
-    def generate_grid(self, wake_length=14):
+    def generate_grid(self, wake_length=11):
         """
         Yields 7x7x6 numpy array representing grid pole configurations
 
