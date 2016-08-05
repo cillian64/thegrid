@@ -20,7 +20,7 @@ def checksum(data):
 
 
 def make_id_frame(new_id):
-    sync = struct.pack("6B", *[0xFF]*6)
+    sync = b"\xFF" * 6
     cmd = (0xFE, 0xFE, 0xFE, 0xFE, 0xFE, new_id & 0xFF)
     packets = b""
     for _ in range(49):
@@ -31,14 +31,14 @@ def make_id_frame(new_id):
 
 def make_power_frame(i, j):
     sync = b"\xFF" * 6
-    cmd = b"\xFE"
+    cmd = b"\xFC"
     for row in range(7):
         rowbyte = 0
         for col in range(7):
-            if row == i and col == j:
+            if row == (6-i) and col == j:
                 rowbyte = 1 << col
         cmd += struct.pack("B", rowbyte)
-    cmd += b"\x00" * 287
+    cmd += b"\x00" * 286
     crc = struct.pack("H", checksum(cmd))
     return sync + cmd + crc
 
@@ -61,8 +61,10 @@ def main():
             new_id = i*7 + j
             print("Setting pole ({}, {}) to ID {}".format(i, j, new_id))
             ser.write(make_power_frame(i, j))
+            time.sleep(0.3)
             for _ in range(10):
                 ser.write(make_id_frame(new_id))
+                time.sleep(0.3)
                 ser.write(make_check_frame(new_id))
             time.sleep(0.5)
 

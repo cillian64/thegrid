@@ -13,7 +13,7 @@ class Template(Pattern):
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
         if self.mark:
-            grid[:, :] = [20, 0, 0, 4, 0, 255]
+            grid[:, :] = [0, 20, 0, 4, 0, 255]
             self.mark = False
         else:
             self.mark = True
