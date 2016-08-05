@@ -43,3 +43,7 @@ def write(poles):
     if transport is not None:
         frame = frame_from_array(poles)
         transport.write(frame)
+
+def write_raw(b):
+    if transport is not None:
+        transport.write(b)

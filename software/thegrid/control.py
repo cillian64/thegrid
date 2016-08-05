@@ -120,7 +120,7 @@ class Control:
                         rowbyte |= 1 << col
                 cmd += struct.pack("B", rowbyte)
             cmd += b"\x00" * (398-14)
-            serial.write(sync + cmd)
+            serial.write_raw(sync + cmd)
 
             # Enqueue writing new frame to serial port and web sockets
             self.send_frame(poles)
