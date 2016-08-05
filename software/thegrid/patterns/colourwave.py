@@ -66,7 +66,7 @@ class PatternColourwave(Pattern):
         if sum(colour[:3]) == 0:
             volume = int(sum(target[:3]))
         else:
-            volume = int(255 * sum(target[:3]) / sum(colour[:3]))
+            volume = int(200 * sum(target[:3]) / sum(colour[:3]))
         target[3] = 4 # Noise
         target[4] = 0 # noise freq doesn't matter
         target[5] = volume

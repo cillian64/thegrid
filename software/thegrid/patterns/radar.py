@@ -31,7 +31,7 @@ class PatternRadarStatic(Pattern):
                     if lag < 2*np.pi*10/360:
                         if (x, y) in targets:
                             lights[y, x, 1] = 255.0
-                            lights[y, x, 5] = 255
+                            lights[y, x, 5] = 200
                         else:
                             lights[y, x, 1] = 150.0
 
@@ -94,7 +94,7 @@ class PatternRadarMoving(Pattern):
                     if lag < 2*np.pi*10/360:
                         if [x, y] == [round(x) for x in target]:
                             lights[y, x, 1] = 255.0
-                            lights[y, x, 5] = 255
+                            lights[y, x, 5] = 200
                         else:
                             lights[y, x, 1] = 150.0
 
