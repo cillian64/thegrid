@@ -20,11 +20,12 @@ static bool packet_check_sync(void) {
     );
 }
 
-static bool packet_check_checksum(void) {
+static bool packet_check_checksum(Packet* pkt) {
     size_t i, j;
     uint16_t checksum = 0xFFFF;
-    for(i=0; i<sizeof(framebuf.packets); i++) {
-        checksum ^= ((uint16_t)framebuf.raw[i+6]) << 8;
+    uint8_t *ptr = (uint8_t*)pkt;
+    for(i=0; i<6; i++) {
+        checksum ^= (uint16_t)(ptr[i]) << 8;
         for(j=0; j<8; j++) {
             if(checksum & 0x8000)
                 checksum = (checksum << 1) ^ 0x1021;
@@ -32,7 +33,7 @@ static bool packet_check_checksum(void) {
                 checksum <<= 1;
         }
     }
-    return checksum == framebuf.checksum;
+    return checksum == pkt->checksum;
 }
 
 static void packet_set_node_id(Packet* pkt) {
@@ -63,12 +64,12 @@ void frame_process() {
     if(!packet_check_sync())
         return;
 
-    if(!packet_check_checksum()) {
+    Packet pkt = framebuf.packets[node_id];
+    if(!packet_check_checksum(&pkt)) {
         leds_set(255, 0, 0);
         return;
     }
 
-    Packet pkt = framebuf.packets[node_id];
     switch(pkt.cmd_id) {
         case CMD_SYNC:
             return;
