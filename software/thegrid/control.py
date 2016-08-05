@@ -1,5 +1,6 @@
 import sys
 import argparse
+import struct
 import asyncio
 import logging
 import json
@@ -106,6 +107,20 @@ class Control:
         else:
             # Enqueue next frame
             self.loop.call_later(delay, self.run_pattern)
+
+            def off(row, col, grid):
+                return grid[row, col].T == np.ndarray([0, 0, 0, 0, 0, 0])
+
+            sync = b"\xFF" * 6
+            cmd = b"\xFC"
+            for row in range(7):
+                rowbyte = 0
+                for col in range(7):
+                    if not off(row, col, poles):
+                        rowbyte |= 1 << col
+                cmd += struct.pack("B", rowbyte)
+            cmd += b"\x00" * (398-14)
+            serial.write(sync + cmd)
 
             # Enqueue writing new frame to serial port and web sockets
             self.send_frame(poles)
