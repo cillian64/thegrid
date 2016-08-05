@@ -15,6 +15,7 @@ except ImportError:
 from ...pattern import Pattern
 from math import floor
 
+
 class MusicPattern(Pattern):
     def __init__(self, config, tracking):
         self.setup_bpm(config)
@@ -48,7 +49,7 @@ class MusicPattern(Pattern):
 
     def t_to_barbeat(self, t):
         bar = (self.t_to_beat(t) - 1) // self.beats_per_bar + 1
-        beat = self.t_to_beat(t) % self.beats_per_bar 
+        beat = self.t_to_beat(t) % self.beats_per_bar
         if beat == 0:
             beat = self.beats_per_bar
         return (int(bar), int(beat))
