@@ -21,9 +21,10 @@ def checksum(data):
 def frame_from_array(poles):
     sync = b"\xFF\xFF\xFF\xFF\xFF\xFF"
     packets = b""
-    for pole in poles[:, :]:
-        packet = struct.pack("6B", *pole[3, 4, 5, 0, 1, 2].flat)
-        packets += packet + checksum(packet)
+    for row in poles:
+        for pole in row:
+            packet = struct.pack("6B", *pole[[3, 4, 5, 0, 1, 2]].flat)
+            packets += packet + checksum(packet)
     return sync + packets
 
 
