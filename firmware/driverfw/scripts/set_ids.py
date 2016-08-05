@@ -6,6 +6,13 @@ import time
 ser = serial.Serial(sys.argv[1], 115200)
 
 
+def main2():
+    make_power_frame(0, 0)
+    make_id_frame(6)
+    make_power_frame(2, 6)
+    make_id_frame(7*3)
+
+
 def checksum(data):
     crc = 0xFFFF
     for b in data:
@@ -70,4 +77,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main2()
