@@ -23,9 +23,9 @@ def make_on_frame(sound, freq, mag, r, g, b):
     sync = b"\xFF"*6
     packets = b""
     for pole_id in range(49):
-        packets += struct.pack("6B", sound, freq, mag, r, g, b)
-    crc = struct.pack("H", checksum(packets))
-    return sync + packets + crc
+        packet = struct.pack("6B", sound, freq, mag, r, g, b)
+        packets += packet + struct.pack("H", checksum(packet))
+    return sync + packets
 
 
 def make_power_frame(on):

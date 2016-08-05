@@ -9,7 +9,7 @@
 
 volatile Frame framebuf;
 
-static bool packet_check_sync(void) {
+static bool frame_check_sync(void) {
     return (
         framebuf.sync[0] == CMD_SYNC &&
         framebuf.sync[1] == CMD_SYNC &&
@@ -36,7 +36,7 @@ static bool packet_check_checksum(Packet* pkt) {
     return checksum == pkt->checksum;
 }
 
-static void packet_set_node_id(Packet* pkt) {
+static void set_node_id(Packet* pkt) {
     if(pkt->cmd_id == CMD_SET_ID &&
        pkt->payload[0] == CMD_SET_ID &&
        pkt->payload[1] == CMD_SET_ID &&
@@ -49,7 +49,7 @@ static void packet_set_node_id(Packet* pkt) {
 /* Placeholder */
 static void bootloader_start(void) {}
 
-static void packet_bootload(Packet* pkt) {
+static void bootload(Packet* pkt) {
     if(pkt->cmd_id == CMD_BOOTLOAD &&
        pkt->payload[0] == CMD_BOOTLOAD &&
        pkt->payload[1] == CMD_BOOTLOAD &&
@@ -61,12 +61,12 @@ static void packet_bootload(Packet* pkt) {
 }
 
 void frame_process() {
-    if(!packet_check_sync())
+    if(!frame_check_sync())
         return;
 
     Packet pkt = framebuf.packets[node_id];
     if(!packet_check_checksum(&pkt)) {
-        leds_set(255, 0, 0);
+        /*leds_set(255, 0, 0);*/
         return;
     }
 
@@ -74,10 +74,10 @@ void frame_process() {
         case CMD_SYNC:
             return;
         case CMD_SET_ID:
-            packet_set_node_id(&pkt);
+            set_node_id(&pkt);
             break;
         case CMD_BOOTLOAD:
-            packet_bootload(&pkt);
+            bootload(&pkt);
             break;
         default:
             leds_set(pkt.r, pkt.g, pkt.b);
