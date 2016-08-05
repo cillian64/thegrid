@@ -24,7 +24,7 @@ class MusicPattern(Pattern):
         logger.info("Starting player")
         self.musicplayer = self.musicfile.play()
 # Use below to seek to a certain start beat or time:
-#        self.musicplayer.seek(self.beat_to_t(286))
+#        self.musicplayer.seek(self.beat_to_t(50))
 
     def __del__(self):
         self.musicplayer.delete()
