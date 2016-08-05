@@ -49,6 +49,7 @@ class Snake(Pattern):
         update = None
         old_update = None
         out = np.zeros((7, 7, 6))
+        out_int = np.zeros((7, 7, 6), dtype=np.uint8)
         while True:
             old_update = update
             update = self.updatesnake()[0]
@@ -71,9 +72,10 @@ class Snake(Pattern):
                         out[x, y, 5] = 70 # max vol
                         pass
 
-            yield out, 0.05
-            out[:, :, 5] = 0 # set all vol to zero
-            yield out, 0.2
+            out_int[:] = out
+            yield out_int, 0.05
+            out_int[:, :, 5] = 0 # set all vol to zero
+            yield out_int, 0.2
         
     def updatesnake(self):
         # Check if spaces next to the head are empty
