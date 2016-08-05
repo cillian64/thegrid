@@ -109,7 +109,11 @@ class Control:
             self.loop.call_later(delay, self.run_pattern)
 
             def off(row, col, grid):
-                return grid[row, col].T == np.ndarray([0, 0, 0, 0, 0, 0])
+                return (grid[row, col, 0] == 0 and
+                    grid[row, col, 1] == 0 and
+                    grid[row, col, 2] == 0 and (
+                    grid[row, col, 3] == 0 or
+                    grid[row, col, 5] == 0))
 
             sync = b"\xFF" * 6
             cmd = b"\xFC"
