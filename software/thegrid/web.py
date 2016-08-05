@@ -71,7 +71,10 @@ def list_patterns(req):
 
 @asyncio.coroutine
 def now_playing(req):
-    return web.Response(body=req.app['control'].pattern_name.encode())
+    if req.app['control'].pattern_name is None:
+        return web.Response(body="No pattern loaded".encode())
+    else:
+        return web.Response(body=req.app['control'].pattern_name.encode())
 
 
 @asyncio.coroutine
