@@ -4,3 +4,6 @@
 [submodule "hardware/agg-kicad"]
 	path = hardware/agg-kicad
 	url = https://github.com/adamgreig/agg-kicad.git
+[submodule "control/thegrid/patterns/midi"]
+    path = control/thegrid/patterns/midi
+    url = https://github.com/vishnubob/python-midi.git

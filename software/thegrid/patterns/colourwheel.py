@@ -2,7 +2,7 @@
 # Hue varies in the X axis, saturation in the Y axis.
 
 import numpy as np
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern
 from colorsys import hsv_to_rgb
 
 grid_size = 7

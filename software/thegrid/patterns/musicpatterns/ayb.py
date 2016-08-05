@@ -7,7 +7,7 @@ All your base are belong to us.
 import random
 import logging
 import numpy as np
-from ...pattern import register_pattern, clicker
+from ...pattern import register_pattern, silent
 from .musicpattern import MusicPattern
 from colorsys import hsv_to_rgb
 
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
                    "align_beat": 36.7,
                    "align_beat_no": 84,
                    "beats_per_bar": 4})
-@clicker(vol=0)
+@silent()
 class CaptainKirk(MusicPattern):
     def __init__(self, config, ui):
         self.state = np.zeros((7, 7, 3), dtype=np.uint8)
