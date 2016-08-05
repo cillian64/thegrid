@@ -15,14 +15,16 @@ def checksum(data):
             else:
                 crc <<= 1
             crc &= 0xFFFF
-    return crc
+    return struct.pack("H", crc)
 
 
 def frame_from_array(poles):
     sync = b"\xFF\xFF\xFF\xFF\xFF\xFF"
-    packets = struct.pack("294B", *poles[:, :, [3, 4, 5, 0, 1, 2]].flat)
-    crc = struct.pack("H", checksum(packets))
-    return sync + packets + crc
+    packets = b""
+    for pole in poles[:, :]:
+        packet = struct.pack("6B", *pole[3, 4, 5, 0, 1, 2].flat)
+        packets += packet + checksum(packet)
+    return sync + packets
 
 
 @asyncio.coroutine
