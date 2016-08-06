@@ -25,7 +25,7 @@ class Control:
         self.loop = asyncio.get_event_loop()
 
         # Set up UI interface
-        self.ui = None
+        self.ui = dict()
 
         # Grab loaded patterns
         self.pattern = None
