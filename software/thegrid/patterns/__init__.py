@@ -23,6 +23,7 @@ from . import radar
 from . import colourwave
 from . import grid_of_life
 from . import colour_ripple
+from . import runner
 from . import stopping
 from . import soundtest
 from . import quickderp

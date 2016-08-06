@@ -17,6 +17,6 @@ void power_init() {
 
 void power_set() {
     spiSelect(&SPID1);
-    spiSend(&SPID1, 7, framebuf.raw + 7);
+    spiSend(&SPID1, 7, (uint8_t*)framebuf.raw + 7);
     spiUnselect(&SPID1);
 }

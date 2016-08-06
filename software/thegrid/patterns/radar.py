@@ -1,18 +1,19 @@
 # Radar patterns with static targets and moving targets
 
 import numpy as np
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern
 
 grid_size = 7
 
 @register_pattern("[COLOUR] Radar (Static)")
-@clicker()
 class PatternRadarStatic(Pattern):
     def __init__(self, cfg, tracking):
         self.gen = self.generator()
 
     def generator(self):
-        lights = np.zeros((7, 7, 3), dtype=np.uint8)
+        lights = np.zeros((7, 7, 6), dtype=np.uint8)
+        lights[:, :, 3] = 1 # sine
+        lights[:, :, 4] = 100 # freq
         targets = [(1, 1), (5, 5)]
         beam_angle = 0.0
 
@@ -30,6 +31,7 @@ class PatternRadarStatic(Pattern):
                     if lag < 2*np.pi*10/360:
                         if (x, y) in targets:
                             lights[y, x, 1] = 255.0
+                            lights[y, x, 5] = 200
                         else:
                             lights[y, x, 1] = 150.0
 
@@ -42,6 +44,10 @@ class PatternRadarStatic(Pattern):
                         lights[y, x, 1] -= decay_rate
                     else:
                         lights[y, x, 1] = 0
+                    if lights[y, x, 5] > empty_decay_rate:
+                        lights[y, x, 5] -= empty_decay_rate
+                    else:
+                        lights[y, x, 5] = 0
 
                     if lights[y, x, 1] > 200:
                         q = lights[y, x, 1] - 200
@@ -62,13 +68,14 @@ class PatternRadarStatic(Pattern):
         return self.gen.__next__()
 
 @register_pattern("[COLOUR] Radar (Moving)")
-@clicker()
 class PatternRadarMoving(Pattern):
     def __init__(self, cfg, tracking):
         self.gen = self.generator()
 
     def generator(self):
-        lights = np.zeros((7,7, 3), dtype=np.uint8)
+        lights = np.zeros((7,7, 6), dtype=np.uint8)
+        lights[:, :, 3] = 1 # sine
+        lights[:, :, 4] = 100 # freq
         target = [-1, -1]
         target_velocity = [0.01, 0.01]
         beam_angle = 0.0
@@ -87,6 +94,7 @@ class PatternRadarMoving(Pattern):
                     if lag < 2*np.pi*10/360:
                         if [x, y] == [round(x) for x in target]:
                             lights[y, x, 1] = 255.0
+                            lights[y, x, 5] = 200
                         else:
                             lights[y, x, 1] = 150.0
 
@@ -99,6 +107,10 @@ class PatternRadarMoving(Pattern):
                         lights[y, x, 1] -= decay_rate
                     else:
                         lights[y, x, 1] = 0
+                    if lights[y, x, 5] > empty_decay_rate:
+                        lights[y, x, 5] -= empty_decay_rate
+                    else:
+                        lights[y, x, 5] = 0
 
                     if lights[y, x, 1] > 200:
                         q = lights[y, x, 1] - 200

@@ -6,7 +6,7 @@ MIDI playback pattern
 
 import logging
 import numpy as np
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern, silent
 logger = logging.getLogger(__name__)
 
 import time
@@ -27,17 +27,19 @@ import time
                         "thegrid/patterns/mids/freebird.mid")
 @register_pattern("[MUSIC] MIDI player: getlucky.mid",
                         "thegrid/patterns/mids/getlucky.mid")
-@register_pattern("[MUSIC] MIDI player: bohemian.mid",
-                        "thegrid/patterns/mids/bohemian.mid")
 @register_pattern("[MUSIC] MIDI player: sweetchild.mid",
                         "thegrid/patterns/mids/sweetchild.mid")
 @register_pattern("[MUSIC] MIDI player: tubthumping.mid",
                         "thegrid/patterns/mids/tubthumping.mid")
 @register_pattern("[MUSIC] MIDI player: newlife.mid",
                         "thegrid/patterns/mids/newlife.mid")
+@register_pattern("[MUSIC] MIDI player: coolio.mid",
+                        "thegrid/patterns/mids/coolio.mid")
+@register_pattern("[MUSIC] MIDI player: chopsuey.mid",
+                        "thegrid/patterns/mids/chopsuey.mid")
 @register_pattern("[MUSIC] MIDI player: justcantgetenough.mid",
                         "thegrid/patterns/mids/justcantgetenough.mid")
-@clicker()
+@silent()
 class Gridi(Pattern):
     def __init__(self, cfg, ui):
         # This bit is quite tedious.  I apologise.

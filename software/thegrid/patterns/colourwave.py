@@ -13,11 +13,10 @@
 
 import numpy as np
 from math import sqrt, sin, cos, pi
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern
 from colorsys import hsv_to_rgb
 
 @register_pattern("[COLOUR] Wave")
-@clicker()
 class PatternColourwave(Pattern):
     def __init__(self, cfg, tracking):
         self.rectlength = 2.0 * sqrt(2) * 7 + 1 # Theoretical max length is 
@@ -27,7 +26,7 @@ class PatternColourwave(Pattern):
         self.rectspeed = 0.1 # One unit per update
         self.updaterate = 1.0/30 # Time delay between updates, in seconds.
 
-        self.arr = np.zeros((7, 7, 3), dtype=np.uint8)
+        self.arr = np.zeros((7, 7, 6), dtype=np.uint8)
         self.new_wave()
 
 
@@ -62,6 +61,15 @@ class PatternColourwave(Pattern):
             target[1] += (colour[1] - target[1]) * rate
         if target[2] != colour[2]:
             target[2] += (colour[2] - target[2]) * rate
+
+        # Now set the sound part.
+        if sum(colour[:3]) == 0:
+            volume = int(sum(target[:3]))
+        else:
+            volume = int(200 * sum(target[:3]) / sum(colour[:3]))
+        target[3] = 4 # Noise
+        target[4] = 0 # noise freq doesn't matter
+        target[5] = volume
 
 
     def update(self):

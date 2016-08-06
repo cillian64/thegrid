@@ -8,7 +8,7 @@ import logging
 import random
 import math
 import numpy as np
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern
 
 logger = logging.getLogger(__name__)
 
@@ -32,14 +32,52 @@ class Point:
 
 @register_pattern("[COLOUR] Snake", False)
 @register_pattern("[COLOUR] Snake (stripy)", True)
-@clicker()
 class Snake(Pattern):
     def __init__(self, cfg, tracking):
         self.Food = Point(random.randint(0,6),random.randint(0,6))
         self.SnakeBody = [Point(3,4),Point(4,4)]
         self.stripey = cfg
-        
+        self.beep = False
+        self.gen = self.generator()
+
     def update(self):
+        return self.gen.__next__()
+
+    def generator(self):
+        # We wrap the old snake pattenr because it's not generator-based but
+        # it's much easier to make the noises in a generator-style pattern.
+        update = None
+        old_update = None
+        out = np.zeros((7, 7, 6))
+        out_int = np.zeros((7, 7, 6), dtype=np.uint8)
+        while True:
+            old_update = update
+            update = self.updatesnake()[0]
+            if update is None or old_update is None:
+                continue
+            out[:, :, :3] = update
+            for x in range(7):
+                for y in range(7):
+                    if (tuple(old_update[x, y, :3]) == (255, 0, 0) and
+                        tuple(update[x, y, :3]) != (255, 0, 0)):
+                        # CHOMP! Food eaten
+                        out[x, y, 3] = 2 # square
+                        out[x, y, 4] = 100 # freq
+                        out[x, y, 5] = 255 # max vol
+                    elif (tuple(update[x, y, :3]) == (0, 255, 0) or
+                        tuple(update[x, y, :3]) == (0, 128, 0)):
+                        # Snake body!
+                        out[x, y, 3] = 1 # sine
+                        out[x, y, 4] = 25 # freq
+                        out[x, y, 5] = 70 # max vol
+                        pass
+
+            out_int[:] = out
+            yield out_int, 0.05
+            out_int[:, :, 5] = 0 # set all vol to zero
+            yield out_int, 0.2
+        
+    def updatesnake(self):
         # Check if spaces next to the head are empty
         FreePoints = []
         DeltaList = [Point(0,1),Point(0,-1),Point(1,0),Point(-1,0)]
@@ -52,7 +90,7 @@ class Snake(Pattern):
         if len(FreePoints) == 0:
             self.Food = Point(random.randint(0,6),random.randint(0,6))
             self.SnakeBody = [Point(3,4),Point(4,4)]
-            return ~np.zeros((7, 7), dtype=np.bool), 0.2
+            return ~np.zeros((7, 7, 3), dtype=np.bool), 0.2
 
            # Out of free points, check which is closest to food
         MinPoint = self.GetClosestPoint(self.Food, FreePoints)

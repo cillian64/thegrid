@@ -63,6 +63,10 @@ def clicker(freq=255, vol=255):
     return wrapper
 
 
+def silent():
+    return clicker(freq=0, vol=0)
+
+
 class Pattern:
     def __init__(self, config, ui):
         self.config = config

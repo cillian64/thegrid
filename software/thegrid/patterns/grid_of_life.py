@@ -2,7 +2,7 @@
 
 
 import numpy as np
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern
 
 grid_size = 7
 
@@ -15,7 +15,6 @@ grid_size = 7
                   {'colour': True, 'pattern': 'glider'})
 @register_pattern("[COLOUR] Game of Life",
                   {'colour': True, 'pattern': 'random'})
-@clicker()
 class PatternColourwheel(Pattern):
     def __init__(self, cfg, tracking):
         self.gen = self.generator(cfg)
@@ -23,7 +22,7 @@ class PatternColourwheel(Pattern):
     def generator(self, cfg):
         cells = np.zeros((7, 7, 1), dtype=np.bool)
         next_cells = np.zeros((7, 7, 1), dtype=np.bool)
-        lights = np.zeros((7, 7, 3), dtype=np.uint8)
+        lights = np.zeros((7, 7, 6), dtype=np.uint8)
 
         # Frames per second
         fps = 30
@@ -58,7 +57,7 @@ class PatternColourwheel(Pattern):
             cell_colours = np.zeros((7, 7, 3), dtype=np.uint8)
             cell_colours[:, :, :] = 255
 
-        lights = cells * cell_colours
+        lights[:, :, :3] = cells * cell_colours
         yield lights, 1.0 / ups
 
         # Remember which cells died in each iteration so we can change their
@@ -86,7 +85,7 @@ class PatternColourwheel(Pattern):
                             frames = fps*ups*3
                             for i in range(fps*ups*3):
                                 cur = 1 - i/frames
-                                lights[:, :, :] = cells * cell_colours * cur
+                                lights[:, :, :3] = cells * cell_colours * cur
                                 yield lights, 1/fps
 
                     # Give a few updates of black to divide:
@@ -103,8 +102,21 @@ class PatternColourwheel(Pattern):
                 # with respective weighting cur, new
                 cur = 1 - i/frames
                 new = i/frames
-                lights[:, :, :] = (cells * cell_colours * cur +
+                lights[:, :, :3] = (cells * cell_colours * cur +
                                    next_cells * cell_colours * new)
+                for x in range(7):
+                    for y in range(7):
+                        lights[x, y, 3] = 1 # sine
+                        # If we're fading up, make a happy coming-to-life sound
+                        if next_cells[x, y] and not cells[x, y]:
+                            lights[x, y, 4] = 120 # higher freq
+                            lights[x, y, 5] = 200 # vol
+                        # if we're fading down, make a sad dying noise
+                        elif not next_cells[x, y] and cells[x, y]:
+                            lights[x, y, 4] = 80 # higher freq
+                            lights[x, y, 5] = 200 # vol
+                        else:
+                            lights[x, y, 5] = 0 # vol
                 yield lights, 1/fps
             cells[:] = next_cells
             if cfg['colour']:

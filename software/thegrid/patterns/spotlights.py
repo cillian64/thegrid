@@ -3,11 +3,11 @@
 
 import numpy as np
 from math import sqrt, sin, cos, pi
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern, silent
 from colorsys import hsv_to_rgb
 
 @register_pattern("[COLOUR] Spotlights")
-@clicker()
+@silent()
 class PatternColourwave(Pattern):
     def __init__(self, cfg, tracking):
         n_spots = 3

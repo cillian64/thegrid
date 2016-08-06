@@ -15,6 +15,7 @@ except ImportError:
 from ...pattern import Pattern
 from math import floor
 
+
 class MusicPattern(Pattern):
     def __init__(self, config, tracking):
         self.setup_bpm(config)
@@ -24,7 +25,7 @@ class MusicPattern(Pattern):
         logger.info("Starting player")
         self.musicplayer = self.musicfile.play()
 # Use below to seek to a certain start beat or time:
-#        self.musicplayer.seek(self.beat_to_t(286))
+#        self.musicplayer.seek(self.beat_to_t(50))
 
     def __del__(self):
         self.musicplayer.delete()
@@ -48,7 +49,7 @@ class MusicPattern(Pattern):
 
     def t_to_barbeat(self, t):
         bar = (self.t_to_beat(t) - 1) // self.beats_per_bar + 1
-        beat = self.t_to_beat(t) % self.beats_per_bar 
+        beat = self.t_to_beat(t) % self.beats_per_bar
         if beat == 0:
             beat = self.beats_per_bar
         return (int(bar), int(beat))
