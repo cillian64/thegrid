@@ -217,5 +217,10 @@ class Annihilation(RainbowRunner):
             yield grid
 
         asplode = self.asplode()
-        for _ in range(5):
-            yield next(asplode)
+        for _ in range(7):
+            grid = next(asplode)
+            yield grid
+
+        for brightness in reversed(range(0, 255, 10)):
+            grid[:, :] = [brightness for _ in range(3)] + [0, 0, 0]
+            yield grid
