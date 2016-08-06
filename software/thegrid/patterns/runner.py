@@ -142,3 +142,89 @@ class RainbowRunner(Runner):
                 grid[x][y][0:3] = colours[1 + i]
             wake.appendleft(next(self.runner_loc))
             yield grid
+
+
+@register_pattern("[COLOUR] Annihiliation")
+class Annihilation(RainbowRunner):
+
+    def anti_runner_location(self):
+        """Create a runner starting from opposite point on the grid"""
+        anti_location = self.runner_location()
+        for _ in range(49):
+            next(anti_location)
+        return anti_location
+
+    @staticmethod
+    def asplode():
+        """White emanating from centre with decreasing brightness"""
+        brightness = 255
+        grid = np.zeros((7, 7, 6), dtype=np.uint8)
+
+        while True:
+            for i, j in zip([2, 1, 0], [4, 5, 6]):
+                grid[3][3][0:3] = [brightness for _ in range(3)]
+                brightness -= 50
+                grid[:, i] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[:, j] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[i, :] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[j, :] = [brightness for _ in range(3)] + [0, 0, 0]
+                yield grid
+
+    def generate_grid(self, wake_length=11):
+        """
+        Yields 7x7x6 numpy array representing grid pole configurations
+
+        Yields a 7x7x6 numpy array, with each entry representing the
+        configuration of a pole in The Grid.
+        """
+        wake = collections.deque(maxlen=wake_length)
+        wake.appendleft(next(self.runner_loc))
+
+        anti_loc = self.anti_runner_location()
+        anti_wake = copy.deepcopy(wake)
+        anti_wake.appendleft(next(anti_loc))
+
+        colours = self.colour_gradient()
+        grid = np.zeros((7, 7, 6), dtype=np.uint8)
+
+        def advance(selected_wake, selected_location):
+            x, y = selected_wake[0]
+            grid[x][y][0:3] = colours[0]
+
+            for i in range(len(selected_wake)):
+                x, y = selected_wake[i]
+                grid[x][y][0:3] = colours[1 + i]
+
+        def advance_towards_centre_row():
+            grid[:, :] = [0 for _ in range(6)]
+            advance(wake, self.runner_loc)
+            wake.appendleft(next(self.runner_loc))
+            advance(anti_wake, anti_loc)
+            anti_wake.appendleft(next(anti_loc))
+
+        def collapse_towards_centre_pole():
+            grid[:, :] = [0 for _ in range(6)]
+            wake.pop()
+            advance(wake, self.runner_loc)
+            anti_wake.pop()
+            advance(anti_wake, anti_loc)
+            grid[3][3][0:3] = [brightness for _ in range(3)]
+
+        while wake[0] != (3, 3):
+            advance_towards_centre_row()
+            yield grid
+
+        brightness = 25
+        for _ in range(10):
+            collapse_towards_centre_pole()
+            yield grid
+            brightness += 25
+
+        asplode = self.asplode()
+        for _ in range(7):
+            grid = next(asplode)
+            yield grid
+
+        for brightness in reversed(range(0, 255, 10)):
+            grid[:, :] = [brightness for _ in range(3)] + [0, 0, 0]
+            yield grid
