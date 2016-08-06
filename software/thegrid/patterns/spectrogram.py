@@ -5,7 +5,7 @@ from scipy.signal import lfilter, firwin
 from scipy.fftpack import fft
 import time
 
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern, silent
 
 
 
@@ -15,7 +15,7 @@ green = (0, 255, 0)
 off = (0, 0, 0)
 
 @register_pattern("Spectrogram")
-@clicker()
+@silent()
 class PatternVU(Pattern):
     def __init__(self, cfg, tracking):
         self.gen = self.generator()

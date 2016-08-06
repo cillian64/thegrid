@@ -102,13 +102,13 @@ class StaticPattern(Pattern):
         for y, row in enumerate(curblock[0]):
             for x, col in enumerate(row):
                 if col == '*' or col == 'w' or col == 'W':
-                    self.arr[y, x] = (255, 255, 255)
+                    self.arr[y, x] = (100, 100, 100)
                 elif col == 'r' or col == 'R':
-                    self.arr[y, x] = (255, 0, 0)
+                    self.arr[y, x] = (100, 0, 0)
                 elif col == 'g' or col == 'G':
-                    self.arr[y, x] = (0, 255, 0)
+                    self.arr[y, x] = (0, 100, 0)
                 elif col == 'b' or col == 'B':
-                    self.arr[y, x] = (0, 0, 255)
+                    self.arr[y, x] = (0, 0, 100)
                 else:
                     self.arr[y, x] = (0, 0, 0)
 

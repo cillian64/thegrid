@@ -3,7 +3,7 @@ import alsaaudio
 import numpy as np
 from scipy.signal import lfilter, firwin
 
-from ..pattern import Pattern, register_pattern, clicker
+from ..pattern import Pattern, register_pattern, silent
 
 
 
@@ -13,7 +13,7 @@ green = (0, 255, 0)
 off = (0, 0, 0)
 
 @register_pattern("VU")
-@clicker()
+@silent()
 class PatternVU(Pattern):
     def __init__(self, cfg, tracking):
         self.gen = self.generator()

@@ -9,8 +9,8 @@ import numpy as np
 import scipy
 import scipy.ndimage
 import scipy.signal
-from ..pattern import Pattern, register_pattern, clicker
-from colorsys import hsv_to_rgb
+from ..pattern import Pattern, register_pattern
+from colorsys import hsv_to_rgb, rgb_to_hsv
 from numpy.random import randint
 import sys
 
@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 
 @register_pattern("[COLOUR] Diffusion")
-@clicker()
 class Sample(Pattern):
     def __init__(self, cfg, tracking):
         logger.info("Diffusion pattern starting up")
@@ -62,6 +61,17 @@ class Sample(Pattern):
 
         maxgrid = np.zeros((7, 7, 3), dtype=np.uint8)
         maxgrid += 255
-        truncated = np.zeros((7, 7, 3), dtype=np.uint8)
-        truncated[:, :, :] = np.minimum(self.grid, maxgrid)
+        truncated = np.zeros((7, 7, 6), dtype=np.uint8)
+        truncated[:, :, :3] = np.minimum(self.grid, maxgrid)
+        truncated[:, :, 3] = 1 # sine
+        # Frequency depends on hue of colour:
+        for x in range(7):
+            for y in range(7):
+                colour = truncated[x, y, :3]
+                hue = rgb_to_hsv(*[x/255 for x in colour])[0]*255/2
+                truncated[x, y, 4] = 100 + hue
+        vol = np.zeros((7, 7))
+        vol = np.amax(truncated[:, :, 0:3], axis=2)
+        vol[vol > 255] = 255
+        truncated[:, :, 5] = vol
         return truncated, 1.0/30

@@ -1,0 +1,113 @@
+<!doctype html>
+<head>
+  <meta charset=UTF-8>
+  <style type="text/css">
+    #patterns { border: 1px solid; }
+    td { border: 1px solid; }
+    #nowplaying { font-size: 2em; }
+  </style>
+  <title>The·Grid Admin</title>
+</head>
+<body>
+  <h1>The·Grid Admin</h1>
+  <div id=nowplaying></div>
+  <div id=locked></div>
+  Password: <input id=password type=password />
+  <input type=submit value=reload onclick=reload() />
+  <input type=submit value=lock onclick=lock() />
+  <input type=submit value=unlock onclick=unlock() />
+  <table id=patterns>
+  </table>
+</body>
+<script>
+  function sendform() {
+    var fd = new FormData(this.form);
+    var pw = document.getElementById('password').value;
+    fd.append('password', pw);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', this.form.action, true);
+    xhr.send(fd);
+    return false;
+  };
+
+  var req = new XMLHttpRequest();
+  req.open("GET", "/api/list_patterns", true);
+  req.onload = function() {
+    var patterns = JSON.parse(this.responseText);
+    var table = document.getElementById("patterns");
+    for (pattern of patterns) {
+      var row = table.insertRow(-1);
+      var name = row.insertCell(0);
+      name.innerHTML = pattern;
+      var load = row.insertCell(1);
+      var loadform = document.createElement("form");
+      loadform.setAttribute("method", "post");
+      loadform.setAttribute("action", "/api/load_pattern");
+      var loadname = document.createElement("input");
+      loadname.setAttribute("type", "hidden");
+      loadname.setAttribute("name", "name");
+      loadname.setAttribute("value", pattern);
+      loadform.appendChild(loadname);
+      var loadbtn = document.createElement("input");
+      loadbtn.setAttribute("type", "submit");
+      loadbtn.setAttribute("value", "load");
+      loadbtn.onclick = sendform;
+      loadform.appendChild(loadbtn);
+      load.appendChild(loadform);
+    }
+  }
+  req.send();
+
+  function np() {
+    var req = new XMLHttpRequest();
+    req.open("GET", "/api/now_playing", true);
+    req.onload = function() {
+      var pattern = this.responseText;
+      var npdiv = document.getElementById('nowplaying');
+      npdiv.innerHTML = "Now Playing: " + pattern;
+    }
+    req.send();
+    window.setTimeout(np, 1000);
+  }
+  np();
+
+  function locked() {
+    var req = new XMLHttpRequest();
+    req.open("GET", "/api/locked", true);
+    req.onload = function() {
+      var status = this.responseText;
+      var lockeddiv = document.getElementById('locked');
+      lockeddiv.innerHTML = status;
+    }
+    req.send();
+    window.setTimeout(locked, 1000);
+  }
+  locked();
+
+  function reload() {
+    var pw = document.getElementById('password').value;
+    var fd = new FormData();
+    fd.append("password", pw);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/reload", true);
+    xhr.send(fd);
+  }
+
+  function lock() {
+    var pw = document.getElementById('password').value;
+    var fd = new FormData();
+    fd.append("password", pw);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/lock", true);
+    xhr.send(fd);
+  }
+
+  function unlock() {
+    var pw = document.getElementById('password').value;
+    var fd = new FormData();
+    fd.append("password", pw);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/unlock", true);
+    xhr.send(fd);
+  }
+</script>

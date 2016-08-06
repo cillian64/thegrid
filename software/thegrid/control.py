@@ -1,5 +1,6 @@
 import sys
 import argparse
+import struct
 import asyncio
 import logging
 import json
@@ -15,6 +16,8 @@ parser.add_argument('--serial-port')
 parser.add_argument('--web-host', default='localhost',
                     help="Host/IP for HTTP server")
 parser.add_argument('--web-port', default=8080, help="Port for HTTP server")
+parser.add_argument('--password', default="hunter2",
+                    help="Password for web admin access")
 args = parser.parse_args()
 
 
@@ -29,6 +32,9 @@ class Control:
         self.pattern = None
         self.pattern_name = None
         self.patterns = patterns.loaded_patterns
+
+        # Store password for admin access
+        self.password = args.password
 
     @asyncio.coroutine
     def setup(self):
@@ -101,6 +107,24 @@ class Control:
         else:
             # Enqueue next frame
             self.loop.call_later(delay, self.run_pattern)
+
+            def off(row, col, grid):
+                return (grid[row, col, 0] == 0 and
+                    grid[row, col, 1] == 0 and
+                    grid[row, col, 2] == 0 and (
+                    grid[row, col, 3] == 0 or
+                    grid[row, col, 5] == 0))
+
+            sync = b"\xFF" * 6
+            cmd = b"\xFC"
+            for row in range(7):
+                rowbyte = 0
+                for col in range(7):
+                    if not off(row, col, poles):
+                        rowbyte |= 1 << col
+                cmd += struct.pack("B", rowbyte)
+            cmd += b"\x00" * (398-14)
+            serial.write_raw(sync + cmd)
 
             # Enqueue writing new frame to serial port and web sockets
             self.send_frame(poles)

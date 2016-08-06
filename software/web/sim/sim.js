@@ -28,7 +28,7 @@ function init_world() {
     var bloomPass = new THREE.BloomPass(1.5);
     var copyPass = new THREE.ShaderPass(THREE.CopyShader);
     copyPass.renderToScreen = true;
-    composer.addPass(bloomPass);
+    //composer.addPass(bloomPass);
     composer.addPass(copyPass);
 
     document.body.appendChild(renderer.domElement);
