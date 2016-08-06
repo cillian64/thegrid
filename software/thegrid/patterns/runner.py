@@ -164,11 +164,17 @@ class Annihilation(RainbowRunner):
             for i, j in zip([2, 1, 0], [4, 5, 6]):
                 grid[3][3][0:3] = [brightness for _ in range(3)]
                 brightness -= 50
-                grid[:, i] = [brightness for _ in range(3)] + [0, 0, 0]
-                grid[:, j] = [brightness for _ in range(3)] + [0, 0, 0]
-                grid[i, :] = [brightness for _ in range(3)] + [0, 0, 0]
-                grid[j, :] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[:, i] = [brightness for _ in range(3)] + [5, 0, 255]
+                grid[:, j] = [brightness for _ in range(3)] + [5, 0, 255]
+                grid[i, :] = [brightness for _ in range(3)] + [5, 0, 255]
+                grid[j, :] = [brightness for _ in range(3)] + [5, 0, 255]
                 yield grid
+
+    @staticmethod
+    def descending_pitch():
+        for pitch in reversed(range(50)):
+            logging.info('pitch is {0}'.format(pitch))
+            yield pitch
 
     def generate_grid(self, wake_length=11):
         """
@@ -185,11 +191,12 @@ class Annihilation(RainbowRunner):
         anti_wake.appendleft(next(anti_loc))
 
         colours = self.colour_gradient()
+        pitch = self.descending_pitch()
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
-        def advance(selected_wake, selected_location):
+        def advance(selected_wake, selected_location, freq):
             x, y = selected_wake[0]
-            grid[x][y][0:3] = colours[0]
+            grid[x][y] = colours[0] + [2, freq, 150]
 
             for i in range(len(selected_wake)):
                 x, y = selected_wake[i]
@@ -197,17 +204,19 @@ class Annihilation(RainbowRunner):
 
         def advance_towards_centre_row():
             grid[:, :] = [0 for _ in range(6)]
-            advance(wake, self.runner_loc)
+            p = next(pitch)
+            advance(wake, self.runner_loc, p)
             wake.appendleft(next(self.runner_loc))
-            advance(anti_wake, anti_loc)
+            advance(anti_wake, anti_loc, p)
             anti_wake.appendleft(next(anti_loc))
 
         def collapse_towards_centre_pole():
+            p = next(pitch)
             grid[:, :] = [0 for _ in range(6)]
             wake.pop()
-            advance(wake, self.runner_loc)
+            advance(wake, self.runner_loc, p)
             anti_wake.pop()
-            advance(anti_wake, anti_loc)
+            advance(anti_wake, anti_loc, p)
             grid[3][3][0:3] = [brightness for _ in range(3)]
 
         while wake[0] != (3, 3):
