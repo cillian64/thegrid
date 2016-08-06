@@ -6,6 +6,7 @@
 #include "leds.h"
 #include "sound.h"
 #include "flash.h"
+#include "watchdog.h"
 
 volatile Frame framebuf;
 
@@ -63,6 +64,8 @@ static void bootload(Packet* pkt) {
 void frame_process() {
     if(!frame_check_sync())
         return;
+
+    watchdog_reset();
 
     Packet pkt = framebuf.packets[node_id];
     if(!packet_check_checksum(&pkt)) {
