@@ -187,7 +187,7 @@ class Annihilation(RainbowRunner):
         colours = self.colour_gradient()
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
-        def run(selected_wake, selected_location):
+        def advance(selected_wake, selected_location):
             x, y = selected_wake[0]
             grid[x][y][0:3] = colours[0]
 
@@ -195,36 +195,38 @@ class Annihilation(RainbowRunner):
                 x, y = selected_wake[i]
                 grid[x][y][0:3] = colours[1 + i]
 
-        # Rainbows snake from opposite sides til they get to middle row
-        while wake[0] != (3, 3):
+        def advance_towards_centre_row():
             grid[:, :] = [0 for _ in range(6)]
-            run(wake, self.runner_loc)
+            advance(wake, self.runner_loc)
             wake.appendleft(next(self.runner_loc))
-            run(anti_wake, anti_loc)
+            advance(anti_wake, anti_loc)
             anti_wake.appendleft(next(anti_loc))
-            yield grid
 
-        # Rainbows collapse into centre pole as it increases in brightness
-        brightness = 25
-        for _ in range(10):
+        def collapse_towards_centre_pole():
             grid[:, :] = [0 for _ in range(6)]
             wake.pop()
-            run(wake, self.runner_loc)
+            advance(wake, self.runner_loc)
             anti_wake.pop()
-            run(anti_wake, anti_loc)
+            advance(anti_wake, anti_loc)
             grid[3][3][0:3] = [brightness for _ in range(3)]
+
+        while wake[0] != (3, 3):
+            advance_towards_centre_row()
+            yield grid
+
+        brightness = 25
+        for _ in range(10):
+            collapse_towards_centre_pole()
             yield grid
             brightness += 25
         for _ in range(5):
             yield grid
 
-        # Centre pole explodes outwards into grid
         asplode = self.asplode()
         for _ in range(7):
             grid = next(asplode)
             yield grid
 
-        # Whole grid fades slowly from full brightness to dark
         for brightness in reversed(range(0, 255, 10)):
             grid[:, :] = [brightness for _ in range(3)] + [0, 0, 0]
             yield grid
