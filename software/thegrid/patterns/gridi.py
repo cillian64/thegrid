@@ -33,6 +33,10 @@ import time
                         "thegrid/patterns/mids/tubthumping.mid")
 @register_pattern("[MUSIC] MIDI player: newlife.mid",
                         "thegrid/patterns/mids/newlife.mid")
+@register_pattern("[MUSIC] MIDI player: coolio.mid",
+                        "thegrid/patterns/mids/coolio.mid")
+@register_pattern("[MUSIC] MIDI player: chopsuey.mid",
+                        "thegrid/patterns/mids/chopsuey.mid")
 @register_pattern("[MUSIC] MIDI player: justcantgetenough.mid",
                         "thegrid/patterns/mids/justcantgetenough.mid")
 @silent()
