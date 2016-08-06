@@ -224,7 +224,7 @@ class Annihilation(RainbowRunner):
             grid = next(asplode)
             yield grid
 
-        # Whole grade fades slowly from full brightness to dark
+        # Whole grid fades slowly from full brightness to dark
         for brightness in reversed(range(0, 255, 10)):
             grid[:, :] = [brightness for _ in range(3)] + [0, 0, 0]
             yield grid
