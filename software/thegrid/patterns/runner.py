@@ -148,6 +148,7 @@ class RainbowRunner(Runner):
 class Annihilation(RainbowRunner):
 
     def anti_runner_location(self):
+        """Create a runner starting from opposite point on the grid"""
         anti_location = self.runner_location()
         for _ in range(49):
             next(anti_location)
@@ -177,10 +178,22 @@ class Annihilation(RainbowRunner):
             for i in range(len(selected_wake)):
                 x, y = selected_wake[i]
                 grid[x][y][0:3] = colours[1 + i]
-            selected_wake.appendleft(next(selected_location))
 
-        while True:
+        while wake[0] != (3, 3):
             grid[:, :] = [0 for _ in range(6)]
             run(wake, self.runner_loc)
+            wake.appendleft(next(self.runner_loc))
             run(anti_wake, anti_loc)
+            anti_wake.appendleft(next(anti_loc))
             yield grid
+
+        brightness = 25
+        for _ in range(10):
+            grid[:, :] = [0 for _ in range(6)]
+            wake.pop()
+            run(wake, self.runner_loc)
+            anti_wake.pop()
+            run(anti_wake, anti_loc)
+            grid[3][3][0:3] = [brightness for _ in range(3)]
+            yield grid
+            brightness += 25
