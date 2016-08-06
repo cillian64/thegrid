@@ -27,8 +27,6 @@ import time
                         "thegrid/patterns/mids/freebird.mid")
 @register_pattern("[MUSIC] MIDI player: getlucky.mid",
                         "thegrid/patterns/mids/getlucky.mid")
-@register_pattern("[MUSIC] MIDI player: bohemian.mid",
-                        "thegrid/patterns/mids/bohemian.mid")
 @register_pattern("[MUSIC] MIDI player: sweetchild.mid",
                         "thegrid/patterns/mids/sweetchild.mid")
 @register_pattern("[MUSIC] MIDI player: tubthumping.mid",
