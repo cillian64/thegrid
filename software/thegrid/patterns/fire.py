@@ -15,7 +15,7 @@ class PatternColourwave(Pattern):
         self.gen = self.generator()
 
     def generator(self):
-        arr = np.zeros((7, 7, 3), dtype=np.uint8)
+        arr = np.zeros((7, 7, 6), dtype=np.uint8)
         base = np.zeros((7, 7, 3), dtype=np.uint8)
         blankers = np.zeros((7, 7), dtype=np.bool)
         # We want a nice smooth fade from white/pale yellow to yellow, to
@@ -43,8 +43,8 @@ class PatternColourwave(Pattern):
                 blankers[0, np.random.randint(7)] = True
 
             # Update grid
-            arr[:] = base
-            arr[blankers.T] = (0, 0, 0)
+            arr[:, :, :3] = base
+            arr[:, :, :3][blankers.T] = (0, 0, 0)
             yield arr, 1.0/15
 
     def update(self):
