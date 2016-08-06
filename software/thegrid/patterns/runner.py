@@ -154,6 +154,21 @@ class Annihilation(RainbowRunner):
             next(anti_location)
         return anti_location
 
+    @staticmethod
+    def asplode():
+        brightness = 255
+        grid = np.zeros((7, 7, 6), dtype=np.uint8)
+
+        while True:
+            for i, j in zip([2, 1, 0], [4, 5, 6]):
+                grid[3][3][0:3] = [brightness for _ in range(3)]
+                brightness -= 50
+                grid[:, i] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[:, j] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[i, :] = [brightness for _ in range(3)] + [0, 0, 0]
+                grid[j, :] = [brightness for _ in range(3)] + [0, 0, 0]
+                yield grid
+
     def generate_grid(self, wake_length=11):
         """
         Yields 7x7x6 numpy array representing grid pole configurations
@@ -197,3 +212,9 @@ class Annihilation(RainbowRunner):
             grid[3][3][0:3] = [brightness for _ in range(3)]
             yield grid
             brightness += 25
+        for _ in range(5):
+            yield grid
+
+        asplode = self.asplode()
+        for _ in range(5):
+            yield next(asplode)
