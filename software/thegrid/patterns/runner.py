@@ -195,6 +195,7 @@ class Annihilation(RainbowRunner):
                 x, y = selected_wake[i]
                 grid[x][y][0:3] = colours[1 + i]
 
+        # Rainbows snake from opposite sides til they get to middle row
         while wake[0] != (3, 3):
             grid[:, :] = [0 for _ in range(6)]
             run(wake, self.runner_loc)
@@ -203,6 +204,7 @@ class Annihilation(RainbowRunner):
             anti_wake.appendleft(next(anti_loc))
             yield grid
 
+        # Rainbows collapse into centre pole as it increases in brightness
         brightness = 25
         for _ in range(10):
             grid[:, :] = [0 for _ in range(6)]
@@ -216,11 +218,13 @@ class Annihilation(RainbowRunner):
         for _ in range(5):
             yield grid
 
+        # Centre pole explodes outwards into grid
         asplode = self.asplode()
         for _ in range(7):
             grid = next(asplode)
             yield grid
 
+        # Whole grade fades slowly from full brightness to dark
         for brightness in reversed(range(0, 255, 10)):
             grid[:, :] = [brightness for _ in range(3)] + [0, 0, 0]
             yield grid
