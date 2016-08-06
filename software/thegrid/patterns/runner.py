@@ -173,7 +173,6 @@ class Annihilation(RainbowRunner):
     @staticmethod
     def descending_pitch():
         for pitch in reversed(range(50)):
-            logging.info('pitch is {0}'.format(pitch))
             yield pitch
 
     def generate_grid(self, wake_length=11):
