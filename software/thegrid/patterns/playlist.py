@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 playlists = {
-    "[MONOCHROME] Cool Patterns": [
+    "[PLAYLIST] Cool Patterns": [
         ("[MONOCHROME] Lightning", 120),
         ("[MONOCHROME] On", 20),
         ("[MONOCHROME] Sparkle", 20),
@@ -28,7 +28,7 @@ playlists = {
         ("[TEST] Stopping Grn", 30),
         ("[TEST] Stopping Blu", 30),
     ],
-    "[COLOUR] Colour Patterns": [
+    "[PLAYLIST] Colour Patterns": [
         ("[COLOUR] Ripple", 60),
         ("[COLOUR] Spin", 15),
         ("[COLOUR] Game of Life", 180),
