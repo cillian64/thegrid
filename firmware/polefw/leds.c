@@ -4,7 +4,7 @@
 #include "leds.h"
 
 static const PWMConfig pwm_cfg = {
-    .frequency = 32000,
+    .frequency = 16000,
     .period    = 255,
     .callback  = NULL,
     .cr2       = 0,
