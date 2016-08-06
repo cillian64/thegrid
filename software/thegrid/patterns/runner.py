@@ -219,8 +219,6 @@ class Annihilation(RainbowRunner):
             collapse_towards_centre_pole()
             yield grid
             brightness += 25
-        for _ in range(5):
-            yield grid
 
         asplode = self.asplode()
         for _ in range(7):
