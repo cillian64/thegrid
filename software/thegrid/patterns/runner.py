@@ -156,6 +156,7 @@ class Annihilation(RainbowRunner):
 
     @staticmethod
     def asplode():
+        """White emanating from centre with decreasing brightness"""
         brightness = 255
         grid = np.zeros((7, 7, 6), dtype=np.uint8)
 
@@ -194,6 +195,21 @@ class Annihilation(RainbowRunner):
                 x, y = selected_wake[i]
                 grid[x][y][0:3] = colours[1 + i]
 
+        def meet():
+            """The two rainbows meet in the middle, centre turns white"""
+            brightness = 25
+            for _ in range(10):
+                grid[:, :] = [0 for _ in range(6)]
+                wake.pop()
+                run(wake, self.runner_loc)
+                anti_wake.pop()
+                run(anti_wake, anti_loc)
+                grid[3][3][0:3] = [brightness for _ in range(3)]
+                yield grid
+                brightness += 25
+            for _ in range(5):
+                yield grid
+
         while wake[0] != (3, 3):
             grid[:, :] = [0 for _ in range(6)]
             run(wake, self.runner_loc)
@@ -202,19 +218,7 @@ class Annihilation(RainbowRunner):
             anti_wake.appendleft(next(anti_loc))
             yield grid
 
-        brightness = 25
-        for _ in range(10):
-            grid[:, :] = [0 for _ in range(6)]
-            wake.pop()
-            run(wake, self.runner_loc)
-            anti_wake.pop()
-            run(anti_wake, anti_loc)
-            grid[3][3][0:3] = [brightness for _ in range(3)]
-            yield grid
-            brightness += 25
-        for _ in range(5):
-            yield grid
-
+        meet()
         asplode = self.asplode()
         for _ in range(5):
             yield next(asplode)
