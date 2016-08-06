@@ -168,20 +168,19 @@ class Annihilation(RainbowRunner):
         anti_wake.appendleft(next(anti_loc))
 
         colours = self.colour_gradient()
+        grid = np.zeros((7, 7, 6), dtype=np.uint8)
+
+        def run(selected_wake, selected_location):
+            x, y = selected_wake[0]
+            grid[x][y][0:3] = colours[0]
+
+            for i in range(len(selected_wake)):
+                x, y = selected_wake[i]
+                grid[x][y][0:3] = colours[1 + i]
+            selected_wake.appendleft(next(selected_location))
 
         while True:
-            grid = np.zeros((7, 7, 6), dtype=np.uint8)
-            runner_x, runner_y = wake[0]
-            grid[runner_x][runner_y][0:3] = colours[0]
-
-            anti_x, anti_y = anti_wake[0]
-            grid[anti_x][anti_y][0:3] = colours[0]
-
-            for i in range(len(wake)):
-                x, y = wake[i]
-                grid[x][y][0:3] = colours[1 + i]
-                x, y = anti_wake[i]
-                grid[x][y][0:3] = colours[1 + i]
-            wake.appendleft(next(self.runner_loc))
-            anti_wake.appendleft(next(anti_loc))
+            grid[:, :] = [0 for _ in range(6)]
+            run(wake, self.runner_loc)
+            run(anti_wake, anti_loc)
             yield grid
