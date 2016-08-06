@@ -27,6 +27,20 @@ playlists = {
         ("[TEST] Stopping Red", 30),
         ("[TEST] Stopping Grn", 30),
         ("[TEST] Stopping Blu", 30),
+    ],
+    "[COLOUR] Colour Patterns": [
+        ("[COLOUR] Ripple", 60),
+        ("[COLOUR] Spin", 15),
+        ("[COLOUR] Game of Life", 180),
+        ("[COLOUR] Rainbow Runner", 60),
+        ("[COLOUR] Ripple", 60),
+        ("[COLOUR] Zoom", 20),
+        ("[MONOCHROME] Sparkle", 30),
+        ("[COLOUR] Wave", 180),
+        ("[COLOUR] Diffusion", 120),
+        ("[COLOUR] Radar (Moving)", 60),
+        ("[COLOUR] Snake", 60),
+        ("[COLOUR] Spotlights", 60)
     ]
 }
 
