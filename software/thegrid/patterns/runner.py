@@ -142,3 +142,46 @@ class RainbowRunner(Runner):
                 grid[x][y][0:3] = colours[1 + i]
             wake.appendleft(next(self.runner_loc))
             yield grid
+
+
+@register_pattern("[COLOUR] Annihiliation")
+class Annihilation(RainbowRunner):
+
+    def anti_runner_location(self):
+        anti_location = self.runner_location()
+        for _ in range(49):
+            next(anti_location)
+        return anti_location
+
+    def generate_grid(self, wake_length=11):
+        """
+        Yields 7x7x6 numpy array representing grid pole configurations
+
+        Yields a 7x7x6 numpy array, with each entry representing the
+        configuration of a pole in The Grid.
+        """
+        wake = collections.deque(maxlen=wake_length)
+        wake.appendleft(next(self.runner_loc))
+
+        anti_loc = self.anti_runner_location()
+        anti_wake = copy.deepcopy(wake)
+        anti_wake.appendleft(next(anti_loc))
+
+        colours = self.colour_gradient()
+
+        while True:
+            grid = np.zeros((7, 7, 6), dtype=np.uint8)
+            runner_x, runner_y = wake[0]
+            grid[runner_x][runner_y][0:3] = colours[0]
+
+            anti_x, anti_y = anti_wake[0]
+            grid[anti_x][anti_y][0:3] = colours[0]
+
+            for i in range(len(wake)):
+                x, y = wake[i]
+                grid[x][y][0:3] = colours[1 + i]
+                x, y = anti_wake[i]
+                grid[x][y][0:3] = colours[1 + i]
+            wake.appendleft(next(self.runner_loc))
+            anti_wake.appendleft(next(anti_loc))
+            yield grid
