@@ -120,7 +120,7 @@ class Control:
             for row in range(7):
                 rowbyte = 0
                 for col in range(7):
-                    if not off(row, col, poles):
+                    if not off(6-row, 6-col, poles):
                         rowbyte |= 1 << col
                 cmd += struct.pack("B", rowbyte)
             cmd += b"\x00" * (398-14)
