@@ -4,6 +4,7 @@ import os.path
 import logging
 from aiohttp import web
 from aiohttp.errors import ClientDisconnectedError
+import random
 
 logger = logging.getLogger(__name__)
 basepath = os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir))
@@ -135,8 +136,41 @@ def load_pattern(req):
 
 @asyncio.coroutine
 def ui(req):
-    return web.Response(body=b"")
-
+    yield from req.post()
+    app = req.POST.get('app')
+    if app == "pong" and req.app['control'].pattern_name == "[INTERACTIVE] Pong2P":
+        player = int(req.POST.get('player'))
+        if player not in [0,1]:
+            return web.Response(status=400, body=b"Bad Player ID")
+        authid = int(req.POST.get('auth'))
+        if authid == req.app['control'].ui['pong']['playerAuthId'][player]:
+            if req.app['control'].ui['pong']['waitingForPlayers'][player]:
+                #req.app['control'].ui['pong']['playerAuthId'][player] = random.randint(1, 65535);
+                req.app['control'].ui['pong']['waitingForPlayers'][player] = 0
+                return web.Response(body="{}".format(req.app['control'].ui['pong']['playerAuthId'][player]).encode())
+            else:
+                try:
+                    movement = req.POST.get('move')
+                except:
+                    return web.Response(status=403, body=b"Player Slot Full")
+                else:
+                    if movement == "UP":
+                        if not req.app['control'].ui['pong']['playerPaddle'][player]>=6:
+                            req.app['control'].ui['pong']['playerPaddle'][player]+=1;
+                        return web.Response(body=b"OK")
+                    elif movement == "DOWN":
+                        if not req.app['control'].ui['pong']['playerPaddle'][player]<=0:
+                            req.app['control'].ui['pong']['playerPaddle'][player]-=1;
+                        return web.Response(body=b"OK")
+                    elif movement == "DISCONNECT":
+                        req.app['control'].ui['pong']['reset'] = 1
+                        return web.Response(body=b"OK")
+                    else:
+                        return web.Response(status=400, body=b"Illegal Movement")
+        else:
+            return web.Response(status=403, body=b"Auth Code Not Correct")
+    else:
+        return web.Response(status=403, body=b"App Not Active")
 
 @asyncio.coroutine
 def on_shutdown(app):
