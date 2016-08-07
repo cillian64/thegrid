@@ -145,8 +145,9 @@ def ui(req):
         authid = int(req.POST.get('auth'))
         if authid == req.app['control'].ui['pong']['playerAuthId'][player]:
             if req.app['control'].ui['pong']['waitingForPlayers'][player]:
-                req.app['control'].ui['pong']['playerAuthId'][player] = random.randint(1, 65535);
-                return web.Response(body=b"{}".format(req.app['control'].ui['pong']['playerAuthId'][player]))
+                #req.app['control'].ui['pong']['playerAuthId'][player] = random.randint(1, 65535);
+                req.app['control'].ui['pong']['waitingForPlayers'][player] = 0
+                return web.Response(body="{}".format(req.app['control'].ui['pong']['playerAuthId'][player]).encode())
             else:
                 try:
                     movement = req.POST.get('move')
@@ -154,13 +155,16 @@ def ui(req):
                     return web.Response(status=403, body=b"Player Slot Full")
                 else:
                     if movement == "UP":
-                        if not self.playerPaddle[player]>=6:
-                            self.playerPaddle[player]+=1;
-                            return web.Response(body=b"OK")
+                        if not req.app['control'].ui['pong']['playerPaddle'][player]>=6:
+                            req.app['control'].ui['pong']['playerPaddle'][player]+=1;
+                        return web.Response(body=b"OK")
                     elif movement == "DOWN":
-                        if not self.playerPaddle[player]<=0:
-                            self.playerPaddle[player]-=1;
-                            return web.Response(body=b"OK")
+                        if not req.app['control'].ui['pong']['playerPaddle'][player]<=0:
+                            req.app['control'].ui['pong']['playerPaddle'][player]-=1;
+                        return web.Response(body=b"OK")
+                    elif movement == "DISCONNECT":
+                        req.app['control'].ui['pong']['reset'] = 1
+                        return web.Response(body=b"OK")
                     else:
                         return web.Response(status=400, body=b"Illegal Movement")
         else:
