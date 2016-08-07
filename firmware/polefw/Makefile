@@ -111,7 +111,7 @@ CSRC = $(STARTUPSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
        $(TESTSRC) \
-       main.c frame.c sound.c bus.c leds.c flash.c \
+       main.c frame.c sound.c bus.c leds.c flash.c watchdog.c \
 #       $(CHIBIOS)/os/hal/lib/streams/chprintf.c \
 #       $(CHIBIOS)/os/hal/lib/streams/memstreams.c \
 

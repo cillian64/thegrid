@@ -12,6 +12,7 @@
 #include "sound.h"
 #include "frame.h"
 #include "flash.h"
+#include "watchdog.h"
 
 binary_semaphore_t frame_thread_sem;
 static THD_WORKING_AREA(frame_thread_wa, 1024);
@@ -35,6 +36,8 @@ int main(void)
     leds_init();
     sound_init();
     flash_init();
+
+    watchdog_start();
 
     chThdCreateStatic(frame_thread_wa, sizeof(frame_thread_wa),
         NORMALPRIO, frame_thread, NULL);
