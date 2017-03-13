@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 @register_pattern("[MUSIC] All Your Base",
                   {"filename": "thegrid/patterns/musicpatterns/ayb.wav",
                    "first_beat": 5.2,
-                   "align_beat": 36.7,
+                   "align_beat": 36.0,
                    "align_beat_no": 84,
                    "beats_per_bar": 4})
 @silent()
@@ -33,7 +33,7 @@ class CaptainKirk(MusicPattern):
         bar, barbeat = self.get_barbeat()
         beat = self.get_beat()
         beat_portion = self.get_beat_portion()
-        logger.info("barbeat: {}, beat: {:03}".format(barbeat, beat))
+#        logger.info("barbeat: {}, beat: {:03}".format(barbeat, beat))
         self.state[:] = 0
 
         if beat == 0:

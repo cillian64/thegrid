@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 @register_pattern("[MUSIC] Shatner of the Mount",
                   {"filename": "thegrid/patterns/musicpatterns/kirk.wav",
                    "first_beat": 0.8,
-                   "align_beat": 45.0,
+                   "align_beat": 44.5,
                    "align_beat_no": 95.5,
                    "beats_per_bar": 4})
 @silent()
